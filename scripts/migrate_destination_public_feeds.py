@@ -95,6 +95,15 @@ def main():
             if destination.is_file() and source.read_bytes() != destination.read_bytes():
                 source.write_bytes(destination.read_bytes())
                 print('Aligned latest published asset into source:', source.relative_to(ROOT))
+    # Newer map UI modules were added directly at the published root after the
+    # 11 November source snapshot. Recover only these audited public JS/CSS assets.
+    for name in ('seizure-hotspots.css', 'seizure-hotspots.js',
+                 'clean-map-country-chart.js', 'clean-map-story-cards.js',
+                 'globe-rotation.js'):
+        original = ROOT / name
+        if not original.is_file():
+            raise RuntimeError(f'Missing newer published frontend asset: {name}')
+        (ROOT / 'web/observatory' / name).write_bytes(original.read_bytes())
     # Manifest of 2026-11-11 remains untouched as provenance; pin reviewed current
     # versions rather than weakening the source-integrity test globally.
     manifest = json.loads((ROOT/'docs/migration/source-manifest.json').read_text())
