@@ -79,6 +79,22 @@ def main():
         'public_feed_mirror': list(PUBLIC_FEEDS),
         'restricted_report_handling': 'No internal report files mirrored. Existing restricted integration retained pending controlled migration.'}
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2)+'\n')
+    # The production root contains newer user-approved interface improvements than
+    # the archived web/ source. Reconcile only unchanged paths FROM the live root
+    # back into web/, not the reverse. Never touch modified destination feeds.
+    modified_sources = set(REPLACEMENTS)
+    for section in ('observatory', 'research', 'reportage', 'restricted'):
+        folder = ROOT / 'web' / section
+        for source in folder.rglob('*'):
+            if not source.is_file() or 'tests' in source.relative_to(folder).parts:
+                continue
+            relative = source.relative_to(folder)
+            destination = ROOT / (relative if section == 'observatory' else Path(section) / relative)
+            if source.relative_to(ROOT).as_posix() in modified_sources:
+                continue
+            if destination.is_file() and source.read_bytes() != destination.read_bytes():
+                source.write_bytes(destination.read_bytes())
+                print('Aligned latest published asset into source:', source.relative_to(ROOT))
     # Manifest of 2026-11-11 remains untouched as provenance; pin reviewed current
     # versions rather than weakening the source-integrity test globally.
     manifest = json.loads((ROOT/'docs/migration/source-manifest.json').read_text())
