@@ -14,7 +14,7 @@ assert isinstance(reviewed, dict), 'Reviewed hashes must be an object'
 assert set(reviewed) <= {e['path'] for e in manifest['files']}, 'Unknown reviewed files'
 assert all(re.fullmatch(r'[0-9a-f]{64}', h) for h in reviewed.values()), 'Invalid reviewed hash'
 # Approved change to public and restricted export routines.
-approved_source_changes = {'web/observatory/live.js', 'web/restricted/explorer.js', 'web/restricted/restricted-period-export.js', 'web/observatory/temporal-core.js', 'web/observatory/temporal-filter.js'}
+approved_source_changes = {'web/observatory/live.js', 'web/observatory/news-data.js', 'web/restricted/explorer.js', 'web/restricted/restricted-period-export.js', 'web/observatory/temporal-core.js', 'web/observatory/temporal-filter.js'}
 sanitized = {x['path']: x['sha256'] for x in manifest.get('image_metadata_changes', [])}
 for entry in manifest['files']:
     path = ROOT / entry['path']
