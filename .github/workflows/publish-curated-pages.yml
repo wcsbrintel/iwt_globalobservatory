@@ -1,0 +1,47 @@
+name: Publish curated Observatory to GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'cases/**'
+      - 'audits/**'
+      - 'triage/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages-safe-observatory
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify canonical data and frontend source parity
+        run: |
+          python scripts/case_store.py validate --root cases
+          python scripts/sync_published_site.py --check
+          node --test web/observatory/tests/temporal-activity.test.cjs
+      - name: Build safe public-only site
+        run: python scripts/build_public_pages.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/public-pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

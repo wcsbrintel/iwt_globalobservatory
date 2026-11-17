@@ -1,7 +1,7 @@
 /* The public case collection is the only event source. No bundled case fallback. */
 window.NEWS_DATA=[];
 window.CaseSource=(()=>{
- const url='https://raw.githubusercontent.com/acarvalho-wcs/wildlife-trafficking-data/main/cases.json';
+ const url='cases.json';
  // Cutover guard: set to null after the initial migration. Growth is allowed now.
  const config={minimumInitialRecords:91};
  let status='idle',pending=null,started=false,hasLoaded=false,signature='',lastError=null,stale=false;
@@ -55,7 +55,7 @@ window.CaseSource=(()=>{
  function accept(payload,rows){
   const nextSignature=JSON.stringify(rows);
   if(nextSignature!==signature){window.NEWS_DATA=rows.map(adapt);signature=nextSignature;}
-  window.NEWS_UPDATED=payload.feed_updated_at||payload.updated_at||payload.audit_status?.updated_at||payload.reconstructed_at||'';
+  window.NEWS_UPDATED=payload.audit_status?.updated_at||payload.updated_at||payload.reconstructed_at||'';
   hasLoaded=true;
  }
  const state=()=>({status,cases:window.NEWS_DATA,error:lastError,stale});

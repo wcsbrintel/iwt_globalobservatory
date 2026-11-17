@@ -1,7 +1,7 @@
 /* The public case collection is the only event source. No bundled case fallback. */
 window.NEWS_DATA=[];
 window.CaseSource=(()=>{
- const url='https://raw.githubusercontent.com/acarvalho-wcs/wildlife-trafficking-data/main/cases.json';
+ const url='cases.json';
  // Cutover guard: set to null after the initial migration. Growth is allowed now.
  const config={minimumInitialRecords:91};
  let status='idle',pending=null,started=false,hasLoaded=false,signature='',lastError=null,stale=false;
