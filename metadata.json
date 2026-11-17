@@ -1,7 +1,7 @@
 {
   "schema_version": "1.2",
-  "repository": "acarvalho-wcs/wildlife-trafficking-data",
-  "public_base_url": "https://acarvalho-wcs.github.io/wildlife-trafficking-data/",
+  "repository": "wcsbrintel/iwt_globalobservatory",
+  "public_base_url": "https://wcsbrintel.github.io/iwt_globalobservatory/",
   "migration": {
     "phase": "READY_FOR_CUTOVER",
     "dashboard_cutover_ready": true,
@@ -32,9 +32,8 @@
   },
   "updated_at": "2026-10-14T14:35:00Z",
   "dashboard_feeds": {
-    "cases": "https://acarvalho-wcs.github.io/wildlife-trafficking-data/cases.json",
-    "routes_legacy_compatible": "https://acarvalho-wcs.github.io/wildlife-trafficking-reports/routes.json",
-    "routes_canonical": "https://acarvalho-wcs.github.io/wildlife-trafficking-data/routes.json"
+    "cases": "https://wcsbrintel.github.io/iwt_globalobservatory/cases.json",
+    "routes_canonical": "https://wcsbrintel.github.io/iwt_globalobservatory/routes.json"
   },
   "quantity_layer": {
     "ready": true,
@@ -51,5 +50,17 @@
     "updated_at": "2026-10-14T14:35:00Z"
   },
   "pages_redeploy_requested_at": "2026-10-05T15:10:00Z",
-  "pages_redeploy_reason": "Refresh GitHub Pages after canonical feed reached 621 cases."
+  "pages_redeploy_reason": "Refresh GitHub Pages after canonical feed reached 621 cases.",
+  "destination_migration": {
+    "snapshot_from": "acarvalho-wcs/wildlife-trafficking-data",
+    "public_feed_mirror": [
+      "papers.json",
+      "news.json",
+      "reports-weekly.json",
+      "reports-semiannual.json",
+      "reports-annual.json",
+      "reports-institutional.json"
+    ],
+    "restricted_report_handling": "No internal report files mirrored. Existing restricted integration retained pending controlled migration."
+  }
 }
