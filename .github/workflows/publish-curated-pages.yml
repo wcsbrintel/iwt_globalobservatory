@@ -2,10 +2,6 @@ name: Publish curated Observatory to GitHub Pages
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - 'cases/**'
-      - 'audits/**'
-      - 'triage/**'
   workflow_dispatch:
 permissions:
   contents: read
@@ -28,6 +24,9 @@ jobs:
       - name: Verify canonical data and frontend source parity
         run: |
           python scripts/case_store.py validate --root cases
+          # Build from individual records in this run: bot-generated feed commits do not
+          # reliably trigger a new Pages deployment when GITHUB_TOKEN is used.
+          python scripts/case_store.py build --root cases --output cases.json
           python scripts/sync_published_site.py --check
           node --test web/observatory/tests/temporal-activity.test.cjs
       - name: Build safe public-only site
