@@ -1,0 +1,47 @@
+name: Stage independent WCS Observatory fixes
+on:
+  push:
+    branches: ['migration/fix-destination-dependencies-20261117']
+permissions:
+  contents: write
+jobs:
+  stage:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Mirror public feeds, apply source-only references and validate parity
+        run: python scripts/migrate_destination_public_feeds.py
+      - name: Check public link, browser-independent tests and JS syntax
+        run: |
+          python scripts/test_site.py
+          node --check web/observatory/news-data.js
+          node --check web/observatory/documented-routes.js
+          node --check web/observatory/weekly-reports-data.js
+          node --check web/research/app.js
+          node --check web/reportage/app.js
+      - name: Commit audited destination changes on review branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/check_migration.py docs/migration/approved-current-hashes.json metadata.json \
+            papers.json news.json reports-weekly.json reports-semiannual.json reports-annual.json reports-institutional.json \
+            web/observatory web/research/app.js web/reportage/app.js \
+            news-data.js documented-routes.js assets/js/publications-data.js \
+            institutional-reports.js weekly-reports-data.js \
+            assets/js/growth-history.js assets/js/growth-history-seed.js \
+            research/app.js reportage/app.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Fix destination data independence and updated frontend source integrity"
+            git push origin HEAD:refs/heads/migration/fix-destination-dependencies-20261117
+          fi
