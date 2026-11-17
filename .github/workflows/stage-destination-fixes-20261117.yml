@@ -23,7 +23,9 @@ jobs:
         run: python scripts/migrate_destination_public_feeds.py
       - name: Check public link, browser-independent tests and JS syntax
         run: |
-          python scripts/test_site.py
+          python scripts/case_store.py validate --root cases
+          node --test web/observatory/tests/temporal-activity.test.cjs
+          node --test web/restricted/tests/restricted-period-export.test.mjs web/restricted/tests/explorer-viewport.test.mjs web/restricted/tests/scientific-format.test.mjs web/restricted/tests/xlsx-export.test.mjs
           node --check web/observatory/news-data.js
           node --check web/observatory/documented-routes.js
           node --check web/observatory/weekly-reports-data.js
