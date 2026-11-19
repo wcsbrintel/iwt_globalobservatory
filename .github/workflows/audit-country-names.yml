@@ -1,0 +1,33 @@
+name: Audit country names in canonical cases
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/audit_country_names.py
+      - .github/workflows/audit-country-names.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: audit-country-names
+  cancel-in-progress: false
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/audit_country_names.py
+      - name: Preserve country inventory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audits/country-inventory-2026-11-19.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Audit country-name variants in Observatory cases and routes"
+            git push
+          fi
