@@ -1,0 +1,74 @@
+name: Normalize canonical country values
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/normalize_country_names.py
+      - .github/workflows/normalize-country-names.yml
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: country-name-normalization
+  cancel-in-progress: false
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Normalize every canonical case and documented route endpoint
+        run: |
+          python scripts/normalize_country_names.py
+          python scripts/case_store.py validate --root cases
+          python scripts/case_store.py build --root cases --output cases.json
+      - name: Verify count, canonical aliases and UI
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.normalize_country_names import canonical
+          source=json.loads(Path('cases.json').read_text())
+          assert len(source['cases'])==1650, "Expected published case total changed unexpectedly"
+          assert all(canonical(c['country'])==c['country'] for c in source['cases'])
+          assert len(set(c['id'] for c in source['cases']))==len(source['cases'])
+          print('PASS: 1,650 unchanged IDs, all country keys canonical')
+          PY
+          node --check web/observatory/country-names.js
+          node --check web/observatory/news-data.js
+          node --check web/observatory/live.js
+          node --test web/observatory/tests/temporal-activity.test.cjs
+          python scripts/sync_published_site.py
+          python scripts/build_public_pages.py
+      - name: Commit canonical records, feed, routes and generated public frontend
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cases routes.json cases.json audits/country-normalization-2026-11-19.json cases/_manifest.json
+          git add -A -- index.html live.js news-data.js country-names.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Standardize country names and translations in all 1,650 wildlife cases"
+            git push origin HEAD:main
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/public-pages
+  deploy:
+    needs: normalize
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
