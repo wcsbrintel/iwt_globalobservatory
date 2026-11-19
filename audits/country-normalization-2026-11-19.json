@@ -1,0 +1,571 @@
+{
+  "canonical_rule": "One PT country name per ISO region; language-specific UI labels; preserve multinational/unknown categories.",
+  "total_cases_before": 1650,
+  "total_cases_after": 1650,
+  "distinct_country_values_before": 129,
+  "distinct_country_values_after": 109,
+  "case_country_changes": 40,
+  "route_endpoint_changes": 29,
+  "changes": [
+    {
+      "id": "lear-2010-czech-republic-3__batch-20261004",
+      "old": "República Tcheca",
+      "new": "Tchéquia",
+      "path": "cases/2010/06/lear-2010-czech-republic-3__batch-20261004.json"
+    },
+    {
+      "id": "2024-11-27__guarulhos-386-chinese-softshell-turtles",
+      "old": "Brazil",
+      "new": "Brasil",
+      "path": "cases/2024/11/2024-11-27__guarulhos-386-chinese-softshell-turtles.json"
+    },
+    {
+      "id": "2026-05-18__qatar-local-waters-illegal-seagull-hunting",
+      "old": "Qatar",
+      "new": "Catar",
+      "path": "cases/2026/05/2026-05-18__qatar-local-waters-illegal-seagull-hunting.json"
+    },
+    {
+      "id": "2026-08-24__beni-250-peta-eggs",
+      "old": "Bolivia",
+      "new": "Bolívia",
+      "path": "cases/2026/08/2026-08-24__beni-250-peta-eggs.json"
+    },
+    {
+      "id": "tgh-20261102-asi-003",
+      "old": "Tailandia",
+      "new": "Tailândia",
+      "path": "cases/2026/09/tgh-20261102-asi-003.json"
+    },
+    {
+      "id": "tgh-20261102-oce-002",
+      "old": "Australia",
+      "new": "Austrália",
+      "path": "cases/2026/09/tgh-20261102-oce-002.json"
+    },
+    {
+      "id": "tgh-20261102-oce-003",
+      "old": "Australia",
+      "new": "Austrália",
+      "path": "cases/2026/09/tgh-20261102-oce-003.json"
+    },
+    {
+      "id": "2026-10-05_06__reunion-west-marine-reserve-79kg-illegal-catch",
+      "old": "França (La Réunion)",
+      "new": "França",
+      "path": "cases/2026/10/2026-10-05_06__reunion-west-marine-reserve-79kg-illegal-catch.json"
+    },
+    {
+      "id": "2026-10-11__bebour-belouve-thirteen-tangues",
+      "old": "França (Reunião)",
+      "new": "França",
+      "path": "cases/2026/10/2026-10-11__bebour-belouve-thirteen-tangues.json"
+    },
+    {
+      "id": "tgh-20261102-afn-001",
+      "old": "Quenia",
+      "new": "Quênia",
+      "path": "cases/2026/10/tgh-20261102-afn-001.json"
+    },
+    {
+      "id": "tgh-20261102-afs-001",
+      "old": "Zimbabue",
+      "new": "Zimbábue",
+      "path": "cases/2026/10/tgh-20261102-afs-001.json"
+    },
+    {
+      "id": "tgh-20261102-afs-002",
+      "old": "Namibia",
+      "new": "Namíbia",
+      "path": "cases/2026/10/tgh-20261102-afs-002.json"
+    },
+    {
+      "id": "tgh-20261102-afs-003",
+      "old": "Africa do Sul",
+      "new": "África do Sul",
+      "path": "cases/2026/10/tgh-20261102-afs-003.json"
+    },
+    {
+      "id": "tgh-20261102-afs-006",
+      "old": "Mocambique",
+      "new": "Moçambique",
+      "path": "cases/2026/10/tgh-20261102-afs-006.json"
+    },
+    {
+      "id": "tgh-20261102-afs-010",
+      "old": "Namibia",
+      "new": "Namíbia",
+      "path": "cases/2026/10/tgh-20261102-afs-010.json"
+    },
+    {
+      "id": "tgh-20261102-afs-012",
+      "old": "Africa do Sul",
+      "new": "África do Sul",
+      "path": "cases/2026/10/tgh-20261102-afs-012.json"
+    },
+    {
+      "id": "tgh-20261102-afs-013",
+      "old": "Namibia",
+      "new": "Namíbia",
+      "path": "cases/2026/10/tgh-20261102-afs-013.json"
+    },
+    {
+      "id": "tgh-20261102-asb-002",
+      "old": "Indonesia",
+      "new": "Indonésia",
+      "path": "cases/2026/10/tgh-20261102-asb-002.json"
+    },
+    {
+      "id": "tgh-20261102-asb-003",
+      "old": "Indonesia",
+      "new": "Indonésia",
+      "path": "cases/2026/10/tgh-20261102-asb-003.json"
+    },
+    {
+      "id": "tgh-20261102-asb-006",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong",
+      "path": "cases/2026/10/tgh-20261102-asb-006.json"
+    },
+    {
+      "id": "tgh-20261102-asb-007",
+      "old": "India",
+      "new": "Índia",
+      "path": "cases/2026/10/tgh-20261102-asb-007.json"
+    },
+    {
+      "id": "tgh-20261102-asb-011",
+      "old": "Australia",
+      "new": "Austrália",
+      "path": "cases/2026/10/tgh-20261102-asb-011.json"
+    },
+    {
+      "id": "tgh-20261102-asb-012",
+      "old": "India",
+      "new": "Índia",
+      "path": "cases/2026/10/tgh-20261102-asb-012.json"
+    },
+    {
+      "id": "tgh-20261102-asi-002",
+      "old": "India",
+      "new": "Índia",
+      "path": "cases/2026/10/tgh-20261102-asi-002.json"
+    },
+    {
+      "id": "tgh-20261102-asi-004",
+      "old": "Japao",
+      "new": "Japão",
+      "path": "cases/2026/10/tgh-20261102-asi-004.json"
+    },
+    {
+      "id": "tgh-20261102-asi-007",
+      "old": "India",
+      "new": "Índia",
+      "path": "cases/2026/10/tgh-20261102-asi-007.json"
+    },
+    {
+      "id": "tgh-20261102-asi-008",
+      "old": "Paquistao",
+      "new": "Paquistão",
+      "path": "cases/2026/10/tgh-20261102-asi-008.json"
+    },
+    {
+      "id": "tgh-20261102-asi-017",
+      "old": "Tailandia",
+      "new": "Tailândia",
+      "path": "cases/2026/10/tgh-20261102-asi-017.json"
+    },
+    {
+      "id": "tgh-20261102-asi-018",
+      "old": "Tailandia",
+      "new": "Tailândia",
+      "path": "cases/2026/10/tgh-20261102-asi-018.json"
+    },
+    {
+      "id": "tgh-20261102-asi-019",
+      "old": "Quirguistao",
+      "new": "Quirguistão",
+      "path": "cases/2026/10/tgh-20261102-asi-019.json"
+    },
+    {
+      "id": "tgh-20261102-asi-021",
+      "old": "Russia",
+      "new": "Rússia",
+      "path": "cases/2026/10/tgh-20261102-asi-021.json"
+    },
+    {
+      "id": "tgh-20261102-asi-024",
+      "old": "India",
+      "new": "Índia",
+      "path": "cases/2026/10/tgh-20261102-asi-024.json"
+    },
+    {
+      "id": "tgh-20261102-sam-001",
+      "old": "Colombia",
+      "new": "Colômbia",
+      "path": "cases/2026/10/tgh-20261102-sam-001.json"
+    },
+    {
+      "id": "tgh-20261102-sam-002",
+      "old": "Colombia",
+      "new": "Colômbia",
+      "path": "cases/2026/10/tgh-20261102-sam-002.json"
+    },
+    {
+      "id": "tgh-20261108-as-01",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong",
+      "path": "cases/2026/11/tgh-20261108-as-01.json"
+    },
+    {
+      "id": "tgh-20261108-as-02",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong",
+      "path": "cases/2026/11/tgh-20261108-as-02.json"
+    },
+    {
+      "id": "tgh-ams-2026-11-01-05-10",
+      "old": "Colombia",
+      "new": "Colômbia",
+      "path": "cases/2026/11/tgh-ams-2026-11-01-05-10.json"
+    },
+    {
+      "id": "tgh-ams-2026-11-01-05-11",
+      "old": "Colombia",
+      "new": "Colômbia",
+      "path": "cases/2026/11/tgh-ams-2026-11-01-05-11.json"
+    },
+    {
+      "id": "tgh-asia-20261104-hk-five-us-turtles",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong",
+      "path": "cases/2026/11/tgh-asia-20261104-hk-five-us-turtles.json"
+    },
+    {
+      "id": "tgh-global-20261108-09-as-02",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong",
+      "path": "cases/2026/11/tgh-global-20261108-09-as-02.json"
+    }
+  ],
+  "route_changes": [
+    {
+      "route_id": "botswana-groblersbrug-pangolin-2026-08-26",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Botswana",
+      "new": "Botsuana"
+    },
+    {
+      "route_id": "tajikistan-domodedovo-476-tortoises-2026",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Tajiquistão",
+      "new": "Tadjiquistão"
+    },
+    {
+      "route_id": "lear-belgium-doha-dhaka-2023",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Qatar",
+      "new": "Catar"
+    },
+    {
+      "route_id": "lear-belgium-doha-dhaka-2023",
+      "segment": 1,
+      "endpoint": "from",
+      "old": "Qatar",
+      "new": "Catar"
+    },
+    {
+      "route_id": "shark-products-historical-20261014-tub-0013",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "RDC",
+      "new": "República Democrática do Congo"
+    },
+    {
+      "route_id": "shark-products-historical-20261014-tub-0027",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "RDC",
+      "new": "República Democrática do Congo"
+    },
+    {
+      "route_id": "galapagos-12-iguanas-rota-completa-2026",
+      "segment": 2,
+      "endpoint": "to",
+      "old": "Paises Baixos",
+      "new": "Países Baixos"
+    },
+    {
+      "route_id": "galapagos-12-iguanas-rota-completa-2026",
+      "segment": 3,
+      "endpoint": "from",
+      "old": "Paises Baixos",
+      "new": "Países Baixos"
+    },
+    {
+      "route_id": "galapagos-12-iguanas-rota-completa-2026",
+      "segment": 3,
+      "endpoint": "to",
+      "old": "Tailandia",
+      "new": "Tailândia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-001",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Indonesia",
+      "new": "Indonésia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-001",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Germany",
+      "new": "Alemanha"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-001",
+      "segment": 1,
+      "endpoint": "from",
+      "old": "Germany",
+      "new": "Alemanha"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-001",
+      "segment": 1,
+      "endpoint": "to",
+      "old": "Albania",
+      "new": "Albânia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asb-003",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Indonesia",
+      "new": "Indonésia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asb-003",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Indonesia",
+      "new": "Indonésia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asb-002",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Indonesia",
+      "new": "Indonésia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asb-002",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Indonesia",
+      "new": "Indonésia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asi-003",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Zambia",
+      "new": "Zâmbia"
+    },
+    {
+      "route_id": "tgh-20261102-route-asi-003",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Thailand",
+      "new": "Tailândia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-007",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Ukraine",
+      "new": "Ucrânia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-007",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Canada",
+      "new": "Canadá"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-008",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Ukraine",
+      "new": "Ucrânia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-008",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Canada",
+      "new": "Canadá"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-009",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Ukraine",
+      "new": "Ucrânia"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-009",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "United States",
+      "new": "Estados Unidos"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-022",
+      "segment": 0,
+      "endpoint": "from",
+      "old": "Iran",
+      "new": "Irã"
+    },
+    {
+      "route_id": "tgh-20261102-route-eme-022",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Iran",
+      "new": "Irã"
+    },
+    {
+      "route_id": "tgh-route-tgh-asia-20261104-hk-five-us-turtles",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Hong Kong (China)",
+      "new": "Hong Kong"
+    },
+    {
+      "route_id": "tgh-global-20261108-09-am-01-r02",
+      "segment": 0,
+      "endpoint": "to",
+      "old": "Australia",
+      "new": "Austrália"
+    }
+  ],
+  "remaining_countries": {
+    "Alemanha": 3,
+    "Amazônia multinacional": 1,
+    "Argentina": 88,
+    "Argélia": 1,
+    "Armênia": 6,
+    "Arábia Saudita": 5,
+    "Austrália": 25,
+    "Bangladesh": 13,
+    "Belize": 1,
+    "Bolívia": 67,
+    "Botsuana": 1,
+    "Brasil": 352,
+    "Brasil / Peru": 1,
+    "Bulgária": 1,
+    "Camarões": 4,
+    "Canadá": 4,
+    "Catar": 1,
+    "Cazaquistão": 4,
+    "Chile": 12,
+    "China": 42,
+    "Chipre": 2,
+    "Colômbia": 74,
+    "Comores": 1,
+    "Costa Rica": 7,
+    "Costa do Marfim": 3,
+    "Croácia": 2,
+    "Egito": 10,
+    "Emirados Árabes Unidos": 2,
+    "Equador": 61,
+    "Eslováquia": 3,
+    "Espanha": 10,
+    "Estados Unidos": 35,
+    "Fiji": 1,
+    "Filipinas": 13,
+    "França": 9,
+    "Gabão": 3,
+    "Gana": 1,
+    "Geórgia": 2,
+    "Grécia": 5,
+    "Guatemala": 1,
+    "Guiana Francesa": 4,
+    "Guiné": 2,
+    "Honduras": 2,
+    "Hong Kong": 78,
+    "Hungria": 2,
+    "Indonésia": 50,
+    "Iraque": 2,
+    "Irã": 12,
+    "Israel": 2,
+    "Itália": 25,
+    "Japão": 5,
+    "Kosovo": 1,
+    "Kuwait": 1,
+    "Laos": 3,
+    "Libéria": 1,
+    "Líbano": 2,
+    "Macedônia do Norte": 1,
+    "Madagascar": 6,
+    "Malawi": 3,
+    "Malta": 1,
+    "Malásia": 17,
+    "Marrocos": 2,
+    "Mongólia": 1,
+    "Moçambique": 3,
+    "México": 51,
+    "Namíbia": 7,
+    "Nicarágua": 1,
+    "Nigéria": 17,
+    "Nova Zelândia": 1,
+    "Omã": 4,
+    "Palestina": 2,
+    "Panamá": 7,
+    "Paquistão": 20,
+    "Paraguai": 10,
+    "Países Baixos": 6,
+    "Peru": 87,
+    "Polinésia Francesa": 1,
+    "Polônia": 5,
+    "Portugal": 1,
+    "Quirguistão": 2,
+    "Quênia": 19,
+    "Reino Unido": 3,
+    "República Democrática do Congo": 9,
+    "República Dominicana": 2,
+    "República do Congo": 4,
+    "Romênia": 3,
+    "Rússia": 34,
+    "Singapura": 2,
+    "Sri Lanka": 34,
+    "Sudão": 1,
+    "Sudão do Sul": 2,
+    "Suriname": 5,
+    "Suíça": 1,
+    "Síria": 1,
+    "Tailândia": 18,
+    "Taiwan": 5,
+    "Tchéquia": 2,
+    "Togo": 2,
+    "Turquia": 3,
+    "Ucrânia": 4,
+    "Uganda": 8,
+    "Uruguai": 3,
+    "Uzbequistão": 5,
+    "Vietnã": 10,
+    "Zimbábue": 2,
+    "Zâmbia": 10,
+    "África do Sul": 38,
+    "Áustria": 1,
+    "Índia": 94
+  },
+  "unresolved_special_categories": {
+    "Brasil / Peru": 1,
+    "Amazônia multinacional": 1
+  }
+}
