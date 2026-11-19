@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1641,
+  "record_count": 1648,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2181,7 +2181,14 @@
     "2026/11/tgh-20261114-na-rundu-four-elephant-tusks.json",
     "2026/11/tgh-20261115-uy-piedras-blancas-mixed-wildlife-trade.json",
     "2026/11/tgh-global-20261113-br-araguaina-55-red-footed-tortoises.json",
-    "2026/11/tgh-global-20261117-cm-yaounde-61kg-giant-pangolin-scales.json"
+    "2026/11/tgh-global-20261117-cm-yaounde-61kg-giant-pangolin-scales.json",
+    "2026/11/tgh-20261117-in-malkangiri-50-flapshell-turtles.json",
+    "2026/11/tgh-20261117-mx-calpulalpan-19-wildlife.json",
+    "2026/11/tgh-20261117-th-nakhon-pathom-37-online-birds.json",
+    "2026/11/tgh-20261117-za-pretoria-11-carnivores-online.json",
+    "2026/11/tgh-20261118-br-torres-23-hidden-birds.json",
+    "2026/11/tgh-20261118-id-timika-two-green-pythons-parcel.json",
+    "2026/11/tgh-20261118-in-banaras-23-turtles-west-bengal.json"
   ],
-  "compiled_sha256": "5b4a709af2539e07f97c854ef9776405072394d0d437fd308bca081c2e04fc94"
+  "compiled_sha256": "346f0102f62e48362e48d45f0104b2089052232fe2d20083cfb56386d9d64685"
 }
