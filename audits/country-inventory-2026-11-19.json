@@ -1,0 +1,1748 @@
+{
+  "audit_scope": "All individual cases/*.json and route segment endpoint countries; no locations or narrative altered",
+  "total_cases": 1650,
+  "country_values_count": 129,
+  "cases": [
+    {
+      "name": "Brasil",
+      "count": 351,
+      "examples": [
+        "hyacinth-1994-guarulhos-12__batch-20261004",
+        "hyacinth-2002-catalao-9__batch-20261004",
+        "hyacinth-2004-campo-grande-3__batch-20261004",
+        "hyacinth-2008-rio-10-macaw-eggs-geneva-uncertain__batch-20261004b"
+      ]
+    },
+    {
+      "name": "Índia",
+      "count": 89,
+      "examples": [
+        "hyacinth-2020-assam-6__batch-20261004",
+        "2020-10-28__shark-products-aeroporto-de-chennai-tub-0020",
+        "2021-03-14__golaghat-two-golden-headed-lion-tamarins",
+        "2022-11-27__bangkok-chennai-pygmy-marmosets-dusky-leaf-monkeys"
+      ]
+    },
+    {
+      "name": "Argentina",
+      "count": 88,
+      "examples": [
+        "1988-10__buenos-aires-two-golden-headed-lion-tamarins",
+        "2017-01-04__tgh-h5-05-aestiva",
+        "2018-12-30__sachayoj-194-aestiva",
+        "2019-01-20__tgh-h5-01-aestiva"
+      ]
+    },
+    {
+      "name": "Peru",
+      "count": 87,
+      "examples": [
+        "2017-04-17__piura-29-galapagos-tortoises",
+        "TGH-20261027-026",
+        "TGH-R34-175",
+        "TGH-20261027-027"
+      ]
+    },
+    {
+      "name": "Hong Kong",
+      "count": 73,
+      "examples": [
+        "2015-12-14__shark-products-aeroporto-internacional-de-hong-kong-tub-0001",
+        "2016-03-07__shark-products-aeroporto-internacional-de-hong-kong-tub-0002",
+        "2017-09-18__shark-products-tub-0003-tsing-yi-cargo-examination-compound",
+        "2017-12-29__shark-products-kwai-chung-tub-0005"
+      ]
+    },
+    {
+      "name": "Colômbia",
+      "count": 70,
+      "examples": [
+        "TGH-20261027-039",
+        "TGH-R34-138",
+        "TGH-R34-188",
+        "TGH-R34-189"
+      ]
+    },
+    {
+      "name": "Bolívia",
+      "count": 66,
+      "examples": [
+        "2016-12-01__santa-ana-yacuma-jaguar-skulls",
+        "2018-02-23__santa-cruz-jaguar-teeth-mixed-felids",
+        "TGH-R34-163",
+        "TGH-20261027-014"
+      ]
+    },
+    {
+      "name": "Equador",
+      "count": 61,
+      "examples": [
+        "2016-01__baltra-3600-sea-cucumbers-guayaquil",
+        "TGH-20261027-001",
+        "TGH-20261027-052",
+        "TGH-R34-151"
+      ]
+    },
+    {
+      "name": "México",
+      "count": 51,
+      "examples": [
+        "2008-06__mexico-city-600-wildlife-montevideo-florida",
+        "2010-07-20__lima-mexico-city-18-amazonian-primates",
+        "2018-01-01__ria-lagartos-jaguar-skin",
+        "2018-01-01__tepotzotlan-jaguar-skins-taxidermy-parcels"
+      ]
+    },
+    {
+      "name": "Indonésia",
+      "count": 48,
+      "examples": [
+        "2025-06-11__jayapura-png-35-8kg-shark-fins",
+        "2026-01-28__banyuwangi-dried-shark-ray-skins",
+        "2026-01-30__aceh-timur-thailand-mixed-wildlife",
+        "2026-02-10__merauke-3kg-sea-cucumber"
+      ]
+    },
+    {
+      "name": "China",
+      "count": 42,
+      "examples": [
+        "2015-03-18__beijing-119-jaguar-teeth-wine-boxes",
+        "2021-11__wenzhou-80-parrot-eggs",
+        "2023-04-09__fujian-346-parrot-eggs-taiwan",
+        "2023-06__guangzhou-82-amazon-parrot-eggs"
+      ]
+    },
+    {
+      "name": "África do Sul",
+      "count": 36,
+      "examples": [
+        "2018__shark-products-instalacao-de-armazenagem-cidade-do-cabo-tub-0006",
+        "2026-02-05__covie-204-abalone",
+        "2026-04-13__bloukrans-1000-abalone",
+        "2026-04-23__smitswinkel-six-poaching-arrests"
+      ]
+    },
+    {
+      "name": "Estados Unidos",
+      "count": 35,
+      "examples": [
+        "2021-07-01__massachusetts-jaguar-skin-multispecies",
+        "2023-03-23__miami-29-parrot-eggs-nicaragua-taiwan",
+        "2025-09-16__jamaica-ny-26-potamotrygon-leopoldi",
+        "tgh-20261102-nam-004"
+      ]
+    },
+    {
+      "name": "Sri Lanka",
+      "count": 34,
+      "examples": [
+        "2021-03-22__shark-products-centro-de-facilitacao-de-exportacoes-da-aduana-tub-0023",
+        "2022-01-08__shark-products-porto-pesqueiro-de-beruwala-tub-0029",
+        "2022-11-10__shark-products-porto-pesqueiro-de-beruwala-tub-0030",
+        "2025-05-24__dikovita-145-6kg-oceanic-whitetip"
+      ]
+    },
+    {
+      "name": "Rússia",
+      "count": 33,
+      "examples": [
+        "2026-04-06__pulkovo-67-wildlife-derivatives-china",
+        "2026-04__akbulak-103-exotic-birds-uzbekistan-moscow",
+        "2026-05-13__severo-yeniseysky-110-grayling-illegal-fishing",
+        "2026-05-26__smolensk-brown-bear-illegal-private-keeping"
+      ]
+    },
+    {
+      "name": "Itália",
+      "count": 25,
+      "examples": [
+        "2022-04__castelli-romani-1-aestiva",
+        "2026-02-24__porto-cesareo-4000-sea-urchins",
+        "2026-02-25__san-domino-tremiti-8000-sea-urchins",
+        "2026-02__mattinata-1200-illegal-sea-urchins"
+      ]
+    },
+    {
+      "name": "Austrália",
+      "count": 22,
+      "examples": [
+        "2025-02-11__croker-island-339-shark-fins",
+        "2025-04__kyneton-victoria-over-700-dead-15-live-wildlife",
+        "2025-07-23__adele-island-66-shark-fins",
+        "2025-08-01__bathurst-island-50-fins-14-sharks"
+      ]
+    },
+    {
+      "name": "Paquistão",
+      "count": 19,
+      "examples": [
+        "2026-01-22__nawan-kot-lahore-11-lions",
+        "2026-01__faisalabad-two-lions-darbar",
+        "2026-01__gujranwala-three-lions-private-possession",
+        "2026-01__jhelum-23-big-cats-private-facility"
+      ]
+    },
+    {
+      "name": "Quênia",
+      "count": 18,
+      "examples": [
+        "2025-04-05__naivasha-5000-queen-ants-belgians",
+        "2025-04-06__nairobi-syokimau-400-queen-ants",
+        "2025-07-23__taveta-four-pangolin-scales-undercover-operation",
+        "2026-01-24__namanga-ivory"
+      ]
+    },
+    {
+      "name": "Malásia",
+      "count": 17,
+      "examples": [
+        "2024-09-18_10-07__perak-154-prohibited-ornamental-fish-aggregate",
+        "2025-03-10__petaling-jaya-174-prohibited-fish",
+        "2026-02-12__port-klang-petasan-container-1",
+        "2026-02__perlis-turtle-trafficking-syndicate"
+      ]
+    },
+    {
+      "name": "Nigéria",
+      "count": 17,
+      "examples": [
+        "2026-01-15__ajilete-ogun-four-pangolins",
+        "2026-02-12__igboora-ogun-four-pangolins",
+        "2026-02-27__taraba-five-pangolins",
+        "2026-03-12__kano-jigawa-two-pangolins"
+      ]
+    },
+    {
+      "name": "Tailândia",
+      "count": 15,
+      "examples": [
+        "2026-03-10__bangkok-ants-consignment-mombasa",
+        "2026-05-24__bangkok-kolkata-251-live-animals",
+        "2026-09-08__bangkok",
+        "2026-09-08__suvarnabhumi-muscat-twenty-two-animals"
+      ]
+    },
+    {
+      "name": "Bangladesh",
+      "count": 13,
+      "examples": [
+        "lear-2023-dhaka-3__batch-20261004",
+        "2026-09-27__dhaka-1163-live-turtles-malaysia-bound",
+        "2026-10-11__lakshmipur-two-crates-small-hilsa",
+        "2026-10-13__haimchar-meghna-15kg-hilsa"
+      ]
+    },
+    {
+      "name": "Filipinas",
+      "count": 13,
+      "examples": [
+        "2024-04-04__busuanga-3000kg-fossil-giant-clam-shells",
+        "2025-03-04__gonzaga-400kg-manta",
+        "2026-02-17__cuyo-taytay-887-shark-fins",
+        "2026-06-12__bangkok-manila-50-tortoises"
+      ]
+    },
+    {
+      "name": "Chile",
+      "count": 12,
+      "examples": [
+        "2009-01__arica-rosa-isabel-407-wildlife-peru",
+        "2011-04__quillagua-three-taxidermied-armadillos-bolivia",
+        "2015__chacalluta-47-dried-seahorses-tacna",
+        "2025-01-03__chungara-taxidermied-caiman-toy-box-bolivia"
+      ]
+    },
+    {
+      "name": "Irã",
+      "count": 12,
+      "examples": [
+        "2026-09-28__hawraman-16-birds-iraq",
+        "tgh-20261102-eme-020",
+        "tgh-20261102-eme-021",
+        "tgh-20261102-eme-022"
+      ]
+    },
+    {
+      "name": "Egito",
+      "count": 10,
+      "examples": [
+        "2026-01-17__cairo-diana-market-20-wildlife-specimens",
+        "2026-03-06__cairo-friday-market-threatened-wildlife",
+        "2026-05-02__cairo-airport-chimps-reptiles",
+        "2026-06-12__cairo-obour-market-six-loggerhead-turtles"
+      ]
+    },
+    {
+      "name": "Espanha",
+      "count": 10,
+      "examples": [
+        "2019-03-28__tgh-h4-01-aestiva",
+        "2026-02__madrid-15-dead-pangolins",
+        "2026-03__cadiz-african-wildlife-parts",
+        "hyacinth-2026-03-21-estella-del-marques-2__batch-20261004b"
+      ]
+    },
+    {
+      "name": "Paraguai",
+      "count": 10,
+      "examples": [
+        "2013-01-02__tgh-h5-09-aestiva",
+        "hyacinth-2018-asuncion-2__batch-20261004",
+        "hyacinth-2021-asuncion-3__batch-20261004",
+        "2023-10-03__silvio-pettirossi-40-macaw-eggs-panama"
+      ]
+    },
+    {
+      "name": "Vietnã",
+      "count": 10,
+      "examples": [
+        "2025-03-05__hanoi-600-parrot-eggs-taiwan-china-network",
+        "2026-05-10__tan-an-bac-ninh-king-cobra-resale",
+        "2026-08-06__quy-nhon",
+        "2026-09-16__tay-ho-hanoi-thirty-pythons-snakes"
+      ]
+    },
+    {
+      "name": "Zâmbia",
+      "count": 10,
+      "examples": [
+        "2026-02-01__lusaka-novare-pangolin",
+        "2026-03-09__lilayi-lusaka-ivory-471kg",
+        "2026-09-21__lusaka-75-pangolin-scales",
+        "2026-10-unknown__nakonde-56-vulturine-guineafowl"
+      ]
+    },
+    {
+      "name": "República Democrática do Congo",
+      "count": 9,
+      "examples": [
+        "2026-01-26__kinshasa-pangolin-scales",
+        "2026-02-06__isiro-two-chimpanzees",
+        "2026-02-17__kipushi-thirty-kg-ivory",
+        "2026-05-20__kindu-leopard-ivory-pangolin"
+      ]
+    },
+    {
+      "name": "Uganda",
+      "count": 8,
+      "examples": [
+        "2026-02-22__nwoya-ivory-154kg",
+        "2026-03-21__bukedea-ivory-106kg",
+        "2026-03-22__karuma-pangolin-scales-14kg",
+        "2026-04-01__purongo-april-bushmeat-200kg"
+      ]
+    },
+    {
+      "name": "Costa Rica",
+      "count": 7,
+      "examples": [
+        "2019-08-08__la-cruz-70-turtles-nicaragua",
+        "2024-06__tablillas-two-zapoyol-chicks-bottle-nicaragua",
+        "2024-07__los-chiles-one-zapoyol-nicaragua",
+        "2025-05-22__orotina-five-capybaras"
+      ]
+    },
+    {
+      "name": "França",
+      "count": 7,
+      "examples": [
+        "2026-08-07__chaumont-one-psittacus-erithacus",
+        "2026-08-17__roissy-32-pandinus-imperator-ghana",
+        "2026-08-23__lyon-a7-two-ara-ararauna",
+        "2026-08-26__roissy-20-seahorses-china"
+      ]
+    },
+    {
+      "name": "Panamá",
+      "count": 7,
+      "examples": [
+        "2022-09__tocumen-681-molluscs-ecuador",
+        "2024-03-12__tocumen-240-protected-bird-eggs-nicaragua-taiwan",
+        "2026-07-06__bocas-del-toro-119-hawksbill-eggs",
+        "2026-08-16__manzanillo-panama-shark-fins-malaysia"
+      ]
+    },
+    {
+      "name": "Armênia",
+      "count": 6,
+      "examples": [
+        "2026-03__shenik-53-quails",
+        "2026-03__yegvard-63-quails",
+        "2026-03__yegvard-ashtarak-43-quails",
+        "2026-08-29__khndzorut-six-quails-over-quota"
+      ]
+    },
+    {
+      "name": "Madagascar",
+      "count": 6,
+      "examples": [
+        "2024-07-08__shark-products-mar-territorial-proximo-a-nosy-be-tub-0042",
+        "2026-03-03__toliara-167-tortoises",
+        "2026-03-07__nosy-be-280-tortoises",
+        "2026-03-30__antananarivo-152-radiated-tortoises"
+      ]
+    },
+    {
+      "name": "Países Baixos",
+      "count": 6,
+      "examples": [
+        "2026-03-24__schiphol-261-parrot-eggs",
+        "2026-04-25__schiphol-rhesus-gallstone-medicine",
+        "2026-04-26__schiphol-tortoise-medicine",
+        "2026-04-29__schiphol-feather-headdresses"
+      ]
+    },
+    {
+      "name": "Arábia Saudita",
+      "count": 5,
+      "examples": [
+        "2026-08-13__asir-endangered-ibex-four-wild-animals",
+        "2026-08-27__king-salman-reserve-15-hunted-wild-animals",
+        "2026-09-27__imam-turki-52-wild-animals-poaching",
+        "2026-10-04__king-salman-reserve-73-hunted-wildlife"
+      ]
+    },
+    {
+      "name": "Grécia",
+      "count": 5,
+      "examples": [
+        "tgh-20261102-eme-012",
+        "tgh-20261102-eme-013",
+        "tgh-20261102-eme-014",
+        "tgh-20261102-eme-015"
+      ]
+    },
+    {
+      "name": "Hong Kong (China)",
+      "count": 5,
+      "examples": [
+        "tgh-20261102-asb-006",
+        "tgh-20261108-as-01",
+        "tgh-20261108-as-02",
+        "tgh-asia-20261104-hk-five-us-turtles"
+      ]
+    },
+    {
+      "name": "India",
+      "count": 5,
+      "examples": [
+        "tgh-20261102-asb-007",
+        "tgh-20261102-asb-012",
+        "tgh-20261102-asi-002",
+        "tgh-20261102-asi-007"
+      ]
+    },
+    {
+      "name": "Polônia",
+      "count": 5,
+      "examples": [
+        "2026-01__warsaw-361-coral-fragments",
+        "2026-01__wroclaw-tubipora-coral",
+        "2026-04__warsaw-1000-live-corals",
+        "2026-06__bydgoszcz-69-coral-fragments"
+      ]
+    },
+    {
+      "name": "Suriname",
+      "count": 5,
+      "examples": [
+        "lear-2023-suriname-29__batch-20261004",
+        "2023-11-23__paramaribo-two-golden-lion-tamarins",
+        "2026-10-02__jap-airport-six-songbirds-netherlands",
+        "2009__nickerie-75-twatwas-guyana"
+      ]
+    },
+    {
+      "name": "Taiwan",
+      "count": 5,
+      "examples": [
+        "hyacinth-2017-taipei-49-eggs-associated__batch-20261004",
+        "2024-06__matsu-1047-parrot-eggs",
+        "2025-01__kinmen-599-parrot-eggs",
+        "2025-07-07__matsu-136-parrot-eggs"
+      ]
+    },
+    {
+      "name": "Uzbequistão",
+      "count": 5,
+      "examples": [
+        "2026-02-20__babatag-bukhara-argali",
+        "2026-02-24__yallama-32-goldfinches",
+        "2026-02-26__mubarek-little-bustard",
+        "2026-07-22__ahangaran-siberian-ibex"
+      ]
+    },
+    {
+      "name": "Camarões",
+      "count": 4,
+      "examples": [
+        "2026-01-23__yaounde-leopard-skin",
+        "2026-04-23__yaounde-ivory-pangolin-scales",
+        "2026-05-05__yokadouma-pangolin-scales",
+        "tgh-global-20261117-cm-yaounde-61kg-giant-pangolin-scales"
+      ]
+    },
+    {
+      "name": "Canadá",
+      "count": 4,
+      "examples": [
+        "2017-09-25__shark-products-richmond-columbia-britanica-tub-0004",
+        "2018-02-09__shark-products-richmond-columbia-britanica-tub-0007",
+        "tgh-naca-2026-11-06-na07-rimouski",
+        "2018-05__shark-products-burnaby-columbia-britanica-tub-0008"
+      ]
+    },
+    {
+      "name": "Cazaquistão",
+      "count": 4,
+      "examples": [
+        "2026-09-07__ulytau-23-suspected-saiga",
+        "2026-09__karatal-127-1kg-illegally-caught-fish",
+        "2026-10-20__khorgos-620-saiga-horns",
+        "2026-10-undated__lake-zhukey-burabay-33kg-illegal-fish"
+      ]
+    },
+    {
+      "name": "Colombia",
+      "count": 4,
+      "examples": [
+        "tgh-20261102-sam-001",
+        "tgh-20261102-sam-002",
+        "tgh-ams-2026-11-01-05-10",
+        "tgh-ams-2026-11-01-05-11"
+      ]
+    },
+    {
+      "name": "Guiana Francesa",
+      "count": 4,
+      "examples": [
+        "2025-05-04__saint-laurent-amazonica-orthopsittaca",
+        "2025-05-04__saint-laurent-two-amazona-amazonica",
+        "2026-07-02__saint-laurent-six-pionites-melanocephalus",
+        "2026-08-12__saint-laurent-three-iguana-iguana-suriname"
+      ]
+    },
+    {
+      "name": "Japão",
+      "count": 4,
+      "examples": [
+        "2026-03__kansai-four-cites-tortoises",
+        "tgh-pending-20261117-jp-kansai-may-19-wildlife",
+        "2026-09-27__mori-602-hair-crabs",
+        "tgh-pending-20261117-jp-kansai-march-hamilton-turtle"
+      ]
+    },
+    {
+      "name": "Namíbia",
+      "count": 4,
+      "examples": [
+        "2026-01-03__tsandi-omusati-tortoises",
+        "2026-01-17__okahandja-leopard-skin",
+        "2026-09-28__divundu-two-elephant-tusks",
+        "tgh-20261114-na-rundu-four-elephant-tusks"
+      ]
+    },
+    {
+      "name": "Omã",
+      "count": 4,
+      "examples": [
+        "2026-06-14__dhofar-wild-birds-illegal-hunting",
+        "2026-06-28__muscat-airport-omani-spiny-tailed-lizard",
+        "2026-10-14__muscat-airport-royal-pythons-number-unspecified",
+        "2026-10__dhofar-three-arabian-gazelles-illegal-hunt"
+      ]
+    },
+    {
+      "name": "República do Congo",
+      "count": 4,
+      "examples": [
+        "2026-05-18__ewo-leopard-products",
+        "2026-10-18__nkayi-dolisie-leopard-skin-elephant-tusks",
+        "tgh-20261028-29-18",
+        "tgh-20261108-af-r03"
+      ]
+    },
+    {
+      "name": "Ucrânia",
+      "count": 4,
+      "examples": [
+        "2026-01__kyiv-walrus-tusks-us",
+        "tgh-20261102-eme-007",
+        "tgh-20261102-eme-008",
+        "tgh-20261102-eme-009"
+      ]
+    },
+    {
+      "name": "Alemanha",
+      "count": 3,
+      "examples": [
+        "2025-06__cologne-bonn-1500-baby-tarantulas-vietnam",
+        "2026-10-unknown__cologne-bonn-92-reptiles-mexico-istanbul",
+        "tgh-20261102-eme-001"
+      ]
+    },
+    {
+      "name": "Australia",
+      "count": 3,
+      "examples": [
+        "tgh-20261102-oce-002",
+        "tgh-20261102-oce-003",
+        "tgh-20261102-asb-011"
+      ]
+    },
+    {
+      "name": "Costa do Marfim",
+      "count": 3,
+      "examples": [
+        "2026-03-03__abidjan-yopougon-two-tusks",
+        "2026-05-18__ivory-coast-six-tusks-hippo-teeth",
+        "2026-10-09__grand-bassam-port-bouet-protected-wildlife-products"
+      ]
+    },
+    {
+      "name": "Eslováquia",
+      "count": 3,
+      "examples": [
+        "2025-05-15__nitra-two-golden-headed-lion-tamarins-illegal-captivity-reported",
+        "2025-05-15__zirany-golden-headed-lion-tamarin-illegal-captivity-reported",
+        "2023__slovakia-zlatka-golden-lion-tamarin-found"
+      ]
+    },
+    {
+      "name": "Gabão",
+      "count": 3,
+      "examples": [
+        "2026-07-31__libreville-ivory-elephant-tail",
+        "2026-09-05__ovan-ivory-12-pieces",
+        "2026-09-22-24__lipaka-2-four-ivory-tusks"
+      ]
+    },
+    {
+      "name": "Laos",
+      "count": 3,
+      "examples": [
+        "2026-08-16__pakkading-bolikhamxay",
+        "2026-09-11__sangkalok-luang-prabang-products",
+        "tgh-20261102-asb-005"
+      ]
+    },
+    {
+      "name": "Malawi",
+      "count": 3,
+      "examples": [
+        "2026-08-11__mangochi-live-pangolin",
+        "2026-09-26__madisi-live-pangolin-laptop-bag",
+        "tgh-20261102-afs-007"
+      ]
+    },
+    {
+      "name": "Namibia",
+      "count": 3,
+      "examples": [
+        "tgh-20261102-afs-002",
+        "tgh-20261102-afs-010",
+        "tgh-20261102-afs-013"
+      ]
+    },
+    {
+      "name": "Reino Unido",
+      "count": 3,
+      "examples": [
+        "lear-1998-uk-operation-palate-3__batch-20261004",
+        "2025-09_10__uk-border-over-2000-live-tarantulas",
+        "2026-09-16__hale-caiman-python-unlicensed-possession"
+      ]
+    },
+    {
+      "name": "Romênia",
+      "count": 3,
+      "examples": [
+        "2026-05-01__siret-marten-lynx-skins",
+        "2026-07-17__moravita-four-primates",
+        "tgh-global-20261108-09-eur-01"
+      ]
+    },
+    {
+      "name": "Tailandia",
+      "count": 3,
+      "examples": [
+        "tgh-20261102-asi-003",
+        "tgh-20261102-asi-017",
+        "tgh-20261102-asi-018"
+      ]
+    },
+    {
+      "name": "Turquia",
+      "count": 3,
+      "examples": [
+        "2026-07-13__hamzabeyli-lynx-serval",
+        "2026-10-undated__afyonkarahisar-one-illegally-imported-macaque",
+        "2026-10__kapikule-67-live-pythons-discarded-bags"
+      ]
+    },
+    {
+      "name": "Uruguai",
+      "count": 3,
+      "examples": [
+        "2018-01-10__playa-verde-balcedo-1-aestiva",
+        "2026-10__lavalleja-capybara-social-media-sale",
+        "tgh-20261115-uy-piedras-blancas-mixed-wildlife-trade"
+      ]
+    },
+    {
+      "name": "Africa do Sul",
+      "count": 2,
+      "examples": [
+        "tgh-20261102-afs-003",
+        "tgh-20261102-afs-012"
+      ]
+    },
+    {
+      "name": "Chipre",
+      "count": 2,
+      "examples": [
+        "2026-09-25__paphos-poaching-wild-birds",
+        "tgh-global-20261110-12-cy-deryneia-108-birds-seven-hares"
+      ]
+    },
+    {
+      "name": "Croácia",
+      "count": 2,
+      "examples": [
+        "2026-08-16__zagreb-11-coral-fragments",
+        "2026-09-05__zagreb-four-coral-fragments"
+      ]
+    },
+    {
+      "name": "Emirados Árabes Unidos",
+      "count": 2,
+      "examples": [
+        "2026-05-14__dubai-airport-rare-bears-suitcase",
+        "2026-06-12__dubai-airport-223-live-animals"
+      ]
+    },
+    {
+      "name": "Geórgia",
+      "count": 2,
+      "examples": [
+        "2026-08-22_10-22__georgia-70-poached-animals-aggregate",
+        "2026-10__torsa-dghvaba-illegal-electrofishing"
+      ]
+    },
+    {
+      "name": "Guiné",
+      "count": 2,
+      "examples": [
+        "2026-05-22__conakry-seahorse-shark-ray",
+        "2026-07-20__guinea-372kg-pangolin-scales"
+      ]
+    },
+    {
+      "name": "Honduras",
+      "count": 2,
+      "examples": [
+        "2026-09-11__san-jose-de-colinas-santa-barbara",
+        "tgh-20261102-nam-005"
+      ]
+    },
+    {
+      "name": "Hungria",
+      "count": 2,
+      "examples": [
+        "2026-01-18__redics-golden-headed-lion-tamarin",
+        "2026-08__roszke-3209-hirudo-verbana"
+      ]
+    },
+    {
+      "name": "Indonesia",
+      "count": 2,
+      "examples": [
+        "tgh-20261102-asb-002",
+        "tgh-20261102-asb-003"
+      ]
+    },
+    {
+      "name": "Iraque",
+      "count": 2,
+      "examples": [
+        "2026-01-14__karbala-pelicans-confiscated",
+        "2026-07-23__al-zubair-19-smuggled-falcons"
+      ]
+    },
+    {
+      "name": "Israel",
+      "count": 2,
+      "examples": [
+        "2026-06-15__poland-israel-20-parrots",
+        "tgh-20261116-il-rabin-approx60-birds"
+      ]
+    },
+    {
+      "name": "Líbano",
+      "count": 2,
+      "examples": [
+        "2026-09-14__daraya-denniyeh-goldfinches-illegal-hunting",
+        "2026-10-unknown__bekaa-17640m2-illegal-bird-nets"
+      ]
+    },
+    {
+      "name": "Marrocos",
+      "count": 2,
+      "examples": [
+        "2026-05-13__dakhla-237kg-shark",
+        "2026-09-02__marrakech-medina-tortoise-sale"
+      ]
+    },
+    {
+      "name": "Moçambique",
+      "count": 2,
+      "examples": [
+        "2026-08-30__cuamba-ivory-live-pangolin",
+        "2026-09__inhambane-protected-species-trafficking"
+      ]
+    },
+    {
+      "name": "Palestina",
+      "count": 2,
+      "examples": [
+        "2026-07-16__qalqilya-three-european-goldfinches-market",
+        "2026-07-22__tulkarm-buzzard-illegal-possession"
+      ]
+    },
+    {
+      "name": "República Dominicana",
+      "count": 2,
+      "examples": [
+        "2026-10-06__bani-white-faced-capuchin",
+        "2026-10__punta-salinas-exotic-monkey-boat"
+      ]
+    },
+    {
+      "name": "Singapura",
+      "count": 2,
+      "examples": [
+        "2024-05-07__tuas-singapore-one-asian-arowana-vehicle",
+        "2026-09-14__singapore-101-wildlife"
+      ]
+    },
+    {
+      "name": "Sudão do Sul",
+      "count": 2,
+      "examples": [
+        "2026-02-26__juba-over-700kg-bushmeat",
+        "2026-07-11__juba-jebel-kujur-two-warthogs"
+      ]
+    },
+    {
+      "name": "Togo",
+      "count": 2,
+      "examples": [
+        "lear-2024-togo-12__batch-20261004",
+        "2026-05-16__lome-two-elephant-tusks"
+      ]
+    },
+    {
+      "name": "Amazônia multinacional",
+      "count": 1,
+      "examples": [
+        "2026-08-07__amazonia"
+      ]
+    },
+    {
+      "name": "Argélia",
+      "count": 1,
+      "examples": [
+        "2026-04-28__hassi-messaoud-five-fennec-foxes"
+      ]
+    },
+    {
+      "name": "Belize",
+      "count": 1,
+      "examples": [
+        "2025-08-19__belize-city-jaguar-pelt"
+      ]
+    },
+    {
+      "name": "Bolivia",
+      "count": 1,
+      "examples": [
+        "2026-08-24__beni-250-peta-eggs"
+      ]
+    },
+    {
+      "name": "Botsuana",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-afs-008"
+      ]
+    },
+    {
+      "name": "Brasil / Peru",
+      "count": 1,
+      "examples": [
+        "2026-08-24_28__tabatinga-islandia-eight-curassow-wings"
+      ]
+    },
+    {
+      "name": "Brazil",
+      "count": 1,
+      "examples": [
+        "2024-11-27__guarulhos-386-chinese-softshell-turtles"
+      ]
+    },
+    {
+      "name": "Bulgária",
+      "count": 1,
+      "examples": [
+        "2026-10__pleven-one-eagle-owl-unlicensed-captivity"
+      ]
+    },
+    {
+      "name": "Comores",
+      "count": 1,
+      "examples": [
+        "2026-05-28__hahaya-five-lemurs-india-via-addis"
+      ]
+    },
+    {
+      "name": "Fiji",
+      "count": 1,
+      "examples": [
+        "2026-08__lau-suva-prohibited-fish-turtle"
+      ]
+    },
+    {
+      "name": "França (La Réunion)",
+      "count": 1,
+      "examples": [
+        "2026-10-05_06__reunion-west-marine-reserve-79kg-illegal-catch"
+      ]
+    },
+    {
+      "name": "França (Reunião)",
+      "count": 1,
+      "examples": [
+        "2026-10-11__bebour-belouve-thirteen-tangues"
+      ]
+    },
+    {
+      "name": "Gana",
+      "count": 1,
+      "examples": [
+        "2025-12__shark-products-kotoka-international-airport-accra-tub-0060"
+      ]
+    },
+    {
+      "name": "Guatemala",
+      "count": 1,
+      "examples": [
+        "2026-09-16__laguna-del-tigre-wildlife-meat"
+      ]
+    },
+    {
+      "name": "Japao",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-asi-004"
+      ]
+    },
+    {
+      "name": "Kosovo",
+      "count": 1,
+      "examples": [
+        "2026-10-18__korishe-prizren-one-poached-pheasant"
+      ]
+    },
+    {
+      "name": "Kuwait",
+      "count": 1,
+      "examples": [
+        "2026-04-28__kuwait-cites-protected-organisms"
+      ]
+    },
+    {
+      "name": "Libéria",
+      "count": 1,
+      "examples": [
+        "2026-05-22__monrovia-pangolin-scales-735kg"
+      ]
+    },
+    {
+      "name": "Macedônia do Norte",
+      "count": 1,
+      "examples": [
+        "2026-10__bogorodica-seven-snakes-one-lizard"
+      ]
+    },
+    {
+      "name": "Malta",
+      "count": 1,
+      "examples": [
+        "2026-04-17__marsaxlokk-big-cats-international-waters"
+      ]
+    },
+    {
+      "name": "Mocambique",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-afs-006"
+      ]
+    },
+    {
+      "name": "Mongólia",
+      "count": 1,
+      "examples": [
+        "2026-03-27__govi-altai-altai-snowcock"
+      ]
+    },
+    {
+      "name": "Nicarágua",
+      "count": 1,
+      "examples": [
+        "2026-07-26__esteli-13-wildlife"
+      ]
+    },
+    {
+      "name": "Nova Zelândia",
+      "count": 1,
+      "examples": [
+        "2026-10-09__pihama-73-paua-oversized-catch"
+      ]
+    },
+    {
+      "name": "Paquistao",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-asi-008"
+      ]
+    },
+    {
+      "name": "Polinésia Francesa",
+      "count": 1,
+      "examples": [
+        "2026-08-18__papeete-two-alligator-heads-los-angeles"
+      ]
+    },
+    {
+      "name": "Portugal",
+      "count": 1,
+      "examples": [
+        "lear-2015-portugal-2__batch-20261004"
+      ]
+    },
+    {
+      "name": "Qatar",
+      "count": 1,
+      "examples": [
+        "2026-05-18__qatar-local-waters-illegal-seagull-hunting"
+      ]
+    },
+    {
+      "name": "Quenia",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-afn-001"
+      ]
+    },
+    {
+      "name": "Quirguistao",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-asi-019"
+      ]
+    },
+    {
+      "name": "Quirguistão",
+      "count": 1,
+      "examples": [
+        "2026-10__kochkor-poached-juvenile-ibex"
+      ]
+    },
+    {
+      "name": "República Tcheca",
+      "count": 1,
+      "examples": [
+        "lear-2010-czech-republic-3__batch-20261004"
+      ]
+    },
+    {
+      "name": "Russia",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-asi-021"
+      ]
+    },
+    {
+      "name": "Sudão",
+      "count": 1,
+      "examples": [
+        "2026-06-24__wadi-halfa-122-wildlife-skin-footwear"
+      ]
+    },
+    {
+      "name": "Suíça",
+      "count": 1,
+      "examples": [
+        "hyacinth-2010-switzerland-dna-3__batch-20261004"
+      ]
+    },
+    {
+      "name": "Síria",
+      "count": 1,
+      "examples": [
+        "tgh-global-20261112-sy-jousieh-raptors-lebanon-attempt"
+      ]
+    },
+    {
+      "name": "Tchéquia",
+      "count": 1,
+      "examples": [
+        "2026-09__prague-crocodile-skin-bag"
+      ]
+    },
+    {
+      "name": "Zimbabue",
+      "count": 1,
+      "examples": [
+        "tgh-20261102-afs-001"
+      ]
+    },
+    {
+      "name": "Zimbábue",
+      "count": 1,
+      "examples": [
+        "tgh-20261108-af-r04"
+      ]
+    },
+    {
+      "name": "Áustria",
+      "count": 1,
+      "examples": [
+        "hyacinth-2016-vienna-protected-birds-quantity-uncertain__batch-20261004b"
+      ]
+    }
+  ],
+  "route_endpoints": [
+    {
+      "name": "Brasil",
+      "count": 169
+    },
+    {
+      "name": "Hong Kong",
+      "count": 60
+    },
+    {
+      "name": "Indonésia",
+      "count": 55
+    },
+    {
+      "name": "Colômbia",
+      "count": 33
+    },
+    {
+      "name": "Índia",
+      "count": 33
+    },
+    {
+      "name": "China",
+      "count": 26
+    },
+    {
+      "name": "Peru",
+      "count": 25
+    },
+    {
+      "name": "Tailândia",
+      "count": 25
+    },
+    {
+      "name": "Estados Unidos",
+      "count": 24
+    },
+    {
+      "name": "Argentina",
+      "count": 23
+    },
+    {
+      "name": "Equador",
+      "count": 16
+    },
+    {
+      "name": "Bolívia",
+      "count": 13
+    },
+    {
+      "name": "México",
+      "count": 13
+    },
+    {
+      "name": "Rússia",
+      "count": 13
+    },
+    {
+      "name": "Taiwan",
+      "count": 13
+    },
+    {
+      "name": "África do Sul",
+      "count": 13
+    },
+    {
+      "name": "Etiópia",
+      "count": 12
+    },
+    {
+      "name": "Paraguai",
+      "count": 12
+    },
+    {
+      "name": "conforme nome do ponto",
+      "count": 12
+    },
+    {
+      "name": "França",
+      "count": 11
+    },
+    {
+      "name": "Países Baixos",
+      "count": 11
+    },
+    {
+      "name": "Vietnã",
+      "count": 11
+    },
+    {
+      "name": "Nigéria",
+      "count": 9
+    },
+    {
+      "name": "Turquia",
+      "count": 9
+    },
+    {
+      "name": "Chile",
+      "count": 8
+    },
+    {
+      "name": "Emirados Árabes Unidos",
+      "count": 8
+    },
+    {
+      "name": "Suriname",
+      "count": 8
+    },
+    {
+      "name": "Filipinas",
+      "count": 7
+    },
+    {
+      "name": "Macau",
+      "count": 7
+    },
+    {
+      "name": "Nicarágua",
+      "count": 7
+    },
+    {
+      "name": "Quênia",
+      "count": 7
+    },
+    {
+      "name": "Alemanha",
+      "count": 6
+    },
+    {
+      "name": "Cazaquistão",
+      "count": 6
+    },
+    {
+      "name": "Egito",
+      "count": 6
+    },
+    {
+      "name": "Espanha",
+      "count": 6
+    },
+    {
+      "name": "Polônia",
+      "count": 6
+    },
+    {
+      "name": "Sri Lanka",
+      "count": 6
+    },
+    {
+      "name": "Bangladesh",
+      "count": 5
+    },
+    {
+      "name": "Indonesia",
+      "count": 5
+    },
+    {
+      "name": "Zâmbia",
+      "count": 5
+    },
+    {
+      "name": "Austrália",
+      "count": 4
+    },
+    {
+      "name": "Malásia",
+      "count": 4
+    },
+    {
+      "name": "Panamá",
+      "count": 4
+    },
+    {
+      "name": "Paquistão",
+      "count": 4
+    },
+    {
+      "name": "Bélgica",
+      "count": 3
+    },
+    {
+      "name": "Costa Rica",
+      "count": 3
+    },
+    {
+      "name": "Gana",
+      "count": 3
+    },
+    {
+      "name": "Guiana",
+      "count": 3
+    },
+    {
+      "name": "Guiné",
+      "count": 3
+    },
+    {
+      "name": "Itália",
+      "count": 3
+    },
+    {
+      "name": "República do Congo",
+      "count": 3
+    },
+    {
+      "name": "Singapura",
+      "count": 3
+    },
+    {
+      "name": "Ucrânia",
+      "count": 3
+    },
+    {
+      "name": "Ukraine",
+      "count": 3
+    },
+    {
+      "name": "Uzbequistão",
+      "count": 3
+    },
+    {
+      "name": "Benim",
+      "count": 2
+    },
+    {
+      "name": "Canada",
+      "count": 2
+    },
+    {
+      "name": "Catar",
+      "count": 2
+    },
+    {
+      "name": "Coreia do Sul",
+      "count": 2
+    },
+    {
+      "name": "Costa do Marfim",
+      "count": 2
+    },
+    {
+      "name": "Croácia",
+      "count": 2
+    },
+    {
+      "name": "Cuba",
+      "count": 2
+    },
+    {
+      "name": "Fiji",
+      "count": 2
+    },
+    {
+      "name": "Germany",
+      "count": 2
+    },
+    {
+      "name": "Guiana Francesa",
+      "count": 2
+    },
+    {
+      "name": "Hungria",
+      "count": 2
+    },
+    {
+      "name": "Iran",
+      "count": 2
+    },
+    {
+      "name": "Israel",
+      "count": 2
+    },
+    {
+      "name": "Japão",
+      "count": 2
+    },
+    {
+      "name": "Laos",
+      "count": 2
+    },
+    {
+      "name": "Madagascar",
+      "count": 2
+    },
+    {
+      "name": "Malta",
+      "count": 2
+    },
+    {
+      "name": "Omã",
+      "count": 2
+    },
+    {
+      "name": "Paises Baixos",
+      "count": 2
+    },
+    {
+      "name": "Qatar",
+      "count": 2
+    },
+    {
+      "name": "RDC",
+      "count": 2
+    },
+    {
+      "name": "Região",
+      "count": 2
+    },
+    {
+      "name": "Reino Unido",
+      "count": 2
+    },
+    {
+      "name": "Romênia",
+      "count": 2
+    },
+    {
+      "name": "Seychelles",
+      "count": 2
+    },
+    {
+      "name": "Suíça",
+      "count": 2
+    },
+    {
+      "name": "Tchéquia",
+      "count": 2
+    },
+    {
+      "name": "Uganda",
+      "count": 2
+    },
+    {
+      "name": "Áustria",
+      "count": 2
+    },
+    {
+      "name": "Albania",
+      "count": 1
+    },
+    {
+      "name": "Argélia",
+      "count": 1
+    },
+    {
+      "name": "Australia",
+      "count": 1
+    },
+    {
+      "name": "Bahrein",
+      "count": 1
+    },
+    {
+      "name": "Botswana",
+      "count": 1
+    },
+    {
+      "name": "Camboja",
+      "count": 1
+    },
+    {
+      "name": "Canadá",
+      "count": 1
+    },
+    {
+      "name": "Comores",
+      "count": 1
+    },
+    {
+      "name": "Eslováquia",
+      "count": 1
+    },
+    {
+      "name": "Grécia",
+      "count": 1
+    },
+    {
+      "name": "Hong Kong (China)",
+      "count": 1
+    },
+    {
+      "name": "Iraque",
+      "count": 1
+    },
+    {
+      "name": "Irã",
+      "count": 1
+    },
+    {
+      "name": "Jordânia",
+      "count": 1
+    },
+    {
+      "name": "Libéria",
+      "count": 1
+    },
+    {
+      "name": "Marrocos",
+      "count": 1
+    },
+    {
+      "name": "Mauritânia",
+      "count": 1
+    },
+    {
+      "name": "Moldávia",
+      "count": 1
+    },
+    {
+      "name": "Moçambique",
+      "count": 1
+    },
+    {
+      "name": "Myanmar",
+      "count": 1
+    },
+    {
+      "name": "Papua-Nova Guiné",
+      "count": 1
+    },
+    {
+      "name": "Polinésia Francesa",
+      "count": 1
+    },
+    {
+      "name": "Portugal",
+      "count": 1
+    },
+    {
+      "name": "Suécia",
+      "count": 1
+    },
+    {
+      "name": "Tadjiquistão",
+      "count": 1
+    },
+    {
+      "name": "Tailandia",
+      "count": 1
+    },
+    {
+      "name": "Tajiquistão",
+      "count": 1
+    },
+    {
+      "name": "Tanzânia",
+      "count": 1
+    },
+    {
+      "name": "Thailand",
+      "count": 1
+    },
+    {
+      "name": "Togo",
+      "count": 1
+    },
+    {
+      "name": "United States",
+      "count": 1
+    },
+    {
+      "name": "Uruguai",
+      "count": 1
+    },
+    {
+      "name": "Zambia",
+      "count": 1
+    }
+  ],
+  "orthographic_variants": {
+    "africa do sul": [
+      {
+        "name": "África do Sul",
+        "count": 36
+      },
+      {
+        "name": "Africa do Sul",
+        "count": 2
+      }
+    ],
+    "australia": [
+      {
+        "name": "Austrália",
+        "count": 22
+      },
+      {
+        "name": "Australia",
+        "count": 3
+      }
+    ],
+    "bolivia": [
+      {
+        "name": "Bolívia",
+        "count": 66
+      },
+      {
+        "name": "Bolivia",
+        "count": 1
+      }
+    ],
+    "colombia": [
+      {
+        "name": "Colômbia",
+        "count": 70
+      },
+      {
+        "name": "Colombia",
+        "count": 4
+      }
+    ],
+    "india": [
+      {
+        "name": "Índia",
+        "count": 89
+      },
+      {
+        "name": "India",
+        "count": 5
+      }
+    ],
+    "indonesia": [
+      {
+        "name": "Indonésia",
+        "count": 48
+      },
+      {
+        "name": "Indonesia",
+        "count": 2
+      }
+    ],
+    "japao": [
+      {
+        "name": "Japão",
+        "count": 4
+      },
+      {
+        "name": "Japao",
+        "count": 1
+      }
+    ],
+    "mocambique": [
+      {
+        "name": "Moçambique",
+        "count": 2
+      },
+      {
+        "name": "Mocambique",
+        "count": 1
+      }
+    ],
+    "namibia": [
+      {
+        "name": "Namíbia",
+        "count": 4
+      },
+      {
+        "name": "Namibia",
+        "count": 3
+      }
+    ],
+    "paquistao": [
+      {
+        "name": "Paquistão",
+        "count": 19
+      },
+      {
+        "name": "Paquistao",
+        "count": 1
+      }
+    ],
+    "quenia": [
+      {
+        "name": "Quênia",
+        "count": 18
+      },
+      {
+        "name": "Quenia",
+        "count": 1
+      }
+    ],
+    "quirguistao": [
+      {
+        "name": "Quirguistão",
+        "count": 1
+      },
+      {
+        "name": "Quirguistao",
+        "count": 1
+      }
+    ],
+    "russia": [
+      {
+        "name": "Rússia",
+        "count": 33
+      },
+      {
+        "name": "Russia",
+        "count": 1
+      }
+    ],
+    "tailandia": [
+      {
+        "name": "Tailândia",
+        "count": 15
+      },
+      {
+        "name": "Tailandia",
+        "count": 3
+      }
+    ],
+    "zimbabue": [
+      {
+        "name": "Zimbabue",
+        "count": 1
+      },
+      {
+        "name": "Zimbábue",
+        "count": 1
+      }
+    ]
+  }
+}
