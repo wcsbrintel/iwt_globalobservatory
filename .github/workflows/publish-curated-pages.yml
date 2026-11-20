@@ -28,7 +28,9 @@ jobs:
           # reliably trigger a new Pages deployment when GITHUB_TOKEN is used.
           python scripts/case_store.py build --root cases --output cases.json
           python scripts/sync_published_site.py --check
+          python -m unittest discover -s scripts -p test_case_localization.py
           node --test web/observatory/tests/temporal-activity.test.cjs
+          node --test web/observatory/tests/card-locale-contract.test.cjs
       - name: Build safe public-only site
         run: python scripts/build_public_pages.py
       - uses: actions/configure-pages@v5

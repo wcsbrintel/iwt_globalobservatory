@@ -28,8 +28,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Validate source records
-        run: python scripts/case_store.py validate --root cases
+      - name: Validate source records and future case card localizations
+        run: |
+          python -m unittest discover -s scripts -p test_case_localization.py
+          python scripts/case_store.py validate --root cases
       - name: Compile canonical feed
         run: python scripts/case_store.py build --root cases --output cases.json
       - name: Validate compiled JSON
