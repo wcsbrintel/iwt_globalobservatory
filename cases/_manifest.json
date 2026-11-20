@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1650,
+  "record_count": 1651,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2190,7 +2190,8 @@
     "2026/11/tgh-20261118-id-timika-two-green-pythons-parcel.json",
     "2026/11/tgh-20261118-in-banaras-23-turtles-west-bengal.json",
     "2026/05/tgh-pending-20261117-jp-kansai-may-19-wildlife.json",
-    "2026/11/tgh-pending-20261117-jp-kansai-march-hamilton-turtle.json"
+    "2026/11/tgh-pending-20261117-jp-kansai-march-hamilton-turtle.json",
+    "2026/11/tgh-20261119-in-varanasi-golgadda-650-parakeets.json"
   ],
-  "compiled_sha256": "235941c1094a4fc05cd1059ae97abbb7829cc66a73b5092b6e7de47875bd64b3"
+  "compiled_sha256": "21a04598283c26b6dc029e36c6f0b238ebe763c268251f1d070fba2f2ac14a3a"
 }
