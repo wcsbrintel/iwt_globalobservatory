@@ -124,6 +124,22 @@ service cloud.firestore {
      allow update, delete: if false;
    }
   }
+  // AYLA's members-only communication room. The existing access/{uid}
+  // authorization remains the sole authority. Nothing here grants extra
+  // permissions to Observatory intelligence reports or private records.
+  // Messages are immutable and contain no email addresses or privileged data.
+  match /ayla_chat_messages/{messageId} {
+    allow get, list: if approved();
+    allow create: if approved()
+      && request.resource.data.keys().hasOnly(['senderUid','body','createdAt'])
+      && request.resource.data.keys().hasAll(['senderUid','body','createdAt'])
+      && request.resource.data.senderUid == request.auth.uid
+      && request.resource.data.body is string
+      && request.resource.data.body.size() >= 1
+      && request.resource.data.body.size() <= 700
+      && request.resource.data.createdAt == request.time;
+    allow update, delete: if false;
+  }
   match /{document=**}{allow read,write: if false;}
  }
 }
