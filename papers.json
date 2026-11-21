@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "updated_at": "2026-11-21T15:12:26.701Z",
+  "updated_at": "2026-11-21T15:30:47.876Z",
   "source_site": "https://wildlife-research.wcs-associa-6434.chatgpt.site",
-  "count": 132,
+  "count": 133,
   "papers": [
     {
       "id": "doi-10.1590-1809-4422asoc01641vu29l29oa",
@@ -4097,18 +4097,48 @@
       "description_es": "Estudia las relaciones entre capturadores de serpientes acuáticas de Tonlé Sap y comerciantes intermediarios con entrevistas y precios. Identifica dependencia crediticia y acceso a mercados, además de competencia entre compradores. No vincula a esos actores con el decomiso de 2026.",
       "doi": "10.1080/00220380903012714",
       "source_url": "https://doi.org/10.1080/00220380903012714"
+    },
+    {
+      "id": "doi-10.1002-ecs2.4911",
+      "year": 2024,
+      "topic_code": "impacts_conservation",
+      "topic_pt": "Impactos e conservação",
+      "topic_en": "Impacts and conservation",
+      "topic_es": "Impactos y conservación",
+      "scope_code": "oceania",
+      "scope_pt": "Oceania",
+      "scope_en": "Oceania",
+      "scope_es": "Oceanía",
+      "classification_code": "wildlife_trade_context",
+      "classification_pt": "Comércio de fauna · contexto",
+      "classification_en": "Wildlife trade · context",
+      "classification_es": "Comercio de fauna · contexto",
+      "title": "Sea urchin roe quality within urchin barrens and improvement through kelp restoration",
+      "authors": [
+        "Kelsey I. Miller",
+        "Celia A. Balemi",
+        "Caitlin O. Blain",
+        "Arie J. P. Spyksma",
+        "Nick T. Shears"
+      ],
+      "journal": "Ecosphere",
+      "citation": "15(6), e4911",
+      "description_pt": "Estudo empírico realizado no nordeste da Nova Zelândia sobre qualidade das gônadas de kina (*Evechinus chloroticus*) em áreas dominadas por ouriços e em recifes com florestas de algas. Identifica variação sazonal do valor comercial do produto e melhora da condição das gônadas em áreas restauradas. Demonstra que a exploração e a gestão dessa espécie têm dimensões econômicas e ecológicas distintas; não mede o impacto nem as redes da venda ilegal investigada em Marlborough.",
+      "description_en": "Field study in northeastern New Zealand comparing the roe condition of kina (*Evechinus chloroticus*) in urchin barrens and kelp forests and after urchin removal. Finds seasonal variation in commercial roe quality and improvements following kelp recovery. Supports careful separation of market incentives, fisheries management and ecological outcomes; it does not measure impacts or networks associated with the Marlborough illegal-sales case.",
+      "description_es": "Estudio de campo en el nordeste de Nueva Zelanda sobre la calidad de las gónadas de kina (*Evechinus chloroticus*) en zonas dominadas por erizos, bosques de kelp y áreas restauradas. Documenta variación estacional de la calidad comercial y mejoras tras la recuperación de algas. Permite distinguir incentivos económicos, gestión pesquera y resultados ecológicos; no mide el impacto ni las redes del caso de venta ilegal en Marlborough.",
+      "doi": "10.1002/ecs2.4911",
+      "source_url": "https://doi.org/10.1002/ecs2.4911",
+      "added_at": "2026-11-21T15:30:47.876Z"
     }
   ],
   "last_manual_ingestion": {
-    "batch": "tgh-cambodia-snake-studies-2026-11-21",
+    "batch": "tgh-nz-kina-market-science-2026-11-21",
     "added_ids": [
-      "doi-10.1016-j.biocon.2007.07.009",
-      "doi-10.1016-j.biocon.2010.05.023",
-      "doi-10.1080-00220380903012714"
+      "doi-10.1002-ecs2.4911"
     ],
-    "added": 3,
-    "resulting_count": 132,
-    "updated_at": "2026-11-21T15:12:26.701Z",
-    "note": "Verified peer-reviewed Tonle Sap snake-trade studies, tri-lingual descriptions; contextual, not evidence of a direct link to Siem Reap seizure."
+    "added": 1,
+    "resulting_count": 133,
+    "updated_at": "2026-11-21T15:30:47.876Z",
+    "note": "Peer-reviewed NZ kina ecology and commercial roe-quality article, checked against Ecosphere publisher; used as scientific background for an illegal kina sales case without implying measured case-specific impacts."
   }
 }
