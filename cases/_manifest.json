@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1658,
+  "record_count": 1659,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2198,7 +2198,8 @@
     "2026/11/tgh-20261114-ci-tanda-350kg-bushmeat.json",
     "2026/11/tgh-20261117-kh-siem-reap-27-python-sacks.json",
     "2026/11/tgh-20261120-nz-marlborough-kina-183kg.json",
-    "2026/11/tgh-20261121-mx-los-tuxtlas-two-parakeets.json"
+    "2026/11/tgh-20261121-mx-los-tuxtlas-two-parakeets.json",
+    "2026/11/tgh-20261118-uy-camino-repetto-animals.json"
   ],
-  "compiled_sha256": "9ea1ca67d22d7abab636cb9b70c6523e5253e0d9cf51d016336212472c694788"
+  "compiled_sha256": "dfd4ac3426e5c0dfa1f56dac43dca4232581516d0c2292c54a81778349d14975"
 }
