@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1659,
+  "record_count": 1662,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2199,7 +2199,10 @@
     "2026/11/tgh-20261117-kh-siem-reap-27-python-sacks.json",
     "2026/11/tgh-20261120-nz-marlborough-kina-183kg.json",
     "2026/11/tgh-20261121-mx-los-tuxtlas-two-parakeets.json",
-    "2026/11/tgh-20261118-uy-camino-repetto-animals.json"
+    "2026/11/tgh-20261118-uy-camino-repetto-animals.json",
+    "2026/11/tgh-20261121-br-passo-fundo-four-monk-parakeet-chicks.json",
+    "2026/11/tgh-20261121-hk-four-live-turtles-us-parcel.json",
+    "2026/11/tgh-20261122-br-nilopolis-11-wild-birds.json"
   ],
-  "compiled_sha256": "dfd4ac3426e5c0dfa1f56dac43dca4232581516d0c2292c54a81778349d14975"
+  "compiled_sha256": "f6b8d45b0b199608c0d521128f5269cf9a512a74d0bba7e92bf5e21066b1966f"
 }
