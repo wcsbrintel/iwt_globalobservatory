@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1662,
+  "record_count": 1663,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2202,7 +2202,8 @@
     "2026/11/tgh-20261118-uy-camino-repetto-animals.json",
     "2026/11/tgh-20261121-br-passo-fundo-four-monk-parakeet-chicks.json",
     "2026/11/tgh-20261121-hk-four-live-turtles-us-parcel.json",
-    "2026/11/tgh-20261122-br-nilopolis-11-wild-birds.json"
+    "2026/11/tgh-20261122-br-nilopolis-11-wild-birds.json",
+    "2026/11/tgh-20261120-in-malkangiri-390-flapshell-turtles.json"
   ],
-  "compiled_sha256": "f6b8d45b0b199608c0d521128f5269cf9a512a74d0bba7e92bf5e21066b1966f"
+  "compiled_sha256": "700d4fce0d299083d8efd23f70ffb8bbfdd0408e2e9a8f1465d2f8303a91ad61"
 }
