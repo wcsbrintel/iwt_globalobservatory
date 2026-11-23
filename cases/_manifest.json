@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1663,
+  "record_count": 1670,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2203,7 +2203,14 @@
     "2026/11/tgh-20261121-br-passo-fundo-four-monk-parakeet-chicks.json",
     "2026/11/tgh-20261121-hk-four-live-turtles-us-parcel.json",
     "2026/11/tgh-20261122-br-nilopolis-11-wild-birds.json",
-    "2026/11/tgh-20261120-in-malkangiri-390-flapshell-turtles.json"
+    "2026/11/tgh-20261120-in-malkangiri-390-flapshell-turtles.json",
+    "2026/11/tgh-20261117-au-arafura-25t-illegal-fishing.json",
+    "2026/11/tgh-20261118-ar-ezeiza-wildlife-in-luggage.json",
+    "2026/11/tgh-20261118-cd-bukulani-93kg-wild-meat.json",
+    "2026/11/tgh-20261118-id-banggai-300kg-shark-products.json",
+    "2026/11/tgh-20261119-bo-villa-montes-500-catitas.json",
+    "2026/11/tgh-20261119-cn-beijing-two-junglefowl-skins.json",
+    "2026/11/tgh-20261120-it-noventa-vicentina-484-birds.json"
   ],
-  "compiled_sha256": "700d4fce0d299083d8efd23f70ffb8bbfdd0408e2e9a8f1465d2f8303a91ad61"
+  "compiled_sha256": "8213630f29058e016b8d59e5428e61b30c42c637c1441025f5c7ec6723b8c3b3"
 }
