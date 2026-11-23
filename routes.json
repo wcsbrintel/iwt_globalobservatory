@@ -15305,6 +15305,45 @@
       "route_scope": "DOCUMENTED_COUNTRY_OF_DISPATCH_NO_STOPS",
       "geometry_is_schematic": true,
       "source_evidence_type": "documented_country_origin_with_generalized_endpoint"
+    },
+    {
+      "id": "tgh-route-20261119-cn-beijing-two-junglefowl-skins",
+      "event_match": {
+        "event_id": "tgh-20261119-cn-beijing-two-junglefowl-skins"
+      },
+      "status": "DOCUMENTED_BROAD",
+      "route_type": "completed_shipment",
+      "direction": "forward",
+      "line_style": "solid",
+      "label_pt": "Japão → Pequim (duas encomendas postais; origem nacional documentada)",
+      "label_en": "Japan → Beijing (two postal parcels; dispatch country documented)",
+      "label_es": "Japón → Pekín (dos envíos postales; país de expedición documentado)",
+      "segments": [
+        {
+          "from": {
+            "name": "Japão — cidade de postagem não informada",
+            "country": "Japão",
+            "lat": 36.2048,
+            "lon": 138.2529,
+            "precision": "country_centroid_generalized"
+          },
+          "to": {
+            "name": "Pequim — referência urbana",
+            "country": "China",
+            "lat": 39.9042,
+            "lon": 116.4074,
+            "precision": "city_reference_generalized"
+          }
+        }
+      ],
+      "evidence_pt": "[O] A Alfândega de Pequim identificou duas encomendas procedentes do Japão com uma pele de Gallus sonneratii em cada pacote. A data exata das interceptações, cidade de postagem e paradas intermediárias não foram divulgadas; os pontos são referências esquemáticas, não um trajeto físico.",
+      "evidence_en": "[O] Beijing Customs identified two parcels sent from Japan, each with one Gallus sonneratii skin. Exact inspection dates, posting city and intermediate stops were not disclosed; plotted endpoints are schematic references, not a physical transport trace.",
+      "evidence_es": "[O] La Aduana de Pekín identificó dos paquetes enviados desde Japón, cada uno con una piel de Gallus sonneratii. No se divulgaron fechas exactas de inspección, ciudad de envío ni escalas; los puntos son referencias esquemáticas, no una trayectoria física.",
+      "source_label": "Beijing Customs / Beijing Daily",
+      "source_url": "https://www.sina.cn/news/detail/5367039749263429.html",
+      "route_scope": "DOCUMENTED_POSTAL_DISPATCH_COUNTRY_TO_RECEIVING_CITY_NO_STOPS",
+      "geometry_is_schematic": true,
+      "source_evidence_type": "documented_country_origin_city_destination_generalized"
     }
   ],
   "network_context": [
