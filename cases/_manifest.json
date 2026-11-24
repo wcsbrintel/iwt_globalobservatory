@@ -2,7 +2,7 @@
   "store_schema": 1,
   "source_file": "cases.json",
   "source_sha256": "a55bb9b4069ee6071a859cc47f4ee410a4c8325eac53ba5937b24af433f1d349",
-  "record_count": 1670,
+  "record_count": 1676,
   "top_level": "object",
   "records_key": "cases",
   "passthrough": {
@@ -2210,7 +2210,13 @@
     "2026/11/tgh-20261118-id-banggai-300kg-shark-products.json",
     "2026/11/tgh-20261119-bo-villa-montes-500-catitas.json",
     "2026/11/tgh-20261119-cn-beijing-two-junglefowl-skins.json",
-    "2026/11/tgh-20261120-it-noventa-vicentina-484-birds.json"
+    "2026/11/tgh-20261120-it-noventa-vicentina-484-birds.json",
+    "2026/11/tgh-20261117-vn-hai-phong-21-captive-birds.json",
+    "2026/11/tgh-20261120-ar-catamarca-santa-marta-30-birds.json",
+    "2026/11/tgh-20261120-id-ambon-nggapulu-parrot-antlers.json",
+    "2026/11/tgh-20261121-cl-hualpen-caiman-online-offer.json",
+    "2026/11/tgh-20261121-id-ambon-labobar-lorikeets-antlers.json",
+    "2026/11/tgh-20261123-it-santa-marina-120-wild-birds.json"
   ],
-  "compiled_sha256": "8213630f29058e016b8d59e5428e61b30c42c637c1441025f5c7ec6723b8c3b3"
+  "compiled_sha256": "8e20d33fee9bb3a581157b9e5c2bc2b539fcbbf96454447cabe9482808a25301"
 }
