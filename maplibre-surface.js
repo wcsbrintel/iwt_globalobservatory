@@ -57,43 +57,6 @@ function createObservatoryGlobeSpace(host,map){
  draw();
  return {setTheme(next){theme=next;draw();}};
 }
-/* Premultiplied-alpha compositing: fade the completed CARTO base once, before
-   operational layers are drawn. Do not fade markers, route lines or KDE. */
-function observatoryGlobeOpacityLayer(){
- const OPACITY=.8;
- let program=null,vao=null;
- function shader(gl,type,source){
-  const sh=gl.createShader(type);gl.shaderSource(sh,source);gl.compileShader(sh);
-  if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS)){const error=gl.getShaderInfoLog(sh);gl.deleteShader(sh);throw Error(error);}
-  return sh;
- }
- return {id:'observatory-globe-opacity',type:'custom',renderingMode:'2d',
-  onAdd(map,gl){
-   let vs,fs;
-   try{
-    vs=shader(gl,gl.VERTEX_SHADER,'#version 300 es\nvoid main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Position=vec4(p*2.0-1.0,0.0,1.0);}');
-    fs=shader(gl,gl.FRAGMENT_SHADER,'#version 300 es\nprecision mediump float;out vec4 color;void main(){color=vec4(0.0);}');
-    program=gl.createProgram();gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);
-    if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(program));
-    vao=gl.createVertexArray();
-    if(!vao)throw Error('No vertex array');
-   }catch(error){if(program)gl.deleteProgram(program);program=null;console.warn('Globe opacity unavailable; base remains opaque.',error);}
-   finally{if(vs)gl.deleteShader(vs);if(fs)gl.deleteShader(fs);}
-  },
-  render(gl){
-   if(!program||!vao)return;
-   // MapLibre resets its GL state after custom-layer rendering.
-   gl.disable(gl.DEPTH_TEST);gl.disable(gl.STENCIL_TEST);gl.disable(gl.CULL_FACE);gl.disable(gl.SCISSOR_TEST);
-   gl.colorMask(true,true,true,true);gl.depthMask(false);
-   gl.enable(gl.BLEND);gl.blendEquation(gl.FUNC_ADD);
-   gl.blendColor(0,0,0,OPACITY);
-   gl.blendFuncSeparate(gl.ZERO,gl.CONSTANT_ALPHA,gl.ZERO,gl.CONSTANT_ALPHA);
-   gl.useProgram(program);gl.bindVertexArray(vao);gl.drawArrays(gl.TRIANGLES,0,3);
-   gl.bindVertexArray(null);gl.blendColor(0,0,0,0);
-  },
-  onRemove(map,gl){if(program)gl.deleteProgram(program);if(vao)gl.deleteVertexArray(vao);program=null;vao=null;}
- };
-}
 /* Adapt the existing dashboard view contract to MapLibre, without another case store. */
 window.Globe=function(host){
  const M=window.maplibregl,props={},markers=[],decorations=[];
@@ -101,18 +64,7 @@ window.Globe=function(host){
  const map=new M.Map({container:host,style:window.ObservatoryBasemap.style(theme),center:[5,14],zoom:1,projection:{type:'globe'},attributionControl:false});
  map.addControl(new M.AttributionControl());
  const space=createObservatoryGlobeSpace(host,map);
- const opacityId='observatory-globe-opacity',kdeId='seizure-hotspots-kde',routeId='documented-routes';
- function installGlobeOpacity(){
-  try{
-   if(!map.getLayer(opacityId))map.addLayer(observatoryGlobeOpacityLayer());
-   // Render operational overlays after the opacity pass, even after style reloads.
-   if(map.getLayer(kdeId))map.moveLayer(kdeId);
-   if(map.getLayer(routeId))map.moveLayer(routeId);
-  }catch(error){console.warn('Globe opacity setup unavailable.',error);}
- }
  window.SeizureHotspots?.bindMap(map);
- map.on('style.load',installGlobeOpacity);
- map.on('webglcontextrestored',()=>{if(map.getLayer(opacityId))map.removeLayer(opacityId);installGlobeOpacity();});
  const clear=list=>{for(const marker of list)marker.remove();list.length=0;};
  const updateRoutes=()=>{
   if(!map.isStyleLoaded()){if(!queued){queued=true;map.once('idle',()=>{queued=false;updateRoutes();});}return;}
