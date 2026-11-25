@@ -8,7 +8,8 @@ window.ObservatoryGlobe=(()=>{
  let api,globe,mode='globe',expanded=false,loading=null,failed=false,detailId=null,clusterIds=[],snapshot=null,filterSlot,languageSlot,filterNode,languageNode;
  let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null;
  const markerElements=new Set(),themes={map:'dark',globe:'dark'};
- try{for(const key of ['map','globe']){const saved=window.localStorage?.getItem('observatory-'+key+'-theme');if(['dark','light'].includes(saved))themes[key]=saved;}}catch{}
+ try{const saved=window.localStorage?.getItem('observatory-map-theme');if(['dark','light'].includes(saved))themes.map=saved;}catch{}
+ // Always open the globe in dark mode; the current session can still change it.
  Object.assign(text.pt,{dark:'Escuro',light:'Claro',theme:'Cor do mapa'});Object.assign(text.en,{dark:'Dark',light:'Light',theme:'Map color'});Object.assign(text.es,{dark:'Oscuro',light:'Claro',theme:'Color del mapa'});
  Object.assign(text.pt,{hidePoints:'Ocultar pontos',showPoints:'Mostrar pontos',pointsHint:'Oculta somente os marcadores de apreensões; filtros, rotas e hotspots permanecem inalterados.'});
  Object.assign(text.en,{hidePoints:'Hide points',showPoints:'Show points',pointsHint:'Hide seizure markers only; filters, routes and hotspots remain unchanged.'});
@@ -197,7 +198,7 @@ window.ObservatoryGlobe=(()=>{
    limit:!expanded?4:window.matchMedia('(max-width:650px)').matches?5:8
   });
  }
- function setCleanView(next){
+ function setCleanView(next,{focus=true}={}){
   // The clean presentation is available both inline and in fullscreen.
   if(cleanView===next)return;
   cleanView=next;
@@ -209,7 +210,7 @@ window.ObservatoryGlobe=(()=>{
   localize();
   syncRotation();
   resize();
-  (cleanView?get('exitCleanView'):get('enterCleanView')).focus({preventScroll:true});
+  if(focus)(cleanView?get('exitCleanView'):get('enterCleanView')).focus({preventScroll:true});
  }
  function setExpanded(next){
   if(expanded===next)return;
@@ -239,7 +240,7 @@ window.ObservatoryGlobe=(()=>{
   get('globe').addEventListener('pointerdown',()=>suspendRotation(4500),{passive:true});
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'){
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
    const nodes=[get('exitCleanView'),get('cleanRotate')];
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
@@ -255,8 +256,9 @@ window.ObservatoryGlobe=(()=>{
   window.DocumentedRouteMap?.init(api.map,showRoute,api.lang);
   window.DocumentedRoutes.subscribe(sync);window.DocumentedRoutes.start();
   localize();
-  // Initialize the default GLOBE and start the existing automatic rotation.
-  // This is a startup preference, not a user-triggered mode change.
+  // Open directly in the existing inline Map only experience, without stealing focus.
+  // Keep all active temporal and route filters and the default automatic rotation.
+  setCleanView(true,{focus:false});
   void setMode('globe');
  }
  function zoomBy(factor){suspendRotation(3500);if(globe){const p=globe.pointOfView();globe.pointOfView({...p,altitude:Math.max(.00001,Math.min(4.8,p.altitude*factor))},duration());}}
