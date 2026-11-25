@@ -94,6 +94,83 @@ function observatoryGlobeOpacityLayer(){
   onRemove(map,gl){if(program)gl.deleteProgram(program);if(vao)gl.deleteVertexArray(vao);program=null;vao=null;}
  };
 }
+/* Rear hemisphere outlines and routes: use the same globe projection and
+   horizon test as the native MapLibre markers. Purely decorative, no hit testing. */
+function createObservatoryRearGlobe(map,host,M){
+ const canvas=document.createElement('canvas');
+ canvas.className='observatory-globe-rear';
+ canvas.setAttribute('aria-hidden','true');
+ Object.assign(canvas.style,{position:'absolute',inset:'0',width:'100%',height:'100%',pointerEvents:'none',zIndex:'0'});
+ map.getCanvasContainer().append(canvas);
+ const ctx=canvas.getContext('2d');
+ let rings=[],paths=[],theme='dark',revision=0,lastKey='',removed=false;
+ const coord=p=>M.LngLat.convert(p);
+ const hidden=p=>map.transform.isLocationOccluded(coord(p));
+ const screen=p=>map.project(coord(p));
+ function edge(a,b,aHidden){
+  let lo=a,hi=b;
+  for(let i=0;i<7;i++){
+   const mid=[(lo[0]+hi[0])/2,(lo[1]+hi[1])/2];
+   if(hidden(mid)===aHidden)lo=mid;else hi=mid;
+  }
+  return [(lo[0]+hi[0])/2,(lo[1]+hi[1])/2];
+ }
+ function trace(lines){
+  ctx.beginPath();
+  for(const line of lines){
+   let prev=null,prevHidden=false,active=false;
+   for(const raw of line){
+    const p=[prev?raw[0]+360*Math.round((prev[0]-raw[0])/360):raw[0],raw[1]];
+    const isHidden=hidden(p);
+    if(prev&&isHidden!==prevHidden){
+     const q=screen(edge(prev,p,prevHidden));
+     if(Number.isFinite(q.x)&&Number.isFinite(q.y)){
+      if(prevHidden&&active)ctx.lineTo(q.x,q.y);
+      else if(isHidden){ctx.moveTo(q.x,q.y);active=true;}
+     }
+    }
+    if(isHidden){
+     const q=screen(p);
+     if(Number.isFinite(q.x)&&Number.isFinite(q.y)){
+      if(active)ctx.lineTo(q.x,q.y);else ctx.moveTo(q.x,q.y);
+      active=true;
+     }else active=false;
+    }else active=false;
+    prev=p;prevHidden=isHidden;
+   }
+  }
+  ctx.stroke();
+ }
+ function draw(){
+  if(!ctx||removed)return;
+  const w=host.clientWidth,h=host.clientHeight,zoom=map.getZoom();
+  if(!w||!h)return;
+  const c=map.getCenter(),dpr=Math.min(window.devicePixelRatio||1,1.5);
+  const key=[w,h,dpr,c.lng,c.lat,zoom,map.getPitch(),map.getBearing(),theme,revision].join('|');
+  if(key===lastKey)return;lastKey=key;
+  const pw=Math.round(w*dpr),ph=Math.round(h*dpr);
+  if(canvas.width!==pw||canvas.height!==ph){canvas.width=pw;canvas.height=ph;}
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  // In local-scale views rear geography should not masquerade as local data.
+  const fade=Math.max(0,Math.min(1,(5-zoom)/1.5));
+  if(!fade)return;
+  ctx.lineJoin='round';ctx.lineCap='round';
+  ctx.globalAlpha=.10*fade;ctx.lineWidth=.85;
+  ctx.strokeStyle=theme==='dark'?'#c7dce9':'#233f4c';
+  trace(rings);
+  ctx.strokeStyle=window.DocumentedRoutes.visual(theme).color;ctx.lineWidth=1.5;
+  trace(paths);
+  ctx.globalAlpha=1;
+ }
+ map.on('render',draw);
+ fetch('globe-rear-boundaries.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).then(data=>{
+  if(removed)return;rings=Array.isArray(data.rings)?data.rings:[];revision++;map.triggerRepaint();
+ }).catch(error=>console.warn('Rear globe boundaries unavailable.',error));
+ return {setTheme(next){if(theme!==next){theme=next;revision++;map.triggerRepaint();}},
+  setRoutes(next){paths=next.flatMap(d=>window.DocumentedRoutes.paths(d).map(line=>line.map(p=>[p[1],p[0]])));revision++;map.triggerRepaint();},
+  remove(){removed=true;map.off('render',draw);canvas.remove();}
+ };
+}
 /* Adapt the existing dashboard view contract to MapLibre, without another case store. */
 window.Globe=function(host){
  const M=window.maplibregl,props={},markers=[],decorations=[];
@@ -101,6 +178,7 @@ window.Globe=function(host){
  const map=new M.Map({container:host,style:window.ObservatoryBasemap.style(theme),center:[5,14],zoom:1,projection:{type:'globe'},attributionControl:false});
  map.addControl(new M.AttributionControl());
  const space=createObservatoryGlobeSpace(host,map);
+ const rear=createObservatoryRearGlobe(map,host,M);
  const opacityId='observatory-globe-opacity',kdeId='seizure-hotspots-kde',routeId='documented-routes';
  function installGlobeOpacity(){
   try{
@@ -131,14 +209,14 @@ window.Globe=function(host){
   isMapLibre:true,map,
   isVisible(d){return !map.transform.isLocationOccluded(M.LngLat.convert([d.lng,d.lat]));},
   pointOfView(next,ms=0){if(!next){const c=map.getCenter();return {lat:c.lat,lng:c.lng,altitude:2.4/Math.pow(2,map.getZoom()-1)};}map.easeTo({center:[next.lng,next.lat],zoom:Math.max(0,Math.min(19,1+Math.log2(2.4/next.altitude))),duration:ms});return api;},
-  htmlElementsData(data){props.htmlElementsData=data;clear(markers);clear(decorations);for(const d of data){const element=props.htmlElement(d);const marker=new M.Marker({element,anchor:'center',opacityWhenCovered:'0'}).setLngLat([d.lng,d.lat]).addTo(map);(d.routeAdornment?decorations:markers).push(marker);}orient();return api;},
-  pathsData(data){routes=data;props.pathsData=data;updateRoutes();return api;},
-  setTheme(next){space.setTheme(next);if(next!==theme){theme=next;map.setStyle(window.ObservatoryBasemap.style(theme));}return api;},
+  htmlElementsData(data){props.htmlElementsData=data;clear(markers);clear(decorations);for(const d of data){const element=props.htmlElement(d);const marker=new M.Marker({element,anchor:'center',opacityWhenCovered:d.routeAdornment?'0':'0.15',subpixelPositioning:true}).setLngLat([d.lng,d.lat]).addTo(map);(d.routeAdornment?decorations:markers).push(marker);}orient();return api;},
+  pathsData(data){routes=data;props.pathsData=data;rear.setRoutes(data);updateRoutes();return api;},
+  setTheme(next){space.setTheme(next);rear.setTheme(next);if(next!==theme){theme=next;map.setStyle(window.ObservatoryBasemap.style(theme));}return api;},
   getScreenCoords(lat,lng){return map.project([lng,lat]);},
   width(){map.resize();return api;},height(){map.resize();return api;},
   pauseAnimation(){return api;},resumeAnimation(){map.resize();return api;},
   renderer(){return {setPixelRatio(){}};},globeMaterial(){return {color:{set(){}}};},controls(){return {addEventListener(){}};},
-  _destructor(){clear(markers);clear(decorations);map.remove();}
+  _destructor(){rear.remove();clear(markers);clear(decorations);map.remove();}
  };
  function orient(){for(const marker of decorations){
   const el=marker.getElement(),d=el.routeDecoration;if(!d)continue;
