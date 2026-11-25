@@ -17,9 +17,9 @@ window.ObservatoryGlobe=(()=>{
  Object.assign(text.pt,{rotationControl:'Rotação',rotationOn:'Rotação ligada — clique para desligar',rotationOff:'Rotação desligada — clique para ligar'});
  Object.assign(text.en,{rotationControl:'Rotation',rotationOn:'Rotation on — click to stop',rotationOff:'Rotation off — click to resume'});
  Object.assign(text.es,{rotationControl:'Rotación',rotationOn:'Rotación activada — pulse para detener',rotationOff:'Rotación desactivada — pulse para reanudar'});
- Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Voltar',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Voltar à tela cheia com controles'});
- Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Back',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Return to fullscreen with controls'});
- Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Volver',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Volver a pantalla completa con controles'});
+ Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Alterar filtros',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Mostrar os controles e alterar filtros'});
+ Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Change filters',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Show controls and change filters'});
+ Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Cambiar filtros',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Mostrar los controles y cambiar filtros'});
  const get=id=>document.getElementById(id),t=()=>text[api.lang()],safe=s=>api.escape(s),duration=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
  function button(id,label,fn){get(id).textContent=label;get(id).onclick=fn;}
  // Move the MapLibre GLOBE camera around Earth's longitude; never modify
@@ -212,11 +212,11 @@ window.ObservatoryGlobe=(()=>{
   resize();
   if(focus)(cleanView?get('exitCleanView'):get('enterCleanView')).focus({preventScroll:true});
  }
- function setExpanded(next){
+ function setExpanded(next,{startup=false}={}){
   if(expanded===next)return;
   if(!next&&cleanView)setCleanView(false);
-  expanded=next;if(next){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
-  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded',String(!get('mapFiltersHost').hidden));document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);get('expandMap').focus();}
+  expanded=next;if(next&&!startup){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
+  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded',String(!get('mapFiltersHost').hidden));document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);if(!startup)get('expandMap').focus();}
   else{shell.classList.remove('map-expanded');shell.removeAttribute('role');shell.removeAttribute('aria-modal');shell.removeAttribute('aria-label');filterSlot.replaceWith(filterNode);languageSlot.replaceWith(languageNode);document.body.style.overflow=snapshot.overflow;window.scrollTo(snapshot.scrollX,snapshot.scrollY);snapshot.focus?.focus({preventScroll:true});}
   localize();resize();
  }
@@ -230,7 +230,7 @@ window.ObservatoryGlobe=(()=>{
    onOpen:id=>showCase(id)
   });
   get('enterCleanView').onclick=()=>setCleanView(true);
-  get('exitCleanView').onclick=()=>setCleanView(false);
+  get('exitCleanView').onclick=()=>{if(expanded){get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded','true');}setCleanView(false);};
   get('mapMode').onclick=()=>setMode('map');get('globeMode').onclick=()=>setMode('globe');get('routeLayer').onchange=()=>{updatePoints();localize();resize();};get('closeMapDetail').onclick=closeDetail;
   get('mapTheme').onchange=e=>{if(!['dark','light'].includes(e.target.value))return;themes[mode]=e.target.value;try{window.localStorage?.setItem('observatory-'+mode+'-theme',themes[mode]);}catch{}applyTheme();};
   get('globeZoomIn').onclick=()=>zoomBy(.75);get('globeZoomOut').onclick=()=>zoomBy(1.3);get('globeHome').onclick=()=>{suspendRotation(4500);globe?.pointOfView({lat:14,lng:5,altitude:2.4},duration());};
@@ -256,8 +256,9 @@ window.ObservatoryGlobe=(()=>{
   window.DocumentedRouteMap?.init(api.map,showRoute,api.lang);
   window.DocumentedRoutes.subscribe(sync);window.DocumentedRoutes.start();
   localize();
-  // Open directly in the existing inline Map only experience, without stealing focus.
+  // Open in the existing viewport-filling map-only experience, without user-action analytics.
   // Keep all active temporal and route filters and the default automatic rotation.
+  setExpanded(true,{startup:true});
   setCleanView(true,{focus:false});
   void setMode('globe');
  }
