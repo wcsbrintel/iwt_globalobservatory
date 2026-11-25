@@ -96,7 +96,15 @@ window.ObservatoryGlobe=(()=>{
  function setMarkerVisibility(el,pov){
   const visible=globe.isMapLibre===true?globe.isVisible(el.geoPoint):window.GlobeData.visible(el.geoPoint,pov);
   // CSS2DRenderer rewrites display each frame; visibility is deliberately independent.
-  el.style.setProperty('visibility',visible?'visible':'hidden','important');
+  const isCase=!el.routeDecoration;
+  const fade=globe.isMapLibre===true?Math.max(0,Math.min(1,(5-globe.map.getZoom())/1.5)):0;
+  const rear=!visible&&isCase&&fade>0;
+  el.style.setProperty('visibility',visible||rear?'visible':'hidden','important');
+  if(isCase&&globe.isMapLibre===true){
+   el.style.transition=matchMedia('(prefers-reduced-motion: reduce)').matches?'none':'opacity 180ms linear';
+   el.style.setProperty('opacity',visible?'1':String(.15*fade),'important');
+   el.style.setProperty('z-index',rear?'1':el.geoPoint?.recent?'3':'2','important');
+  }
   el.style.setProperty('pointer-events',visible&&el.routeDecoration?.kind!=='approx'?'auto':'none','important');
   el.setAttribute('aria-hidden',String(!visible));el.tabIndex=visible?0:-1;
   const d=el.routeDecoration;
