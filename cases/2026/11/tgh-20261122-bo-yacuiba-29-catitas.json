@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Yacuiba, Província Gran Chaco, Tarija/Bolívia (ponto de comércio não individualizado)",
-  "location_label_en": "Yacuiba, Província Gran Chaco, Tarija/Bolívia (ponto de comércio não individualizado)",
-  "location_label_es": "Yacuiba, Província Gran Chaco, Tarija/Bolívia (ponto de comércio não individualizado)",
+  "location_label_en": "Yacuiba, Gran Chaco Province, Tarija, Bolivia (trading site not specified)",
+  "location_label_es": "Yacuiba, provincia Gran Chaco, Tarija, Bolivia (punto de comercio no identificado)",
   "title_pt": "Yacuiba apreende 29 catitas em investigação de comércio ilegal",
   "title_en": "Twenty-nine wild parakeets seized in suspected illegal trade in Yacuiba",
   "title_es": "Decomisan 29 cotorras en Yacuiba por presunto comercio ilegal",
@@ -92,5 +92,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas do centro de Yacuiba usadas apenas como referência municipal; o ponto preciso de comércio não foi informado.",
+  "geographic_note_en": "Coordinates for central Yacuiba used only as a municipal reference; the precise trading site was not reported.",
+  "geographic_note_es": "Coordenadas del centro de Yacuiba utilizadas solo como referencia municipal; no se informó el lugar exacto de comercio."
 }

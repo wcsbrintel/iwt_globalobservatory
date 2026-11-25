@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Porto de Boulari, Mont-Dore, proximidades de Nouméa, Nova Caledônia",
-  "location_label_en": "Porto de Boulari, Mont-Dore, proximidades de Nouméa, Nova Caledônia",
-  "location_label_es": "Porto de Boulari, Mont-Dore, proximidades de Nouméa, Nova Caledônia",
+  "location_label_en": "Boulari harbour, Mont-Dore, near Nouméa, New Caledonia",
+  "location_label_es": "Puerto de Boulari, Mont-Dore, cerca de Numea, Nueva Caledonia",
   "title_pt": "Pesca irregular: mais de 200 kg de produtos marinhos apreendidos em Boulari",
   "title_en": "Over 200 kg of marine catch seized in Boulari; resale unconfirmed",
   "title_es": "Incautan más de 200 kg de productos marinos en Boulari; reventa no confirmada",
@@ -90,5 +90,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas aproxima﻿das de Boulari/Mont-Dore; não localizam a embarcação, o ponto exato da apreensão nem a área de captura.",
+  "geographic_note_en": "Approximate Boulari/Mont-Dore coordinates; they do not identify the vessel, the exact seizure location or the fishing grounds.",
+  "geographic_note_es": "Coordenadas aproximadas de Boulari/Mont-Dore; no identifican la embarcación, el punto exacto de incautación ni la zona de captura."
 }

@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Loja de som tam em frente ao templo Wat Pa Ban Bong Nuea, tambon Bong Nuea, distrito Sawang Daen Din, Sakon Nakhon/Tailândia",
-  "location_label_en": "Loja de som tam em frente ao templo Wat Pa Ban Bong Nuea, tambon Bong Nuea, distrito Sawang Daen Din, Sakon Nakhon/Tailândia",
-  "location_label_es": "Loja de som tam em frente ao templo Wat Pa Ban Bong Nuea, tambon Bong Nuea, distrito Sawang Daen Din, Sakon Nakhon/Tailândia",
+  "location_label_en": "Som tam shop near Wat Pa Ban Bong Nuea temple, Bong Nuea, Sawang Daen Din district, Sakon Nakhon, Thailand",
+  "location_label_es": "Local de som tam cerca del templo Wat Pa Ban Bong Nuea, Bong Nuea, distrito de Sawang Daen Din, Sakon Nakhon, Tailandia",
   "title_pt": "Tailândia apreende 73 carcaças de aves aquáticas em investigação de comércio",
   "title_en": "Thailand seizes 73 waterbird carcasses in suspected illegal sale",
   "title_es": "Tailandia incauta 73 cadáveres de aves acuáticas por presunta venta",
@@ -90,5 +90,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas referenciais de Sawang Daen Din, Sakon Nakhon; não representam a localização precisa da loja próxima ao templo Wat Pa Ban Bong Nuea.",
+  "geographic_note_en": "Reference coordinates for Sawang Daen Din, Sakon Nakhon; they do not locate the shop near Wat Pa Ban Bong Nuea temple precisely.",
+  "geographic_note_es": "Coordenadas de referencia de Sawang Daen Din, Sakon Nakhon; no representan la ubicación precisa de la tienda cerca del templo Wat Pa Ban Bong Nuea."
 }

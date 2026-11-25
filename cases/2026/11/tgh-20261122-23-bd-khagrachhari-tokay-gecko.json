@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Posto policial temporário em Naran Khaiya, Khagrachhari Sadar, distrito de Khagrachhari, Chattogram Hill Tracts/Bangladesh",
-  "location_label_en": "Posto policial temporário em Naran Khaiya, Khagrachhari Sadar, distrito de Khagrachhari, Chattogram Hill Tracts/Bangladesh",
-  "location_label_es": "Posto policial temporário em Naran Khaiya, Khagrachhari Sadar, distrito de Khagrachhari, Chattogram Hill Tracts/Bangladesh",
+  "location_label_en": "Temporary police checkpoint at Naran Khaiya, Khagrachhari Sadar, Khagrachhari district, Chattogram Hill Tracts, Bangladesh",
+  "location_label_es": "Puesto policial temporal en Naran Khaiya, Khagrachhari Sadar, distrito de Khagrachhari, Chattogram Hill Tracts, Bangladés",
   "title_pt": "Bangladesh intercepta lagartixa-tókai transportada com suspeita de venda",
   "title_en": "Bangladesh intercepts transported Tokay gecko amid suspected sale",
   "title_es": "Bangladés intercepta un geco tokay transportado para presunta venta",
@@ -92,5 +92,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas aproximadas de Khagrachhari; não identificam o local exato da abordagem policial em Naran Khaiya.",
+  "geographic_note_en": "Approximate Khagrachhari coordinates, not the exact police interception point in Naran Khaiya.",
+  "geographic_note_es": "Coordenadas aproximadas de Khagrachhari, no el punto exacto de la intervención policial en Naran Khaiya."
 }

@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Residência em Ghilani, área atendida pela Delegacia de Kampur, distrito de Nagaon, Assam/Índia",
-  "location_label_en": "Residência em Ghilani, área atendida pela Delegacia de Kampur, distrito de Nagaon, Assam/Índia",
-  "location_label_es": "Residência em Ghilani, área atendida pela Delegacia de Kampur, distrito de Nagaon, Assam/Índia",
+  "location_label_en": "Residence in Ghilani, Kampur Police Station area, Nagaon district, Assam, India",
+  "location_label_es": "Vivienda en Ghilani, jurisdicción policial de Kampur, distrito de Nagaon, Assam, India",
   "title_pt": "Lagartixa-tókai apreendida em Assam durante investigação de negociação ilegal",
   "title_en": "Tokay gecko recovered in Assam during alleged illegal trade negotiation",
   "title_es": "Rescatan un geco tokay en Assam durante una presunta negociación ilegal",
@@ -92,5 +92,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas referenciais da região de Nagaon, Assam; não correspondem ao endereço exato da residência em Ghilani.",
+  "geographic_note_en": "Reference coordinates for the Nagaon area, Assam; not the exact address of the residence at Ghilani.",
+  "geographic_note_es": "Coordenadas de referencia de la zona de Nagaon, Assam; no corresponden a la dirección exacta de la vivienda en Ghilani."
 }

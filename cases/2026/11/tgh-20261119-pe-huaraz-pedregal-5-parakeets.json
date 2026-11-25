@@ -19,8 +19,8 @@
   "is_exact_seizure_position": false,
   "georeference_method": "conservative_reference_coordinates",
   "location_label_pt": "Parada de Pedregal, município de Huaraz, Áncash/Peru",
-  "location_label_en": "Parada de Pedregal, município de Huaraz, Áncash/Peru",
-  "location_label_es": "Parada de Pedregal, município de Huaraz, Áncash/Peru",
+  "location_label_en": "Pedregal stop, Huaraz municipality, Áncash, Peru",
+  "location_label_es": "Paradero de Pedregal, municipio de Huaraz, Áncash, Perú",
   "title_pt": "Cinco papagaios são recuperados em ponto de venda ilegal em Huaraz",
   "title_en": "Five parakeets recovered from illegal sales point in Huaraz",
   "title_es": "Rescatan cinco loros ofrecidos ilegalmente en Huaraz",
@@ -92,5 +92,8 @@
   "case_context_status": "PT_EN_ES_OSINT_REVIEWED",
   "image_url": null,
   "image_source_url": null,
-  "image_status": "NOT_VALIDATED"
+  "image_status": "NOT_VALIDATED",
+  "geographic_note_pt": "Coordenadas aproximadas da cidade de Huaraz; não identificam o ponto exato de venda ou resgate em Pedregal.",
+  "geographic_note_en": "Approximate Huaraz city coordinates; they do not identify the exact sale or recovery location at Pedregal.",
+  "geographic_note_es": "Coordenadas aproximadas de la ciudad de Huaraz; no identifican el punto exacto de venta o rescate en Pedregal."
 }
