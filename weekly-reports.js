@@ -8,13 +8,11 @@
  };
  const languageNames={pt:'Português',en:'English',es:'Español'},locales={pt:'pt-BR',en:'en-GB',es:'es-ES'};
  const source=window.WeeklyReportSource,categories=Object.keys(source.feeds);
- const languageKey='observatory-report-modal-language',sessionKey='observatory-report-modal-shown';
+ const languageKey='observatory-report-modal-language';
  const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const safeGet=(storage,key)=>{try{return window[storage].getItem(key);}catch{return null;}};
  const safeSet=(storage,key,value)=>{try{window[storage].setItem(key,value);}catch{/* In-memory guards also prevent reopening. */}};
  let currentLanguage=window.ObservatoryLanguage.get(),selectedCategory='weekly',initialized=false;
- let modalLanguage=window.ObservatoryLanguage.get(),shown=safeGet('sessionStorage',sessionKey)==='1',dialog=null,featured=null,previousFocus=null;
- if(!labels[modalLanguage])modalLanguage=null;
+ let modalLanguage=null,choosingLanguage=true,shown=false,dialog=null,featured=null,previousFocus=null;
  function localized(report,field,lang) {
   return report[field+'_'+lang]||['pt','en','es'].map(code=>report[field+'_'+code]).find(Boolean)||'';
  }
@@ -34,7 +32,7 @@
   const nextLanguage=labels[lang]?lang:'pt',changed=nextLanguage!==currentLanguage;
   currentLanguage=nextLanguage;
   window.ObservatoryCitation?.render(currentLanguage);
-  if(changed&&dialog?.open&&modalLanguage){modalLanguage=currentLanguage;safeSet('localStorage',languageKey,modalLanguage);renderModal();}
+  if(changed&&dialog?.open&&modalLanguage&&!choosingLanguage){modalLanguage=currentLanguage;safeSet('localStorage',languageKey,modalLanguage);renderModal();}
   const host=document.getElementById('reportsView');if(!host)return;
   const t=labels[currentLanguage],state=source.state();
   const records=state.reports.filter(r=>r.type===selectedCategory).sort((a,b)=>b.period_end.localeCompare(a.period_end)||a.id.localeCompare(b.id));
@@ -49,44 +47,50 @@
   host.querySelectorAll('[data-report-category]').forEach(button=>button.addEventListener('click',()=>{selectedCategory=button.dataset.reportCategory;render(currentLanguage);}));
   if(focusCategory)host.querySelector('[data-report-category="'+focusCategory+'"]')?.focus({preventScroll:true});
  }
- function renderModal(chooseLanguage=false) {
+ function renderModal(chooseLanguage=choosingLanguage) {
+  choosingLanguage=chooseLanguage;
   const lang=modalLanguage,t=labels[lang];
   if(!lang||chooseLanguage){
    dialog.setAttribute('lang','pt');
    dialog.setAttribute('aria-labelledby','reportModalLanguageTitle');
    dialog.removeAttribute('aria-describedby');
-   dialog.innerHTML='<button class="reports-modal-close" type="button" data-report-close aria-label="Fechar / Close / Cerrar">×</button><div class="reports-modal-content"><h2 class="reports-language-title" id="reportModalLanguageTitle"><span lang="pt">Selecione o idioma</span> / <span lang="en">Select language</span> / <span lang="es">Seleccione el idioma</span></h2><div class="reports-language-options">'+Object.entries(languageNames).map(([code,name])=>'<button type="button" lang="'+code+'" data-report-language="'+code+'">'+name+'</button>').join('')+'</div></div>';
+   dialog.innerHTML='<div class="reports-modal-content"><h2 class="reports-language-title" id="reportModalLanguageTitle"><span lang="pt">Selecione o idioma</span> / <span lang="en">Select language</span> / <span lang="es">Seleccione el idioma</span></h2><div class="reports-language-options">'+Object.entries(languageNames).map(([code,name])=>'<button type="button" lang="'+code+'" data-report-language="'+code+'">'+name+'</button>').join('')+'</div></div>';
   } else {
    dialog.setAttribute('lang',lang);dialog.setAttribute('aria-labelledby','reportModalTitle');dialog.setAttribute('aria-describedby','reportModalIntro');
+   if(!featured){
+    dialog.innerHTML='<button class="reports-modal-close" type="button" data-report-close aria-label="'+t.close+'">×</button><div class="reports-modal-content"><h2 id="reportModalTitle">'+t.latest+'</h2><p id="reportModalIntro" role="status">'+(source.state().loaded?t.empty:t.loading)+'</p><button type="button" class="reports-change-language" data-report-choose>'+t.changeLanguage+'</button></div>';
+   }else
    dialog.innerHTML='<button class="reports-modal-close" type="button" data-report-close aria-label="'+t.close+'">×</button><div class="reports-modal-content">'+window.ObservatoryCitation.markup(lang,true)+'<h2 id="reportModalTitle">'+t.latest+'</h2><p class="reports-modal-intro" id="reportModalIntro">'+t.notice+'</p><article data-report-id="'+escape(featured.id)+'"><span class="reports-category-label">'+t[featured.type]+'</span><h3>'+escape(localized(featured,'title',lang))+'</h3><p class="reports-summary">'+escape(localized(featured,'summary',lang))+'</p>'+metadata(featured,lang)+access(featured,lang,true)+'</article><button type="button" class="reports-change-language" data-report-choose>'+t.changeLanguage+'</button></div>';
   }
   window.ObservatoryCitation.bind(dialog,lang||'pt');
-  dialog.querySelector('[data-report-close]').addEventListener('click',()=>dialog.close());
+  dialog.querySelector('[data-report-close]')?.addEventListener('click',()=>dialog.close());
   dialog.querySelectorAll('[data-report-language]').forEach(button=>button.addEventListener('click',()=>{
-   modalLanguage=window.ObservatoryLanguage.set(button.dataset.reportLanguage);safeSet('localStorage',languageKey,modalLanguage);renderModal();dialog.scrollTop=0;dialog.querySelector('[data-report-close]').focus({preventScroll:true});
+   modalLanguage=window.ObservatoryLanguage.set(button.dataset.reportLanguage);safeSet('localStorage',languageKey,modalLanguage);choosingLanguage=false;featured=source.latest()||null;renderModal(false);dialog.scrollTop=0;dialog.querySelector('[data-report-close]')?.focus({preventScroll:true});
   }));
   dialog.querySelector('[data-report-choose]')?.addEventListener('click',()=>{renderModal(true);dialog.querySelector('[data-report-language]').focus();});
  }
  function showLatest() {
-  if(shown||!source.state().loaded)return;
-  const report=source.latest();if(!report)return;
+  if(shown)return;
+  const report=source.latest()||null;
   const element=document.createElement('dialog');
   if(typeof element.showModal!=='function')return;
   featured=report;dialog=element;dialog.className='reports-modal';
   document.body.appendChild(dialog);renderModal();previousFocus=document.activeElement;
+  dialog.addEventListener('cancel',event=>{if(choosingLanguage)event.preventDefault();});
   dialog.addEventListener('close',()=>{dialog.remove();previousFocus?.focus({preventScroll:true});});
-  dialog.showModal();shown=true;safeSet('sessionStorage',sessionKey,'1');
-  dialog.querySelector(modalLanguage?'[data-report-close]':'[data-report-language]').focus();
+  dialog.showModal();shown=true;
+  dialog.querySelector('[data-report-language]')?.focus();
  }
  function init() {
   if(initialized)return;initialized=true;
   render(document.getElementById('language')?.value||'pt');
+  showLatest();
   source.start();
  }
  source.subscribe(()=>{
   const latest=source.latest();
-  if(dialog?.open&&latest&&JSON.stringify(latest)!==JSON.stringify(featured)){
-   featured=latest;renderModal();
+  if(dialog?.open&&!choosingLanguage&&(JSON.stringify(latest||null)!==JSON.stringify(featured)||!featured&&source.state().loaded)){
+   featured=latest||null;renderModal(false);
   }
   render(currentLanguage);showLatest();
  });
