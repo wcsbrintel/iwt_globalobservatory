@@ -183,7 +183,7 @@ function render(){
   el.onclick=ev=>{if(!ev.target.closest('a'))locate();};
   el.onkeydown=ev=>{if(ev.target===el&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();locate();}};
  });
- const previous=markers.find(m=>m.eventId===selected);if(previous)previous.openPopup();else if(selected&&!data.some(e=>e.id===selected))activeId=null;
+ const previous=markers.find(m=>m.eventId===selected);if(previous&&!window.ObservatoryFloatingCards)previous.openPopup();else if(selected&&!data.some(e=>e.id===selected))activeId=null;
  window.ObservatoryGlobe?.sync();
 }
 function setup(){
