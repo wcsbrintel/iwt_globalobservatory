@@ -41,14 +41,14 @@ let taxonOptions=[],taxonSignature='';
 function options(){
  const s=$('sharedTaxon');if(!s)return;const v=s.value,m=new Map();
  const add=e=>{if(!m.has(e.key))m.set(e.key,{...e});else if(!m.get(e.key).common&&e.common)m.get(e.key).common=e.common;};
+ for(const e of window.ObservatorySpeciesIndex?.records||[])add(e);
  for(const r of rows)for(const e of r.taxonEntries||[])add(e);
  for(const r of osintRows)for(const e of osintEntries(r))add(e);
- const active=new Set();if(osint())for(const e of osintRows)for(const n of osintNames(e))active.add(norm(n));if(enabled())for(const r of rows)for(const k of r.taxa)active.add(k);
- taxonOptions=[...m.values()].filter(e=>active.has(e.key)).sort((a,b)=>a.name.localeCompare(b.name,lang()));
- const sig=JSON.stringify([lang(),taxonOptions]);if(sig!==taxonSignature){taxonSignature=sig;s.replaceChildren(new Option(t().all,''));for(const e of taxonOptions)s.add(new Option(e.name+(e.common?' ('+e.common+')':''),e.key));if(!$('taxonChoices').hidden)renderTaxonChoices();}
- s.value=active.has(v)?v:'';updateTaxonLabel();
+ taxonOptions=[...m.values()].sort((a,b)=>a.name.localeCompare(b.name,lang()));
+ const sig=JSON.stringify([lang(),taxonOptions]);if(sig!==taxonSignature){taxonSignature=sig;s.replaceChildren(new Option(t().all,''));for(const e of taxonOptions)s.add(new Option(e.name+(e.common?' ('+e.common+')':''),e.key));}
+ s.value=m.has(v)?v:'';if(!$('taxonChoices').hidden)renderTaxonChoices();updateTaxonLabel();
 }
-function taxonLabel(node,e){node.replaceChildren();if(!e){node.textContent=t().all;return;}const em=document.createElement('em');em.textContent=e.name;node.append(em);if(e.common)node.append(document.createTextNode(' ('+e.common+')'));}
+function taxonLabel(node,e){node.replaceChildren();if(!e){node.textContent=t().all;return;}const em=document.createElement('em');em.textContent=e.name;node.append(em);if(e.common)node.append(document.createTextNode(' ('+e.common+')'));if(e.osint||e.ibama)node.title=[e.osint?'OSINT: '+e.osint:'',e.ibama?'IBAMA: '+e.ibama:''].filter(Boolean).join(' · ');else node.removeAttribute('title');}
 function updateTaxonLabel(){const node=$('taxonSelected');if(!node)return;taxonLabel(node,taxonOptions.find(e=>e.key===$('sharedTaxon').value));const q=$('taxonQuery'),label=({pt:'Buscar espécie',en:'Search species',es:'Buscar especie'})[lang()]||'Search species';q.placeholder=label;q.setAttribute('aria-label',label);$('taxonToggle').setAttribute('aria-label',$('sharedTaxonLabel').textContent+': '+node.textContent);}
 function closeTaxon(focus=false){$('taxonChoices').hidden=true;$('taxonToggle').setAttribute('aria-expanded','false');if(focus)$('taxonToggle').focus();}
 function chooseTaxon(key){$('sharedTaxon').value=key;updateTaxonLabel();closeTaxon(true);$('sharedTaxon').dispatchEvent(new Event('change',{bubbles:true}));}
