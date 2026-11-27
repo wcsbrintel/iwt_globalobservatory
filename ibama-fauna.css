@@ -4,7 +4,8 @@
 #ibamaSourceBox input{accent-color:#42b97e}
 #ibamaFilters{display:grid;gap:6px}
 #ibamaFilters[hidden],#ibamaRetry[hidden],#ibamaDetail[hidden]{display:none!important}
-#ibamaFilters select{max-width:100%;width:100%}
+#sharedTaxonFilter{grid-column:1/-1;min-width:0}
+#sharedTaxonFilter select{max-width:100%;width:100%}
 #ibamaSourceNote,#ibamaStatus{font-size:10px;color:var(--muted);line-height:1.4}
 #ibamaPeriod,#ibamaRetry{font:inherit;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);padding:6px;cursor:pointer}
 .ibama-source-dot{width:9px;height:9px;border:1px solid #153522;background:#42b97e;border-radius:50%;display:inline-block}

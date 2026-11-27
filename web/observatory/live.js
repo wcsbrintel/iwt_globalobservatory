@@ -41,7 +41,7 @@ const bar=document.createElement('div');bar.className='livebar';document.querySe
 const style=document.createElement('style');style.textContent='.livebar{color:var(--muted);font-size:14px;margin-top:7px}.source-link{color:var(--blue);text-decoration:none}.source-tag{color:var(--blue);font-size:12px;background:#112a34;border-radius:8px;padding:2px 7px;overflow-wrap:anywhere}.eventtop{flex-wrap:wrap}.event p{font-size:14px}.popup-meta{margin-top:6px}.data-note{font-size:14px}.filter label{font-size:14px}';document.head.appendChild(style);
 function filterValue(e,key){return key==='species'?e.groups:key==='mode'?e.modeGroup:e[key];}
 function matchesFilter(e,key,value){return !value||(key==='species'?e.groups.includes(value):String(filterValue(e,key)??'')===value);}
-function filtered(period='visible'){if(window.IbamaFauna&&!window.IbamaFauna.osint())return [];return events.filter(e=>window.RecordSearch.matches(e)&&['country','species','year','mode'].every(k=>matchesFilter(e,k,$(k).value))&&(!window.ObservatoryTime||window.ObservatoryTime.matches(e,period)));}
+function filtered(period='visible'){if(window.IbamaFauna&&!window.IbamaFauna.osint())return [];return events.filter(e=>window.RecordSearch.matches(e)&&(!window.IbamaFauna||window.IbamaFauna.matchesOsint(e))&&['country','species','year','mode'].every(k=>matchesFilter(e,k,$(k).value))&&(!window.ObservatoryTime||window.ObservatoryTime.matches(e,period)));}
 // Use the same live selection as every map/view; never keep an export data cache.
 function exportRows(){return filtered().map(raw=>{const e=record(raw);return {
  case_id:e.case_id,date:e.eventDate||e.event_month||'',publication_date:e.publication_date||'',event_date_precision:e.event_date_precision||(e.eventDate?'day':'unknown'),
@@ -152,7 +152,9 @@ function render(){
  const data=filtered(),t=messages[lang],selected=activeId;
  window.IbamaFauna?.sync();
  window.SeizureHotspots?.update(data);
- window.RecordSearch.localize(lang,data.length);
+ const sourceTotals=window.IbamaFauna?.totals(data);
+ window.RecordSearch.localize(lang,sourceTotals?sourceTotals.osint+sourceTotals.official:data.length);
+ if(window.IbamaFauna?.enabled()&&sourceTotals&&(sourceTotals.osint+sourceTotals.official))$('recordSearchCount').textContent=window.IbamaFauna.countLabel(sourceTotals);
  const counted=data.filter(window.CaseContext.countable),covered=events.filter(window.CaseContext.complete).length;
  $('contextCoverage').textContent=({pt:'Cobertura de contexto',en:'Case context coverage',es:'Cobertura de contexto'})[lang]+': '+covered+'/'+events.length+' — '+number(events.length?Math.round(covered/events.length*100):0)+'%';
  const ct=window.CaseContext.labels[lang];$('caseLegend').innerHTML='<span><i class="legend-new"></i>'+esc(ct.recent)+'</span><span><i class="legend-history"></i>'+esc(ct.historical)+'</span>';
@@ -172,7 +174,7 @@ function render(){
  }
  window.RecentPulse.sync(map,data,markers);
  $('nEvents').textContent=number(counted.length);$('nCountries').textContent=number(new Set(counted.map(e=>e.country)).size);$('nThreat').textContent=number(new Set(counted.map(e=>e.source)).size);
- $('mapCount').textContent=number(data.length)+' '+t.results;
+ $('mapCount').textContent=window.IbamaFauna?.enabled()&&sourceTotals?window.IbamaFauna.countLabel(sourceTotals,true):number(data.length)+' '+t.results;
  $('list').innerHTML=data.length?[...data].sort((a,b)=>b.date.localeCompare(a.date)).map(e=>card(record(e))).join(''):'<div class="empty">'+esc(t.empty)+'</div>';
  renderVisual(data);
  window.ObservatoryTime?.render();
@@ -195,6 +197,7 @@ function setup(){
   s.innerHTML='<option value="">'+esc(t.all)+'</option>'+[...new Set(values.filter(Boolean))].sort((a,b)=>term(a).localeCompare(term(b),locale())).map(v=>'<option value="'+esc(v)+'">'+esc(term(v))+'</option>').join('');
   s.value=value;s.setAttribute('aria-label',t[{country:'country',species:'group',year:'year',mode:'route'}[key]]);
  }
+ window.IbamaFauna?.setOsintRows(events);
  $('language').setAttribute('aria-label',t.language);
  document.querySelector('.nav').setAttribute('aria-label',t.navLabel);$('mobileNav').setAttribute('aria-label',t.navLabel);
  $('contactEmail').href='mailto:inteligencia@wcs.org?subject='+encodeURIComponent(t.contactSubject);
@@ -210,7 +213,7 @@ window.RecordSearch.init(render);
 window.RecordSearch.setCases(events);
 ['country','species','year','mode'].forEach(id=>$(id).addEventListener('change',render));
 $('exportCsv').onclick=exportXlsx;
-$('clear').onclick=()=>{['country','species','year','mode','ibamaUf','ibamaSpecies'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
+$('clear').onclick=()=>{['country','species','year','mode','sharedTaxon'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
 $('language').onchange=e=>window.ObservatoryLanguage.set(e.target.value);
 window.ObservatoryLanguage.subscribe(value=>{if(lang!==value){lang=value;setup();}});
 document.querySelectorAll('[data-view]').forEach(el=>el.addEventListener('click',()=>switchView(el.dataset.view)));
@@ -251,6 +254,6 @@ window.CaseSource.subscribe(state=>{
  if(state.cases.length&&events!==state.cases){events=state.cases;window.RecordSearch.setCases(events);setup();refreshCaseClock();}
  else renderDataStatus();
 });
-window.IbamaFauna?.init({map,refresh:render});
+window.IbamaFauna?.init({map,refresh:render});window.IbamaFauna?.setOsintRows(events);
 window.CaseSource.start();
 try{window.ObservatoryGlobe?.init({map,filtered,record,popup,escape:esc,visible:()=>currentView==='dashboard',lang:()=>lang,select:id=>{activeId=id;}});}catch(error){console.error('Globe initialization failed; case feed remains available.',error);}

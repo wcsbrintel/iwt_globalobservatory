@@ -147,7 +147,8 @@ window.ObservatoryGlobe=(()=>{
   get('globeTools').hidden=mode!=='globe'||!globe;
   get('routeControl').hidden=false;get('globeCredit').hidden=mode!=='globe';
   get('globeStatus').hidden=mode!=='globe';
-  get('globeStatus').innerHTML=failed?safe(l.failed)+' <button id="retryGlobe">'+safe(l.retry)+'</button>':!globe?safe(l.loading):api.filtered().length?'':safe(l.empty);
+  const ib=window.IbamaFauna,counts=ib?.totals(api.filtered()),hasPoints=counts?counts.mappedOsint+counts.mappedOfficial>0:api.filtered().some(window.GlobeData.valid);
+  get('globeStatus').innerHTML=failed?safe(l.failed)+' <button id="retryGlobe">'+safe(l.retry)+'</button>':!globe?safe(l.loading):hasPoints?'':ib?.enabled()&&ib.status()==='loading'?safe(ib.words().loading):ib?.enabled()&&ib.status()==='error'?safe(ib.words().missing):counts&&(counts.osint+counts.official)>0?safe(({pt:'Registros selecionados sem coordenadas válidas.',en:'Selected records have no valid coordinates.',es:'Registros seleccionados sin coordenadas válidas.'})[api.lang()]):safe(l.empty);
   if(get('retryGlobe'))get('retryGlobe').onclick=()=>{if(globe){globe._destructor?.();globe=null;get('globe').replaceChildren();}ensureGlobe();};
   for(const [id,label] of [['globeZoomIn',l.zin],['globeZoomOut',l.zout],['globeHome',l.home],['globeTilt',l.tilt]]){get(id).title=label;get(id).setAttribute('aria-label',label);}
    const rotateButton=get('globeRotate'),rotateLabel=rotationEnabled?l.rotationOn:l.rotationOff;
@@ -196,10 +197,11 @@ window.ObservatoryGlobe=(()=>{
  function renderCleanCountryChart(){
    try{window.ProspectiveIntelligence?.sync({active:expanded&&cleanView&&mode==='globe',api,root:get('mapStage')});}catch(error){console.warn('Prospective analytics unavailable',error);}
   if(!cleanView||!api)return;
+  const ib=window.IbamaFauna,officialOnly=ib?.enabled()&&!ib.osint();
   window.CleanMapCountryChart?.render({
-   root:get('cleanCountryChart'),records:api.filtered(),lang:api.lang(),
-   countable:window.CaseContext.countable,
-   countryLabel:e=>api.record(e).country,
+   root:get('cleanCountryChart'),records:officialOnly?ib.filtered().map(e=>({...e,country:e.uf})):api.filtered(),lang:api.lang(),officialOnly,
+   countable:officialOnly?()=>true:window.CaseContext.countable,
+   countryLabel:e=>officialOnly?e.country:api.record(e).country,
    limit:!expanded?4:window.matchMedia('(max-width:650px)').matches?5:8
   });
  }
