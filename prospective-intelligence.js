@@ -22,7 +22,7 @@ sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:wi
 function calculate(){const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
 function ensure(){
  if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{enabled=!enabled;button.setAttribute('aria-expanded',String(enabled));panel.hidden=!enabled;charts.hidden=!enabled;dirty=true;if(enabled)render();};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapCharts').append(button);
- panel=el('section','prospective-options');panel.hidden=true;charts=el('div','prospective-charts');charts.hidden=true;root.append(panel,charts);last.root.append(root);
+ panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);button.after(panel);charts=el('div','prospective-charts');charts.hidden=true;root.append(charts);last.root.append(root);
  buildControls();
 }
 function buildControls(){
@@ -66,6 +66,6 @@ function render(){
  const foot=el('p','prospective-foot',t(18)+' '+t(19)+' '+t(41)+' '+t(44));charts.append(foot);
 }
 let prevLang='';
-function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}if(enabled){dirty=true;render();}}
+function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;panel.hidden=!ctx.active||!enabled;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}if(enabled){dirty=true;render();}}
 return Object.freeze({sync,registerSource,invalidate});
 })();
