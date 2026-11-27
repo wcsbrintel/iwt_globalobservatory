@@ -1,0 +1,46 @@
+name: Build species conservation catalog
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/conservation/**'
+      - '.github/workflows/conservation.yml'
+permissions:
+  contents: write
+concurrency:
+  group: conservation-catalog
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - run: python scripts/conservation/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: conservation-coverage
+          path: |
+            species-status.json
+            conservation-audit.json
+      - name: Publish source-attributed catalog
+        run: |
+          mkdir -p "$RUNNER_TEMP/conservation"
+          cp species-status.json conservation-audit.json "$RUNNER_TEMP/conservation/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin conservation-data >/dev/null; then
+            git fetch origin conservation-data
+            git switch -C conservation-data FETCH_HEAD
+          else
+            git switch --orphan conservation-data
+          fi
+          cp "$RUNNER_TEMP/conservation/"*.json .
+          git add species-status.json conservation-audit.json
+          git diff --cached --quiet || git commit -m "Update source-attributed conservation catalog"
+          git push origin HEAD:refs/heads/conservation-data
