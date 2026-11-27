@@ -144,6 +144,7 @@ def main():
  datasets={}
  features=[]
  byseq={}
+ by_notice=collections.defaultdict(list)
  for year in YEARS:
   path=os.path.join(DATA_DIR,"ibama-"+str(year)+".json")
   with open(path,encoding="utf-8") as source:
@@ -160,6 +161,8 @@ def main():
     if key in byseq:
      raise RuntimeError("Official sequence ID reused across years: "+key)
     byseq[key]=feature
+   notice=feature["properties"].get("notice","").strip().upper()
+   if notice:by_notice[notice].append(feature)
  counters=collections.Counter();status={}
  terms_by_seq=collections.defaultdict(list)
  loaded={}
@@ -196,7 +199,9 @@ def main():
      "fine_brl":number(get(row,"VAL_AUTO_INFRACAO")),
      "fact_date":safe(get(row,"DT_FATO_INFRACIONAL"),30),
      "inspection_action":safe(get(row,"CD_ACAO_FISCALIZATORIA"),30),
-     "reference":CATALOG
+     "reference":CATALOG,
+     "seizure_term_references":safe(get(row,"CD_TERMOS_APREENSAO"),2000),
+     "administrative_status":safe(get(row,"DS_SIT_AUTO_AIE","DES_STATUS_FORMULARIO"),120)
    }
    counters["autos_enriched"]+=1
   loaded["autos"]="ok"
@@ -216,6 +221,10 @@ def main():
          "unit":safe(get(row,"UNIDADE_MEDIDA"),40),
          "group":safe(get(row,"GRUPO","DS_GRUPO","NM_GRUPO","NO_GRUPO"),120),
          "cites":safe(get(row,"CITES"),40),
+         "source_item_id":safe(get(row,"SEQ_ESPECIME"),60),
+         "taxonomy_id":safe(get(row,"SEQ_TAXONOMIA"),60),
+         "infraction_type":safe(get(row,"TIPO"),100),
+         "source_status":safe(get(row,"SITUACAO"),100),
          "source":"IBAMA auto de infração – espécime"}
    if item["scientific_name"] or item["common_name"] or item["quantity"] is not None:
     item_add(entries,item);counters["species_mentions"]+=1
@@ -231,6 +240,11 @@ def main():
   for row in rows(path):
    auto=get(row,"SEQ_AUTO_INFRACAO")
    f=byseq.get(auto)
+   link_method="SEQ_AUTO_INFRACAO"
+   if not f and not auto:
+    number_series=(get(row,"CD_AUTO_INFRACAO")+" "+get(row,"SER_AUTO_INFRACAO")).strip().upper()
+    candidates=by_notice.get(number_series,[]) if number_series and get(row,"SER_AUTO_INFRACAO") else []
+    if len(candidates)==1:f=candidates[0];link_method="unique_official_auto_number_and_series";counters["terms_linked_by_unique_number_series"]+=1
    if not f:continue
    term=get(row,"SEQ_TAD")
    if not term:continue
@@ -241,12 +255,12 @@ def main():
              "series":safe(get(row,"CD_SERIE_TAD"),15),
              "date":safe(get(row,"DT_APREENSAO"),30),
              "seizure_detail":public_narrative(get(row,"DS_TAD"),12000),
-             "source":SEIZURES}
+             "source":SEIZURES,"link_method":link_method}
    if termitem["seizure_detail"]:
     counters["terms_with_ds_tad"]+=1
    p=f["properties"]; arr=p.setdefault("seizure_terms",[])
-   arr.append(termitem)
-   terms_by_seq[term].append(p)
+   if not any(x["id"]==termitem["id"] for x in arr):arr.append(termitem)
+   if not any(x is p for x in terms_by_seq[term]):terms_by_seq[term].append(p)
    counters["linked_seizure_terms"]+=1
   loaded["seizure_terms"]="ok"
  except Exception as exc:
@@ -269,6 +283,9 @@ def main():
       "unit":safe(get(row,"UNIDADE_MEDIDA","DS_UNIDADE_MEDIDA"),45),
       "group":safe(get(row,"GRUPO","DS_GRUPO","NM_GRUPO","NO_GRUPO"),120),
       "term_id":safe(key,45),
+      "source_item_id":safe(get(row,"ID_ESPECIME"),60),
+      "taxonomy_id":safe(get(row,"ID_TAXONOMIA"),60),
+      "infraction_type":safe(get(row,"TP_INFRACAO"),100),
       "source":"IBAMA termo de apreensão – espécime"}
     if not (item["scientific_name"] or item["common_name"] or item["quantity"] is not None):continue
     for props in terms_by_seq[key]:
@@ -343,5 +360,6 @@ def main():
       output,ensure_ascii=False,indent=2)
   print("IBAMA ENRICHED",year,len(year_features),"records",json.dumps(dict(annual),ensure_ascii=False),flush=True)
  print("IBAMA MULTIYEAR RESOURCES",json.dumps(loaded,ensure_ascii=False),flush=True)
+ print("IBAMA ENRICHMENT COUNTERS",json.dumps(dict(counters),ensure_ascii=False),flush=True)
 
 if __name__=="__main__":main()

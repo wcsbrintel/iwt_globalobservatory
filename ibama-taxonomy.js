@@ -67,8 +67,9 @@ function candidateNames(value){
 function itemNames(item){const out=new Set(speciesNames(item.scientific_name));for(const n of candidateNames(item.scientific_name))if(verified(n))out.add(n);return [...out];}
 function plantItem(x){return plant.test(words(x?.group))||wood.test(norm(x?.unit));}
 function animalItem(x){return animal.test(words(x?.group))&&!plantItem(x);}
-function allItems(p){return [...(p.species_referenced||[]),...(p.seized_specimens||[])];}
+function allItems(p){return [...(p.species_referenced||[]),...(p.seized_specimens||[]),...(p.narrative_species||[])];}
 function eligibility(p){
+ if(p.fauna_evidence?.version==='national-full-v3'&&['official_fauna','official_fishing','linked_animal_specimen','direct_fauna_conduct','previous_validated'].includes(p.fauna_evidence.reason))return {ok:true,reason:p.fauna_evidence.reason};
  const o=p.official||{},type=words(o.administrative_class||p.type),desc=clean(o.infraction_description||p.description),detail=clean(o.narrative_detail),items=allItems(p);
  const official=/\bfauna\b/.test(type)&&!plant.test(type),positive=items.some(animalItem),forestry=forest.test(desc)||forest.test(detail)&&items.some(plantItem),conduct=direct.test(desc)||direct.test(detail);
  if(positive)return {ok:true,reason:'documented_animal_specimen'};
