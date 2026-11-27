@@ -1,0 +1,456 @@
+{
+  "year": 2020,
+  "accepted": 1612,
+  "excluded_by_reason": {
+    "no_direct_fauna_evidence": 53,
+    "forest_only_or_generic_legal_reference": 57
+  },
+  "excluded_records": [
+    {
+      "id": "IBAMA-2020-2073825",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039134",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2034622",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2069818",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2055543",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2056001",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2048988",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2035279",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2068980",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2035718",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2036819",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2042649",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2038075",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2038088",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2073706",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2037177",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2037057",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037058",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037059",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2036866",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037060",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037061",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037062",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037240",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037278",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2037280",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039204",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039660",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2038563",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038368",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039454",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2048450",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2048443",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2048448",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039032",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038358",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038439",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038440",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2074348",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038357",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038438",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038551",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038321",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2051997",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2056482",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039567",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2051223",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039657",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039299",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2038673",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039297",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039478",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039479",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039889",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039890",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039558",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039470",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039541",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039729",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2039951",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2039952",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2043425",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2064653",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2069931",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2070708",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2040936",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040937",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040938",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040939",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040940",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040423",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2043595",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2041216",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2051826",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2040422",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2040663",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2041012",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2074341",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047989",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2045811",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2045812",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2041222",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2045183",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2050508",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2040671",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047987",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2054892",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040902",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2040904",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2042936",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2044731",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2044460",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2042270",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2045601",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2095847",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2041730",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2041731",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2042536",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2047809",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047810",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047811",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2056347",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047568",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047570",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2047577",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2052215",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2041825",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2042322",
+      "reason": "no_direct_fauna_evidence"
+    },
+    {
+      "id": "IBAMA-2020-2047578",
+      "reason": "forest_only_or_generic_legal_reference"
+    },
+    {
+      "id": "IBAMA-2020-2043767",
+      "reason": "no_direct_fauna_evidence"
+    }
+  ],
+  "eligibility_reasons": {
+    "official_fauna_class": 1565,
+    "documented_animal_specimen": 34,
+    "direct_fauna_conduct": 13
+  },
+  "plant_items_removed": 0
+}
