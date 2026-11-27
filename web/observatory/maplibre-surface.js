@@ -1,23 +1,24 @@
-/* MAP/GLOBE share OpenFreeMap Dark; CARTO Positron remains LIGHT. */
+/* MAP/GLOBE share Maptoolkit Community Dark; CARTO Positron remains LIGHT. */
 window.ObservatoryBasemap=(()=>{
  const carto=theme=>'https://basemaps.cartocdn.com/gl/'+(theme==='light'?'positron':'dark-matter')+'-gl-style/style.json';
- const dark='https://tiles.openfreemap.org/styles/dark';
+ const dark='https://styles.maptoolkit.org/dark.json';
  const style=theme=>theme==='dark'?dark:carto(theme);
- function protect(map,getTheme,onFallback=()=>{}){let fallback=false;map.on('error',e=>{if(fallback||getTheme()!=='dark')return;const err=e?.error||e||{},status=Number(err.status||err.statusCode||0),url=String(err.url||''),message=String(err.message||'');if(!/openfreemap\.org/i.test(url+' '+message)||(!status&&!/failed|network|fetch|load|error/i.test(message)))return;fallback=true;map.setStyle(carto('dark'));onFallback();console.warn('OpenFreeMap unavailable; CARTO Dark Matter fallback active.');});return ()=>{fallback=false;};}
+ function protect(map,getTheme,onFallback=()=>{}){let fallback=false;map.on('error',e=>{if(fallback||getTheme()!=='dark')return;const err=e?.error||e||{},status=Number(err.status||err.statusCode||0),url=String(err.url||''),message=String(err.message||'');if(!/maptoolkit\.(?:org|com|net)|mapterhorn\.com/i.test(url+' '+message)||(!status&&!/failed|network|fetch|load|error/i.test(message)))return;fallback=true;map.setStyle(carto('dark'));onFallback();console.warn('Maptoolkit unavailable; CARTO Dark Matter fallback active.');});return ()=>{fallback=false;};}
 
  let layer,theme='dark',leafMap,resetFallback=()=>{};
  let notice;
- const credit=provider=>'<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a> | © '+(provider==='openfreemap'?'<a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a>':'<a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>')+', © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
- let shownCredit='';function updateCredit(provider){if(!leafMap)return;if(shownCredit)leafMap.attributionControl.removeAttribution(shownCredit);shownCredit=credit(provider);leafMap.attributionControl.addAttribution(shownCredit);}
+ const credit=provider=>'<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a> | © '+(provider==='maptoolkit'?'<a href="https://www.maptoolkit.com/copyright/" target="_blank" rel="noopener">Maptoolkit</a>':'<a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>')+', © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
+ function showProvider(mode,provider){const shell=document.getElementById('mapViewCard');if(shell)shell.dataset[mode==='map'?'mapProvider':'globeProvider']=provider;}
+ let shownCredit='';function updateCredit(provider){showProvider('map',provider);if(!leafMap)return;if(shownCredit)leafMap.attributionControl.removeAttribution(shownCredit);shownCredit=credit(provider);leafMap.attributionControl.addAttribution(shownCredit);}
  function localizeNotice(){if(notice)notice.textContent=({pt:'MapLibre requer WebGL. Ative a aceleração gráfica do navegador para visualizar o mapa. Os registros continuam disponíveis na lista.',en:'MapLibre requires WebGL. Enable browser graphics acceleration to view the map. Records remain available in the list.',es:'MapLibre requiere WebGL. Active la aceleración gráfica del navegador para ver el mapa. Los registros siguen disponibles en la lista.'})[document.getElementById('language').value]||'';}
  function init(map){
   leafMap=map;
-  try {layer=L.maplibreGL({style:style(theme),interactive:false});layer.addTo(map);const surface=layer.getMaplibreMap();updateCredit(theme==='dark'?'openfreemap':'carto');resetFallback=protect(surface,()=>theme,()=>updateCredit('carto'));window.SeizureHotspots?.bindMap(surface);}
+  try {layer=L.maplibreGL({style:style(theme),interactive:false});layer.addTo(map);const surface=layer.getMaplibreMap();updateCredit(theme==='dark'?'maptoolkit':'carto');resetFallback=protect(surface,()=>theme,()=>updateCredit('carto'));window.SeizureHotspots?.bindMap(surface);}
   catch(error){if(layer){try{map.removeLayer(layer);}catch{}}layer=null;notice=document.createElement('div');notice.className='map-engine-notice';notice.setAttribute('role','status');map.getContainer().append(notice);localizeNotice();console.warn('MapLibre could not initialize WebGL.',error);}
   map.attributionControl.setPrefix(false);
  }
- function setTheme(next){localizeNotice();if(next===theme)return;theme=next;if(layer){resetFallback();updateCredit(theme==='dark'?'openfreemap':'carto');layer.getMaplibreMap().setStyle(style(theme));}}
- return {init,setTheme,style,protect};
+ function setTheme(next){localizeNotice();if(next===theme)return;theme=next;if(layer){resetFallback();updateCredit(theme==='dark'?'maptoolkit':'carto');layer.getMaplibreMap().setStyle(style(theme));}}
+ return {init,setTheme,style,protect,showProvider};
 })();
 /* A stable 3D star sphere projected into a decorative background; no map data. */
 function createObservatoryGlobeSpace(host,map){
@@ -68,8 +69,9 @@ window.Globe=function(host){
  const M=window.maplibregl,props={},markers=[],decorations=[];
  let theme='dark',routes=[],queued=false;
  const map=new M.Map({container:host,style:window.ObservatoryBasemap.style(theme),center:[5,14],zoom:1,projection:{type:'globe'},attributionControl:false});
- map.addControl(new M.AttributionControl());
- const resetFallback=window.ObservatoryBasemap.protect(map,()=>theme);
+ map.addControl(new M.AttributionControl({compact:false}));
+ window.ObservatoryBasemap.showProvider('globe','maptoolkit');
+ const resetFallback=window.ObservatoryBasemap.protect(map,()=>theme,()=>window.ObservatoryBasemap.showProvider('globe','carto'));
  const space=createObservatoryGlobeSpace(host,map);
  window.SeizureHotspots?.bindMap(map);
  const clear=list=>{for(const marker of list)marker.remove();list.length=0;};
@@ -92,7 +94,7 @@ window.Globe=function(host){
   pointOfView(next,ms=0){if(!next){const c=map.getCenter();return {lat:c.lat,lng:c.lng,altitude:2.4/Math.pow(2,map.getZoom()-1)};}map.easeTo({center:[next.lng,next.lat],zoom:Math.max(0,Math.min(19,1+Math.log2(2.4/next.altitude))),duration:ms});return api;},
   htmlElementsData(data){props.htmlElementsData=data;clear(markers);clear(decorations);for(const d of data){const element=props.htmlElement(d);const marker=new M.Marker({element,anchor:'center',opacityWhenCovered:'0'}).setLngLat([d.lng,d.lat]).addTo(map);(d.routeAdornment?decorations:markers).push(marker);}orient();return api;},
   pathsData(data){routes=data;props.pathsData=data;updateRoutes();return api;},
-  setTheme(next){space.setTheme(next);if(next!==theme){theme=next;resetFallback();map.setStyle(window.ObservatoryBasemap.style(theme));}return api;},
+  setTheme(next){space.setTheme(next);if(next!==theme){theme=next;resetFallback();window.ObservatoryBasemap.showProvider('globe',theme==='dark'?'maptoolkit':'carto');map.setStyle(window.ObservatoryBasemap.style(theme));}return api;},
   getScreenCoords(lat,lng){return map.project([lng,lat]);},
   width(){map.resize();return api;},height(){map.resize();return api;},
   pauseAnimation(){return api;},resumeAnimation(){map.resize();return api;},
