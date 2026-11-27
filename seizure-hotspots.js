@@ -43,7 +43,7 @@ window.SeizureHotspots=(()=>{
     'heatmap-intensity':['interpolate',['linear'],['zoom'],0,0.85,8,1.35],
     'heatmap-radius':['interpolate',['linear'],['zoom'],0,12,3,22,7,38,12,62],
     'heatmap-opacity':0.83,
-    'heatmap-color':ib?['interpolate',['linear'],['heatmap-density'],0,'rgba(31,128,82,0)',0.12,'rgba(30,128,82,0.42)',0.3,'#218f62',0.5,'#43cb84',0.72,'#8aefae',1,'#e5ffec']:['interpolate',['linear'],['heatmap-density'],
+    'heatmap-color':['interpolate',['linear'],['heatmap-density'],
      0,'rgba(29,185,220,0)',0.12,'rgba(33,166,217,0.45)',
      0.3,'#1684c5',0.5,'#ffe65b',0.72,'#ff8f39',1,'#e63832']
    }};
@@ -69,16 +69,16 @@ window.SeizureHotspots=(()=>{
   paint(map);
  }
  const sourceWords={
- pt:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'eventos',notices:'autos de infração',sites:'locais',scale:'Densidade relativa: menor → maior',method:'KDE calculado separadamente por fonte (peso 1 por registro válido). OSINT e IBAMA podem documentar a mesma ocorrência; não há soma ou deduplicação entre fontes. Sobreposição visual não representa densidade combinada. O raio acompanha o zoom; não representa risco ou incidência real.',compact:'KDE independente por fonte. Possíveis duplicações OSINT/IBAMA; sem soma entre bases.'},
- en:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'events',notices:'notices',sites:'sites',scale:'Relative density: lower → higher',method:'KDE calculated separately for each source (weight 1 per valid record). OSINT and IBAMA may document the same occurrence; no cross-source sum or deduplication. Visual overlap is not combined density. Radius responds to zoom; this is not risk or true incidence.',compact:'Independent KDE by source. Possible OSINT/IBAMA duplicates; no cross-source sum.'},
- es:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'eventos',notices:'actas de infracción',sites:'lugares',scale:'Densidad relativa: menor → mayor',method:'KDE calculado por separado para cada fuente (peso 1 por registro válido). OSINT e IBAMA pueden documentar el mismo hecho; no se suman ni deduplican entre fuentes. La superposición visual no es densidad combinada. El radio depende del zoom; no representa riesgo ni incidencia real.',compact:'KDE independiente por fuente. Posibles duplicados OSINT/IBAMA; sin suma entre fuentes.'}
+ pt:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'eventos',notices:'autos de infração',sites:'locais',scale:'Densidade relativa: menor → maior',method:'KDE calculado separadamente por fonte (peso 1 por registro válido). OSINT e IBAMA podem documentar a mesma ocorrência; não há soma ou deduplicação entre fontes. As duas camadas usam a mesma escala de cores; para distinguir visualmente a origem, selecione uma fonte por vez. Sobreposição visual não representa densidade combinada. O raio acompanha o zoom; não representa risco ou incidência real.',compact:'Mesma escala de cores; KDE independente por fonte. Possíveis duplicações OSINT/IBAMA; sem soma entre bases.'},
+ en:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'events',notices:'notices',sites:'sites',scale:'Relative density: lower → higher',method:'KDE calculated separately for each source (weight 1 per valid record). OSINT and IBAMA may document the same occurrence; no cross-source sum or deduplication. Both layers use the same color scale; select one source at a time to distinguish them visually. Visual overlap is not combined density. Radius responds to zoom; this is not risk or true incidence.',compact:'Same color scale; independent KDE by source. Possible OSINT/IBAMA duplicates; no cross-source sum.'},
+ es:{button:'Hotspots',osint:'OSINT',ibama:'IBAMA',events:'eventos',notices:'actas de infracción',sites:'lugares',scale:'Densidad relativa: menor → mayor',method:'KDE calculado por separado para cada fuente (peso 1 por registro válido). OSINT e IBAMA pueden documentar el mismo hecho; no se suman ni deduplican entre fuentes. Ambas capas usan la misma escala de colores; seleccione una fuente a la vez para distinguirlas visualmente. La superposición visual no es densidad combinada. El radio depende del zoom; no representa riesgo ni incidencia real.',compact:'Misma escala de colores; KDE independiente por fuente. Posibles duplicados OSINT/IBAMA; sin suma entre fuentes.'}
  };
  function legendRows(root,t,compact=false){
   if(!root)return;root.hidden=!enabled;root.replaceChildren();
   const fmt=n=>new Intl.NumberFormat(language()).format(n);
   for(const key of ['osint','ibama']){if(!active[key])continue;const ib=key==='ibama',r=ib?ibResult:{total,locations},row=document.createElement('div');row.className='hotspot-source-row';
    const label=document.createElement('strong');label.textContent=t[key]+' · '+fmt(r.total)+' '+(ib?t.notices:t.events)+' · '+fmt(r.locations)+' '+t.sites;
-   const ramp=document.createElement('span');ramp.className='hotspot-ramp'+(ib?' hotspot-ramp-ibama':'');ramp.setAttribute('aria-hidden','true');row.append(label,ramp);root.append(row);
+   const ramp=document.createElement('span');ramp.className='hotspot-ramp';ramp.setAttribute('aria-hidden','true');row.append(label,ramp);root.append(row);
   }
   const scale=document.createElement('small');scale.textContent=t.scale;root.append(scale);const note=document.createElement('small');note.className='hotspot-method-note';note.textContent=compact?t.compact:t.method;root.append(note);root.title=t.method;
  }

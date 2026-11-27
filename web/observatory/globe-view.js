@@ -132,14 +132,9 @@ window.ObservatoryGlobe=(()=>{
   button('toggleMapFilters',l.filters,toggleFilters);
   button('cleanFilters',l.filters,toggleFilters);
   syncFilterButtons();
-   button('togglePoints',pointsHidden?l.showPoints:l.hidePoints,()=>{
-    pointsHidden=!pointsHidden;
-    get('mapViewCard').classList.toggle('seizure-points-hidden',pointsHidden);
-    if(pointsHidden)api.map.closePopup();
-    localize();syncStory();
-   });
-   get('togglePoints').setAttribute('aria-pressed',String(pointsHidden));
-   get('togglePoints').title=l.pointsHint;
+   const pointLabels=({pt:['Omitir pontos','Mostrar pontos','Omitir pontos OSINT e IBAMA; manter Hotspots e rotas'],en:['Hide points','Show points','Hide OSINT and IBAMA points; keep hotspots and routes'],es:['Ocultar puntos','Mostrar puntos','Ocultar puntos OSINT e IBAMA; mantener hotspots y rutas']})[api.lang()]||['Hide points','Show points','Hide points'];
+   const togglePoints=()=>{pointsHidden=!pointsHidden;get('mapViewCard').classList.toggle('seizure-points-hidden',pointsHidden);window.IbamaFauna?.setPointsHidden(pointsHidden);if(pointsHidden)api.map.closePopup();localize();syncStory();};
+   for(const id of ['togglePoints','cleanPoints']){button(id,pointLabels[pointsHidden?1:0],togglePoints);get(id).setAttribute('aria-pressed',String(pointsHidden));get(id).title=pointLabels[2];}
   get('routeLabel').textContent=l.routes;get('mapRouteNote').textContent=window.DocumentedRoutes.note(api.lang(),window.GlobeData.routes(api.filtered()).length);
   get('mapRouteNote').hidden=!get('routeLayer').checked;
   get('globeHelp').textContent=l.help;get('globeHelp').hidden=mode!=='globe';
@@ -270,7 +265,7 @@ window.ObservatoryGlobe=(()=>{
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(get('ibamaDetail')&&!get('ibamaDetail').hidden){e.preventDefault();window.IbamaFauna?.close();}else if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
-   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('cleanMinicards'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('cleanPoints'),get('cleanMinicards'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
    if(get('ibamaDetail')&&!get('ibamaDetail').hidden)nodes.push(...get('ibamaDetail').querySelectorAll('button,a[href],summary'));
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
