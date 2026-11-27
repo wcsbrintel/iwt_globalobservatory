@@ -1,0 +1,55 @@
+name: Verify species against GBIF
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/taxonomy/**'
+      - '.github/workflows/verify-species.yml'
+permissions:
+  contents: write
+concurrency:
+  group: species-taxonomy-registry
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Load published source
+        run: |
+          git fetch origin ibama-data
+          git worktree add --detach "$RUNNER_TEMP/ibama-taxonomy" FETCH_HEAD
+      - name: Resolve exact scientific names and retain unresolved candidates
+        run: node scripts/taxonomy/verify-species.cjs "$RUNNER_TEMP/ibama-taxonomy/ibama-fauna"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: species-verification
+          path: |
+            species-registry.json
+            species-review.json
+      - name: Publish independent verified catalog
+        run: |
+          cp species-registry.json species-review.json "$RUNNER_TEMP/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin taxonomy-data >/dev/null; then
+            git fetch origin taxonomy-data
+            git worktree add --detach "$RUNNER_TEMP/species-publish" FETCH_HEAD
+          else
+            git worktree add --detach "$RUNNER_TEMP/species-publish" HEAD
+            git -C "$RUNNER_TEMP/species-publish" switch --orphan taxonomy-data
+          fi
+          cp "$RUNNER_TEMP/species-registry.json" "$RUNNER_TEMP/species-review.json" "$RUNNER_TEMP/species-publish/"
+          cd "$RUNNER_TEMP/species-publish"
+          git add species-registry.json species-review.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish exact GBIF species verification"
+            git push origin HEAD:refs/heads/taxonomy-data
+          fi
