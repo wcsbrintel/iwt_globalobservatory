@@ -1,0 +1,41 @@
+name: Audit full national IBAMA source coverage
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/ibama-review/**'
+      - '.github/workflows/ibama-full-review.yml'
+permissions:
+  contents: read
+concurrency:
+  group: ibama-full-review
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read published baseline and verified taxonomy
+        run: |
+          git fetch origin ibama-data taxonomy-data
+          git worktree add --detach "$RUNNER_TEMP/ibama-baseline" origin/ibama-data
+          git worktree add --detach "$RUNNER_TEMP/taxonomy-baseline" origin/taxonomy-data
+      - name: Extract every valid auto nationwide before thematic filtering
+        run: python scripts/ibama-review/build-all.py --output-dir "$RUNNER_TEMP/ibama-full"
+      - name: Enrich every auto through official identifiers without item cap
+        run: IBAMA_DATA_DIR="$RUNNER_TEMP/ibama-full" python scripts/ibama-review/enrich-all.py
+      - name: Compare full source against published records
+        run: node scripts/ibama-review/compare.cjs "$RUNNER_TEMP/ibama-full" "$RUNNER_TEMP/ibama-baseline/ibama-fauna" "$RUNNER_TEMP/taxonomy-baseline/species-registry.json" review-results
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ibama-full-coverage-review
+          path: review-results/
+          retention-days: 30
