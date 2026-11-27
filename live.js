@@ -213,7 +213,7 @@ window.RecordSearch.init(render);
 window.RecordSearch.setCases(events);
 ['country','species','year','mode'].forEach(id=>$(id).addEventListener('change',render));
 $('exportCsv').onclick=exportXlsx;
-$('clear').onclick=()=>{window.ObservatoryConservation?.reset();['country','species','year','mode','sharedTaxon'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
+$('clear').onclick=()=>{window.ObservatoryConservation?.reset();['country','species','year','mode','sharedTaxon','ibamaState'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
 $('language').onchange=e=>window.ObservatoryLanguage.set(e.target.value);
 window.ObservatoryLanguage.subscribe(value=>{if(lang!==value){lang=value;setup();}});
 document.querySelectorAll('[data-view]').forEach(el=>el.addEventListener('click',()=>switchView(el.dataset.view)));
