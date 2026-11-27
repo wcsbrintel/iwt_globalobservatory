@@ -242,7 +242,7 @@ window.ObservatoryGlobe=(()=>{
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
-   const nodes=[get('exitCleanView'),get('cleanRotate'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+   const nodes=[get('exitCleanView'),get('cleanRotate'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
    const visible=nodes.filter(el=>el&&!el.disabled&&el.getClientRects().length);
