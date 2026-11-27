@@ -3,7 +3,7 @@
 .prospective-root{position:absolute;inset:0;z-index:1230;pointer-events:none}
 .prospective-root,.prospective-toggle,.prospective-options{--pi-text:#eff7ff;--pi-muted:#bed0df;--pi-accent:#75b9f4;--pi-panel:#101a25ed;--pi-border:#58738a80;color:var(--pi-text);font:500 12px/1.35 Inter,system-ui,sans-serif;text-shadow:0 1px 3px #0009}
 [data-clean-chart-theme="light"] .prospective-root,[data-clean-chart-theme="light"] .prospective-toggle,[data-clean-chart-theme="light"] .prospective-options{--pi-text:#173345;--pi-muted:#375768;--pi-accent:#246b9e;--pi-panel:#f2f8f5f5;--pi-border:#54798b70;text-shadow:0 1px 3px #fffe}
-.prospective-toggle,.prospective-options,.prospective-charts{pointer-events:auto}
+.prospective-toggle,.prospective-options,.prospective-card{pointer-events:auto}
 .prospective-toggle{position:static;align-self:flex-start;flex:none;max-width:100%;color:var(--pi-text);background:var(--pi-panel);border:1px solid var(--pi-border);border-radius:6px;padding:9px 12px;font:inherit;cursor:pointer;box-shadow:0 2px 8px #0002}
 .prospective-toggle[aria-expanded=true]{border-color:var(--pi-accent)}
 .prospective-options{position:static;align-self:flex-start;flex:0 1 auto;width:100%;max-height:65%;min-height:0;overflow:auto;overscroll-behavior:contain;box-sizing:border-box;background:var(--pi-panel);border:1px solid var(--pi-border);border-radius:8px;padding:10px;scrollbar-width:thin}
@@ -14,16 +14,20 @@
 .prospective-checks{display:grid;gap:5px;margin:10px 0}
 .prospective-checks label{display:flex;align-items:center;gap:6px;color:inherit;cursor:pointer}
 .prospective-checks input{accent-color:var(--pi-accent);width:auto}
-.prospective-charts{position:absolute;right:300px;bottom:20px;max-height:42%;max-width:min(600px,calc(100% - 610px));width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:9px;overflow:auto;overscroll-behavior:contain;padding:3px}
-.prospective-card{border:1px solid var(--pi-border);border-radius:7px;background:var(--pi-panel);padding:10px;min-width:0;box-sizing:border-box}
-.prospective-card h3{font-size:12px;font-weight:650;line-height:1.3;margin:0 0 8px;color:var(--pi-text)}
+.prospective-charts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.prospective-card{position:absolute;width:min(280px,calc(100% - 16px));max-height:min(55%,420px);overflow:auto;overscroll-behavior:contain;border:1px solid var(--pi-border);border-radius:7px;background:var(--pi-panel);padding:10px;min-width:0;box-sizing:border-box;pointer-events:auto;scrollbar-width:thin}
+.prospective-card h3{flex:1;min-width:0;font-size:12px;font-weight:650;line-height:1.3;margin:0;color:var(--pi-text)}
+.prospective-card-header{display:flex;align-items:center;gap:6px;margin-bottom:8px;position:sticky;top:-10px;z-index:1;background:var(--pi-panel);padding:3px 0}
+.prospective-drag,.prospective-card-close,.prospective-reset{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+.prospective-drag{cursor:grab;touch-action:none;user-select:none;display:block;text-align:left;width:100%;font-weight:650}
+.prospective-drag:active{cursor:grabbing}.prospective-card-close{font-size:20px;line-height:1;min-width:24px;min-height:24px;flex:none;border-radius:4px}.prospective-card-close:hover{background:#64748b40}.prospective-reset{font-size:10px;text-decoration:underline;margin:4px 0}.prospective-status{font-weight:650}
 .prospective-note,.prospective-foot,.prospective-options small,.prospective-card small{display:block;color:var(--pi-muted);font-size:10px;line-height:1.35;margin:5px 0}
 .prospective-foot{grid-column:1/-1;background:var(--pi-panel);border-radius:4px;padding:4px 6px;margin:0}
 .prospective-row{margin:6px 0}.prospective-row-head{display:flex;justify-content:space-between;gap:5px;font-size:10px}.prospective-row-head span{overflow-wrap:anywhere}.prospective-rail{height:4px;border-radius:4px;background:#64748b32;margin-top:3px}.prospective-rail span{height:100%;display:block;border-radius:4px;background:var(--pi-accent)}
 .prospective-card svg{display:block;width:100%;height:auto;overflow:visible}.prospective-card svg text{fill:var(--pi-muted);font-size:8px;text-shadow:none}.pi-grid{stroke:var(--pi-muted);stroke-opacity:.17}.pi-line{stroke:var(--pi-accent);stroke-width:1.8;stroke-linejoin:round;fill:none}.pi-reference{stroke:var(--pi-muted);stroke-dasharray:3 3;stroke-width:1}.pi-forecast{stroke:var(--pi-accent);stroke-dasharray:4 3;stroke-width:1.6;fill:none}.pi-band{fill:var(--pi-accent);opacity:.2}
 .prospective-metric{font-size:22px;font-weight:600}.prospective-kpis{display:flex;gap:8px;flex-wrap:wrap}.prospective-kpis div{flex:1;min-width:55px}.prospective-kpis b{font-size:18px;display:block}.prospective-heat{display:grid;grid-template-columns:minmax(45px,1.7fr) repeat(12,minmax(0,1fr));gap:2px;align-items:center}.prospective-heat small{font-size:8px;overflow:hidden;margin:0}.pi-cell{height:10px;background:var(--pi-accent);border-radius:2px}.pi-stack{display:flex;overflow:hidden;height:7px;border-radius:4px}.pi-legend{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;font-size:9px}.pi-legend span{padding-left:3px}
-@media(max-width:1100px){.prospective-charts{right:290px;max-width:calc(100% - 320px);grid-template-columns:repeat(2,minmax(0,1fr));max-height:35%}}
-@media(max-width:700px){.prospective-toggle{font-size:11px}.prospective-options{max-height:60%;padding:8px}.prospective-charts{bottom:45px;right:8px;max-width:calc(100% - 16px);grid-template-columns:repeat(2,minmax(0,1fr));max-height:27%}.map-stage:has(#prospectiveOptions:not([hidden])) .prospective-charts{right:8px;bottom:45px;opacity:.55;pointer-events:none}}
+@media(max-width:1100px){.prospective-card{width:min(245px,calc(100% - 16px))}}
+@media(max-width:700px){.prospective-toggle{font-size:11px}.prospective-options{max-height:60%;padding:8px}.prospective-card{width:min(215px,calc(100% - 16px));max-height:45%;padding:8px}}
 
 /* Keep the control immediately after the country chart, including short viewports. */
 .map-expanded.map-clean-view .map-stage .clean-map-charts:has(#prospectiveToggle:not([hidden])){gap:12px}
@@ -34,3 +38,7 @@
 .clean-map-charts:has(#prospectiveOptions:not([hidden])){overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;pointer-events:auto!important}
 .clean-map-charts:has(#prospectiveOptions:not([hidden])) .clean-country-chart{flex:0 0 auto;overflow:visible}
 .clean-map-charts:has(#prospectiveOptions:not([hidden])) #prospectiveOptions{flex:0 0 auto;max-height:none;overflow:visible}
+
+/* Keep selector above draggable charts, while allowing all map gestures outside cards. */
+.map-expanded.map-clean-view .map-stage .clean-map-charts:has(#prospectiveToggle:not([hidden])){z-index:1350}
+.prospective-root{z-index:1320}
