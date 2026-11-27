@@ -7,11 +7,11 @@ const monthKey=i=>Math.floor(i/12)+'-'+String(i%12+1).padStart(2,'0');
 const validDay=d=>typeof d==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&Number.isFinite(Date.parse(d))&&new Date(d).toISOString().slice(0,10)===d;
 const tally=(rows,key)=>{const m=new Map();for(const r of rows){const k=key(r);if(k)m.set(k,(m.get(k)||0)+1);}return [...m].map(([key,n])=>({key,n})).sort((a,b)=>b.n-a.n||a.key.localeCompare(b.key));};
 function dedup(rows){const m=new Map();for(const r of rows||[]){if(!r||!r.id||r.countable!==true)continue;const id=String(r.canonicalId||r.id);if(!m.has(id))m.set(id,r);}return [...m.values()];}
-function series(rows,history,now){
+function series(rows,history,now,coverageStart){
  const today=validDay(now)?now:new Date().toISOString().slice(0,10),end=monthIndex(today)-1;
  const dated=rows.filter(r=>validDay(r.day)&&r.day<=today),past=dated.filter(r=>monthIndex(r.day)<=end);
  if(!past.length)return {months:[],dated,historyRows:[],undated:rows.length-dated.length};
- const earliest=Math.min(...past.map(r=>monthIndex(r.day))),start=Math.max(earliest,history?end-history+1:earliest);
+ const earliest=validDay(coverageStart)?monthIndex(coverageStart):Math.min(...past.map(r=>monthIndex(r.day))),start=Math.max(earliest,history?end-history+1:earliest);
  const months=Array.from({length:end-start+1},(_,i)=>({key:monthKey(start+i),n:0}));
  const historyRows=past.filter(r=>monthIndex(r.day)>=start);
  for(const r of historyRows)months[monthIndex(r.day)-start].n++;
@@ -44,8 +44,8 @@ function routes(rows,edges){
  }
  return {pairs:[...pairs.values()].map(p=>({...p,n:p.events.size})).sort((a,b)=>b.n-a.n||a.key.localeCompare(b.key)),nodes:[...nodes.values()].map(n=>({key:n.key,n:n.neighbors.size,events:n.events.size})).sort((a,b)=>b.n-a.n||b.events-a.events),types:Object.entries(types).map(([key,v])=>({key,n:v.size}))};
 }
-function analyze({rows,visible,edges,history=24,horizon=90,now}){
- rows=dedup(rows);visible=dedup(visible);const s=series(rows,history,now),m=s.months,a=m.map(x=>x.n),recent=a.slice(-3),prior=a.slice(-6,-3),reference=a.slice(0,-3);
+function analyze({rows,visible,edges,history=24,horizon=90,now,coverageStart,disableForecast=false}){
+ rows=dedup(rows);visible=dedup(visible);const s=series(rows,history,now,coverageStart),m=s.months,a=m.map(x=>x.n),recent=a.slice(-3),prior=a.slice(-6,-3),reference=a.slice(0,-3);
  const historicalMean=mean(reference),sd=Math.sqrt(mean(reference.map(n=>(n-historicalMean)**2))),last=a.at(-1)||0;
  const anomaly=reference.length>=12&&sum(reference)>=30&&sd>0?(last-historicalMean)/sd:null;
  const histRows=s.historyRows,season=seasonal(m);
@@ -56,7 +56,7 @@ function analyze({rows,visible,edges,history=24,horizon=90,now}){
  const byCountry=tally(histRows,r=>r.country),rec=new Map(tally(recentRows,r=>r.country).map(x=>[x.key,x.n])),pre=new Map(tally(priorRows,r=>r.country).map(x=>[x.key,x.n]));
  const areas=byCountry.map(x=>({...x,recent:rec.get(x.key)||0,prior:pre.get(x.key)||0})).sort((a,b)=>b.recent-a.recent||b.n-a.n);
  const modeRows=[tally(recentRows,r=>r.mode),tally(priorRows,r=>r.mode),tally(histRows,r=>r.mode)];
- return {visible:visible.length,total:rows.length,undated:s.undated,historyCount:histRows.length,months:m,season,groupSeason,areas,modeRows,route:routes(histRows,edges),visibleRoute:routes(visible,edges),recent:sum(recent),prior:sum(prior),trend:prior.length===3&&sum(prior)>0?(sum(recent)/sum(prior)-1)*100:null,anomaly,forecast:forecast(m,horizon)};
+ return {visible:visible.length,total:rows.length,undated:s.undated,historyCount:histRows.length,months:m,season,groupSeason,areas,modeRows,route:routes(histRows,edges),visibleRoute:routes(visible,edges),recent:sum(recent),prior:sum(prior),trend:prior.length===3&&sum(prior)>0?(sum(recent)/sum(prior)-1)*100:null,anomaly,forecast:disableForecast?null:forecast(m,horizon)};
 }
 return Object.freeze({analyze,series,seasonal,forecast,routes,dedup,tally});
 });

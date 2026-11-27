@@ -41,7 +41,7 @@ const bar=document.createElement('div');bar.className='livebar';document.querySe
 const style=document.createElement('style');style.textContent='.livebar{color:var(--muted);font-size:14px;margin-top:7px}.source-link{color:var(--blue);text-decoration:none}.source-tag{color:var(--blue);font-size:12px;background:#112a34;border-radius:8px;padding:2px 7px;overflow-wrap:anywhere}.eventtop{flex-wrap:wrap}.event p{font-size:14px}.popup-meta{margin-top:6px}.data-note{font-size:14px}.filter label{font-size:14px}';document.head.appendChild(style);
 function filterValue(e,key){return key==='species'?e.groups:key==='mode'?e.modeGroup:e[key];}
 function matchesFilter(e,key,value){return !value||(key==='species'?e.groups.includes(value):String(filterValue(e,key)??'')===value);}
-function filtered(period='visible'){return events.filter(e=>window.RecordSearch.matches(e)&&['country','species','year','mode'].every(k=>matchesFilter(e,k,$(k).value))&&(!window.ObservatoryTime||window.ObservatoryTime.matches(e,period)));}
+function filtered(period='visible'){if(window.IbamaFauna&&!window.IbamaFauna.osint())return [];return events.filter(e=>window.RecordSearch.matches(e)&&['country','species','year','mode'].every(k=>matchesFilter(e,k,$(k).value))&&(!window.ObservatoryTime||window.ObservatoryTime.matches(e,period)));}
 // Use the same live selection as every map/view; never keep an export data cache.
 function exportRows(){return filtered().map(raw=>{const e=record(raw);return {
  case_id:e.case_id,date:e.eventDate||e.event_month||'',publication_date:e.publication_date||'',event_date_precision:e.event_date_precision||(e.eventDate?'day':'unknown'),
@@ -150,6 +150,7 @@ function localizePopupClose(){
 map.on('popupopen',localizePopupClose);
 function render(){
  const data=filtered(),t=messages[lang],selected=activeId;
+ window.IbamaFauna?.sync();
  window.SeizureHotspots?.update(data);
  window.RecordSearch.localize(lang,data.length);
  const counted=data.filter(window.CaseContext.countable),covered=events.filter(window.CaseContext.complete).length;
@@ -190,7 +191,7 @@ function setup(){
  document.querySelectorAll('[data-t]').forEach(el=>{if(t[el.dataset.t])el.textContent=t[el.dataset.t];});
  for(const key of ['country','species','year','mode']){
   const s=$(key),value=s.value;
-  const values=key==='species'?events.flatMap(e=>e.groups):events.map(e=>String(filterValue(e,key)??''));
+  const values=key==='species'?[...events.flatMap(e=>e.groups),'Aves','Mamíferos','Répteis','Anfíbios','Peixes','Invertebrados','Insetos','Aracnídeos','Fauna não especificada']:key==='year'?[...events.map(e=>String(filterValue(e,key)??'')),'2020','2021','2022','2023','2024','2025']:key==='country'?[...events.map(e=>e.country),'Brasil']:events.map(e=>String(filterValue(e,key)??''));
   s.innerHTML='<option value="">'+esc(t.all)+'</option>'+[...new Set(values.filter(Boolean))].sort((a,b)=>term(a).localeCompare(term(b),locale())).map(v=>'<option value="'+esc(v)+'">'+esc(term(v))+'</option>').join('');
   s.value=value;s.setAttribute('aria-label',t[{country:'country',species:'group',year:'year',mode:'route'}[key]]);
  }
@@ -209,7 +210,7 @@ window.RecordSearch.init(render);
 window.RecordSearch.setCases(events);
 ['country','species','year','mode'].forEach(id=>$(id).addEventListener('change',render));
 $('exportCsv').onclick=exportXlsx;
-$('clear').onclick=()=>{['country','species','year','mode'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
+$('clear').onclick=()=>{['country','species','year','mode','ibamaUf','ibamaSpecies'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
 $('language').onchange=e=>window.ObservatoryLanguage.set(e.target.value);
 window.ObservatoryLanguage.subscribe(value=>{if(lang!==value){lang=value;setup();}});
 document.querySelectorAll('[data-view]').forEach(el=>el.addEventListener('click',()=>switchView(el.dataset.view)));
@@ -250,5 +251,6 @@ window.CaseSource.subscribe(state=>{
  if(state.cases.length&&events!==state.cases){events=state.cases;window.RecordSearch.setCases(events);setup();refreshCaseClock();}
  else renderDataStatus();
 });
+window.IbamaFauna?.init({map,refresh:render});
 window.CaseSource.start();
 try{window.ObservatoryGlobe?.init({map,filtered,record,popup,escape:esc,visible:()=>currentView==='dashboard',lang:()=>lang,select:id=>{activeId=id;}});}catch(error){console.error('Globe initialization failed; case feed remains available.',error);}

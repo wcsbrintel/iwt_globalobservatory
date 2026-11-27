@@ -2,7 +2,7 @@
 window.ProspectiveIntelligence=(()=>{
 'use strict';
 const sources=new Map(),C=window.ProspectiveCore;
-let root,button,panel,charts,last,enabled=false,optionsOpen=false,history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
+let root,button,panel,charts,last,enabled=false,optionsOpen=false,analysisSource='osint',history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
 const positionKey='observatory-prospective-chart-positions-v1';
 let positions={};try{const saved=JSON.parse(localStorage.getItem(positionKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))positions=saved;}catch{}
 const savePositions=()=>{try{localStorage.setItem(positionKey,JSON.stringify(positions));}catch{}};
@@ -22,7 +22,7 @@ function invalidate(){dirty=true;if(last?.active&&enabled)render();}
 const normalize=e=>({id:String(e.id),canonicalId:String(e.case_id||e.id),country:e.country,groups:e.groups||[],mode:e.modeGroup,day:window.ObservatoryTimeCore.dateOf(e,'occurrence').day,countable:window.CaseContext.countable(e)});
 sources.set('canonical-cases',{snapshot:({api})=>({rows:api.filtered('base').map(normalize),visible:api.filtered().map(normalize),edges:[]})});
 sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:window.DocumentedRoutes.segments(api.filtered('base'),window.NEWS_DATA).map(d=>({eventId:String(d.event.id),from:window.CountryNames?.canonical(d.segment.from.country)||d.segment.from.country,to:window.CountryNames?.canonical(d.segment.to.country)||d.segment.to.country,direction:window.DocumentedRoutes.direction(d.direction),kind:d.route.route_type}))})});
-function calculate(){const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
+function calculate(){if(analysisSource==='ibama'){const d=window.IbamaFauna?.snapshots()||{rows:[],visible:[],edges:[]};return C.analyze({...d,history,horizon,now:'2026-01-01',coverageStart:'2020-01-01',disableForecast:true});}const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
 function ensure(){
  if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{if(optionsOpen){setOptions(false);return;}if(!enabled){enabled=true;charts.hidden=false;dirty=true;render();}setOptions(true);};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapControls').insertBefore(button,last.root.querySelector('#cleanLanguageHost'));
  panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);panel.dataset.chart='options';charts=el('div','prospective-charts');charts.hidden=true;root.append(charts,panel);last.root.append(root);
@@ -45,6 +45,7 @@ function buildControls(){
  panel.replaceChildren();const head=el('header','prospective-card-header'),heading=el('h3'),handle=el('button','prospective-drag',t(1));handle.type='button';handle.title=extra().move;handle.setAttribute('aria-label',t(1)+' — '+extra().move);heading.append(handle);head.append(heading);
  const close=el('button','prospective-card-close','×');close.type='button';close.title=t(38);close.setAttribute('aria-label',t(38)+': '+t(1));close.onclick=()=>setOptions(false);head.append(close);panel.append(head);attachDrag(panel,handle);
  function select(label,values,selected,change){const l=el('label','prospective-field',label),s=el('select');for(const [v,name] of values){const o=el('option','',name);o.value=v;s.append(o);}s.value=selected;s.onchange=()=>{change(Number(s.value));dirty=true;render();};l.append(s);panel.append(l);}
+ const sw=window.IbamaFauna?.words();if(sw){const label=el('label','prospective-field',sw.analytical),s=el('select');for(const [v,n] of [['osint',sw.osint],['ibama',sw.ibama]]){const o=el('option','',n);o.value=v;s.append(o);}s.value=analysisSource;s.onchange=()=>{analysisSource=s.value;dirty=true;if(analysisSource==='ibama')window.IbamaFauna.load();render();};label.append(s);panel.append(label);}
  select(t(2),[[12,'12 '+t(3)],[24,'24 '+t(3)],[36,'36 '+t(3)],[0,t(4)]],history,v=>history=v);
  select(t(5),[[30,'1'],[60,'2'],[90,'3']],horizon,v=>horizon=v);
  const options=el('div','prospective-checks');for(let i=0;i<ids.length;i++){const l=el('label'),c=el('input');c.type='checkbox';c.dataset.chart=ids[i];c.checked=chosen.has(ids[i]);c.onchange=()=>{c.checked?chosen.add(ids[i]):chosen.delete(ids[i]);render();};l.append(c,document.createTextNode(t(6+i)));options.append(l);}statusNode=el('small','prospective-status');statusNode.setAttribute('role','status');statusNode.setAttribute('aria-live','polite');const reset=el('button','prospective-reset',extra().reset);reset.type='button';reset.onclick=()=>{positions={};savePositions();render();placeOptions();};panel.append(options,reset,statusNode,el('small','',t(18)+' '+t(43)));
@@ -96,8 +97,8 @@ function render(){try{renderCharts();}catch(error){console.error('Prospective ch
 function renderCharts(){
  if(!last?.active||!enabled)return;if(dragging){rerender=true;return;}
  try{if(dirty||!cache){cache=calculate();dirty=false;}}catch(error){console.error('Prospective analysis calculation failed',error);charts.replaceChildren();statusNode.textContent=extra().error;const err=card(t(0),'error');note(err,extra().error);place(err,0);return;}
- const a=cache;charts.replaceChildren();const loading=window.CaseSource?.state()?.status==='loading'&&!window.NEWS_DATA?.length;statusNode.textContent=loading?extra().loading:extra().ready+' · '+fmt(a.historyCount)+' '+t(21).toLowerCase()+' · '+a.months.length+' '+extra().months;const enough=a.months.length>=24&&a.historyCount>=36&&a.months.filter(x=>x.n>0).length>=12;
- for(const id of ids){if(!chosen.has(id))continue;const i=ids.indexOf(id),s=card(t(6+i),id);
+ const a=cache;charts.replaceChildren();const iw=window.IbamaFauna?.words();const loading=window.CaseSource?.state()?.status==='loading'&&!window.NEWS_DATA?.length;statusNode.textContent=analysisSource==='ibama'&&!window.IbamaFauna.ready()?iw.notloaded:loading?extra().loading:extra().ready+' · '+fmt(a.historyCount)+' '+(analysisSource==='ibama'?iw.notice:t(21).toLowerCase())+' · '+a.months.length+' '+extra().months;const enough=a.months.length>=24&&a.historyCount>=36&&a.months.filter(x=>x.n>0).length>=12;
+ for(const id of ids){if(!chosen.has(id))continue;const i=ids.indexOf(id),ib=analysisSource==='ibama',s=card((ib&&id==='areas'?iw.byState:ib&&id==='index'?iw.priority:t(6+i))+(ib?' · IBAMA':' · OSINT'),id);if(ib&&!window.IbamaFauna.ready()){note(s,iw.notloaded);continue;}if(ib&&id==='forecast'){note(s,iw.noProjection);continue;}if(ib&&['routes','network','modes'].includes(id)){note(s,t(17));continue;}
  switch(id){
  case 'kpi':{const k=el('div','prospective-kpis');for(const [n,v] of [[t(22),a.visible],[t(21),a.historyCount],[t(20),a.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);line(s,a.months.slice(-12));break;}
  case 'routes':bars(s,a.route.pairs,pairLabel);note(s,t(36));break;
@@ -112,7 +113,7 @@ function renderCharts(){
  case 'index':{if(a.months.length<6){note(s,t(17));break;}bars(s,a.areas.filter(x=>x.recent>0).map(x=>({key:x.key,n:x.recent})),x=>country(x.key));note(s,t(31)+' · '+t(37));for(const d of a.areas.filter(x=>x.recent>0).slice(0,5))note(s,country(d.key)+': '+d.recent+' / '+d.prior);break;}
  }
  }
- [...charts.querySelectorAll('.prospective-card')].forEach((s,i)=>{note(s,t(18));place(s,i);});
+ [...charts.querySelectorAll('.prospective-card')].forEach((s,i)=>{note(s,analysisSource==='ibama'?(iw.disclaimer+' '+iw.historical):t(18));place(s,i);});
  placeOptions();
 }
 let prevLang='';

@@ -6,9 +6,10 @@ window.ObservatoryGlobe=(()=>{
   es:{expand:'Ampliar',exit:'Salir de pantalla completa',filters:'Filtros',routes:'Rutas documentadas',noRoutes:'No hay rutas con origen y destino georreferenciados y documentados en esta selección.',routeHint:'Los arcos conectan lugares documentados; no representan el trayecto exacto.',loading:'Cargando globo…',failed:'No se pudo abrir el globo 3D. Puede continuar en MAP.',retry:'Reintentar',help:'Arrastre para girar e inclinar · Desplace o use dos dedos para acercar',cases:'Casos en esta zona',details:'Detalles del caso',close:'Cerrar',back:'Volver a los casos',home:'Vista global',zin:'Acercar',zout:'Alejar',rotate:'Girar',tilt:'Inclinar',map:'Mapa 2D',globe:'Globo 3D',empty:'Ningún caso coincide con los filtros.'}
  };
  let api,globe,mode='globe',expanded=false,loading=null,failed=false,detailId=null,clusterIds=[],snapshot=null,filterSlot,languageSlot,filterNode,languageNode;
- let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null;
+ let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null,cleanLanguageSlot=null,inlineFilterSlot=null;
  const markerElements=new Set(),themes={map:'dark',globe:'dark'};
- try{for(const key of ['map','globe']){const saved=window.localStorage?.getItem('observatory-'+key+'-theme');if(['dark','light'].includes(saved))themes[key]=saved;}}catch{}
+ try{const saved=window.localStorage?.getItem('observatory-map-theme');if(['dark','light'].includes(saved))themes.map=saved;}catch{}
+ // Always open the globe in dark mode; the current session can still change it.
  Object.assign(text.pt,{dark:'Escuro',light:'Claro',theme:'Cor do mapa'});Object.assign(text.en,{dark:'Dark',light:'Light',theme:'Map color'});Object.assign(text.es,{dark:'Oscuro',light:'Claro',theme:'Color del mapa'});
  Object.assign(text.pt,{hidePoints:'Ocultar pontos',showPoints:'Mostrar pontos',pointsHint:'Oculta somente os marcadores de apreensões; filtros, rotas e hotspots permanecem inalterados.'});
  Object.assign(text.en,{hidePoints:'Hide points',showPoints:'Show points',pointsHint:'Hide seizure markers only; filters, routes and hotspots remain unchanged.'});
@@ -16,9 +17,9 @@ window.ObservatoryGlobe=(()=>{
  Object.assign(text.pt,{rotationControl:'Rotação',rotationOn:'Rotação ligada — clique para desligar',rotationOff:'Rotação desligada — clique para ligar'});
  Object.assign(text.en,{rotationControl:'Rotation',rotationOn:'Rotation on — click to stop',rotationOff:'Rotation off — click to resume'});
  Object.assign(text.es,{rotationControl:'Rotación',rotationOn:'Rotación activada — pulse para detener',rotationOff:'Rotación desactivada — pulse para reanudar'});
- Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Voltar',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Voltar à tela cheia com controles'});
- Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Back',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Return to fullscreen with controls'});
- Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Volver',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Volver a pantalla completa con controles'});
+ Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Explorar outros recursos',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Mostrar os demais recursos do Observatório'});
+ Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Explore other resources',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Show the other Observatory resources'});
+ Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Explorar otros recursos',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Mostrar los demás recursos del Observatorio'});
  const get=id=>document.getElementById(id),t=()=>text[api.lang()],safe=s=>api.escape(s),duration=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
  function button(id,label,fn){get(id).textContent=label;get(id).onclick=fn;}
  // Move the MapLibre GLOBE camera around Earth's longitude; never modify
@@ -44,6 +45,7 @@ window.ObservatoryGlobe=(()=>{
   loading=(async()=>{
    const g=new window.Globe(get('globe'),{animateIn:false,waitForGlobeReady:false,rendererConfig:{antialias:true,alpha:true}});
    globe=g;
+   window.IbamaFauna?.bindGlobe(g.map);
    g.backgroundColor('#e8e8e8').showAtmosphere(true).atmosphereColor('#aab8c0').atmosphereAltitude(.10)
     .globeTileEngineUrl(null)
     .pointsTransitionDuration(0).pointLat('lat').pointLng('lng').pointResolution(16)
@@ -76,6 +78,7 @@ window.ObservatoryGlobe=(()=>{
  }
  function individual(records){return records.filter(window.GlobeData.valid).map(e=>({lat:e.lat,lng:e.lng,members:[e],recent:window.CaseContext.isRecent(e)})).sort((a,b)=>Number(a.recent)-Number(b.recent));}
  function updatePoints(){
+  window.IbamaFauna?.sync();
   const routes=get('routeLayer').checked?window.GlobeData.routes(api.filtered()):[];
   window.DocumentedRouteMap?.render(routes);
   if(!globe)return;
@@ -122,10 +125,12 @@ window.ObservatoryGlobe=(()=>{
    enterClean.title=l.cleanEnterHint;
    enterClean.setAttribute('aria-label',l.cleanEnterHint);
    enterClean.setAttribute('aria-pressed',String(cleanView));
-   exitClean.textContent='↙ '+l.cleanExit;
+   exitClean.textContent=l.cleanExit;
    exitClean.title=l.cleanExitHint;
    exitClean.setAttribute('aria-label',l.cleanExitHint);
-  button('toggleMapFilters',l.filters,()=>{const host=get('mapFiltersHost');host.hidden=!host.hidden;get('toggleMapFilters').setAttribute('aria-expanded',String(!host.hidden));resize();});
+  button('toggleMapFilters',l.filters,toggleFilters);
+  button('cleanFilters',l.filters,toggleFilters);
+  syncFilterButtons();
    button('togglePoints',pointsHidden?l.showPoints:l.hidePoints,()=>{
     pointsHidden=!pointsHidden;
     get('mapViewCard').classList.toggle('seizure-points-hidden',pointsHidden);
@@ -152,22 +157,22 @@ window.ObservatoryGlobe=(()=>{
    rotateButton.setAttribute('aria-pressed',String(rotationEnabled));
    const cleanRotate=get('cleanRotate');
    cleanRotate.hidden=!(cleanView&&mode==='globe');
-   cleanRotate.textContent='↻ '+l.rotationControl;
+   cleanRotate.textContent=l.rotationControl;
    cleanRotate.title=rotateLabel;
    cleanRotate.setAttribute('aria-label',rotateLabel);
    cleanRotate.setAttribute('aria-pressed',String(rotationEnabled));
   get('closeMapDetail').textContent=l.close;get('mapDetailTitle').textContent=detailId?l.details:l.cases;
   if(!get('mapDetail').hidden)renderDetail();
  }
- function showCase(id,preserveCluster=false){if(!preserveCluster)clusterIds=[];try{const e=api.filtered().find(e=>e.id===id);window.ObservatoryAnalytics?.track('case_open',{case_id:id,case_country:e?.country,view:mode});}catch{}routeDetail=null;detailId=id;api.select(id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
- function showCluster(group){
+ function showCase(id,preserveCluster=false){window.IbamaFauna?.close();if(!preserveCluster)clusterIds=[];try{const e=api.filtered().find(e=>e.id===id);window.ObservatoryAnalytics?.track('case_open',{case_id:id,case_country:e?.country,view:mode});}catch{}routeDetail=null;detailId=id;api.select(id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
+ function showCluster(group){window.IbamaFauna?.close();
   routeDetail=null;
   clusterIds=group.members.map(e=>e.id);detailId=null;api.select(null);
   if(clusterIds.length===1){showCase(clusterIds[0]);return;}
   if(globe&&mode==='globe')globe.pointOfView({lat:group.lat,lng:group.lng,altitude:Math.max(.3,globe.pointOfView().altitude*.7)},duration());
   get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});
  }
- function showRoute(d){try{window.ObservatoryAnalytics?.track('route_open',{route_id:d.route.id,view:mode});}catch{}routeDetail=d.id;detailId=null;clusterIds=[];api.select(d.event.id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
+ function showRoute(d){window.IbamaFauna?.close();try{window.ObservatoryAnalytics?.track('route_open',{route_id:d.route.id,view:mode});}catch{}routeDetail=d.id;detailId=null;clusterIds=[];api.select(d.event.id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
  function renderDetail(){
   if(routeDetail){
    const d=get('routeLayer').checked&&window.GlobeData.routes(api.filtered()).find(s=>s.id===routeDetail);
@@ -183,12 +188,13 @@ window.ObservatoryGlobe=(()=>{
   if(mode!==next){try{window.ObservatoryAnalytics?.track(next+'_view');}catch{}}
   mode=next;get('map').hidden=mode!=='map';get('globe').hidden=mode!=='globe';
   get('mapMode').setAttribute('aria-pressed',String(mode==='map'));get('globeMode').setAttribute('aria-pressed',String(mode==='globe'));
-  localize();syncRotation();syncStory();if(mode==='globe'){await ensureGlobe();if(globe&&mode==='globe')globe.resumeAnimation();}else globe?.pauseAnimation();syncRotation();syncStory();resize();
+  localize();renderCleanCountryChart();syncRotation();syncStory();if(mode==='globe'){await ensureGlobe();if(globe&&mode==='globe')globe.resumeAnimation();}else globe?.pauseAnimation();syncRotation();syncStory();resize();
  }
  function resize(){requestAnimationFrame(()=>{api.map.invalidateSize({pan:false});if(globe&&mode==='globe'){const r=get('mapStage').getBoundingClientRect();if(r.width&&r.height){globe.width(r.width).height(r.height);updateVisibility(globe.pointOfView());story?.refresh();}}});}
  // A display-only second stage of the existing fullscreen experience.
  // Sources, filters, KDE and marker data are never modified here.
  function renderCleanCountryChart(){
+   try{window.ProspectiveIntelligence?.sync({active:expanded&&cleanView&&mode==='globe',api,root:get('mapStage')});}catch(error){console.warn('Prospective analytics unavailable',error);}
   if(!cleanView||!api)return;
   window.CleanMapCountryChart?.render({
    root:get('cleanCountryChart'),records:api.filtered(),lang:api.lang(),
@@ -197,11 +203,28 @@ window.ObservatoryGlobe=(()=>{
    limit:!expanded?4:window.matchMedia('(max-width:650px)').matches?5:8
   });
  }
- function setCleanView(next){
+ function syncFilterButtons(){
+  const open=!get('mapFiltersHost').hidden;
+  for(const id of ['toggleMapFilters','cleanFilters'])get(id).setAttribute('aria-expanded',String(open));
+ }
+ function setFilterOpen(open){get('mapFiltersHost').hidden=!open;syncFilterButtons();resize();}
+ function toggleFilters(){setFilterOpen(get('mapFiltersHost').hidden);}
+ function setCleanView(next,{focus=true}={}){
   // The clean presentation is available both inline and in fullscreen.
   if(cleanView===next)return;
   cleanView=next;
   get('mapViewCard').classList.toggle('map-clean-view',cleanView);
+  get('cleanMapControls').hidden=!cleanView;
+  if(cleanView){
+   const label=get('language').closest('.interface-language-switch')||get('language');
+   cleanLanguageSlot=document.createComment('clean language position');label.before(cleanLanguageSlot);get('cleanLanguageHost').append(label);
+   if(!expanded){const filters=document.querySelector('.filters');inlineFilterSlot=document.createComment('inline filter position');filters.before(inlineFilterSlot);get('mapFiltersHost').append(filters);}
+   setFilterOpen(false);
+  }else{
+   const label=get('cleanLanguageHost').firstElementChild;if(cleanLanguageSlot&&label)cleanLanguageSlot.replaceWith(label);cleanLanguageSlot=null;
+   if(inlineFilterSlot){inlineFilterSlot.replaceWith(get('mapFiltersHost').querySelector('.filters'));inlineFilterSlot=null;}
+   setFilterOpen(expanded);
+  }
   get('exitCleanView').hidden=!cleanView;
   get('cleanMapCharts').hidden=!cleanView;
   renderCleanCountryChart();
@@ -209,15 +232,15 @@ window.ObservatoryGlobe=(()=>{
   localize();
   syncRotation();
   resize();
-  (cleanView?get('exitCleanView'):get('enterCleanView')).focus({preventScroll:true});
+  if(focus)(cleanView?get('exitCleanView'):get('enterCleanView')).focus({preventScroll:true});
  }
- function setExpanded(next){
+ function setExpanded(next,{startup=false}={}){
   if(expanded===next)return;
-  if(!next&&cleanView)setCleanView(false);
-  expanded=next;if(next){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
-  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded',String(!get('mapFiltersHost').hidden));document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);get('expandMap').focus();}
+  if(cleanView)setCleanView(false,{focus:false});
+  expanded=next;if(next&&!startup){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
+  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;syncFilterButtons();document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);if(!startup)get('expandMap').focus();}
   else{shell.classList.remove('map-expanded');shell.removeAttribute('role');shell.removeAttribute('aria-modal');shell.removeAttribute('aria-label');filterSlot.replaceWith(filterNode);languageSlot.replaceWith(languageNode);document.body.style.overflow=snapshot.overflow;window.scrollTo(snapshot.scrollX,snapshot.scrollY);snapshot.focus?.focus({preventScroll:true});}
-  localize();resize();
+  localize();renderCleanCountryChart();resize();
  }
  function init(a){
   api=a;
@@ -239,8 +262,9 @@ window.ObservatoryGlobe=(()=>{
   get('globe').addEventListener('pointerdown',()=>suspendRotation(4500),{passive:true});
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'){
-   const nodes=[get('exitCleanView'),get('cleanRotate')];
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(get('ibamaDetail')&&!get('ibamaDetail').hidden){e.preventDefault();window.IbamaFauna?.close();}else if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
+   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+   if(get('ibamaDetail')&&!get('ibamaDetail').hidden)nodes.push(...get('ibamaDetail').querySelectorAll('button,a[href],summary'));
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
    const visible=nodes.filter(el=>el&&!el.disabled&&el.getClientRects().length);
@@ -255,8 +279,10 @@ window.ObservatoryGlobe=(()=>{
   window.DocumentedRouteMap?.init(api.map,showRoute,api.lang);
   window.DocumentedRoutes.subscribe(sync);window.DocumentedRoutes.start();
   localize();
-  // Initialize the default GLOBE and start the existing automatic rotation.
-  // This is a startup preference, not a user-triggered mode change.
+  // Open in the existing viewport-filling map-only experience, without user-action analytics.
+  // Keep all active temporal and route filters and the default automatic rotation.
+  setExpanded(true,{startup:true});
+  setCleanView(true,{focus:false});
   void setMode('globe');
  }
  function zoomBy(factor){suspendRotation(3500);if(globe){const p=globe.pointOfView();globe.pointOfView({...p,altitude:Math.max(.00001,Math.min(4.8,p.altitude*factor))},duration());}}

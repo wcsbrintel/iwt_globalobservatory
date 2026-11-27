@@ -45,6 +45,7 @@ window.ObservatoryGlobe=(()=>{
   loading=(async()=>{
    const g=new window.Globe(get('globe'),{animateIn:false,waitForGlobeReady:false,rendererConfig:{antialias:true,alpha:true}});
    globe=g;
+   window.IbamaFauna?.bindGlobe(g.map);
    g.backgroundColor('#e8e8e8').showAtmosphere(true).atmosphereColor('#aab8c0').atmosphereAltitude(.10)
     .globeTileEngineUrl(null)
     .pointsTransitionDuration(0).pointLat('lat').pointLng('lng').pointResolution(16)
@@ -77,6 +78,7 @@ window.ObservatoryGlobe=(()=>{
  }
  function individual(records){return records.filter(window.GlobeData.valid).map(e=>({lat:e.lat,lng:e.lng,members:[e],recent:window.CaseContext.isRecent(e)})).sort((a,b)=>Number(a.recent)-Number(b.recent));}
  function updatePoints(){
+  window.IbamaFauna?.sync();
   const routes=get('routeLayer').checked?window.GlobeData.routes(api.filtered()):[];
   window.DocumentedRouteMap?.render(routes);
   if(!globe)return;
@@ -162,15 +164,15 @@ window.ObservatoryGlobe=(()=>{
   get('closeMapDetail').textContent=l.close;get('mapDetailTitle').textContent=detailId?l.details:l.cases;
   if(!get('mapDetail').hidden)renderDetail();
  }
- function showCase(id,preserveCluster=false){if(!preserveCluster)clusterIds=[];try{const e=api.filtered().find(e=>e.id===id);window.ObservatoryAnalytics?.track('case_open',{case_id:id,case_country:e?.country,view:mode});}catch{}routeDetail=null;detailId=id;api.select(id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
- function showCluster(group){
+ function showCase(id,preserveCluster=false){window.IbamaFauna?.close();if(!preserveCluster)clusterIds=[];try{const e=api.filtered().find(e=>e.id===id);window.ObservatoryAnalytics?.track('case_open',{case_id:id,case_country:e?.country,view:mode});}catch{}routeDetail=null;detailId=id;api.select(id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
+ function showCluster(group){window.IbamaFauna?.close();
   routeDetail=null;
   clusterIds=group.members.map(e=>e.id);detailId=null;api.select(null);
   if(clusterIds.length===1){showCase(clusterIds[0]);return;}
   if(globe&&mode==='globe')globe.pointOfView({lat:group.lat,lng:group.lng,altitude:Math.max(.3,globe.pointOfView().altitude*.7)},duration());
   get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});
  }
- function showRoute(d){try{window.ObservatoryAnalytics?.track('route_open',{route_id:d.route.id,view:mode});}catch{}routeDetail=d.id;detailId=null;clusterIds=[];api.select(d.event.id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
+ function showRoute(d){window.IbamaFauna?.close();try{window.ObservatoryAnalytics?.track('route_open',{route_id:d.route.id,view:mode});}catch{}routeDetail=d.id;detailId=null;clusterIds=[];api.select(d.event.id);get('mapDetail').hidden=false;renderDetail();syncRotation();syncStory();get('closeMapDetail').focus({preventScroll:true});}
  function renderDetail(){
   if(routeDetail){
    const d=get('routeLayer').checked&&window.GlobeData.routes(api.filtered()).find(s=>s.id===routeDetail);
@@ -260,8 +262,9 @@ window.ObservatoryGlobe=(()=>{
   get('globe').addEventListener('pointerdown',()=>suspendRotation(4500),{passive:true});
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
-  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(get('ibamaDetail')&&!get('ibamaDetail').hidden){e.preventDefault();window.IbamaFauna?.close();}else if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
    const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+   if(get('ibamaDetail')&&!get('ibamaDetail').hidden)nodes.push(...get('ibamaDetail').querySelectorAll('button,a[href],summary'));
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
    const visible=nodes.filter(el=>el&&!el.disabled&&el.getClientRects().length);
