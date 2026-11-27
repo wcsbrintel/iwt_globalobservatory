@@ -151,7 +151,7 @@ map.on('popupopen',localizePopupClose);
 function render(){
  const data=filtered(),t=messages[lang],selected=activeId;
  window.IbamaFauna?.sync();
- window.SeizureHotspots?.update(data);
+ window.SeizureHotspots?.update(data,window.IbamaFauna?.filtered()||[],{osint:window.IbamaFauna?.osint()!==false,ibama:window.IbamaFauna?.enabled()===true});
  const sourceTotals=window.IbamaFauna?.totals(data);
  window.RecordSearch.localize(lang,sourceTotals?sourceTotals.osint+sourceTotals.official:data.length);
  if(window.IbamaFauna?.enabled()&&sourceTotals&&(sourceTotals.osint+sourceTotals.official))$('recordSearchCount').textContent=window.IbamaFauna.countLabel(sourceTotals);
