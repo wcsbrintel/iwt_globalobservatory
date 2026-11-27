@@ -76,11 +76,23 @@ function filtered(period='visible',force=false){if((!enabled()&&!force)||!ready(
 function snapshots(){return {rows:filtered('base',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),visible:filtered('visible',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),edges:[]};}
 function groupsAt(records){const m=new Map();for(const r of records){if(!window.GlobeData.valid(r))continue;const k=r.lat+','+r.lng;let a=m.get(k);if(!a){a={lat:r.lat,lng:r.lng,members:[]};m.set(k,a);}a.members.push(r);}return [...m.values()];}
 function featureCollection(a){return {type:'FeatureCollection',features:a.map((g,i)=>({type:'Feature',geometry:{type:'Point',coordinates:[g.lng,g.lat]},properties:{key:i,n:g.members.length}}))};}
-let sites=[],geo=featureCollection([]),pointsHidden=false;
+let sites=[],geo=featureCollection([]),pointsHidden=false,pointPaintPending=true,pointSent=null;
 function setPointsHidden(next){pointsHidden=Boolean(next);if(leaf&&api){if(pointsHidden)api.map.removeLayer(leaf);else if(!api.map.hasLayer(leaf))leaf.addTo(api.map);}paint();}
 const SOURCE='ibama-fauna-national',CIRCLE=SOURCE+'-points',LABEL=SOURCE+'-count';
-function paint(){if(!globe?.isStyleLoaded?.())return;try{let s=globe.getSource(SOURCE);if(s)s.setData(geo);else globe.addSource(SOURCE,{type:'geojson',data:geo});if(!globe.getLayer(CIRCLE))globe.addLayer({id:CIRCLE,type:'circle',source:SOURCE,layout:{visibility:pointsHidden?'none':'visible'},paint:{'circle-color':'#42b97e','circle-radius':4,'circle-stroke-color':'#10251a','circle-stroke-width':1.2,'circle-opacity':1}});if(globe.getLayer(LABEL))globe.removeLayer(LABEL);globe.setPaintProperty(CIRCLE,'circle-radius',4);globe.setLayoutProperty(CIRCLE,'visibility',pointsHidden?'none':'visible');}catch(e){console.warn('IBAMA layer',e);}}
-function bindGlobe(map){if(!map||map===globe)return;globe=map;map.on('style.load',paint);map.on('idle',()=>{if(enabled()&&!map.getLayer(CIRCLE))paint();});map.on('click',CIRCLE,e=>{if(pointsHidden)return;const s=sites[Number(e.features?.[0]?.properties.key)];if(s)open(s.members);});map.on('mouseenter',CIRCLE,()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave',CIRCLE,()=>map.getCanvas().style.cursor='');paint();}
+function paint(styleJustLoaded=false){
+ if(!globe)return;pointPaintPending=false;
+ try{
+  const ready=styleJustLoaded===true||globe.isStyleLoaded?.()===true;
+  let source=globe.getSource(SOURCE);
+  if(!source){if(!ready){pointPaintPending=true;return;}globe.addSource(SOURCE,{type:'geojson',data:geo});source=globe.getSource(SOURCE);if(!source){pointPaintPending=true;return;}pointSent={source,geo};}
+  else if(pointSent?.source!==source||pointSent.geo!==geo){source.setData(geo);pointSent={source,geo};}
+  if(!globe.getLayer(CIRCLE)){if(!ready){pointPaintPending=true;return;}globe.addLayer({id:CIRCLE,type:'circle',source:SOURCE,layout:{visibility:pointsHidden?'none':'visible'},paint:{'circle-color':'#42b97e','circle-radius':4,'circle-stroke-color':'#10251a','circle-stroke-width':1.2,'circle-opacity':1}});}
+  if(globe.getLayer(LABEL))globe.removeLayer(LABEL);
+  const visibility=pointsHidden?'none':'visible';
+  if(globe.getLayoutProperty(CIRCLE,'visibility')!==visibility)globe.setLayoutProperty(CIRCLE,'visibility',visibility);
+ }catch(e){pointPaintPending=true;console.warn('IBAMA point update pending',e);}
+}
+function bindGlobe(map){if(!map||map===globe)return;globe=map;pointSent=null;pointPaintPending=true;map.on('style.load',()=>{pointSent=null;paint(true);});map.on('idle',()=>{if(pointPaintPending||!map.getLayer(CIRCLE))paint();});map.on('click',CIRCLE,e=>{if(pointsHidden)return;const s=sites[Number(e.features?.[0]?.properties.key)];if(s)open(s.members);});map.on('mouseenter',CIRCLE,()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave',CIRCLE,()=>map.getCanvas().style.cursor='');paint();}
 function sync(){if(!api)return;localize();const a=filtered(),sig=a.map(r=>r.id).join('|');if(sig===revision)return;revision=sig;sites=groupsAt(a);geo=featureCollection(sites);paint();if(leaf){leaf.clearLayers();for(const g of sites){const m=L.circleMarker([g.lat,g.lng],{radius:4,weight:1.2,color:'#10251a',fillColor:'#42b97e',fillOpacity:1});m.on('click',()=>open(g.members));leaf.addLayer(m);}}if(openIds.length){const ids=new Set(a.map(r=>r.id));if(!openIds.some(x=>ids.has(x)))close();}}
 function row(label,value){return value===null||value===undefined||String(value).trim()===''?'':'<div class="ibama-field"><strong>'+esc(label)+'</strong><span>'+esc(value)+'</span></div>';}
 const scientificField=x=>window.ScientificText.html(String(x||'').replace(/\*/g,'').replace(/\b([A-Z][a-z]+(?:\s+[a-z][a-z-]+){0,2})\b/g,s=>'*'+s+'*'));
