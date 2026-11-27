@@ -1,0 +1,34 @@
+name: Build species index from source records
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_species_index.cjs'
+permissions:
+  contents: write
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read current official records and verified taxonomy
+        run: |
+          git fetch origin ibama-data taxonomy-data
+          git worktree add --detach "$RUNNER_TEMP/ibama-source" origin/ibama-data
+          git worktree add --detach "$RUNNER_TEMP/taxonomy-source" origin/taxonomy-data
+      - name: Index actual associations and test Prionace glauca
+        run: node scripts/build_species_index.cjs "$RUNNER_TEMP/ibama-source/ibama-fauna" "$RUNNER_TEMP/taxonomy-source/species-registry.json"
+      - name: Publish source-derived index alongside registry
+        run: |
+          cp species-index.json "$RUNNER_TEMP/taxonomy-source/"
+          git -C "$RUNNER_TEMP/taxonomy-source" config user.name "github-actions[bot]"
+          git -C "$RUNNER_TEMP/taxonomy-source" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$RUNNER_TEMP/taxonomy-source" add species-index.json
+          if ! git -C "$RUNNER_TEMP/taxonomy-source" diff --cached --quiet; then
+            git -C "$RUNNER_TEMP/taxonomy-source" commit -m "Publish species index with actual source associations"
+            git -C "$RUNNER_TEMP/taxonomy-source" push origin HEAD:refs/heads/taxonomy-data
+          fi
