@@ -96,7 +96,7 @@
 .map-expanded.map-clean-view{padding:0!important;border:0!important;border-radius:0!important;gap:0!important}
 .map-expanded.map-clean-view > :is(.cardhead,.map-toolbar,.map-route-note,.hotspot-legend,.case-legend){display:none!important}
 .map-expanded.map-clean-view .map-stage{height:100%;min-height:0;flex:1 1 auto;border:0}
-.map-expanded.map-clean-view :is(.map-filters-host,.globe-tools,.globe-help,.globe-credit,.globe-status,.leaflet-top,.leaflet-popup-pane,.map-engine-notice){display:none!important}
+.map-expanded.map-clean-view :is(.globe-tools,.globe-help,.globe-credit,.globe-status,.leaflet-top,.leaflet-popup-pane,.map-engine-notice){display:none!important}
 /* Visual-only mode suspends popup clicks; data and layers are not changed. */
 /* Preserve event click targets during clean presentation. */
 .map-stage .map-clean-exit{
@@ -316,7 +316,7 @@
  min-height:460px;
  width:100%;
 }
-.map-view-card.map-clean-view:not(.map-expanded) :is(.map-filters-host,.globe-tools,.globe-help,.globe-credit,.globe-status,.leaflet-top,.leaflet-popup-pane,.map-engine-notice){
+.map-view-card.map-clean-view:not(.map-expanded) :is(.globe-tools,.globe-help,.globe-credit,.globe-status,.leaflet-top,.leaflet-popup-pane,.map-engine-notice){
  display:none!important;
 }
 /* Inline clean views retain accessible case markers. */
@@ -496,4 +496,35 @@
 @media(max-width:650px){
  .map-view-card.map-clean-view .map-stage #mapDetail:not([hidden]){top:100px;right:8px;bottom:8px;width:calc(100% - 16px);padding:12px}
  .map-view-card.map-clean-view[data-active-map-mode="map"] .map-stage #mapDetail:not([hidden]){top:55px}
+}
+
+/* Map-only controls reuse the dashboard language switch visual system. */
+.clean-map-controls[hidden]{display:none!important}
+.map-stage .clean-map-controls{
+ position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));z-index:1500;
+ display:flex;flex-direction:column;align-items:stretch;gap:6px;max-width:min(220px,calc(100% - 28px));pointer-events:auto;
+}
+.map-stage .clean-map-controls :is(.map-clean-exit,.map-clean-action),.map-stage #prospectiveToggle{
+ position:static;min-height:44px;padding:9px 13px;border:1px solid #74a68e;border-radius:10px;
+ background:#0d2923ef;color:#e6f5eb;box-shadow:0 5px 18px #0003;
+ font:800 11px/1.4 Inter,system-ui,sans-serif;letter-spacing:.015em;
+ cursor:pointer;opacity:1;backdrop-filter:none;display:inline-flex;align-items:center;justify-content:center;text-align:center;
+}
+.map-stage .clean-map-controls :is(.map-clean-exit,.map-clean-action):hover,.map-stage #prospectiveToggle:hover{background:#183b31;color:#e6f5eb}
+.map-stage .clean-map-controls :is(.map-clean-exit,.map-clean-action):focus-visible,.map-stage #prospectiveToggle:focus-visible{outline:2px solid #d3ff54;outline-offset:2px}
+.map-stage .clean-map-controls :is([aria-pressed="true"],[aria-expanded="true"]),.map-stage #prospectiveToggle[aria-expanded="true"]{background:#d9f0df;color:#0b3429;box-shadow:0 2px 7px #0004}
+.map-stage .clean-map-controls #cleanLanguageHost,.map-stage .clean-map-controls .interface-language-switch{display:flex;width:100%;box-sizing:border-box}
+.map-stage .clean-map-controls .interface-language-switch #language{width:100%}
+.map-view-card.map-clean-view .map-stage .map-filters-host:not([hidden]){
+ display:block!important;position:absolute;top:12px;left:12px;z-index:1490;width:min(320px,calc(100% - 24px));max-height:calc(100% - 24px);min-height:0;aspect-ratio:auto;
+ overflow:auto;overscroll-behavior:contain;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel);box-shadow:0 6px 22px #0003;scrollbar-width:thin;box-sizing:border-box;
+}
+.map-view-card.map-clean-view:not(.map-expanded) .map-filters-host .filters{margin:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.map-view-card.map-clean-view:not(.map-expanded) .map-filters-host .filter{min-width:0;padding:6px 8px}
+.map-view-card.map-clean-view:not(.map-expanded) .map-filters-host .filter select{max-width:100%}
+@media(max-width:650px){
+ .map-stage .clean-map-controls{top:8px;right:8px;max-width:155px;gap:5px}
+ .map-stage .clean-map-controls :is(.map-clean-exit,.map-clean-action){padding:7px 8px;min-height:44px}
+ .map-view-card.map-clean-view .map-stage .map-filters-host:not([hidden]){top:8px;left:8px;max-height:calc(100% - 16px);width:min(320px,calc(100% - 175px));min-width:min(165px,calc(100% - 16px))}
+ .map-view-card.map-clean-view .map-filters-host .filters{grid-template-columns:1fr}
 }

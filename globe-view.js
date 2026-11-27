@@ -6,7 +6,7 @@ window.ObservatoryGlobe=(()=>{
   es:{expand:'Ampliar',exit:'Salir de pantalla completa',filters:'Filtros',routes:'Rutas documentadas',noRoutes:'No hay rutas con origen y destino georreferenciados y documentados en esta selección.',routeHint:'Los arcos conectan lugares documentados; no representan el trayecto exacto.',loading:'Cargando globo…',failed:'No se pudo abrir el globo 3D. Puede continuar en MAP.',retry:'Reintentar',help:'Arrastre para girar e inclinar · Desplace o use dos dedos para acercar',cases:'Casos en esta zona',details:'Detalles del caso',close:'Cerrar',back:'Volver a los casos',home:'Vista global',zin:'Acercar',zout:'Alejar',rotate:'Girar',tilt:'Inclinar',map:'Mapa 2D',globe:'Globo 3D',empty:'Ningún caso coincide con los filtros.'}
  };
  let api,globe,mode='globe',expanded=false,loading=null,failed=false,detailId=null,clusterIds=[],snapshot=null,filterSlot,languageSlot,filterNode,languageNode;
- let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null;
+ let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null,cleanLanguageSlot=null,inlineFilterSlot=null;
  const markerElements=new Set(),themes={map:'dark',globe:'dark'};
  try{const saved=window.localStorage?.getItem('observatory-map-theme');if(['dark','light'].includes(saved))themes.map=saved;}catch{}
  // Always open the globe in dark mode; the current session can still change it.
@@ -17,9 +17,9 @@ window.ObservatoryGlobe=(()=>{
  Object.assign(text.pt,{rotationControl:'Rotação',rotationOn:'Rotação ligada — clique para desligar',rotationOff:'Rotação desligada — clique para ligar'});
  Object.assign(text.en,{rotationControl:'Rotation',rotationOn:'Rotation on — click to stop',rotationOff:'Rotation off — click to resume'});
  Object.assign(text.es,{rotationControl:'Rotación',rotationOn:'Rotación activada — pulse para detener',rotationOff:'Rotación desactivada — pulse para reanudar'});
- Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Alterar filtros',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Mostrar os controles e alterar filtros'});
- Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Change filters',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Show controls and change filters'});
- Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Cambiar filtros',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Mostrar los controles y cambiar filtros'});
+ Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Explorar outros recursos',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Mostrar os demais recursos do Observatório'});
+ Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Explore other resources',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Show the other Observatory resources'});
+ Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Explorar otros recursos',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Mostrar los demás recursos del Observatorio'});
  const get=id=>document.getElementById(id),t=()=>text[api.lang()],safe=s=>api.escape(s),duration=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
  function button(id,label,fn){get(id).textContent=label;get(id).onclick=fn;}
  // Move the MapLibre GLOBE camera around Earth's longitude; never modify
@@ -123,10 +123,12 @@ window.ObservatoryGlobe=(()=>{
    enterClean.title=l.cleanEnterHint;
    enterClean.setAttribute('aria-label',l.cleanEnterHint);
    enterClean.setAttribute('aria-pressed',String(cleanView));
-   exitClean.textContent='↙ '+l.cleanExit;
+   exitClean.textContent=l.cleanExit;
    exitClean.title=l.cleanExitHint;
    exitClean.setAttribute('aria-label',l.cleanExitHint);
-  button('toggleMapFilters',l.filters,()=>{const host=get('mapFiltersHost');host.hidden=!host.hidden;get('toggleMapFilters').setAttribute('aria-expanded',String(!host.hidden));resize();});
+  button('toggleMapFilters',l.filters,toggleFilters);
+  button('cleanFilters',l.filters,toggleFilters);
+  syncFilterButtons();
    button('togglePoints',pointsHidden?l.showPoints:l.hidePoints,()=>{
     pointsHidden=!pointsHidden;
     get('mapViewCard').classList.toggle('seizure-points-hidden',pointsHidden);
@@ -153,7 +155,7 @@ window.ObservatoryGlobe=(()=>{
    rotateButton.setAttribute('aria-pressed',String(rotationEnabled));
    const cleanRotate=get('cleanRotate');
    cleanRotate.hidden=!(cleanView&&mode==='globe');
-   cleanRotate.textContent='↻ '+l.rotationControl;
+   cleanRotate.textContent=l.rotationControl;
    cleanRotate.title=rotateLabel;
    cleanRotate.setAttribute('aria-label',rotateLabel);
    cleanRotate.setAttribute('aria-pressed',String(rotationEnabled));
@@ -199,11 +201,28 @@ window.ObservatoryGlobe=(()=>{
    limit:!expanded?4:window.matchMedia('(max-width:650px)').matches?5:8
   });
  }
+ function syncFilterButtons(){
+  const open=!get('mapFiltersHost').hidden;
+  for(const id of ['toggleMapFilters','cleanFilters'])get(id).setAttribute('aria-expanded',String(open));
+ }
+ function setFilterOpen(open){get('mapFiltersHost').hidden=!open;syncFilterButtons();resize();}
+ function toggleFilters(){setFilterOpen(get('mapFiltersHost').hidden);}
  function setCleanView(next,{focus=true}={}){
   // The clean presentation is available both inline and in fullscreen.
   if(cleanView===next)return;
   cleanView=next;
   get('mapViewCard').classList.toggle('map-clean-view',cleanView);
+  get('cleanMapControls').hidden=!cleanView;
+  if(cleanView){
+   const label=get('language').closest('.interface-language-switch')||get('language');
+   cleanLanguageSlot=document.createComment('clean language position');label.before(cleanLanguageSlot);get('cleanLanguageHost').append(label);
+   if(!expanded){const filters=document.querySelector('.filters');inlineFilterSlot=document.createComment('inline filter position');filters.before(inlineFilterSlot);get('mapFiltersHost').append(filters);}
+   setFilterOpen(false);
+  }else{
+   const label=get('cleanLanguageHost').firstElementChild;if(cleanLanguageSlot&&label)cleanLanguageSlot.replaceWith(label);cleanLanguageSlot=null;
+   if(inlineFilterSlot){inlineFilterSlot.replaceWith(get('mapFiltersHost').querySelector('.filters'));inlineFilterSlot=null;}
+   setFilterOpen(expanded);
+  }
   get('exitCleanView').hidden=!cleanView;
   get('cleanMapCharts').hidden=!cleanView;
   renderCleanCountryChart();
@@ -215,9 +234,9 @@ window.ObservatoryGlobe=(()=>{
  }
  function setExpanded(next,{startup=false}={}){
   if(expanded===next)return;
-  if(!next&&cleanView)setCleanView(false);
+  if(cleanView)setCleanView(false,{focus:false});
   expanded=next;if(next&&!startup){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
-  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded',String(!get('mapFiltersHost').hidden));document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);if(!startup)get('expandMap').focus();}
+  if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;syncFilterButtons();document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);if(!startup)get('expandMap').focus();}
   else{shell.classList.remove('map-expanded');shell.removeAttribute('role');shell.removeAttribute('aria-modal');shell.removeAttribute('aria-label');filterSlot.replaceWith(filterNode);languageSlot.replaceWith(languageNode);document.body.style.overflow=snapshot.overflow;window.scrollTo(snapshot.scrollX,snapshot.scrollY);snapshot.focus?.focus({preventScroll:true});}
   localize();renderCleanCountryChart();resize();
  }
@@ -231,7 +250,7 @@ window.ObservatoryGlobe=(()=>{
    onOpen:id=>showCase(id)
   });
   get('enterCleanView').onclick=()=>setCleanView(true);
-  get('exitCleanView').onclick=()=>{if(expanded){get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded','true');}setCleanView(false);};
+  get('exitCleanView').onclick=()=>setCleanView(false);
   get('mapMode').onclick=()=>setMode('map');get('globeMode').onclick=()=>setMode('globe');get('routeLayer').onchange=()=>{updatePoints();localize();resize();};get('closeMapDetail').onclick=closeDetail;
   get('mapTheme').onchange=e=>{if(!['dark','light'].includes(e.target.value))return;themes[mode]=e.target.value;try{window.localStorage?.setItem('observatory-'+mode+'-theme',themes[mode]);}catch{}applyTheme();};
   get('globeZoomIn').onclick=()=>zoomBy(.75);get('globeZoomOut').onclick=()=>zoomBy(1.3);get('globeHome').onclick=()=>{suspendRotation(4500);globe?.pointOfView({lat:14,lng:5,altitude:2.4},duration());};
@@ -241,8 +260,8 @@ window.ObservatoryGlobe=(()=>{
   get('globe').addEventListener('pointerdown',()=>suspendRotation(4500),{passive:true});
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
-  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
-   const nodes=[get('exitCleanView'),get('cleanRotate'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+  document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
+   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
    const visible=nodes.filter(el=>el&&!el.disabled&&el.getClientRects().length);
