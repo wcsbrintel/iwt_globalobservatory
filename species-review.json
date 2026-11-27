@@ -1,0 +1,614 @@
+{
+  "summary": {
+    "candidates": 950,
+    "verified": 809,
+    "unresolved": 141,
+    "osintSpecies": 447,
+    "ibamaSpecies": 451,
+    "uniqueCombined": 807,
+    "ibamaNotices": 10791,
+    "osintCases": 1682
+  },
+  "unresolved": [
+    {
+      "name": "Abalone sem",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Algumas aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Amazon redtail",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ara chloroptera",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Aratinga auricapilla",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Aratinga leucophthalmus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Ave viva",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves canoras",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves cineg",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves migrat",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves nativas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves nectarivoras",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves passeriformes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves protegidas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves rapaces",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves referidas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves vivas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bagres amaz",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ball pythons",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Black bass",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Boa constrictors",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bougainvillea praecox",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Burmese pythons",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Butia eriospatha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bufalo juvenil",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Californian kingsnakes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carduelis magellanicus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Carduelis yarellii",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Carne atribu",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carne correspondente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Centrolobium robustum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Centrolobium tomentosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Chelonoidis carbonaria",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chelonoidis denticulata",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chelus fimbriatus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chinese softshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cinco aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cites entre",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cites ii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Colubrina glandulosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Corallus hortulanus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Corydoras agassizi",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Corn snakes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cotorras pecho",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cotorritas ala",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dasyprocta agouti",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dna identification",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Documentados na",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dois siamangs",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dois suspeitos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Duas serpentes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Elephant ivory",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Erisma lanceolatum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Escamas suspeitas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eurytides leucaspis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fauna cineg",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Felidae indeterminado",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fiji iguana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Filhotes vivos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fishing equipment",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Freshwater crayfish",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Green iguanas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Horn hybrid",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ibama pendente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ibama relatada",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Identificacao especifica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Identificacao taxonomica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Iguana viva",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Inclui emberiza",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian flap-shell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian pond",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian roofed",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian flapshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian softshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian star",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian tent",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Inema informa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Isostichopus horrens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagartos overos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagartos vivos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagothrix lagotricha",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Leopardus garleppi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lonchocarpus campestris",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Loros australianos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lote misto",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Marmaroxylon racemosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Melanoxylon brauna",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mitu tuberosa",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Multiple ornamental",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Multiple taxa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nenhum esp",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nenhuma ave",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nigrita canicapilla",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Nigrita fusconata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ninhos com",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ortalis guttata",
+      "matchType": "HIGHERRANK",
+      "rank": "KINGDOM",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Orthopsittaca manilatus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Other animal",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Other hunted",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Other wildlife",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Outras aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos preliminarmente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos fertilizados",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos presumivelmente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Palaeosuchus trigonatus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolim adulto",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolim vivo",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolin scales",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pdi no",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes ornamentais",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes recifais",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes snakehead",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Perico zapoyol",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pescado congelado",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pf est",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Phyllium bioculatum",
+      "matchType": "EXACT",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Pit vipers",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pmba mencionava",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Porcos selvagens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Possivelmente pizote",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Primolius macanana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Produtos denominados",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Psittaciformes cites",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Quatro aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ramphocelus bresilius",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Rhinobatos horkelii",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Salix humboldtiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sapindus esculentus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sete aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Seven reported",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siberian grayling",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siberian roe",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siphoneugena densiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tamadua tetradactyla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tartarugas terrestres",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tartarugas vivas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Testudines among",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Testudines marinhas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Texas rat",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Trinta aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Uma arara-canind",
+      "matchType": "NONE"
+    }
+  ]
+}
