@@ -1,0 +1,58 @@
+name: Build national IBAMA wildlife dataset
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/ibama-fauna/**'
+      - '.github/workflows/ibama-fauna.yml'
+permissions:
+  contents: write
+concurrency:
+  group: ibama-fauna-national
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate and enrich national IBAMA wildlife
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/ibama-fauna"
+          python scripts/ibama-fauna/build.py --output-dir "$RUNNER_TEMP/ibama-fauna"
+          IBAMA_DATA_DIR="$RUNNER_TEMP/ibama-fauna" python scripts/ibama-fauna/enrich.py
+          python scripts/ibama-fauna/finalize.py "$RUNNER_TEMP/ibama-fauna"
+      - name: Publish verified annual dataset to dedicated data branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin ibama-data >/dev/null; then
+            git fetch origin ibama-data
+            git switch -C ibama-data FETCH_HEAD
+          else
+            git switch --orphan ibama-data
+          fi
+          mkdir -p ibama-fauna
+          cp "$RUNNER_TEMP/ibama-fauna/"*.json ibama-fauna/
+          git add ibama-fauna
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh national IBAMA fauna 2020-2025 snapshot"
+            git push origin HEAD:refs/heads/ibama-data
+          fi
+          echo "Verified national wildlife dataset published to ibama-data."
+      - name: Save public dataset as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ibama-fauna-national
+          path: ibama-fauna/
+          retention-days: 14
