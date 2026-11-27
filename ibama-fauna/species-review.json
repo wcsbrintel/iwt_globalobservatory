@@ -1,0 +1,1457 @@
+{
+  "summary": {
+    "candidates": 1396,
+    "new_queries": 587,
+    "verified": 1046,
+    "unresolved": 350,
+    "osintSpecies": 447,
+    "ibamaSpecies": 0,
+    "uniqueCombined": 447,
+    "ibamaNotices": 74162,
+    "osintCases": 1682
+  },
+  "unresolved": [
+    {
+      "name": "Abarema jupunba",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Abalone sem",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Alchornea triplinervia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Algumas aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Allantoma lineata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aloysia virgata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Amazon redtail",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Anacardium giganteum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Amburana acreana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Anadenanthera colubrina",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Anadenanthera falcata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Andira coriacea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Andira inermis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Andira parviflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Andira surinamensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aniba canelilla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Apuleia molaris",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Apuleia leiocarpa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ara chloroptera",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Aratinga auricapilla",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Aratinga leucophthalmus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Aspidosperma carapanauba",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma discolor",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma macrocarpon",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma polyneuron",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma spruceanum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma vargasii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aspidosperma tomentosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Astronium fraxinifolium",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Astronium gracile",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Astronium lecointei",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ave viva",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves cineg",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves canoras",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves migrat",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves nativas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves nectarivoras",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves passeriformes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves protegidas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves rapaces",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves referidas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Aves vivas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bagassa guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bagres amaz",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ball pythons",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bertholletia excelsa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Black bass",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Boa constrictors",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bombax humile",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bougainvillea praecox",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bowdichia nitida",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bowdichia racemosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Brosimum guianense",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Brosimum potabile",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Brosimum rubescens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Buchenavia capitata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Buchenavia grandis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Buchenavia huberi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bufalo juvenil",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Bulnesia sarmientoi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Burmese pythons",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Butia eriospatha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Caesalpinia echinata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Caesalpinia pyramidalis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Californian kingsnakes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Calycophyllum spruceanum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Campsiandra laurifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carapa guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carduelis magellanicus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Carduelis yarellii",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Cariniana estrellensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cariniana legalis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cariniana micrantha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carne atribu",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Carne correspondente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Caryocar edule",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Caryocar villosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cattleya brasiliensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cattleya labiata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cattleya lueddemanniana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cattleya speciosissima",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cattleya warneri",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cedrela odorata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cedrelinga cateniformis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Celtis spinosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Centrolobium robustum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Centrolobium tomentosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cephaelis ipecacuanha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Chelonoidis carbonaria",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chelus fimbriatus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chelonoidis denticulata",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Chinese softshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cinco aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cites entre",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cites ii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Clarisia racemosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Colubrina glandulosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Copaifera langsdorffii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Copernicia prunifera",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Corallus hortulanus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Cordia alliodora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Cordia goeldiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Corn snakes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Corydoras agassizi",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Cotorras pecho",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Coryphaena hyppurus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Cotorritas ala",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Couratari guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Couratari oblongifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Couratari multiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Croton hemiargyreus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dalbergia cearensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dalbergia frutescens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dalbergia nigra",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dasyprocta agouti",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dialium guianense",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dickisonia sellowiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dicksonia sellowiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Didymopanax calvum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Diplotropis purpurea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dinizia excelsa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dipteryx micrantha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dipteryx odorata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dna identification",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dipteryx polyphylla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Documentados na",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dois siamangs",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Duas serpentes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Dois suspeitos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ekmanianthe longiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Elephant ivory",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Endopleura uchi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Enterolobium contortisiliquum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Enterolobium schomburgkii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Enterolobium maximum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Erisma lanceolatum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eria cordifera",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Erisma uncinatum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Escamas suspeitas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eschweilera ovata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eschweilera grandiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eucalyptus alba",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Eurytides leucaspis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Euterpe edulis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Euterpe oleracea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fauna cineg",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Farlowella amazona",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Felidae indeterminado",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fiji iguana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Fishing equipment",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Filhotes vivos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Freshwater crayfish",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Genipa americana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Goupia paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Goupia glabra",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Guarea guidonia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Green iguanas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Handroanthus serratifolius",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Handroanthus incanus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Horn hybrid",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hura crepitans",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenaea courbaril",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenaea palustris",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenaea microphylla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenolobium excelsum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenolobium petraeum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Hymenolobium sericeum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ibama relatada",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ibama pendente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Identificacao especifica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Identificacao taxonomica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Iguana viva",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Inclui emberiza",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian flap-shell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian pond",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian flapshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian roofed",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian softshell",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian tent",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Indian star",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Inema informa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Iryanthera grandis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Isostichopus horrens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Iryanthera lancifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Jacaranda copaia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Laelia cattleyodes",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lafoensia glyptocarpa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagartos overos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagartos vivos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lagothrix lagotricha",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Lecythis lurida",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Leopardus garleppi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lecythis pisonis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Licania tomentosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Loligo plei",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lonchocarpus campestris",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lonchocarpus discolor",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Loros australianos",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Lote misto",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Maclura tinctoria",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara amazonica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara cavalcantei",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara elata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara huberi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara subsericea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara salzmanni",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Manilkara triflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Martiodendron elatum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Marmaroxylon racemosum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Melocactus margaritaceus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Melanoxylon brauna",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Melocactus violaceus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mezilaurus itauba",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mimosa obovata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mimosa caesalpiniifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mimosa tenuiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Minquartia guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Mitu tuberosa",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Mora paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Multiple ornamental",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Multiple taxa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Myracrodruon urundeuva",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Myrcia tomentosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nectandra lanceolata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nenhum esp",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nigrita canicapilla",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Nenhuma ave",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Nigrita fusconata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ninhos com",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea corymbosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ochroma pyramidale",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea neesiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea nitidula",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea pretiosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea rubra",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ocotea spixiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ortalis guttata",
+      "matchType": "HIGHERRANK",
+      "rank": "KINGDOM",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Orthopsittaca manilatus",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Osteophloeum platyspermum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Other animal",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Other hunted",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Other wildlife",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Outras aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos fertilizados",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos preliminarmente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ovos presumivelmente",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Palaeosuchus trigonatus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolim adulto",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolim vivo",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pangolin scales",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Parkia multijuga",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Parkia paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Parkia pendula",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Patagonula americana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pdi no",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes ornamentais",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes recifais",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peixes snakehead",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne floribunda",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne angustiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne lecointei",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne paniculata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne paradoxa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Peltogyne subsessilis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Perico zapoyol",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pescado congelado",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pf est",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Phyllium bioculatum",
+      "matchType": "EXACT",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Piptadenia gonoacantha",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Piptadenia moniliformis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Piptadenia suaveolens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pit vipers",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Platonia insignis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pleurothallis linearifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pmba mencionava",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Porcos selvagens",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Possivelmente pizote",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pouteria caimito",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pouteria guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pouteria pachycarpa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pouteria pariry",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pouteria ramiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Primolius macanana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Produtos denominados",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Protium heptaphyllum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Protium paliidum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Protium robustum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Psittaciformes cites",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pterocarpus amazonicus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Pterodon emarginatus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea albiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea cassiquiarensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea dinizii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea jundiahy",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea labouriauana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea multiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Qualea paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Quatro aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Ramphocelus bresilius",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Rhamdia bathyura",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Rhinobatos horkelii",
+      "matchType": "FUZZY",
+      "rank": "SPECIES",
+      "kingdom": "Animalia"
+    },
+    {
+      "name": "Rhynchostylis gigantea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sacoglottis guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Salix humboldtiana",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sapindus esculentus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Schinus terebinthifolius",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Schizolobium amazonicum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sclerolobium paniculatum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Scleronema praecox",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Senna multijuga",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sete aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Seven reported",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Sextonia rubra",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siberian grayling",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siberian roe",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Simarouba amara",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Siphoneugena densiflora",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Stenocalyx uniflorus",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Stryphnodendron pulcherrimum",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tabebuia alba",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tabebuia heptaphylla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tabebuia serratifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tachigali myrmecophila",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tachigali paniculata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tamadua tetradactyla",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tapirira guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tartarugas terrestres",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tartarugas vivas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Terminalia amazonica",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Terminalia tanibouca",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Testudines among",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Testudines marinhas",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tetragastris trifoliolata",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Texas rat",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tillandsia kammii",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Tillandsia kautskyi",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Trattinnickia burseraefolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Trattinnickia rhoifolia",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Trinta aves",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Uma arara-canind",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vanda hastifera",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vatairea guianensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vatairea paraensis",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vatairea sericea",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vataireopsis speciosa",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Virola sebifera",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vochysia floribunda",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vochysia maxima",
+      "matchType": "NONE"
+    },
+    {
+      "name": "Vouacapoua americana",
+      "matchType": "NONE"
+    }
+  ]
+}
