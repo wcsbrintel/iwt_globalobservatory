@@ -35,3 +35,5 @@
 #taxonList button{display:block;text-align:left;overflow-wrap:anywhere;background:transparent;color:var(--ink);border:1px solid transparent;border-radius:4px;padding:5px 6px;font:inherit;cursor:pointer}
 #taxonList button:hover,#taxonList button[aria-pressed=true]{background:#42b97e18;border-color:#42b97e70}
 #taxonToggle em,#taxonList em,.ibama-record em,.clean-map-story-card em{font-style:italic}
+
+.conservation-status{margin:10px 0;padding:8px 0;border-top:1px solid #829b9b55;border-bottom:1px solid #829b9b55;font-size:12px;line-height:1.5}.conservation-status h4{margin:0 0 5px}.conservation-status ul{padding-left:17px;margin:4px 0 7px}.conservation-status li{margin:4px 0;overflow-wrap:anywhere}.conservation-status em{font-style:italic}.conservation-status small{display:block;opacity:.83;font-size:10px}.conservation-status a{color:inherit;text-decoration:underline}

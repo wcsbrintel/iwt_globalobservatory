@@ -24,7 +24,7 @@ const number=n=>Number(n).toLocaleString(locale());
 const date=s=>!s?'—':new Intl.DateTimeFormat(locale(),{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(s+'T12:00:00Z'));
 function record(e){
   const translated=window.CaseDisplay?.localize(e,lang);
-  return {...e,title:e['title_'+lang],summary:e['card_text_'+lang],country:term(e.country),city:translated?.city||term(e.city),species:translated?.species||term(e.species),taxon:translated?.taxon||term(e.taxon),mode:translated?.mode||term(e.mode),quantityDisplay:translated?.quantityDisplay||e.quantityDisplay,quantityNote:translated?.quantityNote||'',source:e.source_label,geoNote:translated?.geoNote||e['geographic_note_'+lang]||e.geographic_note_pt||'',url:e.source_url};
+  return {...e,conservationEntries:window.IbamaFauna?.osintEntries(e)||[],title:e['title_'+lang],summary:e['card_text_'+lang],country:term(e.country),city:translated?.city||term(e.city),species:translated?.species||term(e.species),taxon:translated?.taxon||term(e.taxon),mode:translated?.mode||term(e.mode),quantityDisplay:translated?.quantityDisplay||e.quantityDisplay,quantityNote:translated?.quantityNote||'',source:e.source_label,geoNote:translated?.geoNote||e['geographic_note_'+lang]||e.geographic_note_pt||'',url:e.source_url};
 }
 function dates(e){const t=messages[lang];return t.event+': '+date(e.event_date)+' · '+t.published+': '+date(e.publication_date);}
 
@@ -56,16 +56,16 @@ function exportXlsx(){
 }
 function popup(e){
   const t=messages[lang];
-  return '<div class="popup-title">'+caseText(e.title||e.city+', '+e.country)+'</div>'+(e.title?'<div class="popup-meta">'+caseText(e.city+', '+e.country)+'</div>':'')+'<div>'+esc(dates(e))+'</div><div>'+caseText(e.species+' · '+e.taxon)+'</div><div>'+caseText(quantity(e))+'</div><div>'+caseText(e.mode)+'</div><p>'+caseText(e.summary)+'</p><div class="popup-meta">'+caseText(e.source)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'</div><a class="popup-news" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang);
+  return '<div class="popup-title">'+caseText(e.title||e.city+', '+e.country)+'</div>'+(e.title?'<div class="popup-meta">'+caseText(e.city+', '+e.country)+'</div>':'')+'<div>'+esc(dates(e))+'</div><div>'+caseText(e.species+' · '+e.taxon)+'</div>'+(window.ObservatoryConservation?.html(e.conservationEntries)||'')+'<div>'+caseText(quantity(e))+'</div><div>'+caseText(e.mode)+'</div><p>'+caseText(e.summary)+'</p><div class="popup-meta">'+caseText(e.source)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'</div><a class="popup-news" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang);
 }
 function card(e){
  const t=messages[lang];
- return '<div class="event" data-id="'+esc(e.id)+'" tabindex="0" role="button" aria-label="'+esc(window.ScientificText.plain(t.clickHint+': '+e.city))+'"><div class="eventtop"><b>'+caseText(e.title||e.city+', '+e.country)+'</b><span class="source-tag">'+caseText(e.source)+'</span></div><p>'+(e.title?caseText(e.city+', '+e.country)+'<br>':'')+esc(dates(e))+'<br>'+caseText(e.species+' · '+e.taxon+' · '+e.mode)+'<br>'+caseText(quantity(e))+'<br>'+caseText(e.summary)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'<br><a class="source-link" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(e.additionalSources||[]).map(s=>'<br><a class="source-link" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+caseText(term(s.source))+' ↗</a>').join('')+'</p>'+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang)+'</div>';
+ return '<div class="event" data-id="'+esc(e.id)+'" tabindex="0" role="button" aria-label="'+esc(window.ScientificText.plain(t.clickHint+': '+e.city))+'"><div class="eventtop"><b>'+caseText(e.title||e.city+', '+e.country)+'</b><span class="source-tag">'+caseText(e.source)+'</span></div><p>'+(e.title?caseText(e.city+', '+e.country)+'<br>':'')+esc(dates(e))+'<br>'+caseText(e.species+' · '+e.taxon+' · '+e.mode)+'<br>'+caseText(quantity(e))+'<br>'+caseText(e.summary)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'<br><a class="source-link" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(e.additionalSources||[]).map(s=>'<br><a class="source-link" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+caseText(term(s.source))+' ↗</a>').join('')+'</p>'+(window.ObservatoryConservation?.html(e.conservationEntries)||'')+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang)+'</div>';
 }
 function reportCount(n){const t=messages[lang];return number(n)+' '+(n===1?t.reportOne:t.reportMany);}
 function directoryEvent(e){
  const t=messages[lang];
- return '<article class="directory-event"><div class="eventtop"><b>'+caseText(e.title||e.city+', '+e.country)+'</b><span class="source-tag">'+caseText(e.source)+'</span></div><p>'+(e.title?caseText(e.city+', '+e.country)+'<br>':'')+esc(dates(e))+'<br>'+caseText(e.species+' · '+e.taxon+' · '+e.mode)+'<br>'+caseText(quantity(e))+'<br>'+caseText(e.summary)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'<br><a class="source-link" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(e.additionalSources||[]).map(s=>'<br><a class="source-link" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+caseText(term(s.source))+' ↗</a>').join('')+'</p>'+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang)+'</article>';
+ return '<article class="directory-event"><div class="eventtop"><b>'+caseText(e.title||e.city+', '+e.country)+'</b><span class="source-tag">'+caseText(e.source)+'</span></div><p>'+(e.title?caseText(e.city+', '+e.country)+'<br>':'')+esc(dates(e))+'<br>'+caseText(e.species+' · '+e.taxon+' · '+e.mode)+'<br>'+caseText(quantity(e))+'<br>'+caseText(e.summary)+(e.geoNote?'<br>'+caseText(e.geoNote):'')+'<br><a class="source-link" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t.open)+' ↗</a>'+(e.additionalSources||[]).map(s=>'<br><a class="source-link" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+caseText(term(s.source))+' ↗</a>').join('')+'</p>'+(window.ObservatoryConservation?.html(e.conservationEntries)||'')+(window.CaseMedia?.html(e,lang)||'')+window.CaseContext.added(e,lang)+window.CaseContext.aggregateLabel(e,lang)+window.CaseContext.html(e,lang)+'</article>';
 }
 function renderDirectories(){
  const t=messages[lang],ordered=[...events].sort((a,b)=>b.date.localeCompare(a.date));
@@ -213,7 +213,7 @@ window.RecordSearch.init(render);
 window.RecordSearch.setCases(events);
 ['country','species','year','mode'].forEach(id=>$(id).addEventListener('change',render));
 $('exportCsv').onclick=exportXlsx;
-$('clear').onclick=()=>{['country','species','year','mode','sharedTaxon'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
+$('clear').onclick=()=>{window.ObservatoryConservation?.reset();['country','species','year','mode','sharedTaxon'].forEach(k=>$(k).value='');activeId=null;if(window.ObservatoryTime)window.ObservatoryTime.reset();else render();map.setView([14,5],2);};
 $('language').onchange=e=>window.ObservatoryLanguage.set(e.target.value);
 window.ObservatoryLanguage.subscribe(value=>{if(lang!==value){lang=value;setup();}});
 document.querySelectorAll('[data-view]').forEach(el=>el.addEventListener('click',()=>switchView(el.dataset.view)));
@@ -254,6 +254,6 @@ window.CaseSource.subscribe(state=>{
  if(state.cases.length&&events!==state.cases){events=state.cases;window.RecordSearch.setCases(events);setup();refreshCaseClock();}
  else renderDataStatus();
 });
-window.IbamaFauna?.init({map,refresh:render});window.IbamaFauna?.setOsintRows(events);
+window.IbamaFauna?.init({map,refresh:render});window.IbamaFauna?.setOsintRows(events);window.ObservatoryConservation?.init(()=>lang,render);
 window.CaseSource.start();
 try{window.ObservatoryGlobe?.init({map,filtered,record,popup,escape:esc,visible:()=>currentView==='dashboard',lang:()=>lang,select:id=>{activeId=id;}});}catch(error){console.error('Globe initialization failed; case feed remains available.',error);}
