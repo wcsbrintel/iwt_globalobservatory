@@ -184,12 +184,13 @@ window.ObservatoryGlobe=(()=>{
   if(mode!==next){try{window.ObservatoryAnalytics?.track(next+'_view');}catch{}}
   mode=next;get('map').hidden=mode!=='map';get('globe').hidden=mode!=='globe';
   get('mapMode').setAttribute('aria-pressed',String(mode==='map'));get('globeMode').setAttribute('aria-pressed',String(mode==='globe'));
-  localize();syncRotation();syncStory();if(mode==='globe'){await ensureGlobe();if(globe&&mode==='globe')globe.resumeAnimation();}else globe?.pauseAnimation();syncRotation();syncStory();resize();
+  localize();renderCleanCountryChart();syncRotation();syncStory();if(mode==='globe'){await ensureGlobe();if(globe&&mode==='globe')globe.resumeAnimation();}else globe?.pauseAnimation();syncRotation();syncStory();resize();
  }
  function resize(){requestAnimationFrame(()=>{api.map.invalidateSize({pan:false});if(globe&&mode==='globe'){const r=get('mapStage').getBoundingClientRect();if(r.width&&r.height){globe.width(r.width).height(r.height);updateVisibility(globe.pointOfView());story?.refresh();}}});}
  // A display-only second stage of the existing fullscreen experience.
  // Sources, filters, KDE and marker data are never modified here.
  function renderCleanCountryChart(){
+   try{window.ProspectiveIntelligence?.sync({active:expanded&&cleanView&&mode==='globe',api,root:get('mapStage')});}catch(error){console.warn('Prospective analytics unavailable',error);}
   if(!cleanView||!api)return;
   window.CleanMapCountryChart?.render({
    root:get('cleanCountryChart'),records:api.filtered(),lang:api.lang(),
@@ -218,7 +219,7 @@ window.ObservatoryGlobe=(()=>{
   expanded=next;if(next&&!startup){try{window.ObservatoryAnalytics?.track('fullscreen_use',{view:mode});}catch{}}const shell=get('mapViewCard');
   if(next){snapshot={scrollX:window.scrollX,scrollY:window.scrollY,overflow:document.body.style.overflow,focus:document.activeElement};filterNode=document.querySelector('.filters');languageNode=get('appearanceControls')||get('language');filterSlot=document.createComment('filter position');languageSlot=document.createComment('language position');filterNode.before(filterSlot);languageNode.before(languageSlot);get('mapFiltersHost').append(filterNode);shell.querySelector('.cardhead').append(languageNode);get('mapFiltersHost').hidden=false;get('toggleMapFilters').setAttribute('aria-expanded',String(!get('mapFiltersHost').hidden));document.body.style.overflow='hidden';shell.classList.add('map-expanded');shell.setAttribute('role','dialog');shell.setAttribute('aria-modal','true');shell.setAttribute('aria-label',messages[api.lang()].title);if(!startup)get('expandMap').focus();}
   else{shell.classList.remove('map-expanded');shell.removeAttribute('role');shell.removeAttribute('aria-modal');shell.removeAttribute('aria-label');filterSlot.replaceWith(filterNode);languageSlot.replaceWith(languageNode);document.body.style.overflow=snapshot.overflow;window.scrollTo(snapshot.scrollX,snapshot.scrollY);snapshot.focus?.focus({preventScroll:true});}
-  localize();resize();
+  localize();renderCleanCountryChart();resize();
  }
  function init(a){
   api=a;
@@ -241,7 +242,7 @@ window.ObservatoryGlobe=(()=>{
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
-   const nodes=[get('exitCleanView'),get('cleanRotate')];
+   const nodes=[get('exitCleanView'),get('cleanRotate'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
    const visible=nodes.filter(el=>el&&!el.disabled&&el.getClientRects().length);
