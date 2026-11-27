@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/ibama-fauna/**'
       - '.github/workflows/ibama-fauna.yml'
+      - 'scripts/ibama-review/rebuild.cjs'
 permissions:
   contents: write
 concurrency:
@@ -14,7 +15,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,37 +23,34 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate and enrich national IBAMA wildlife
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/ibama-fauna"
-          python scripts/ibama-fauna/build.py --output-dir "$RUNNER_TEMP/ibama-fauna"
-          IBAMA_DATA_DIR="$RUNNER_TEMP/ibama-fauna" python scripts/ibama-fauna/enrich.py
-          python scripts/ibama-fauna/finalize.py "$RUNNER_TEMP/ibama-fauna"
-      - name: Publish verified annual dataset to dedicated data branch
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin ibama-data >/dev/null; then
-            git fetch origin ibama-data
-            git switch -C ibama-data FETCH_HEAD
-          else
-            git switch --orphan ibama-data
-          fi
-          mkdir -p ibama-fauna
-          cp "$RUNNER_TEMP/ibama-fauna/"*.json ibama-fauna/
-          git add ibama-fauna
-          if ! git diff --cached --quiet; then
-            git commit -m "Refresh national IBAMA fauna 2020-2025 snapshot"
-            git push origin HEAD:refs/heads/ibama-data
-          fi
-          echo "Verified national wildlife dataset published to ibama-data."
-      - name: Save public dataset as build artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/setup-node@v4
         with:
-          name: ibama-fauna-national
-          path: ibama-fauna/
-          retention-days: 14
+          node-version: '22'
+      - name: Fetch current baselines
+        run: |
+          git fetch origin ibama-data taxonomy-data
+          git worktree add --detach "$RUNNER_TEMP/ibama-baseline" origin/ibama-data
+          git worktree add --detach "$RUNNER_TEMP/taxonomy-baseline" origin/taxonomy-data
+      - name: Read all official notices and join specimens
+        run: |
+          python scripts/ibama-review/build-all.py --output-dir "$RUNNER_TEMP/ibama-full"
+          IBAMA_DATA_DIR="$RUNNER_TEMP/ibama-full" python scripts/ibama-review/enrich-all.py
+      - name: Verify new taxonomic candidates
+        run: node scripts/taxonomy/verify-full.cjs "$RUNNER_TEMP/ibama-full" "$RUNNER_TEMP/taxonomy-baseline/species-registry.json"
+      - name: Rebuild national fauna and fisheries dataset
+        run: |
+          node scripts/ibama-review/rebuild.cjs "$RUNNER_TEMP/ibama-full" "$RUNNER_TEMP/ibama-baseline/ibama-fauna" species-registry.json "$RUNNER_TEMP/ibama-rebuilt"
+          node scripts/build_species_index.cjs "$RUNNER_TEMP/ibama-rebuilt" species-registry.json
+          cp species-registry.json species-index.json species-review.json "$RUNNER_TEMP/ibama-rebuilt/"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ibama-rebuilt-national
+          path: ${{ runner.temp }}/ibama-rebuilt/
+      - name: Publish rebuilt dataset atomically
+        run: |
+          git -C "$RUNNER_TEMP/ibama-baseline" config user.name "github-actions[bot]"
+          git -C "$RUNNER_TEMP/ibama-baseline" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp "$RUNNER_TEMP/ibama-rebuilt/"*.json "$RUNNER_TEMP/ibama-baseline/ibama-fauna/"
+          git -C "$RUNNER_TEMP/ibama-baseline" add ibama-fauna
+          git -C "$RUNNER_TEMP/ibama-baseline" commit -m "Rebuild national IBAMA fauna and fisheries coverage"
+          git -C "$RUNNER_TEMP/ibama-baseline" push origin HEAD:refs/heads/ibama-data
