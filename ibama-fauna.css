@@ -25,3 +25,13 @@
 .ibama-record p{margin:6px 0}.ibama-narrative{white-space:pre-wrap;overflow-wrap:anywhere}.ibama-disclaimer{font-size:11px;opacity:.8}
 .ibama-record a{color:#58b9d9}.ibama-choice{display:block;width:100%;margin:5px 0;text-align:left}
 @media(max-width:650px){.map-view-card.map-clean-view #ibamaDetail{right:8px;top:70px;bottom:8px;width:calc(100% - 16px);max-width:none;z-index:1510}}
+
+#sharedTaxon[hidden],#taxonChoices[hidden]{display:none!important}
+#taxonToggle{display:flex;align-items:center;justify-content:space-between;width:100%;gap:8px;min-height:26px;background:transparent;color:var(--ink);border:0;padding:3px 0;font:inherit;text-align:left;cursor:pointer}
+#taxonSelected{min-width:0;overflow-wrap:anywhere}
+#taxonChoices{display:grid;gap:5px;margin-top:6px;min-width:0}
+#taxonQuery{min-width:0;width:100%;box-sizing:border-box;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:6px;font:inherit}
+#taxonList{display:grid;gap:2px;max-height:230px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
+#taxonList button{display:block;text-align:left;overflow-wrap:anywhere;background:transparent;color:var(--ink);border:1px solid transparent;border-radius:4px;padding:5px 6px;font:inherit;cursor:pointer}
+#taxonList button:hover,#taxonList button[aria-pressed=true]{background:#42b97e18;border-color:#42b97e70}
+#taxonToggle em,#taxonList em,.ibama-record em,.clean-map-story-card em{font-style:italic}

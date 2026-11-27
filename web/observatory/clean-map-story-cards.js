@@ -121,13 +121,15 @@ window.CleanMapStoryCards=(()=>{
    const r=getRecord(e),d=format(e,r,getLang());
    root.dataset.source=e.sourceType==='ibama'?'ibama':'osint';
    nodes.kicker.textContent=d.kicker;
-   nodes.title.textContent=d.title;
+   const names=e.sourceType==='ibama'?(e.taxonEntries||[]).map(x=>x.name):[...String(e.taxon_text||r.taxon||'').matchAll(/\*([A-Z][a-z]+(?: [a-z][a-z-]+){0,2})\*/g)].map(x=>x[1]);
+   const sci=value=>window.ScientificText.html(value,names);
+   nodes.title.innerHTML=sci(d.title);
    nodes.place.textContent=d.place;
    nodes.eventDate.textContent=d.eventDate;
    nodes.publicationDate.textContent=d.publicationDate;
-   nodes.description.textContent=d.description;
-   nodes.fauna.textContent=d.fauna;
-   nodes.quantity.textContent=d.quantity;
+   nodes.description.innerHTML=sci(d.description);
+   nodes.fauna.innerHTML=sci(d.fauna);
+   nodes.quantity.innerHTML=sci(d.quantity);
    for(const key of ['publicationDate','description','fauna','quantity'])nodes[key].hidden=!d[key];
    card.setAttribute('aria-label',d.aria+': '+d.title);
   }
