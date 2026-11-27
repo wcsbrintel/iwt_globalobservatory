@@ -36,3 +36,10 @@
 
 /* Keep selector above draggable charts, while allowing all map gestures outside cards. */
 .prospective-root{z-index:1320}
+
+.prospective-source-section{margin-top:8px;padding-top:8px;border-top:1px solid var(--pi-border)}
+.prospective-card .prospective-source-heading{font-size:10px;margin:0 0 5px;color:var(--pi-accent);font-weight:650}
+.prospective-card .pi-source-ibama{--pi-accent:#42b97e}
+[data-clean-chart-theme="light"] .prospective-card .pi-source-ibama{--pi-accent:#17643f}
+.prospective-comparison{border-top:1px solid var(--pi-border);padding-top:8px;margin-top:8px}
+.prospective-card .pi-ibama-comparison{stroke:#42b97e}

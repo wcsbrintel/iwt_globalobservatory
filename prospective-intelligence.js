@@ -2,7 +2,7 @@
 window.ProspectiveIntelligence=(()=>{
 'use strict';
 const sources=new Map(),C=window.ProspectiveCore;
-let root,button,panel,charts,last,enabled=false,optionsOpen=false,analysisSource='osint',history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
+let root,button,panel,charts,last,enabled=false,optionsOpen=false,history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
 const positionKey='observatory-prospective-chart-positions-v1';
 let positions={};try{const saved=JSON.parse(localStorage.getItem(positionKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))positions=saved;}catch{}
 const savePositions=()=>{try{localStorage.setItem(positionKey,JSON.stringify(positions));}catch{}};
@@ -22,7 +22,37 @@ function invalidate(){dirty=true;if(last?.active&&enabled)render();}
 const normalize=e=>({id:String(e.id),canonicalId:String(e.case_id||e.id),country:e.country,groups:e.groups||[],mode:e.modeGroup,day:window.ObservatoryTimeCore.dateOf(e,'occurrence').day,countable:window.CaseContext.countable(e)});
 sources.set('canonical-cases',{snapshot:({api})=>({rows:api.filtered('base').map(normalize),visible:api.filtered().map(normalize),edges:[]})});
 sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:window.DocumentedRoutes.segments(api.filtered('base'),window.NEWS_DATA).map(d=>({eventId:String(d.event.id),from:window.CountryNames?.canonical(d.segment.from.country)||d.segment.from.country,to:window.CountryNames?.canonical(d.segment.to.country)||d.segment.to.country,direction:window.DocumentedRoutes.direction(d.direction),kind:d.route.route_type}))})});
-function calculate(){if(analysisSource==='ibama'){const d=window.IbamaFauna?.snapshots()||{rows:[],visible:[],edges:[]};return C.analyze({...d,history,horizon,now:'2026-01-01',coverageStart:'2020-01-01',disableForecast:true});}const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
+function activeSources(){const ib=window.IbamaFauna;return [...(!ib||ib.osint()?['osint']:[]),...(ib?.enabled()?['ibama']:[])];}
+function calculate(){
+ const ib=window.IbamaFauna,active=activeSources(),results={};
+ const year=Number(document.getElementById('year')?.value||0),now=window.ObservatoryTimeCore.day(Date.now()),yearEnd=year?String(year+1)+'-01-01':null;
+ let osintData=null,officialData=null;
+ if(active.includes('osint')){
+  const all={rows:[],visible:[],edges:[]};
+  for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}
+  osintData=all;const end=yearEnd&&yearEnd<now?yearEnd:now;
+  results.osint=C.analyze({...all,history,horizon,now:end,coverageStart:year&&yearEnd<now?String(year)+'-01-01':undefined,disableForecast:Boolean(yearEnd&&yearEnd<now)});
+ }
+ if(active.includes('ibama')&&ib.ready()){
+  officialData=ib.snapshots();const end=yearEnd&&yearEnd<'2026-01-01'?yearEnd:'2026-01-01',coverage=year>=2020&&year<=2025?String(year)+'-01-01':'2020-01-01';
+  results.ibama=C.analyze({...officialData,history,horizon,now:end,coverageStart:coverage,disableForecast:true});
+ }
+ // Compare only Brazil, on shared complete calendar years. Separate denominators.
+ let comparison=null;
+ if(osintData&&officialData&&!year){
+  const brazil=osintData.rows.filter(r=>r.countable&&window.CountryNames?.canonical(r.country)==='Brasil'&&/^\d{4}-\d{2}-\d{2}$/.test(r.day||'')&&r.day<now);
+  const dates=brazil.map(r=>r.day).sort(),first=dates[0],lastDay=dates.at(-1);
+  if(first&&lastDay){let from=Math.max(2020,Number(first.slice(0,4))+1),to=Math.min(2025,Number(lastDay.slice(0,4))-1);if(history)from=Math.max(from,to-Math.floor(history/12)+1);
+   if(to-from+1>=2){
+    const restrict=rows=>rows.filter(r=>r.countable&&r.day>=from+'-01-01'&&r.day<=(to+'-12-31'));
+    const a=restrict(brazil),b=restrict(officialData.rows);
+    const monthly=rows=>Array.from({length:12},(_,i)=>100*rows.filter(r=>Number(r.day.slice(5,7))===i+1).length/rows.length);
+    if(a.length>=36&&b.length>=36)comparison={from,to,osint:monthly(a),ibama:monthly(b),nOsint:a.length,nIbama:b.length};
+   }
+  }
+ }
+ return {active,results,comparison};
+}
 function ensure(){
  if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{if(optionsOpen){setOptions(false);return;}if(!enabled){enabled=true;charts.hidden=false;dirty=true;render();}setOptions(true);};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapControls').insertBefore(button,last.root.querySelector('#cleanLanguageHost'));
  panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);panel.dataset.chart='options';charts=el('div','prospective-charts');charts.hidden=true;root.append(charts,panel);last.root.append(root);
@@ -45,7 +75,7 @@ function buildControls(){
  panel.replaceChildren();const head=el('header','prospective-card-header'),heading=el('h3'),handle=el('button','prospective-drag',t(1));handle.type='button';handle.title=extra().move;handle.setAttribute('aria-label',t(1)+' — '+extra().move);heading.append(handle);head.append(heading);
  const close=el('button','prospective-card-close','×');close.type='button';close.title=t(38);close.setAttribute('aria-label',t(38)+': '+t(1));close.onclick=()=>setOptions(false);head.append(close);panel.append(head);attachDrag(panel,handle);
  function select(label,values,selected,change){const l=el('label','prospective-field',label),s=el('select');for(const [v,name] of values){const o=el('option','',name);o.value=v;s.append(o);}s.value=selected;s.onchange=()=>{change(Number(s.value));dirty=true;render();};l.append(s);panel.append(l);}
- const sw=window.IbamaFauna?.words();if(sw){const label=el('label','prospective-field',sw.analytical),s=el('select');for(const [v,n] of [['osint',sw.osint],['ibama',sw.ibama]]){const o=el('option','',n);o.value=v;s.append(o);}s.value=analysisSource;s.onchange=()=>{analysisSource=s.value;dirty=true;if(analysisSource==='ibama')window.IbamaFauna.load();render();};label.append(s);panel.append(label);}
+ const sourceLine=el('small','prospective-source-summary');sourceLine.id='prospectiveSources';panel.append(sourceLine);
  select(t(2),[[12,'12 '+t(3)],[24,'24 '+t(3)],[36,'36 '+t(3)],[0,t(4)]],history,v=>history=v);
  select(t(5),[[30,'1'],[60,'2'],[90,'3']],horizon,v=>horizon=v);
  const options=el('div','prospective-checks');for(let i=0;i<ids.length;i++){const l=el('label'),c=el('input');c.type='checkbox';c.dataset.chart=ids[i];c.checked=chosen.has(ids[i]);c.onchange=()=>{c.checked?chosen.add(ids[i]):chosen.delete(ids[i]);render();};l.append(c,document.createTextNode(t(6+i)));options.append(l);}statusNode=el('small','prospective-status');statusNode.setAttribute('role','status');statusNode.setAttribute('aria-live','polite');const reset=el('button','prospective-reset',extra().reset);reset.type='button';reset.onclick=()=>{positions={};savePositions();render();placeOptions();};panel.append(options,reset,statusNode,el('small','',t(18)+' '+t(43)));
@@ -94,15 +124,33 @@ function line(s,values,opts={}){
 }
 function pairLabel(d){return country(d.a)+(d.directed?' → ':d.key.includes('↔')?' ↔ ':' — ')+country(d.b);}
 function render(){try{renderCharts();}catch(error){console.error('Prospective chart rendering failed',error);if(statusNode)statusNode.textContent=extra().error;}}
+const compareWords=()=>({pt:{sources:'Fontes ativas',none:'Nenhuma fonte selecionada.',common:'Sazonalidade relativa · Brasil',share:'Percentual dos registros de cada fonte; não mede incidência.',insufficient:'Sem dois anos completos comuns e amostra suficiente para comparação normalizada.',loading:'IBAMA: dados ainda não carregados.',separate:'Séries independentes; os totais não são somados.',notApplicable:'Não documentado nesta fonte.',end:'Histórico até',units:'autos'},en:{sources:'Active sources',none:'No source selected.',common:'Relative seasonality · Brazil',share:'Share of each source’s records; not incidence.',insufficient:'Two shared complete years and adequate samples are not available for normalized comparison.',loading:'IBAMA: data not loaded yet.',separate:'Independent series; totals are not combined.',notApplicable:'Not documented by this source.',end:'History through',units:'notices'},es:{sources:'Fuentes activas',none:'Ninguna fuente seleccionada.',common:'Estacionalidad relativa · Brasil',share:'Porcentaje de registros de cada fuente; no mide incidencia.',insufficient:'No hay dos años completos comunes y muestras suficientes para comparar.',loading:'IBAMA: datos aún no cargados.',separate:'Series independientes; no se suman los totales.',notApplicable:'No documentado por esta fuente.',end:'Historial hasta',units:'actas'}}[lang()]);
+function sourceSummary(){const n=panel?.querySelector('#prospectiveSources');if(n)n.textContent=compareWords().sources+': '+(activeSources().map(s=>s.toUpperCase()).join(' + ')||compareWords().none);}
+function normalizedSeason(s,d){const w=compareWords();const section=el('section','prospective-comparison');section.append(el('h3','',w.common));s.append(section);if(!d){note(section,w.insufficient);return;}
+ const z=svg('svg',{viewBox:'0 0 286 112',role:'img','aria-label':w.common}),max=Math.max(10,...d.osint,...d.ibama)*1.12,x=i=>24+i*254/11,y=v=>89-v*75/max;
+ for(const v of [0,max/2,max]){add(z,'line',{x1:24,x2:278,y1:y(v),y2:y(v),class:'pi-grid'});add(z,'text',{x:20,y:y(v)+3,'text-anchor':'end'},fmt(v)+'%');}
+ for(const k of ['osint','ibama'])add(z,'path',{d:d[k].map((v,i)=>(i?'L':'M')+x(i)+' '+y(v)).join(' '),class:k==='ibama'?'pi-line pi-ibama-comparison':'pi-line'});
+ for(let i=0;i<12;i++)add(z,'text',{x:x(i),y:105,'text-anchor':'middle'},monthInitial(i));
+ section.append(z);note(section,'OSINT (n='+fmt(d.nOsint)+') · IBAMA (n='+fmt(d.nIbama)+') · '+d.from+'–'+d.to);note(section,w.share);
+}
 function renderCharts(){
  if(!last?.active||!enabled)return;if(dragging){rerender=true;return;}
  try{if(dirty||!cache){cache=calculate();dirty=false;}}catch(error){console.error('Prospective analysis calculation failed',error);charts.replaceChildren();statusNode.textContent=extra().error;const err=card(t(0),'error');note(err,extra().error);place(err,0);return;}
- const a=cache;charts.replaceChildren();const iw=window.IbamaFauna?.words();const loading=window.CaseSource?.state()?.status==='loading'&&!window.NEWS_DATA?.length;statusNode.textContent=analysisSource==='ibama'&&!window.IbamaFauna.ready()?iw.notloaded:loading?extra().loading:extra().ready+' · '+fmt(a.historyCount)+' '+(analysisSource==='ibama'?iw.notice:t(21).toLowerCase())+' · '+a.months.length+' '+extra().months;const enough=a.months.length>=24&&a.historyCount>=36&&a.months.filter(x=>x.n>0).length>=12;
- for(const id of ids){if(!chosen.has(id))continue;const i=ids.indexOf(id),ib=analysisSource==='ibama',s=card((ib&&id==='areas'?iw.byState:ib&&id==='index'?iw.priority:t(6+i))+(ib?' · IBAMA':' · OSINT'),id);if(ib&&!window.IbamaFauna.ready()){note(s,iw.notloaded);continue;}if(ib&&id==='forecast'){note(s,iw.noProjection);continue;}if(ib&&['routes','network','modes'].includes(id)){note(s,t(17));continue;}
+ const {active,results,comparison}=cache;charts.replaceChildren();sourceSummary();const iw=window.IbamaFauna?.words(),cw=compareWords();
+ statusNode.textContent=active.length?active.map(k=>results[k]?k.toUpperCase()+' · '+fmt(results[k].historyCount)+' · '+results[k].months.length+' '+extra().months:k.toUpperCase()+' · '+t(17)).join(' | '):cw.none;
+ if(!active.length)return;
+ for(const id of ids){if(!chosen.has(id))continue;const i=ids.indexOf(id),onlyIb=active.length===1&&active[0]==='ibama',cardNode=card(onlyIb&&id==='areas'?iw.byState:onlyIb&&id==='index'?iw.priority:t(6+i),id);
+ for(const key of active){
+ const ib=key==='ibama',a=results[key],s=el('section','prospective-source-section '+(ib?'pi-source-ibama':'pi-source-osint'));cardNode.append(s);
+ const title=(ib&&id==='areas'?iw.byState:ib&&id==='index'?iw.priority:key.toUpperCase());s.append(el('h3','prospective-source-heading',title+(ib&&['areas','index'].includes(id)?' · IBAMA':'')));
+ if(!a){note(s,ib?cw.loading:t(17));continue;}
+ if(ib&&id==='forecast'){note(s,iw.noProjection);continue;}
+ if(ib&&['routes','network','modes'].includes(id)){note(s,cw.notApplicable);continue;}
+ const enough=a.months.length>=24&&a.historyCount>=36&&a.months.filter(x=>x.n>0).length>=12;
  switch(id){
- case 'kpi':{const k=el('div','prospective-kpis');for(const [n,v] of [[t(22),a.visible],[t(21),a.historyCount],[t(20),a.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);line(s,a.months.slice(-12));break;}
+ case 'kpi':{const k=el('div','prospective-kpis');for(const [n,v] of [[ib?iw.ready:t(22),a.visible],[ib?iw.notice:t(21),a.historyCount],[t(20),a.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);line(s,a.months.slice(-12));break;}
  case 'routes':bars(s,a.route.pairs,pairLabel);note(s,t(36));break;
- case 'areas':bars(s,a.areas.map(x=>({key:x.key,n:x.n})),x=>country(x.key));break;
+ case 'areas':bars(s,a.areas.map(x=>({key:x.key,n:x.n})),x=>ib?x.key:country(x.key));break;
  case 'season':if(!enough){note(s,t(34));break;}line(s,a.season.map((x,i)=>({key:'2020-'+String(i+1).padStart(2,'0'),n:x.n})),{seasonal:true});note(s,t(25)+' · '+t(41));break;
  case 'heat':{if(!enough){note(s,t(34));break;}const grid=el('div','prospective-heat');grid.append(el('span'));for(let i=0;i<12;i++)grid.append(el('small','',monthInitial(i)));for(const g of a.groupSeason.slice(0,5)){grid.append(el('small','',group(g.key)));const max=Math.max(1,...g.values);for(const n of g.values){const cell=el('span','pi-cell');cell.style.opacity=String(.12+.88*n/max);cell.title=group(g.key)+': '+fmt(n);grid.append(cell);}}s.append(grid);note(s,t(50));break;}
  case 'trend':s.append(el('strong','prospective-metric',a.trend===null?'—':(a.trend>0?'+':'')+fmt(a.trend)+'%'));line(s,a.months.slice(-12),{ref:a.months.length>3?a.months.slice(0,-3).reduce((n,x)=>n+x.n,0)/(a.months.length-3):0});note(s,t(23)+': '+fmt(a.recent)+' · '+t(24)+': '+fmt(a.prior));break;
@@ -110,13 +158,17 @@ function renderCharts(){
  case 'modes':{const keys=[...new Set(a.modeRows.flatMap(x=>x.map(v=>v.key)))].sort();const cols=['#60a5fa','#527da1','#94a3b8','#7b8a9b','#b7cbdc','#57606c'];a.modeRows.forEach((r,j)=>{s.append(el('small','',[t(23),t(24),t(21)][j]));const rail=el('div','pi-stack'),n=r.reduce((v,x)=>v+x.n,0);for(const d of r){const span=el('span');span.style.width=100*d.n/Math.max(1,n)+'%';span.style.background=cols[keys.indexOf(d.key)%cols.length];span.title=group(d.key)+': '+fmt(d.n);rail.append(span);}s.append(rail);});const legend=el('div','pi-legend');keys.forEach((k,i)=>{const n=el('span','',group(k));n.style.borderLeft='5px solid '+cols[i%cols.length];legend.append(n);});s.append(legend);break;}
  case 'network':{const nodes=a.route.nodes.slice(0,6);bars(s,nodes,x=>country(x.key));note(s,t(30)+' · '+t(45));break;}
  case 'anomaly':s.append(el('strong','prospective-metric',a.anomaly===null?'—':fmt(a.anomaly)+' σ'));note(s,a.anomaly===null?t(17):t(42)+' · '+(a.anomaly>=2?t(32):t(33)));line(s,a.months.slice(-12));break;
- case 'index':{if(a.months.length<6){note(s,t(17));break;}bars(s,a.areas.filter(x=>x.recent>0).map(x=>({key:x.key,n:x.recent})),x=>country(x.key));note(s,t(31)+' · '+t(37));for(const d of a.areas.filter(x=>x.recent>0).slice(0,5))note(s,country(d.key)+': '+d.recent+' / '+d.prior);break;}
+ case 'index':{if(a.months.length<6){note(s,t(17));break;}bars(s,a.areas.filter(x=>x.recent>0).map(x=>({key:x.key,n:x.recent})),x=>ib?x.key:country(x.key));note(s,t(31)+' · '+t(37));for(const d of a.areas.filter(x=>x.recent>0).slice(0,5))note(s,(ib?d.key:country(d.key))+': '+d.recent+' / '+d.prior);break;}
  }
+ if(a.months.length)note(s,cw.end+' '+a.months.at(-1).key);
+ if(ib)note(s,iw.historical);else note(s,t(18));
  }
- [...charts.querySelectorAll('.prospective-card')].forEach((s,i)=>{note(s,analysisSource==='ibama'?(iw.disclaimer+' '+iw.historical):t(18));place(s,i);});
+ if(active.length>1){if(id==='season')normalizedSeason(cardNode,comparison);note(cardNode,cw.separate);}
+ }
+ [...charts.querySelectorAll('.prospective-card')].forEach((s,i)=>place(s,i));
  placeOptions();
 }
 let prevLang='';
-function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;panel.hidden=!ctx.active||!optionsOpen;charts.hidden=!enabled;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}if(enabled){dirty=true;render();}placeOptions();}
+function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;panel.hidden=!ctx.active||!optionsOpen;charts.hidden=!enabled;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}sourceSummary();if(enabled){dirty=true;render();}placeOptions();}
 return Object.freeze({sync,registerSource,invalidate});
 })();

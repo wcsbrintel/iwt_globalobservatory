@@ -538,3 +538,11 @@
  .map-view-card.map-clean-view .map-stage .map-filters-host:not([hidden]){top:8px;left:8px;max-height:calc(100% - 16px);width:min(320px,calc(100% - 175px));min-width:min(165px,calc(100% - 16px))}
  .map-view-card.map-clean-view .map-filters-host .filters{grid-template-columns:1fr}
 }
+
+/* Preserve source identity in the rotating map story, including the connector. */
+.map-view-card.map-clean-view #cleanMapStoryLayer[data-source="ibama"] .clean-map-story-card{border-color:#42b97e}
+.map-view-card.map-clean-view #cleanMapStoryLayer[data-source="ibama"] :is(.clean-map-story-kicker,.clean-map-story-quantity){color:#42b97e}
+.map-view-card.map-clean-view #cleanMapStoryLayer[data-source="ibama"] .clean-map-story-path{stroke:#42b97e}
+.map-view-card.map-clean-view #cleanMapStoryLayer[data-source="ibama"] .clean-map-story-pin{fill:#42b97e}
+.map-view-card.map-clean-view[data-clean-chart-theme="light"] #cleanMapStoryLayer[data-source="ibama"] :is(.clean-map-story-kicker,.clean-map-story-quantity){color:#17643f}
+.map-view-card.map-clean-view[data-clean-chart-theme="light"] #cleanMapStoryLayer[data-source="ibama"] .clean-map-story-path{stroke:#318658}

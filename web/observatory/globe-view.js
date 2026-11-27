@@ -6,7 +6,7 @@ window.ObservatoryGlobe=(()=>{
   es:{expand:'Ampliar',exit:'Salir de pantalla completa',filters:'Filtros',routes:'Rutas documentadas',noRoutes:'No hay rutas con origen y destino georreferenciados y documentados en esta selección.',routeHint:'Los arcos conectan lugares documentados; no representan el trayecto exacto.',loading:'Cargando globo…',failed:'No se pudo abrir el globo 3D. Puede continuar en MAP.',retry:'Reintentar',help:'Arrastre para girar e inclinar · Desplace o use dos dedos para acercar',cases:'Casos en esta zona',details:'Detalles del caso',close:'Cerrar',back:'Volver a los casos',home:'Vista global',zin:'Acercar',zout:'Alejar',rotate:'Girar',tilt:'Inclinar',map:'Mapa 2D',globe:'Globo 3D',empty:'Ningún caso coincide con los filtros.'}
  };
  let api,globe,mode='globe',expanded=false,loading=null,failed=false,detailId=null,clusterIds=[],snapshot=null,filterSlot,languageSlot,filterNode,languageNode;
- let routeDetail=null,pointsHidden=false,rotationEnabled=true,cleanView=false,story=null,cleanLanguageSlot=null,inlineFilterSlot=null;
+ let routeDetail=null,pointsHidden=false,rotationEnabled=true,minicardsEnabled=true,cleanView=false,story=null,cleanLanguageSlot=null,inlineFilterSlot=null;
  const markerElements=new Set(),themes={map:'dark',globe:'dark'};
  try{const saved=window.localStorage?.getItem('observatory-map-theme');if(['dark','light'].includes(saved))themes.map=saved;}catch{}
  // Always open the globe in dark mode; the current session can still change it.
@@ -20,6 +20,7 @@ window.ObservatoryGlobe=(()=>{
  Object.assign(text.pt,{cleanEnter:'Apenas o mapa',cleanExit:'Explorar outros recursos',cleanEnterHint:'Ocultar controles para mostrar apenas o mapa',cleanExitHint:'Mostrar os demais recursos do Observatório'});
  Object.assign(text.en,{cleanEnter:'Map only',cleanExit:'Explore other resources',cleanEnterHint:'Hide controls and show only the map',cleanExitHint:'Show the other Observatory resources'});
  Object.assign(text.es,{cleanEnter:'Solo el mapa',cleanExit:'Explorar otros recursos',cleanEnterHint:'Ocultar controles y mostrar solo el mapa',cleanExitHint:'Mostrar los demás recursos del Observatorio'});
+ try{minicardsEnabled=localStorage.getItem('observatory-minicards')!=='off';}catch{}
  const get=id=>document.getElementById(id),t=()=>text[api.lang()],safe=s=>api.escape(s),duration=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
  function button(id,label,fn){get(id).textContent=label;get(id).onclick=fn;}
  // Move the MapLibre GLOBE camera around Earth's longitude; never modify
@@ -135,7 +136,7 @@ window.ObservatoryGlobe=(()=>{
     pointsHidden=!pointsHidden;
     get('mapViewCard').classList.toggle('seizure-points-hidden',pointsHidden);
     if(pointsHidden)api.map.closePopup();
-    localize();
+    localize();syncStory();
    });
    get('togglePoints').setAttribute('aria-pressed',String(pointsHidden));
    get('togglePoints').title=l.pointsHint;
@@ -162,6 +163,8 @@ window.ObservatoryGlobe=(()=>{
    cleanRotate.title=rotateLabel;
    cleanRotate.setAttribute('aria-label',rotateLabel);
    cleanRotate.setAttribute('aria-pressed',String(rotationEnabled));
+   const mini=get('cleanMinicards'),labels=({pt:['Minicards','Mostrar minicards','Ocultar minicards'],en:['Minicards','Show minicards','Hide minicards'],es:['Minifichas','Mostrar minifichas','Ocultar minifichas']})[api.lang()]||['Minicards','Show minicards','Hide minicards'];
+   mini.hidden=!(cleanView&&mode==='globe');mini.textContent=labels[0];mini.title=labels[minicardsEnabled?2:1];mini.setAttribute('aria-label',mini.title);mini.setAttribute('aria-pressed',String(minicardsEnabled));
   get('closeMapDetail').textContent=l.close;get('mapDetailTitle').textContent=detailId?l.details:l.cases;
   if(!get('mapDetail').hidden)renderDetail();
  }
@@ -248,10 +251,10 @@ window.ObservatoryGlobe=(()=>{
   api=a;
   story=window.CleanMapStoryCards?.create({
    root:get('cleanMapStoryLayer'),getMap:()=>globe?.isMapLibre?globe.map:null,
-   getRecords:()=>api.filtered(),getLang:()=>api.lang(),getRecord:e=>api.record(e),
-   countable:window.CaseContext.countable,isVisible:e=>Boolean(globe?.isVisible(e)),
-   isEnabled:()=>cleanView&&mode==='globe'&&!failed&&!document.hidden&&get('mapDetail').hidden&&api.visible?.()!==false,
-   onOpen:id=>showCase(id)
+   getRecords:()=>api.filtered().concat(window.IbamaFauna?.filtered()||[]),getLang:()=>api.lang(),getRecord:e=>e.sourceType==='ibama'?{}:api.record(e),
+   countable:e=>e.sourceType==='ibama'||window.CaseContext.countable(e),isVisible:e=>Boolean(globe?.isVisible(e)),
+   isEnabled:()=>minicardsEnabled&&!pointsHidden&&cleanView&&mode==='globe'&&!failed&&!document.hidden&&get('mapDetail').hidden&&get('ibamaDetail').hidden&&api.visible?.()!==false,
+   onOpen:(id,e)=>{if(e?.sourceType==='ibama')window.IbamaFauna?.openById(id);else showCase(id);}
   });
   get('enterCleanView').onclick=()=>setCleanView(true);
   get('exitCleanView').onclick=()=>setCleanView(false);
@@ -260,12 +263,14 @@ window.ObservatoryGlobe=(()=>{
   get('globeZoomIn').onclick=()=>zoomBy(.75);get('globeZoomOut').onclick=()=>zoomBy(1.3);get('globeHome').onclick=()=>{suspendRotation(4500);globe?.pointOfView({lat:14,lng:5,altitude:2.4},duration());};
   get('globeRotate').onclick=toggleRotation;
   get('cleanRotate').onclick=toggleRotation;
+  get('cleanMinicards').onclick=()=>{minicardsEnabled=!minicardsEnabled;try{localStorage.setItem('observatory-minicards',minicardsEnabled?'on':'off');}catch{}localize();syncStory();};
+  window.addEventListener('observatory:ibama-detail',syncStory);
   get('globeTilt').onclick=()=>{suspendRotation(3500);if(globe)globe.pointOfView({...globe.pointOfView(),lat:globe.pointOfView().lat>60?-30:globe.pointOfView().lat+20},duration());};
   get('globe').addEventListener('pointerdown',()=>suspendRotation(4500),{passive:true});
    get('globe').addEventListener('wheel',()=>suspendRotation(3000),{passive:true});
    get('globe').tabIndex=0;get('globe').onkeydown=e=>{if(!globe)return;const p=globe.pointOfView();if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(e.key)){e.preventDefault();suspendRotation(3500);if(e.key==='+')zoomBy(.8);else if(e.key==='-')zoomBy(1.2);else globe.pointOfView({...p,lng:p.lng+(e.key==='ArrowRight'?10:e.key==='ArrowLeft'?-10:0),lat:Math.max(-85,Math.min(85,p.lat+(e.key==='ArrowUp'?10:e.key==='ArrowDown'?-10:0)))},duration());}};
   document.addEventListener('keydown',e=>{if(document.querySelector('dialog[open]'))return;if(e.key==='Escape'){if(get('ibamaDetail')&&!get('ibamaDetail').hidden){e.preventDefault();window.IbamaFauna?.close();}else if(!get('mapDetail').hidden){e.preventDefault();closeDetail();}else if(cleanView&&!get('mapFiltersHost').hidden){e.preventDefault();setFilterOpen(false);get('cleanFilters').focus({preventScroll:true});}else if(cleanView){e.preventDefault();setCleanView(false);}else if(expanded)setExpanded(false);}if(cleanView&&e.key==='Tab'&&(expanded||get('mapViewCard').contains(document.activeElement))){
-   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
+   const nodes=[get('exitCleanView'),get('cleanFilters'),get('cleanRotate'),get('cleanHotspots'),get('cleanMinicards'),get('language'),...get('mapFiltersHost').querySelectorAll('button,select,input,a[href],[tabindex="0"]'),get('prospectiveToggle'),...document.querySelectorAll('#prospectiveRoot button,#prospectiveRoot input,#prospectiveRoot select')];
    if(get('ibamaDetail')&&!get('ibamaDetail').hidden)nodes.push(...get('ibamaDetail').querySelectorAll('button,a[href],summary'));
    if(!get('mapDetail').hidden)nodes.push(...get('mapDetail').querySelectorAll('button,a[href],select,input,[tabindex="0"]'));
    else if(story?.hasVisibleCard())nodes.push(get('cleanMapStoryCard'));
