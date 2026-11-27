@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "GBIF Backbone Taxonomy",
-  "generated_at": "2026-11-27T21:43:35.749Z",
+  "generated_at": "2026-11-27T22:06:42.769Z",
   "summary": {
     "candidates": 950,
     "verified": 809,
@@ -35,6 +35,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Acinonyx jubatus"
     },
+    "acipenser baerii": {
+      "name": "Acipenser baerii",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 4287131,
+      "acceptedUsageKey": 4287131,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Acipenser baerii"
+    },
     "acanthurus pyroferus": {
       "name": "Acanthurus pyroferus",
       "group": "Fauna não especificada",
@@ -57,17 +68,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Acanthopagrus butcheri"
     },
-    "acipenser baerii": {
-      "name": "Acipenser baerii",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 4287131,
-      "acceptedUsageKey": 4287131,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Acipenser baerii"
-    },
     "acipenser gueldenstaedtii": {
       "name": "Acipenser gueldenstaedtii",
       "group": "Fauna não especificada",
@@ -89,17 +89,6 @@
       "acceptedUsageKey": 5184672,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Acropora millepora"
-    },
-    "achrioptera manga": {
-      "name": "Achrioptera manga",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 11378411,
-      "acceptedUsageKey": 11378411,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Achrioptera manga"
     },
     "acropora solitaryensis": {
       "name": "Acropora solitaryensis",
@@ -145,17 +134,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aethopyga siparaja"
     },
-    "agalychnis dacnicolor": {
-      "name": "Agalychnis dacnicolor",
-      "group": "Anfíbios",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 10807070,
-      "acceptedUsageKey": 10807070,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Agalychnis dacnicolor"
-    },
     "agapornis fischeri": {
       "name": "Agapornis fischeri",
       "group": "Aves",
@@ -166,6 +144,17 @@
       "acceptedUsageKey": 2479544,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Agapornis fischeri"
+    },
+    "agalychnis dacnicolor": {
+      "name": "Agalychnis dacnicolor",
+      "group": "Anfíbios",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 10807070,
+      "acceptedUsageKey": 10807070,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Agalychnis dacnicolor"
     },
     "agapornis personatus": {
       "name": "Agapornis personatus",
@@ -178,16 +167,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Agapornis personatus"
     },
-    "agelaius icterocephalus": {
-      "name": "Chrysomus icterocephalus",
-      "group": "Aves",
+    "achrioptera manga": {
+      "name": "Achrioptera manga",
+      "group": "Insetos",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 2484105,
-      "acceptedUsageKey": 2484103,
+      "status": "ACCEPTED",
+      "usageKey": 11378411,
+      "acceptedUsageKey": 11378411,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Agelaius icterocephalus"
+      "sourceName": "Achrioptera manga"
     },
     "agapornis roseicollis": {
       "name": "Agapornis roseicollis",
@@ -244,17 +233,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ailurus fulgens"
     },
-    "alces alces": {
-      "name": "Alces alces",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2440940,
-      "acceptedUsageKey": 2440940,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Alces alces"
-    },
     "alauda arvensis": {
       "name": "Alauda arvensis",
       "group": "Aves",
@@ -276,6 +254,28 @@
       "acceptedUsageKey": 2474029,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Alectoris chukar"
+    },
+    "alces alces": {
+      "name": "Alces alces",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2440940,
+      "acceptedUsageKey": 2440940,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Alces alces"
+    },
+    "agelaius icterocephalus": {
+      "name": "Chrysomus icterocephalus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 2484105,
+      "acceptedUsageKey": 2484103,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Agelaius icterocephalus"
     },
     "alligator mississippiensis": {
       "name": "Alligator mississippiensis",
@@ -585,17 +585,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ambystoma mexicanum"
     },
-    "amblyrhynchus cristatus": {
-      "name": "Amblyrhynchus cristatus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5224602,
-      "acceptedUsageKey": 5224602,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Amblyrhynchus cristatus"
-    },
     "ammodramus aurifrons": {
       "name": "Ammodramus aurifrons",
       "group": "Aves",
@@ -606,6 +595,17 @@
       "acceptedUsageKey": 2491298,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ammodramus aurifrons"
+    },
+    "amblyrhynchus cristatus": {
+      "name": "Amblyrhynchus cristatus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5224602,
+      "acceptedUsageKey": 5224602,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Amblyrhynchus cristatus"
     },
     "ammodramus humeralis": {
       "name": "Ammodramus humeralis",
@@ -662,17 +662,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Anas sibilatrix"
     },
-    "anax gibbosulus": {
-      "name": "Anax gibbosulus",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5051788,
-      "acceptedUsageKey": 5051788,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Anax gibbosulus"
-    },
     "ancistrus multispinis": {
       "name": "Ancistrus multispinis",
       "group": "Fauna não especificada",
@@ -683,6 +672,17 @@
       "acceptedUsageKey": 2339213,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ancistrus multispinis"
+    },
+    "anax gibbosulus": {
+      "name": "Anax gibbosulus",
+      "group": "Insetos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5051788,
+      "acceptedUsageKey": 5051788,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Anax gibbosulus"
     },
     "anilius scytale": {
       "name": "Anilius scytale",
@@ -706,17 +706,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Anodorhynchus hyacinthinus"
     },
-    "anodorhynchus leari": {
-      "name": "Anodorhynchus leari",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479361,
-      "acceptedUsageKey": 2479361,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Anodorhynchus leari"
-    },
     "antheraea polyphemus": {
       "name": "Antheraea polyphemus",
       "group": "Insetos",
@@ -738,6 +727,17 @@
       "acceptedUsageKey": 2490266,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Anthus pratensis"
+    },
+    "anodorhynchus leari": {
+      "name": "Anodorhynchus leari",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479361,
+      "acceptedUsageKey": 2479361,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Anodorhynchus leari"
     },
     "antidorcas marsupialis": {
       "name": "Antidorcas marsupialis",
@@ -761,17 +761,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aotus nancymaae"
     },
-    "antilophia galeata": {
-      "name": "Antilophia galeata",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2487617,
-      "acceptedUsageKey": 2487617,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Antilophia galeata"
-    },
     "apalone spinifera": {
       "name": "Apalone spinifera",
       "group": "Fauna não especificada",
@@ -782,6 +771,17 @@
       "acceptedUsageKey": 2442680,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Apalone spinifera"
+    },
+    "antilophia galeata": {
+      "name": "Antilophia galeata",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2487617,
+      "acceptedUsageKey": 2487617,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Antilophia galeata"
     },
     "ara ararauna": {
       "name": "Ara ararauna",
@@ -827,17 +827,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ara macao"
     },
-    "ara militaris": {
-      "name": "Ara militaris",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5959230,
-      "acceptedUsageKey": 5959230,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Ara militaris"
-    },
     "ara severus": {
       "name": "Ara severus",
       "group": "Aves",
@@ -859,6 +848,17 @@
       "acceptedUsageKey": 2474658,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aramides saracura"
+    },
+    "ara militaris": {
+      "name": "Ara militaris",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5959230,
+      "acceptedUsageKey": 5959230,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Ara militaris"
     },
     "arapaima gigas": {
       "name": "Arapaima gigas",
@@ -904,17 +904,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aratinga cactorum"
     },
-    "aratinga holochlora": {
-      "name": "Aratinga holochlora",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479146,
-      "acceptedUsageKey": 2479146,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Aratinga holochlora"
-    },
     "aratinga chloroptera": {
       "name": "Aratinga chloroptera",
       "group": "Aves",
@@ -937,27 +926,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aratinga jandaya"
     },
-    "aratinga mitrata": {
-      "name": "Aratinga mitrata",
+    "aratinga holochlora": {
+      "name": "Aratinga holochlora",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2479153,
-      "acceptedUsageKey": 2479153,
+      "usageKey": 2479146,
+      "acceptedUsageKey": 2479146,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Aratinga mitrata"
-    },
-    "aratinga solstitialis": {
-      "name": "Aratinga solstitialis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479158,
-      "acceptedUsageKey": 2479158,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Aratinga solstitialis"
+      "sourceName": "Aratinga holochlora"
     },
     "aratinga weddellii": {
       "name": "Aratinga weddellii",
@@ -970,6 +948,28 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Aratinga weddellii"
     },
+    "aratinga solstitialis": {
+      "name": "Aratinga solstitialis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479158,
+      "acceptedUsageKey": 2479158,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Aratinga solstitialis"
+    },
+    "aratinga mitrata": {
+      "name": "Aratinga mitrata",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479153,
+      "acceptedUsageKey": 2479153,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Aratinga mitrata"
+    },
     "archaeoprepona amphimachus": {
       "name": "Prepona meander",
       "group": "Insetos",
@@ -981,17 +981,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Archaeoprepona amphimachus"
     },
-    "argema mittrei": {
-      "name": "Argema mittrei",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 1867014,
-      "acceptedUsageKey": 1867014,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Argema mittrei"
-    },
     "ascalapha odorata": {
       "name": "Ascalapha odorata",
       "group": "Insetos",
@@ -1002,6 +991,17 @@
       "acceptedUsageKey": 1775796,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ascalapha odorata"
+    },
+    "argema mittrei": {
+      "name": "Argema mittrei",
+      "group": "Insetos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 1867014,
+      "acceptedUsageKey": 1867014,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Argema mittrei"
     },
     "asio stygius": {
       "name": "Asio stygius",
@@ -1025,17 +1025,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Asterias rubens"
     },
-    "astrochelys radiata": {
-      "name": "Astrochelys radiata",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2441666,
-      "acceptedUsageKey": 2441666,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Astrochelys radiata"
-    },
     "astronotus ocellatus": {
       "name": "Astronotus ocellatus",
       "group": "Fauna não especificada",
@@ -1046,6 +1035,17 @@
       "acceptedUsageKey": 2370243,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Astronotus ocellatus"
+    },
+    "astrochelys radiata": {
+      "name": "Astrochelys radiata",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2441666,
+      "acceptedUsageKey": 2441666,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Astrochelys radiata"
     },
     "atelerix albiventris": {
       "name": "Atelerix albiventris",
@@ -1080,17 +1080,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Atractosteus spatula"
     },
-    "ateles paniscus": {
-      "name": "Ateles paniscus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2436645,
-      "acceptedUsageKey": 2436645,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Ateles paniscus"
-    },
     "augosoma centaurus": {
       "name": "Augosoma centaurus",
       "group": "Insetos",
@@ -1101,6 +1090,17 @@
       "acceptedUsageKey": 1074277,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Augosoma centaurus"
+    },
+    "ateles paniscus": {
+      "name": "Ateles paniscus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2436645,
+      "acceptedUsageKey": 2436645,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Ateles paniscus"
     },
     "axis axis": {
       "name": "Axis axis",
@@ -1245,17 +1245,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Brotogeris chiriri"
     },
-    "brotogeris tirica": {
-      "name": "Brotogeris tirica",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479562,
-      "acceptedUsageKey": 2479562,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Brotogeris tirica"
-    },
     "brotogeris sanctithomae": {
       "name": "Brotogeris sanctithomae",
       "group": "Aves",
@@ -1266,6 +1255,17 @@
       "acceptedUsageKey": 2479573,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Brotogeris sanctithomae"
+    },
+    "brotogeris tirica": {
+      "name": "Brotogeris tirica",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479562,
+      "acceptedUsageKey": 2479562,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Brotogeris tirica"
     },
     "brotogeris versicolurus": {
       "name": "Brotogeris versicolurus",
@@ -1289,17 +1289,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Brycon orbignyanus"
     },
-    "bubalus bubalis": {
-      "name": "Bubalus bubalis",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 7422937,
-      "acceptedUsageKey": 7422937,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Bubalus bubalis"
-    },
     "bryconops melanurus": {
       "name": "Bryconops melanurus",
       "group": "Fauna não especificada",
@@ -1310,6 +1299,17 @@
       "acceptedUsageKey": 2354274,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Bryconops melanurus"
+    },
+    "bubalus bubalis": {
+      "name": "Bubalus bubalis",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 7422937,
+      "acceptedUsageKey": 7422937,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Bubalus bubalis"
     },
     "bubo bubo": {
       "name": "Bubo bubo",
@@ -1333,17 +1333,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Bubo virginianus"
     },
-    "buceros rhinoceros": {
-      "name": "Buceros rhinoceros",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2476004,
-      "acceptedUsageKey": 2476004,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Buceros rhinoceros"
-    },
     "bufo gargarizans": {
       "name": "Bufo gargarizans",
       "group": "Anfíbios",
@@ -1354,6 +1343,17 @@
       "acceptedUsageKey": 5217144,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Bufo gargarizans"
+    },
+    "buceros rhinoceros": {
+      "name": "Buceros rhinoceros",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2476004,
+      "acceptedUsageKey": 2476004,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Buceros rhinoceros"
     },
     "buteo buteo": {
       "name": "Buteo buteo",
@@ -1388,17 +1388,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cacatua galerita"
     },
-    "cacatua moluccensis": {
-      "name": "Cacatua moluccensis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479898,
-      "acceptedUsageKey": 2479898,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Cacatua moluccensis"
-    },
     "cacatua sulphurea": {
       "name": "Cacatua sulphurea",
       "group": "Aves",
@@ -1409,6 +1398,17 @@
       "acceptedUsageKey": 2479893,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cacatua sulphurea"
+    },
+    "cacatua moluccensis": {
+      "name": "Cacatua moluccensis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479898,
+      "acceptedUsageKey": 2479898,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Cacatua moluccensis"
     },
     "cacicus cela": {
       "name": "Cacicus cela",
@@ -1432,17 +1432,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cacicus solitarius"
     },
-    "caiman crocodilus": {
-      "name": "Caiman crocodilus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 8953936,
-      "acceptedUsageKey": 8953936,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Caiman crocodilus"
-    },
     "caiman latirostris": {
       "name": "Caiman latirostris",
       "group": "Fauna não especificada",
@@ -1453,6 +1442,17 @@
       "acceptedUsageKey": 5846511,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Caiman latirostris"
+    },
+    "caiman crocodilus": {
+      "name": "Caiman crocodilus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 8953936,
+      "acceptedUsageKey": 8953936,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Caiman crocodilus"
     },
     "caiman yacare": {
       "name": "Caiman yacare",
@@ -1597,17 +1597,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Capra ibex"
     },
-    "capra nubiana": {
-      "name": "Capra nubiana",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2441049,
-      "acceptedUsageKey": 2441049,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Capra nubiana"
-    },
     "capra sibirica": {
       "name": "Capra sibirica",
       "group": "Mamíferos",
@@ -1629,6 +1618,17 @@
       "acceptedUsageKey": 5220127,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Capreolus pygargus"
+    },
+    "capra nubiana": {
+      "name": "Capra nubiana",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2441049,
+      "acceptedUsageKey": 2441049,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Capra nubiana"
     },
     "caracal caracal": {
       "name": "Caracal caracal",
@@ -1685,17 +1685,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Carcharhinus falciformis"
     },
-    "carcharhinus longimanus": {
-      "name": "Carcharhinus longimanus",
-      "group": "Peixes",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2418052,
-      "acceptedUsageKey": 2418052,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Carcharhinus longimanus"
-    },
     "cardinalis cardinalis": {
       "name": "Cardinalis cardinalis",
       "group": "Aves",
@@ -1706,6 +1695,17 @@
       "acceptedUsageKey": 2490384,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cardinalis cardinalis"
+    },
+    "carcharhinus longimanus": {
+      "name": "Carcharhinus longimanus",
+      "group": "Peixes",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2418052,
+      "acceptedUsageKey": 2418052,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Carcharhinus longimanus"
     },
     "cardinalis phoeniceus": {
       "name": "Cardinalis phoeniceus",
@@ -1729,17 +1729,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cardisoma guanhumi"
     },
-    "carduelis carduelis": {
-      "name": "Carduelis carduelis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2494686,
-      "acceptedUsageKey": 2494686,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Carduelis carduelis"
-    },
     "carduelis cucullata": {
       "name": "Spinus cucullatus",
       "group": "Aves",
@@ -1750,6 +1739,17 @@
       "acceptedUsageKey": 5845578,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Carduelis cucullata"
+    },
+    "carduelis carduelis": {
+      "name": "Carduelis carduelis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2494686,
+      "acceptedUsageKey": 2494686,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Carduelis carduelis"
     },
     "caretta caretta": {
       "name": "Caretta caretta",
@@ -1817,17 +1817,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cavia aperea"
     },
-    "cebuella pygmaea": {
-      "name": "Cebuella pygmaea",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 4827382,
-      "acceptedUsageKey": 4827382,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Cebuella pygmaea"
-    },
     "cebus albifrons": {
       "name": "Cebus albifrons",
       "group": "Mamíferos",
@@ -1849,6 +1838,17 @@
       "acceptedUsageKey": 7477334,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cebus apella"
+    },
+    "cebuella pygmaea": {
+      "name": "Cebuella pygmaea",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 4827382,
+      "acceptedUsageKey": 4827382,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Cebuella pygmaea"
     },
     "cebus capucinus": {
       "name": "Cebus capucinus",
@@ -2202,17 +2202,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Colaptes rupicola"
     },
-    "colisa lalia": {
-      "name": "Trichogaster lalius",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 2394121,
-      "acceptedUsageKey": 5211200,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Colisa lalia"
-    },
     "colossoma macropomum": {
       "name": "Colossoma macropomum",
       "group": "Fauna não especificada",
@@ -2223,6 +2212,17 @@
       "acceptedUsageKey": 2353152,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Colossoma macropomum"
+    },
+    "colisa lalia": {
+      "name": "Trichogaster lalius",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 2394121,
+      "acceptedUsageKey": 5211200,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Colisa lalia"
     },
     "columba fasciata": {
       "name": "Patagioenas fasciata",
@@ -2279,6 +2279,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Columbina talpacoti"
     },
+    "conorhynchos conirostris": {
+      "name": "Conorhynchos conirostris",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2338696,
+      "acceptedUsageKey": 2338696,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Conorhynchos conirostris"
+    },
     "coragyps atratus": {
       "name": "Coragyps atratus",
       "group": "Aves",
@@ -2300,17 +2311,6 @@
       "acceptedUsageKey": 2464991,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Corallus caninus"
-    },
-    "conorhynchos conirostris": {
-      "name": "Conorhynchos conirostris",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2338696,
-      "acceptedUsageKey": 2338696,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Conorhynchos conirostris"
     },
     "corallus cropanii": {
       "name": "Corallus cropanii",
@@ -2345,17 +2345,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Coregonus migratorius"
     },
-    "corydoras elegans": {
-      "name": "Corydoras elegans",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2342623,
-      "acceptedUsageKey": 2342623,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Corydoras elegans"
-    },
     "corydoras sarareensis": {
       "name": "Corydoras sarareensis",
       "group": "Fauna não especificada",
@@ -2366,6 +2355,17 @@
       "acceptedUsageKey": 2342795,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Corydoras sarareensis"
+    },
+    "corydoras elegans": {
+      "name": "Corydoras elegans",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2342623,
+      "acceptedUsageKey": 2342623,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Corydoras elegans"
     },
     "coryphaena hippurus": {
       "name": "Coryphaena hippurus",
@@ -2389,17 +2389,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Coryphaspiza melanotis"
     },
-    "coryphospingus pileatus": {
-      "name": "Coryphospingus pileatus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491988,
-      "acceptedUsageKey": 2491988,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Coryphospingus pileatus"
-    },
     "coryphospingus cucullatus": {
       "name": "Coryphospingus cucullatus",
       "group": "Aves",
@@ -2410,6 +2399,17 @@
       "acceptedUsageKey": 2491984,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Coryphospingus cucullatus"
+    },
+    "coryphospingus pileatus": {
+      "name": "Coryphospingus pileatus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491988,
+      "acceptedUsageKey": 2491988,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Coryphospingus pileatus"
     },
     "cotinis nitida": {
       "name": "Cotinis nitida",
@@ -2444,16 +2444,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crax fasciolata"
     },
-    "crax globulosa": {
-      "name": "Crax globulosa",
-      "group": "Aves",
+    "crematogaster scutellaris": {
+      "name": "Crematogaster scutellaris",
+      "group": "Insetos",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2482171,
-      "acceptedUsageKey": 2482171,
+      "usageKey": 1325120,
+      "acceptedUsageKey": 1325120,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crax globulosa"
+      "sourceName": "Crematogaster scutellaris"
     },
     "crematogaster schmidti": {
       "name": "Crematogaster schmidti",
@@ -2466,16 +2466,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crematogaster schmidti"
     },
-    "crematogaster scutellaris": {
-      "name": "Crematogaster scutellaris",
-      "group": "Insetos",
+    "crax globulosa": {
+      "name": "Crax globulosa",
+      "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 1325120,
-      "acceptedUsageKey": 1325120,
+      "usageKey": 2482171,
+      "acceptedUsageKey": 2482171,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crematogaster scutellaris"
+      "sourceName": "Crax globulosa"
     },
     "creobroter gemmatus": {
       "name": "Creobroter gemmatus",
@@ -2488,17 +2488,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Creobroter gemmatus"
     },
-    "crocodylus acutus": {
-      "name": "Crocodylus acutus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2441329,
-      "acceptedUsageKey": 2441329,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crocodylus acutus"
-    },
     "crocodylus moreletii": {
       "name": "Crocodylus moreletii",
       "group": "Fauna não especificada",
@@ -2509,6 +2498,17 @@
       "acceptedUsageKey": 2441352,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crocodylus moreletii"
+    },
+    "crocodylus acutus": {
+      "name": "Crocodylus acutus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2441329,
+      "acceptedUsageKey": 2441329,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Crocodylus acutus"
     },
     "crocodylus niloticus": {
       "name": "Crocodylus niloticus",
@@ -2521,16 +2521,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crocodylus niloticus"
     },
-    "crocodylus rhombifer": {
-      "name": "Crocodylus rhombifer",
+    "crocodylus porosus": {
+      "name": "Crocodylus porosus",
       "group": "Fauna não especificada",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2441322,
-      "acceptedUsageKey": 2441322,
+      "usageKey": 2441333,
+      "acceptedUsageKey": 2441333,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crocodylus rhombifer"
+      "sourceName": "Crocodylus porosus"
     },
     "crocodylus siamensis": {
       "name": "Crocodylus siamensis",
@@ -2543,16 +2543,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crocodylus siamensis"
     },
-    "crocodylus porosus": {
-      "name": "Crocodylus porosus",
+    "crocodylus rhombifer": {
+      "name": "Crocodylus rhombifer",
       "group": "Fauna não especificada",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2441333,
-      "acceptedUsageKey": 2441333,
+      "usageKey": 2441322,
+      "acceptedUsageKey": 2441322,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crocodylus porosus"
+      "sourceName": "Crocodylus rhombifer"
     },
     "crotalus durissus": {
       "name": "Crotalus durissus",
@@ -2576,17 +2576,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crotalus terrificus"
     },
-    "crypturellus parvirostris": {
-      "name": "Crypturellus parvirostris",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2477558,
-      "acceptedUsageKey": 2477558,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Crypturellus parvirostris"
-    },
     "crypturellus tataupa": {
       "name": "Crypturellus tataupa",
       "group": "Aves",
@@ -2597,6 +2586,17 @@
       "acceptedUsageKey": 2477522,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Crypturellus tataupa"
+    },
+    "crypturellus parvirostris": {
+      "name": "Crypturellus parvirostris",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2477558,
+      "acceptedUsageKey": 2477558,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Crypturellus parvirostris"
     },
     "cuniculus paca": {
       "name": "Cuniculus paca",
@@ -2653,6 +2653,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cuora mouhotii"
     },
+    "cuora trifasciata": {
+      "name": "Cuora trifasciata",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2443499,
+      "acceptedUsageKey": 2443499,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Cuora trifasciata"
+    },
     "curaeus forbesi": {
       "name": "Curaeus forbesi",
       "group": "Aves",
@@ -2674,17 +2685,6 @@
       "acceptedUsageKey": 2488890,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cyanerpes cyaneus"
-    },
-    "cuora trifasciata": {
-      "name": "Cuora trifasciata",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2443499,
-      "acceptedUsageKey": 2443499,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Cuora trifasciata"
     },
     "cyanicterus cyanicterus": {
       "name": "Cyanicterus cyanicterus",
@@ -2752,17 +2752,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Cyanoramphus novaezelandiae"
     },
-    "cyphastrea serailia": {
-      "name": "Cyphastrea serailia",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2260163,
-      "acceptedUsageKey": 2260163,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Cyphastrea serailia"
-    },
     "cyprinus carpio": {
       "name": "Cyprinus carpio",
       "group": "Fauna não especificada",
@@ -2785,6 +2774,28 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Dacnis cayana"
     },
+    "cyphastrea serailia": {
+      "name": "Cyphastrea serailia",
+      "group": "Invertebrados",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2260163,
+      "acceptedUsageKey": 2260163,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Cyphastrea serailia"
+    },
+    "dama dama": {
+      "name": "Dama dama",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5220136,
+      "acceptedUsageKey": 5220136,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Dama dama"
+    },
     "dascyllus melanurus": {
       "name": "Dascyllus melanurus",
       "group": "Fauna não especificada",
@@ -2806,17 +2817,6 @@
       "acceptedUsageKey": 5212031,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Dascyllus trimaculatus"
-    },
-    "dama dama": {
-      "name": "Dama dama",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5220136,
-      "acceptedUsageKey": 5220136,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Dama dama"
     },
     "dasyprocta azarae": {
       "name": "Dasyprocta azarae",
@@ -2862,17 +2862,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Dasyprocta punctata"
     },
-    "dasypus novemcinctus": {
-      "name": "Dasypus novemcinctus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2440779,
-      "acceptedUsageKey": 2440779,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Dasypus novemcinctus"
-    },
     "dasypus kappleri": {
       "name": "Dasypus kappleri",
       "group": "Mamíferos",
@@ -2906,16 +2895,27 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Dendrocygna autumnalis"
     },
-    "dendrocygna viduata": {
-      "name": "Dendrocygna viduata",
+    "dasypus novemcinctus": {
+      "name": "Dasypus novemcinctus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2440779,
+      "acceptedUsageKey": 2440779,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Dasypus novemcinctus"
+    },
+    "dendrocygna javanica": {
+      "name": "Dendrocygna javanica",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2498396,
-      "acceptedUsageKey": 2498396,
+      "usageKey": 2498404,
+      "acceptedUsageKey": 2498404,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Dendrocygna viduata"
+      "sourceName": "Dendrocygna javanica"
     },
     "deroptyus accipitrinus": {
       "name": "Deroptyus accipitrinus",
@@ -2928,16 +2928,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Deroptyus accipitrinus"
     },
-    "dendrocygna javanica": {
-      "name": "Dendrocygna javanica",
+    "dendrocygna viduata": {
+      "name": "Dendrocygna viduata",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2498404,
-      "acceptedUsageKey": 2498404,
+      "usageKey": 2498396,
+      "acceptedUsageKey": 2498396,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Dendrocygna javanica"
+      "sourceName": "Dendrocygna viduata"
     },
     "diceros bicornis": {
       "name": "Diceros bicornis",
@@ -2961,17 +2961,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Didelphis albiventris"
     },
-    "didelphis aurita": {
-      "name": "Didelphis aurita",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2439928,
-      "acceptedUsageKey": 2439928,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Didelphis aurita"
-    },
     "diopsittaca nobilis": {
       "name": "Diopsittaca nobilis",
       "group": "Aves",
@@ -2982,6 +2971,17 @@
       "acceptedUsageKey": 2479365,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Diopsittaca nobilis"
+    },
+    "didelphis aurita": {
+      "name": "Didelphis aurita",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2439928,
+      "acceptedUsageKey": 2439928,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Didelphis aurita"
     },
     "diploria labyrinthiformis": {
       "name": "Diploria labyrinthiformis",
@@ -2994,17 +2994,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Diploria labyrinthiformis"
     },
-    "dromaius novaehollandiae": {
-      "name": "Dromaius novaehollandiae",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2495134,
-      "acceptedUsageKey": 2495134,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Dromaius novaehollandiae"
-    },
     "dolospingus fringilloides": {
       "name": "Sporophila fringilloides",
       "group": "Aves",
@@ -3015,6 +3004,17 @@
       "acceptedUsageKey": 7383562,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Dolospingus fringilloides"
+    },
+    "dromaius novaehollandiae": {
+      "name": "Dromaius novaehollandiae",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2495134,
+      "acceptedUsageKey": 2495134,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Dromaius novaehollandiae"
     },
     "eclectus roratus": {
       "name": "Eclectus roratus",
@@ -3071,16 +3071,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Elephas maximus"
     },
-    "emberiza aureola": {
-      "name": "Emberiza aureola",
+    "enicognathus leptorhynchus": {
+      "name": "Enicognathus leptorhynchus",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2491518,
-      "acceptedUsageKey": 2491518,
+      "usageKey": 5229097,
+      "acceptedUsageKey": 5229097,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Emberiza aureola"
+      "sourceName": "Enicognathus leptorhynchus"
     },
     "emberizoides herbicola": {
       "name": "Emberizoides herbicola",
@@ -3093,27 +3093,27 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Emberizoides herbicola"
     },
-    "enicognathus leptorhynchus": {
-      "name": "Enicognathus leptorhynchus",
+    "emberiza aureola": {
+      "name": "Emberiza aureola",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 5229097,
-      "acceptedUsageKey": 5229097,
+      "usageKey": 2491518,
+      "acceptedUsageKey": 2491518,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Enicognathus leptorhynchus"
+      "sourceName": "Emberiza aureola"
     },
-    "eos bornea": {
-      "name": "Eos bornea",
+    "eophona migratoria": {
+      "name": "Eophona migratoria",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2479486,
-      "acceptedUsageKey": 2479486,
+      "usageKey": 2494146,
+      "acceptedUsageKey": 2494146,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Eos bornea"
+      "sourceName": "Eophona migratoria"
     },
     "epicrates cenchria": {
       "name": "Epicrates cenchria",
@@ -3126,16 +3126,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Epicrates cenchria"
     },
-    "eophona migratoria": {
-      "name": "Eophona migratoria",
+    "eos bornea": {
+      "name": "Eos bornea",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2494146,
-      "acceptedUsageKey": 2494146,
+      "usageKey": 2479486,
+      "acceptedUsageKey": 2479486,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Eophona migratoria"
+      "sourceName": "Eos bornea"
     },
     "epicrates maurus": {
       "name": "Epicrates maurus",
@@ -3258,17 +3258,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Eublepharis macularius"
     },
-    "euphonia chlorotica": {
-      "name": "Euphonia chlorotica",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2487964,
-      "acceptedUsageKey": 2487964,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Euphonia chlorotica"
-    },
     "eunectes murinus": {
       "name": "Eunectes murinus",
       "group": "Fauna não especificada",
@@ -3279,6 +3268,17 @@
       "acceptedUsageKey": 5225712,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Eunectes murinus"
+    },
+    "euphonia chlorotica": {
+      "name": "Euphonia chlorotica",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2487964,
+      "acceptedUsageKey": 2487964,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Euphonia chlorotica"
     },
     "euphonia finschi": {
       "name": "Euphonia finschi",
@@ -3346,6 +3346,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Euphyllia paraglabrescens"
     },
+    "eupsittula aurea": {
+      "name": "Aratinga aurea",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 8331425,
+      "acceptedUsageKey": 2479121,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Eupsittula aurea"
+    },
     "eupsittula nana": {
       "name": "Aratinga nana",
       "group": "Aves",
@@ -3368,16 +3379,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Eupsittula canicularis"
     },
-    "eupsittula aurea": {
-      "name": "Aratinga aurea",
-      "group": "Aves",
+    "euvola ziczac": {
+      "name": "Euvola ziczac",
+      "group": "Invertebrados",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 8331425,
-      "acceptedUsageKey": 2479121,
+      "status": "ACCEPTED",
+      "usageKey": 2285959,
+      "acceptedUsageKey": 2285959,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Eupsittula aurea"
+      "sourceName": "Euvola ziczac"
     },
     "extatosoma tiaratum": {
       "name": "Extatosoma tiaratum",
@@ -3389,17 +3400,6 @@
       "acceptedUsageKey": 1413563,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Extatosoma tiaratum"
-    },
-    "euvola ziczac": {
-      "name": "Euvola ziczac",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2285959,
-      "acceptedUsageKey": 2285959,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Euvola ziczac"
     },
     "falco femoralis": {
       "name": "Falco femoralis",
@@ -3533,6 +3533,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Galeocerdo cuvier"
     },
+    "galictis cuja": {
+      "name": "Galictis cuja",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5218901,
+      "acceptedUsageKey": 5218901,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Galictis cuja"
+    },
     "gallinago gallinago": {
       "name": "Gallinago gallinago",
       "group": "Aves",
@@ -3554,17 +3565,6 @@
       "acceptedUsageKey": 9326020,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Gallus domesticus"
-    },
-    "galictis cuja": {
-      "name": "Galictis cuja",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5218901,
-      "acceptedUsageKey": 5218901,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Galictis cuja"
     },
     "gallus gallus": {
       "name": "Gallus gallus",
@@ -3588,17 +3588,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Gallus sonneratii"
     },
-    "garrulax canorus": {
-      "name": "Garrulax canorus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2493479,
-      "acceptedUsageKey": 2493479,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Garrulax canorus"
-    },
     "gazella arabica": {
       "name": "Gazella arabica",
       "group": "Mamíferos",
@@ -3609,6 +3598,17 @@
       "acceptedUsageKey": 5220158,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Gazella arabica"
+    },
+    "garrulax canorus": {
+      "name": "Garrulax canorus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2493479,
+      "acceptedUsageKey": 2493479,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Garrulax canorus"
     },
     "gekko gecko": {
       "name": "Gekko gecko",
@@ -3632,17 +3632,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Genidens barbus"
     },
-    "geochelone carbonaria": {
-      "name": "Chelonoidis carbonarius",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 2441647,
-      "acceptedUsageKey": 9533689,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Geochelone carbonaria"
-    },
     "geochelone denticulata": {
       "name": "Chelonoidis denticulatus",
       "group": "Fauna não especificada",
@@ -3654,6 +3643,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Geochelone denticulata"
     },
+    "geochelone carbonaria": {
+      "name": "Chelonoidis carbonarius",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 2441647,
+      "acceptedUsageKey": 9533689,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Geochelone carbonaria"
+    },
     "geochelone elegans": {
       "name": "Geochelone elegans",
       "group": "Fauna não especificada",
@@ -3664,6 +3664,17 @@
       "acceptedUsageKey": 2441535,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Geochelone elegans"
+    },
+    "geoclemys hamiltonii": {
+      "name": "Geoclemys hamiltonii",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2443250,
+      "acceptedUsageKey": 2443250,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Geoclemys hamiltonii"
     },
     "geoemyda spengleri": {
       "name": "Geoemyda spengleri",
@@ -3686,17 +3697,6 @@
       "acceptedUsageKey": 2480668,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Geranoaetus melanoleucus"
-    },
-    "geoclemys hamiltonii": {
-      "name": "Geoclemys hamiltonii",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2443250,
-      "acceptedUsageKey": 2443250,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Geoclemys hamiltonii"
     },
     "ginglymostoma cirratum": {
       "name": "Ginglymostoma cirratum",
@@ -3797,17 +3797,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Graphium weiskei"
     },
-    "graydidascalus brachyurus": {
-      "name": "Graydidascalus brachyurus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479735,
-      "acceptedUsageKey": 2479735,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Graydidascalus brachyurus"
-    },
     "graptemys ouachitensis": {
       "name": "Graptemys ouachitensis",
       "group": "Fauna não especificada",
@@ -3818,6 +3807,17 @@
       "acceptedUsageKey": 2443079,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Graptemys ouachitensis"
+    },
+    "graydidascalus brachyurus": {
+      "name": "Graydidascalus brachyurus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479735,
+      "acceptedUsageKey": 2479735,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Graydidascalus brachyurus"
     },
     "guaruba guarouba": {
       "name": "Guaruba guarouba",
@@ -3874,17 +3874,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Haliotis midae"
     },
-    "harpia harpyja": {
-      "name": "Harpia harpyja",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2480516,
-      "acceptedUsageKey": 2480516,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Harpia harpyja"
-    },
     "haliotis rubra": {
       "name": "Haliotis rubra",
       "group": "Invertebrados",
@@ -3895,6 +3884,17 @@
       "acceptedUsageKey": 4615980,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Haliotis rubra"
+    },
+    "harpia harpyja": {
+      "name": "Harpia harpyja",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2480516,
+      "acceptedUsageKey": 2480516,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Harpia harpyja"
     },
     "helminthoglypta tejonis": {
       "name": "Helminthoglypta tejonis",
@@ -3918,6 +3918,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Heloderma suspectum"
     },
+    "hemigrammus bleheri": {
+      "name": "Hemigrammus bleheri",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2354371,
+      "acceptedUsageKey": 2354371,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Hemigrammus bleheri"
+    },
     "heniochus acuminatus": {
       "name": "Heniochus acuminatus",
       "group": "Fauna não especificada",
@@ -3940,17 +3951,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Herpestes ichneumon"
     },
-    "hemigrammus bleheri": {
-      "name": "Hemigrammus bleheri",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2354371,
-      "acceptedUsageKey": 2354371,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Hemigrammus bleheri"
-    },
     "hippocampus ingens": {
       "name": "Hippocampus ingens",
       "group": "Fauna não especificada",
@@ -3961,17 +3961,6 @@
       "acceptedUsageKey": 5201050,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Hippocampus ingens"
-    },
-    "hippocampus reidi": {
-      "name": "Hippocampus reidi",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5201123,
-      "acceptedUsageKey": 5201123,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Hippocampus reidi"
     },
     "hippocampus kuda": {
       "name": "Hippocampus kuda",
@@ -3994,6 +3983,17 @@
       "acceptedUsageKey": 2441247,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Hippopotamus amphibius"
+    },
+    "hippocampus reidi": {
+      "name": "Hippocampus reidi",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5201123,
+      "acceptedUsageKey": 5201123,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Hippocampus reidi"
     },
     "hippotragus niger": {
       "name": "Hippotragus niger",
@@ -4039,6 +4039,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Hydrochaeris hydrochaeris"
     },
+    "hydrochoerus hydrochaeris": {
+      "name": "Hydrochoerus hydrochaeris",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5786666,
+      "acceptedUsageKey": 5786666,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Hydrochoerus hydrochaeris"
+    },
     "hylobates moloch": {
       "name": "Hylobates moloch",
       "group": "Mamíferos",
@@ -4060,17 +4071,6 @@
       "acceptedUsageKey": 5230498,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Hylophilus semicinereus"
-    },
-    "hydrochoerus hydrochaeris": {
-      "name": "Hydrochoerus hydrochaeris",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5786666,
-      "acceptedUsageKey": 5786666,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Hydrochoerus hydrochaeris"
     },
     "hypancistrus zebra": {
       "name": "Hypancistrus zebra",
@@ -4248,6 +4248,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Intellagama lesueurii"
     },
+    "irena puella": {
+      "name": "Irena puella",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2488929,
+      "acceptedUsageKey": 2488929,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Irena puella"
+    },
     "isostichopus fuscus": {
       "name": "Isostichopus fuscus",
       "group": "Invertebrados",
@@ -4259,16 +4270,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Isostichopus fuscus"
     },
-    "irena puella": {
-      "name": "Irena puella",
-      "group": "Aves",
+    "isurus oxyrinchus": {
+      "name": "Isurus oxyrinchus",
+      "group": "Peixes",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2488929,
-      "acceptedUsageKey": 2488929,
+      "usageKey": 5216248,
+      "acceptedUsageKey": 5216248,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Irena puella"
+      "sourceName": "Isurus oxyrinchus"
     },
     "jacana jacana": {
       "name": "Jacana jacana",
@@ -4292,17 +4303,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Kerodon rupestris"
     },
-    "isurus oxyrinchus": {
-      "name": "Isurus oxyrinchus",
-      "group": "Peixes",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5216248,
-      "acceptedUsageKey": 5216248,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Isurus oxyrinchus"
-    },
     "kinosternon acutum": {
       "name": "Kinosternon acutum",
       "group": "Fauna não especificada",
@@ -4313,17 +4313,6 @@
       "acceptedUsageKey": 2442388,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Kinosternon acutum"
-    },
-    "kinosternon integrum": {
-      "name": "Kinosternon integrum",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2442447,
-      "acceptedUsageKey": 2442447,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Kinosternon integrum"
     },
     "kinosternon cora": {
       "name": "Kinosternon cora",
@@ -4347,6 +4336,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Kinosternon leucostomum"
     },
+    "kinosternon integrum": {
+      "name": "Kinosternon integrum",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2442447,
+      "acceptedUsageKey": 2442447,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Kinosternon integrum"
+    },
     "kinosternon scorpioides": {
       "name": "Kinosternon scorpioides",
       "group": "Fauna não especificada",
@@ -4358,17 +4358,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Kinosternon scorpioides"
     },
-    "kobus ellipsiprymnus": {
-      "name": "Kobus ellipsiprymnus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5220160,
-      "acceptedUsageKey": 5220160,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Kobus ellipsiprymnus"
-    },
     "knipolegus lophotes": {
       "name": "Knipolegus lophotes",
       "group": "Aves",
@@ -4379,6 +4368,17 @@
       "acceptedUsageKey": 2483028,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Knipolegus lophotes"
+    },
+    "kobus ellipsiprymnus": {
+      "name": "Kobus ellipsiprymnus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5220160,
+      "acceptedUsageKey": 5220160,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Kobus ellipsiprymnus"
     },
     "kobus kob": {
       "name": "Kobus kob",
@@ -4402,17 +4402,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Kobus leche"
     },
-    "lachesis muta": {
-      "name": "Lachesis muta",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 8486323,
-      "acceptedUsageKey": 8486323,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Lachesis muta"
-    },
     "labroides dimidiatus": {
       "name": "Labroides dimidiatus",
       "group": "Fauna não especificada",
@@ -4423,6 +4412,17 @@
       "acceptedUsageKey": 2383731,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Labroides dimidiatus"
+    },
+    "lachesis muta": {
+      "name": "Lachesis muta",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 8486323,
+      "acceptedUsageKey": 8486323,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Lachesis muta"
     },
     "lagothrix lugens": {
       "name": "Lagothrix lagothricha",
@@ -4457,16 +4457,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lampropeltis californiae"
     },
-    "leistes militaris": {
-      "name": "Sturnella militaris",
-      "group": "Aves",
+    "lampropeltis getula": {
+      "name": "Lampropeltis getula",
+      "group": "Fauna não especificada",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 4846744,
-      "acceptedUsageKey": 2484250,
+      "status": "ACCEPTED",
+      "usageKey": 9799308,
+      "acceptedUsageKey": 9799308,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Leistes militaris"
+      "sourceName": "Lampropeltis getula"
     },
     "leontopithecus chrysomelas": {
       "name": "Leontopithecus chrysomelas",
@@ -4479,16 +4479,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Leontopithecus chrysomelas"
     },
-    "lampropeltis getula": {
-      "name": "Lampropeltis getula",
-      "group": "Fauna não especificada",
+    "leistes militaris": {
+      "name": "Sturnella militaris",
+      "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 9799308,
-      "acceptedUsageKey": 9799308,
+      "status": "SYNONYM",
+      "usageKey": 4846744,
+      "acceptedUsageKey": 2484250,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Lampropeltis getula"
+      "sourceName": "Leistes militaris"
     },
     "leontopithecus rosalia": {
       "name": "Leontopithecus rosalia",
@@ -4534,17 +4534,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lepidochelys olivacea"
     },
-    "leptophis diplotropis": {
-      "name": "Leptophis diplotropis",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5959530,
-      "acceptedUsageKey": 5959530,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Leptophis diplotropis"
-    },
     "leporinus friderici": {
       "name": "Leporinus friderici",
       "group": "Fauna não especificada",
@@ -4555,6 +4544,17 @@
       "acceptedUsageKey": 2355324,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Leporinus friderici"
+    },
+    "leptophis diplotropis": {
+      "name": "Leptophis diplotropis",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5959530,
+      "acceptedUsageKey": 5959530,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Leptophis diplotropis"
     },
     "leptotila verreauxi": {
       "name": "Leptotila verreauxi",
@@ -4578,17 +4578,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lissemys punctata"
     },
-    "lithodes santolla": {
-      "name": "Lithodes santolla",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 4311494,
-      "acceptedUsageKey": 4311494,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Lithodes santolla"
-    },
     "lithophaga lithophaga": {
       "name": "Lithophaga lithophaga",
       "group": "Invertebrados",
@@ -4611,6 +4600,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lobatus gigas"
     },
+    "lithodes santolla": {
+      "name": "Lithodes santolla",
+      "group": "Invertebrados",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 4311494,
+      "acceptedUsageKey": 4311494,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Lithodes santolla"
+    },
     "lobophyllia corymbosa": {
       "name": "Lobophyllia corymbosa",
       "group": "Invertebrados",
@@ -4621,17 +4621,6 @@
       "acceptedUsageKey": 2260328,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lobophyllia corymbosa"
-    },
-    "lophiosilurus alexandri": {
-      "name": "Lophiosilurus alexandri",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2344122,
-      "acceptedUsageKey": 2344122,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Lophiosilurus alexandri"
     },
     "lophonetta specularioides": {
       "name": "Lophonetta specularioides",
@@ -4644,6 +4633,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lophonetta specularioides"
     },
+    "lophiosilurus alexandri": {
+      "name": "Lophiosilurus alexandri",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2344122,
+      "acceptedUsageKey": 2344122,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Lophiosilurus alexandri"
+    },
     "lophura nycthemera": {
       "name": "Lophura nycthemera",
       "group": "Aves",
@@ -4654,17 +4654,6 @@
       "acceptedUsageKey": 5227966,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lophura nycthemera"
-    },
-    "loriculus galgulus": {
-      "name": "Loriculus galgulus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479372,
-      "acceptedUsageKey": 2479372,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Loriculus galgulus"
     },
     "lorius lory": {
       "name": "Lorius lory",
@@ -4677,16 +4666,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lorius lory"
     },
-    "loxodonta africana": {
-      "name": "Loxodonta africana",
-      "group": "Mamíferos",
+    "loriculus galgulus": {
+      "name": "Loriculus galgulus",
+      "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2435350,
-      "acceptedUsageKey": 2435350,
+      "usageKey": 2479372,
+      "acceptedUsageKey": 2479372,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Loxodonta africana"
+      "sourceName": "Loriculus galgulus"
     },
     "luscinia megarhynchos": {
       "name": "Luscinia megarhynchos",
@@ -4710,6 +4699,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lycalopex culpaeus"
     },
+    "loxodonta africana": {
+      "name": "Loxodonta africana",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2435350,
+      "acceptedUsageKey": 2435350,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Loxodonta africana"
+    },
     "lynx lynx": {
       "name": "Lynx lynx",
       "group": "Mamíferos",
@@ -4720,6 +4720,17 @@
       "acceptedUsageKey": 2435240,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Lynx lynx"
+    },
+    "lynx rufus": {
+      "name": "Lynx rufus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2435246,
+      "acceptedUsageKey": 2435246,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Lynx rufus"
     },
     "macaca fascicularis": {
       "name": "Macaca fascicularis",
@@ -4742,17 +4753,6 @@
       "acceptedUsageKey": 2436604,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Macaca mulatta"
-    },
-    "lynx rufus": {
-      "name": "Lynx rufus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2435246,
-      "acceptedUsageKey": 2435246,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Lynx rufus"
     },
     "macropus rufus": {
       "name": "Macropus rufus",
@@ -4809,17 +4809,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mazama gouazoubira"
     },
-    "mazama americana": {
-      "name": "Mazama americana",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5220123,
-      "acceptedUsageKey": 5220123,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Mazama americana"
-    },
     "mazama gouazoupira": {
       "name": "Mazama gouazoubira",
       "group": "Mamíferos",
@@ -4830,6 +4819,17 @@
       "acceptedUsageKey": 7261375,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mazama gouazoupira"
+    },
+    "mazama americana": {
+      "name": "Mazama americana",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5220123,
+      "acceptedUsageKey": 5220123,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Mazama americana"
     },
     "mazama rufina": {
       "name": "Mazama rufina",
@@ -4919,17 +4919,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Melopyrrha nigra"
     },
-    "messor cephalotes": {
-      "name": "Messor cephalotes",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 1316372,
-      "acceptedUsageKey": 1316372,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Messor cephalotes"
-    },
     "mico argentatus": {
       "name": "Mico argentatus",
       "group": "Mamíferos",
@@ -4951,6 +4940,17 @@
       "acceptedUsageKey": 5231676,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mimus gilvus"
+    },
+    "messor cephalotes": {
+      "name": "Messor cephalotes",
+      "group": "Insetos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 1316372,
+      "acceptedUsageKey": 1316372,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Messor cephalotes"
     },
     "mimus saturninus": {
       "name": "Mimus saturninus",
@@ -5018,17 +5018,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mustela putorius"
     },
-    "mustela sibirica": {
-      "name": "Mustela sibirica",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5218972,
-      "acceptedUsageKey": 5218972,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Mustela sibirica"
-    },
     "myadestes unicolor": {
       "name": "Myadestes unicolor",
       "group": "Aves",
@@ -5051,6 +5040,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mycteroperca bonaci"
     },
+    "mustela sibirica": {
+      "name": "Mustela sibirica",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5218972,
+      "acceptedUsageKey": 5218972,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Mustela sibirica"
+    },
     "mycteroperca interstitialis": {
       "name": "Mycteroperca interstitialis",
       "group": "Fauna não especificada",
@@ -5061,6 +5061,17 @@
       "acceptedUsageKey": 2389044,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Mycteroperca interstitialis"
+    },
+    "myiozetetes cayanensis": {
+      "name": "Myiozetetes cayanensis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2482921,
+      "acceptedUsageKey": 2482921,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Myiozetetes cayanensis"
     },
     "mydaus marchei": {
       "name": "Mydaus marchei",
@@ -5084,17 +5095,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Myiopsitta monachus"
     },
-    "myiozetetes cayanensis": {
-      "name": "Myiozetetes cayanensis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2482921,
-      "acceptedUsageKey": 2482921,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Myiozetetes cayanensis"
-    },
     "myliobatis goodei": {
       "name": "Myliobatis goodei",
       "group": "Peixes",
@@ -5106,17 +5106,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Myliobatis goodei"
     },
-    "naja kaouthia": {
-      "name": "Naja kaouthia",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2470368,
-      "acceptedUsageKey": 2470368,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Naja kaouthia"
-    },
     "nandayus nenday": {
       "name": "Nandayus nenday",
       "group": "Aves",
@@ -5127,6 +5116,17 @@
       "acceptedUsageKey": 2480102,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Nandayus nenday"
+    },
+    "naja kaouthia": {
+      "name": "Naja kaouthia",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2470368,
+      "acceptedUsageKey": 2470368,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Naja kaouthia"
     },
     "nannopsittaca dachilleae": {
       "name": "Nannopsittaca dachilleae",
@@ -5359,17 +5359,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Orchesticus abeillei"
     },
-    "oreochromis niloticus": {
-      "name": "Oreochromis niloticus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 4285694,
-      "acceptedUsageKey": 4285694,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Oreochromis niloticus"
-    },
     "oreaster reticulatus": {
       "name": "Oreaster reticulatus",
       "group": "Invertebrados",
@@ -5380,6 +5369,17 @@
       "acceptedUsageKey": 2272969,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Oreaster reticulatus"
+    },
+    "oreochromis niloticus": {
+      "name": "Oreochromis niloticus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 4285694,
+      "acceptedUsageKey": 4285694,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Oreochromis niloticus"
     },
     "ornithoptera priamus": {
       "name": "Ornithoptera priamus",
@@ -5436,17 +5436,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ortalis squamata"
     },
-    "orthopsittaca manilata": {
-      "name": "Orthopsittaca manilata",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479446,
-      "acceptedUsageKey": 2479446,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Orthopsittaca manilata"
-    },
     "oryctolagus cuniculus": {
       "name": "Oryctolagus cuniculus",
       "group": "Mamíferos",
@@ -5457,6 +5446,17 @@
       "acceptedUsageKey": 2436940,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Oryctolagus cuniculus"
+    },
+    "orthopsittaca manilata": {
+      "name": "Orthopsittaca manilata",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479446,
+      "acceptedUsageKey": 2479446,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Orthopsittaca manilata"
     },
     "oryx gazella": {
       "name": "Oryx gazella",
@@ -5524,17 +5524,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Otaria flavescens"
     },
-    "otocyon megalotis": {
-      "name": "Otocyon megalotis",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2434349,
-      "acceptedUsageKey": 2434349,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Otocyon megalotis"
-    },
     "otus choliba": {
       "name": "Megascops choliba",
       "group": "Aves",
@@ -5545,6 +5534,17 @@
       "acceptedUsageKey": 2497365,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Otus choliba"
+    },
+    "otocyon megalotis": {
+      "name": "Otocyon megalotis",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2434349,
+      "acceptedUsageKey": 2434349,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Otocyon megalotis"
     },
     "ovis ammon": {
       "name": "Ovis ammon",
@@ -5601,17 +5601,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Padda oryzivora"
     },
-    "paleosuchus trigonatus": {
-      "name": "Paleosuchus trigonatus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2441394,
-      "acceptedUsageKey": 2441394,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Paleosuchus trigonatus"
-    },
     "pan troglodytes": {
       "name": "Pan troglodytes",
       "group": "Mamíferos",
@@ -5633,6 +5622,17 @@
       "acceptedUsageKey": 6894611,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pandinus imperator"
+    },
+    "paleosuchus trigonatus": {
+      "name": "Paleosuchus trigonatus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2441394,
+      "acceptedUsageKey": 2441394,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Paleosuchus trigonatus"
     },
     "pangio kuhlii": {
       "name": "Pangio kuhlii",
@@ -5656,17 +5656,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Panthera leo"
     },
-    "panthera onca": {
-      "name": "Panthera onca",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5219426,
-      "acceptedUsageKey": 5219426,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Panthera onca"
-    },
     "panthera pardus": {
       "name": "Panthera pardus",
       "group": "Mamíferos",
@@ -5678,6 +5667,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Panthera pardus"
     },
+    "panthera onca": {
+      "name": "Panthera onca",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5219426,
+      "acceptedUsageKey": 5219426,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Panthera onca"
+    },
     "panthera tigris": {
       "name": "Panthera tigris",
       "group": "Mamíferos",
@@ -5688,17 +5688,6 @@
       "acceptedUsageKey": 5219416,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Panthera tigris"
-    },
-    "panulirus argus": {
-      "name": "Panulirus argus",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2221646,
-      "acceptedUsageKey": 2221646,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Panulirus argus"
     },
     "pantherophis guttatus": {
       "name": "Pantherophis guttatus",
@@ -5732,6 +5721,17 @@
       "acceptedUsageKey": 1937723,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Papilio bianor"
+    },
+    "panulirus argus": {
+      "name": "Panulirus argus",
+      "group": "Invertebrados",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2221646,
+      "acceptedUsageKey": 2221646,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Panulirus argus"
     },
     "papilio blumei": {
       "name": "Papilio blumei",
@@ -5777,6 +5777,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Paracanthurus hepatus"
     },
+    "paracentrotus lividus": {
+      "name": "Paracentrotus lividus",
+      "group": "Invertebrados",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2278845,
+      "acceptedUsageKey": 2278845,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Paracentrotus lividus"
+    },
     "paracheirodon axelrodi": {
       "name": "Paracheirodon axelrodi",
       "group": "Fauna não especificada",
@@ -5798,17 +5809,6 @@
       "acceptedUsageKey": 2353909,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Paracheirodon innesi"
-    },
-    "paracentrotus lividus": {
-      "name": "Paracentrotus lividus",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2278845,
-      "acceptedUsageKey": 2278845,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Paracentrotus lividus"
     },
     "paracheirodon simulans": {
       "name": "Paracheirodon simulans",
@@ -5832,16 +5832,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Paradisaea apoda"
     },
-    "paroaria capitata": {
-      "name": "Paroaria capitata",
+    "paroaria dominicana": {
+      "name": "Paroaria dominicana",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2492087,
-      "acceptedUsageKey": 2492087,
+      "usageKey": 2492086,
+      "acceptedUsageKey": 2492086,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Paroaria capitata"
+      "sourceName": "Paroaria dominicana"
     },
     "paroaria coronata": {
       "name": "Paroaria coronata",
@@ -5854,16 +5854,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Paroaria coronata"
     },
-    "paroaria dominicana": {
-      "name": "Paroaria dominicana",
+    "paroaria capitata": {
+      "name": "Paroaria capitata",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2492086,
-      "acceptedUsageKey": 2492086,
+      "usageKey": 2492087,
+      "acceptedUsageKey": 2492087,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Paroaria dominicana"
+      "sourceName": "Paroaria capitata"
     },
     "paroaria gularis": {
       "name": "Paroaria gularis",
@@ -5876,17 +5876,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Paroaria gularis"
     },
-    "passerina brissonii": {
-      "name": "Cyanocompsa brissonii",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 5788665,
-      "acceptedUsageKey": 2490375,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Passerina brissonii"
-    },
     "passerina caerulea": {
       "name": "Passerina caerulea",
       "group": "Aves",
@@ -5897,6 +5886,17 @@
       "acceptedUsageKey": 5230862,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Passerina caerulea"
+    },
+    "passerina brissonii": {
+      "name": "Cyanocompsa brissonii",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 5788665,
+      "acceptedUsageKey": 2490375,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Passerina brissonii"
     },
     "passerina ciris": {
       "name": "Passerina ciris",
@@ -5909,16 +5909,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Passerina ciris"
     },
-    "passerina glaucocaerulea": {
-      "name": "Cyanoloxia glaucocaerulea",
+    "passerina cyanoides": {
+      "name": "Cyanocompsa cyanoides",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "SYNONYM",
-      "usageKey": 5788661,
-      "acceptedUsageKey": 2490382,
+      "usageKey": 5788664,
+      "acceptedUsageKey": 2490370,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Passerina glaucocaerulea"
+      "sourceName": "Passerina cyanoides"
     },
     "patagioenas cayennensis": {
       "name": "Patagioenas cayennensis",
@@ -5931,16 +5931,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Patagioenas cayennensis"
     },
-    "passerina cyanoides": {
-      "name": "Cyanocompsa cyanoides",
+    "passerina glaucocaerulea": {
+      "name": "Cyanoloxia glaucocaerulea",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "SYNONYM",
-      "usageKey": 5788664,
-      "acceptedUsageKey": 2490370,
+      "usageKey": 5788661,
+      "acceptedUsageKey": 2490382,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Passerina cyanoides"
+      "sourceName": "Passerina glaucocaerulea"
     },
     "patagioenas fasciata": {
       "name": "Patagioenas fasciata",
@@ -5997,6 +5997,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Peltocephalus dumeriliana"
     },
+    "penelope albipennis": {
+      "name": "Penelope albipennis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2482192,
+      "acceptedUsageKey": 2482192,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Penelope albipennis"
+    },
     "penelope superciliaris": {
       "name": "Penelope superciliaris",
       "group": "Aves",
@@ -6019,16 +6030,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Penelope pileata"
     },
-    "penelope albipennis": {
-      "name": "Penelope albipennis",
-      "group": "Aves",
+    "phacochoerus africanus": {
+      "name": "Phacochoerus africanus",
+      "group": "Mamíferos",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2482192,
-      "acceptedUsageKey": 2482192,
+      "usageKey": 2441212,
+      "acceptedUsageKey": 2441212,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Penelope albipennis"
+      "sourceName": "Phacochoerus africanus"
     },
     "pezoporus wallicus": {
       "name": "Pezoporus wallicus",
@@ -6041,17 +6052,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pezoporus wallicus"
     },
-    "phacochoerus africanus": {
-      "name": "Phacochoerus africanus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2441212,
-      "acceptedUsageKey": 2441212,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Phacochoerus africanus"
-    },
     "phaetusa simplex": {
       "name": "Phaetusa simplex",
       "group": "Aves",
@@ -6062,17 +6062,6 @@
       "acceptedUsageKey": 5229213,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Phaetusa simplex"
-    },
-    "phasianus colchicus": {
-      "name": "Phasianus colchicus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 9752149,
-      "acceptedUsageKey": 9752149,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Phasianus colchicus"
     },
     "phonipara canora": {
       "name": "Phonipara canora",
@@ -6085,6 +6074,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Phonipara canora"
     },
+    "phasianus colchicus": {
+      "name": "Phasianus colchicus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 9752149,
+      "acceptedUsageKey": 9752149,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Phasianus colchicus"
+    },
     "phractocephalus hemioliopterus": {
       "name": "Phractocephalus hemioliopterus",
       "group": "Fauna não especificada",
@@ -6096,17 +6096,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Phractocephalus hemioliopterus"
     },
-    "phyllomedusa bicolor": {
-      "name": "Phyllomedusa bicolor",
-      "group": "Anfíbios",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2427977,
-      "acceptedUsageKey": 2427977,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Phyllomedusa bicolor"
-    },
     "physeter macrocephalus": {
       "name": "Physeter macrocephalus",
       "group": "Mamíferos",
@@ -6117,6 +6106,17 @@
       "acceptedUsageKey": 8123917,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Physeter macrocephalus"
+    },
+    "phyllomedusa bicolor": {
+      "name": "Phyllomedusa bicolor",
+      "group": "Anfíbios",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2427977,
+      "acceptedUsageKey": 2427977,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Phyllomedusa bicolor"
     },
     "pica pica": {
       "name": "Pica pica",
@@ -6140,17 +6140,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pionites melanocephalus"
     },
-    "pionopsitta pulchra": {
-      "name": "Pionopsitta pulchra",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479981,
-      "acceptedUsageKey": 2479981,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pionopsitta pulchra"
-    },
     "pionus fuscus": {
       "name": "Pionus fuscus",
       "group": "Aves",
@@ -6172,6 +6161,17 @@
       "acceptedUsageKey": 2479907,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pionus maximiliani"
+    },
+    "pionopsitta pulchra": {
+      "name": "Pionopsitta pulchra",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479981,
+      "acceptedUsageKey": 2479981,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pionopsitta pulchra"
     },
     "pionus menstruus": {
       "name": "Pionus menstruus",
@@ -6206,6 +6206,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pitangus sulphuratus"
     },
+    "pithecophaga jefferyi": {
+      "name": "Pithecophaga jefferyi",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2480381,
+      "acceptedUsageKey": 2480381,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pithecophaga jefferyi"
+    },
     "pitylus fuliginosus": {
       "name": "Saltator fuliginosus",
       "group": "Aves",
@@ -6228,17 +6239,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Platycercus eximius"
     },
-    "pithecophaga jefferyi": {
-      "name": "Pithecophaga jefferyi",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2480381,
-      "acceptedUsageKey": 2480381,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pithecophaga jefferyi"
-    },
     "platycichla flavipes": {
       "name": "Turdus flavipes",
       "group": "Aves",
@@ -6249,17 +6249,6 @@
       "acceptedUsageKey": 7342122,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Platycichla flavipes"
-    },
-    "plecturocebus discolor": {
-      "name": "Plecturocebus discolor",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 9234391,
-      "acceptedUsageKey": 9234391,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Plecturocebus discolor"
     },
     "platysternon megacephalum": {
       "name": "Platysternon megacephalum",
@@ -6283,6 +6272,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Podilymbus podiceps"
     },
+    "plecturocebus discolor": {
+      "name": "Plecturocebus discolor",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 9234391,
+      "acceptedUsageKey": 9234391,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Plecturocebus discolor"
+    },
     "podocnemis erythrocephala": {
       "name": "Podocnemis erythrocephala",
       "group": "Fauna não especificada",
@@ -6293,17 +6293,6 @@
       "acceptedUsageKey": 2442785,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Podocnemis erythrocephala"
-    },
-    "podocnemis expansa": {
-      "name": "Podocnemis expansa",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2442795,
-      "acceptedUsageKey": 2442795,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Podocnemis expansa"
     },
     "podocnemis sextuberculata": {
       "name": "Podocnemis sextuberculata",
@@ -6316,6 +6305,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Podocnemis sextuberculata"
     },
+    "podocnemis expansa": {
+      "name": "Podocnemis expansa",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2442795,
+      "acceptedUsageKey": 2442795,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Podocnemis expansa"
+    },
     "podocnemis unifilis": {
       "name": "Podocnemis unifilis",
       "group": "Fauna não especificada",
@@ -6326,28 +6326,6 @@
       "acceptedUsageKey": 2442782,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Podocnemis unifilis"
-    },
-    "polyplectron emphanum": {
-      "name": "Polyplectron napoleonis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 2474076,
-      "acceptedUsageKey": 2474075,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Polyplectron emphanum"
-    },
-    "pomacanthus arcuatus": {
-      "name": "Pomacanthus arcuatus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2396435,
-      "acceptedUsageKey": 2396435,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pomacanthus arcuatus"
     },
     "poecilia reticulata": {
       "name": "Poecilia reticulata",
@@ -6360,6 +6338,28 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Poecilia reticulata"
     },
+    "pomacanthus arcuatus": {
+      "name": "Pomacanthus arcuatus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2396435,
+      "acceptedUsageKey": 2396435,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pomacanthus arcuatus"
+    },
+    "polyplectron emphanum": {
+      "name": "Polyplectron napoleonis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 2474076,
+      "acceptedUsageKey": 2474075,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Polyplectron emphanum"
+    },
     "pongo pygmaeus": {
       "name": "Pongo pygmaeus",
       "group": "Mamíferos",
@@ -6370,17 +6370,6 @@
       "acceptedUsageKey": 5219532,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pongo pygmaeus"
-    },
-    "porphyrio porphyrio": {
-      "name": "Porphyrio porphyrio",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2474416,
-      "acceptedUsageKey": 2474416,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Porphyrio porphyrio"
     },
     "porphyrula martinica": {
       "name": "Porphyrio martinica",
@@ -6393,6 +6382,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Porphyrula martinica"
     },
+    "porphyrio porphyrio": {
+      "name": "Porphyrio porphyrio",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2474416,
+      "acceptedUsageKey": 2474416,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Porphyrio porphyrio"
+    },
     "potamotrygon falkneri": {
       "name": "Potamotrygon falkneri",
       "group": "Peixes",
@@ -6403,17 +6403,6 @@
       "acceptedUsageKey": 2419343,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Potamotrygon falkneri"
-    },
-    "potamotrygon orbignyi": {
-      "name": "Potamotrygon orbignyi",
-      "group": "Peixes",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2419356,
-      "acceptedUsageKey": 2419356,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Potamotrygon orbignyi"
     },
     "potamotrygon leopoldi": {
       "name": "Potamotrygon leopoldi",
@@ -6426,6 +6415,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Potamotrygon leopoldi"
     },
+    "potamotrygon orbignyi": {
+      "name": "Potamotrygon orbignyi",
+      "group": "Peixes",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2419356,
+      "acceptedUsageKey": 2419356,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Potamotrygon orbignyi"
+    },
     "potamotrygon signata": {
       "name": "Potamotrygon signata",
       "group": "Peixes",
@@ -6437,17 +6437,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Potamotrygon signata"
     },
-    "primolius couloni": {
-      "name": "Primolius couloni",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479272,
-      "acceptedUsageKey": 2479272,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Primolius couloni"
-    },
     "potos flavus": {
       "name": "Potos flavus",
       "group": "Mamíferos",
@@ -6458,6 +6447,17 @@
       "acceptedUsageKey": 2433573,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Potos flavus"
+    },
+    "primolius couloni": {
+      "name": "Primolius couloni",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479272,
+      "acceptedUsageKey": 2479272,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Primolius couloni"
     },
     "primolius maracana": {
       "name": "Primolius maracana",
@@ -6481,17 +6481,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Prionace glauca"
     },
-    "prochilodus lineatus": {
-      "name": "Prochilodus lineatus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2352154,
-      "acceptedUsageKey": 2352154,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Prochilodus lineatus"
-    },
     "procnias nudicollis": {
       "name": "Procnias nudicollis",
       "group": "Aves",
@@ -6513,6 +6502,17 @@
       "acceptedUsageKey": 9518324,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Procyon cancrivorus"
+    },
+    "prochilodus lineatus": {
+      "name": "Prochilodus lineatus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2352154,
+      "acceptedUsageKey": 2352154,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Prochilodus lineatus"
     },
     "psarocolius bifasciatus": {
       "name": "Psarocolius bifasciatus",
@@ -6547,6 +6547,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Psephotus haematonotus"
     },
+    "pseudeos fuscata": {
+      "name": "Pseudeos fuscata",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2479306,
+      "acceptedUsageKey": 2479306,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pseudeos fuscata"
+    },
     "pseudocheilinus hexataenia": {
       "name": "Pseudocheilinus hexataenia",
       "group": "Fauna não especificada",
@@ -6568,17 +6579,6 @@
       "acceptedUsageKey": 2381665,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pseudochromis fridmani"
-    },
-    "pseudeos fuscata": {
-      "name": "Pseudeos fuscata",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2479306,
-      "acceptedUsageKey": 2479306,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pseudeos fuscata"
     },
     "pseudochromis porphyreus": {
       "name": "Pictichromis porphyrea",
@@ -6602,17 +6602,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pseudoleistes guirahuro"
     },
-    "pseudoplatystoma corruscans": {
-      "name": "Pseudoplatystoma corruscans",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2338660,
-      "acceptedUsageKey": 2338660,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pseudoplatystoma corruscans"
-    },
     "psittacara erythrogenys": {
       "name": "Aratinga erythrogenys",
       "group": "Aves",
@@ -6635,16 +6624,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Psittacara leucophthalmus"
     },
-    "psittacula alexandri": {
-      "name": "Psittacula alexandri",
-      "group": "Aves",
+    "pseudoplatystoma corruscans": {
+      "name": "Pseudoplatystoma corruscans",
+      "group": "Fauna não especificada",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 5229045,
-      "acceptedUsageKey": 5229045,
+      "usageKey": 2338660,
+      "acceptedUsageKey": 2338660,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Psittacula alexandri"
+      "sourceName": "Pseudoplatystoma corruscans"
     },
     "psittacula echo": {
       "name": "Psittacula echo",
@@ -6657,6 +6646,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Psittacula echo"
     },
+    "psittacula alexandri": {
+      "name": "Psittacula alexandri",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5229045,
+      "acceptedUsageKey": 5229045,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Psittacula alexandri"
+    },
     "psittacula eupatria": {
       "name": "Psittacula eupatria",
       "group": "Aves",
@@ -6668,16 +6668,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Psittacula eupatria"
     },
-    "psittacus erithacus": {
-      "name": "Psittacus erithacus",
+    "psittacula krameri": {
+      "name": "Psittacula krameri",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2480181,
-      "acceptedUsageKey": 2480181,
+      "usageKey": 2479226,
+      "acceptedUsageKey": 2479226,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Psittacus erithacus"
+      "sourceName": "Psittacula krameri"
     },
     "psittacus krameri": {
       "name": "Psittacula krameri",
@@ -6690,16 +6690,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Psittacus krameri"
     },
-    "psittacula krameri": {
-      "name": "Psittacula krameri",
+    "psittacus erithacus": {
+      "name": "Psittacus erithacus",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2479226,
-      "acceptedUsageKey": 2479226,
+      "usageKey": 2480181,
+      "acceptedUsageKey": 2480181,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Psittacula krameri"
+      "sourceName": "Psittacus erithacus"
     },
     "pteroglossus aracari": {
       "name": "Pteroglossus aracari",
@@ -6723,17 +6723,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pteroglossus inscriptus"
     },
-    "pterophyllum scalare": {
-      "name": "Pterophyllum scalare",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5208518,
-      "acceptedUsageKey": 5208518,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pterophyllum scalare"
-    },
     "pterorhinus chinensis": {
       "name": "Garrulax chinensis",
       "group": "Aves",
@@ -6744,6 +6733,17 @@
       "acceptedUsageKey": 2493448,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pterorhinus chinensis"
+    },
+    "pterophyllum scalare": {
+      "name": "Pterophyllum scalare",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5208518,
+      "acceptedUsageKey": 5208518,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pterophyllum scalare"
     },
     "ptiliogonys cinereus": {
       "name": "Ptilogonys cinereus",
@@ -6800,6 +6800,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pycnonotus plumosus"
     },
+    "pygocentrus nattereri": {
+      "name": "Pygocentrus nattereri",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2352479,
+      "acceptedUsageKey": 2352479,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Pygocentrus nattereri"
+    },
     "pygoplites diacanthus": {
       "name": "Pygoplites diacanthus",
       "group": "Fauna não especificada",
@@ -6821,17 +6832,6 @@
       "acceptedUsageKey": 2479855,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pyrrhura cruentata"
-    },
-    "pygocentrus nattereri": {
-      "name": "Pygocentrus nattereri",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2352479,
-      "acceptedUsageKey": 2352479,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Pygocentrus nattereri"
     },
     "python bivittatus": {
       "name": "Python bivittatus",
@@ -6888,17 +6888,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Pyxis arachnoides"
     },
-    "ramphastos dicolorus": {
-      "name": "Ramphastos dicolorus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2478770,
-      "acceptedUsageKey": 2478770,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Ramphastos dicolorus"
-    },
     "ramphastos sulfuratus": {
       "name": "Ramphastos sulfuratus",
       "group": "Aves",
@@ -6921,16 +6910,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ramphastos toco"
     },
-    "ramphastos vitellinus": {
-      "name": "Ramphastos vitellinus",
+    "ramphastos dicolorus": {
+      "name": "Ramphastos dicolorus",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2478782,
-      "acceptedUsageKey": 2478782,
+      "usageKey": 2478770,
+      "acceptedUsageKey": 2478770,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Ramphastos vitellinus"
+      "sourceName": "Ramphastos dicolorus"
     },
     "ramphastos tucanus": {
       "name": "Ramphastos tucanus",
@@ -6942,6 +6931,17 @@
       "acceptedUsageKey": 2478774,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ramphastos tucanus"
+    },
+    "ramphastos vitellinus": {
+      "name": "Ramphastos vitellinus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2478782,
+      "acceptedUsageKey": 2478782,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Ramphastos vitellinus"
     },
     "raphicerus campestris": {
       "name": "Raphicerus campestris",
@@ -6998,17 +6998,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Rhinoclemmys punctularia"
     },
-    "rhinodrilus alatus": {
-      "name": "Rhinodrilus alatus",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 9343576,
-      "acceptedUsageKey": 9343576,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Rhinodrilus alatus"
-    },
     "rhynchotus rufescens": {
       "name": "Rhynchotus rufescens",
       "group": "Aves",
@@ -7031,27 +7020,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Rucervus duvaucelii"
     },
-    "rusa unicolor": {
-      "name": "Rusa unicolor",
-      "group": "Mamíferos",
+    "rhinodrilus alatus": {
+      "name": "Rhinodrilus alatus",
+      "group": "Invertebrados",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 7261386,
-      "acceptedUsageKey": 7261386,
+      "usageKey": 9343576,
+      "acceptedUsageKey": 9343576,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Rusa unicolor"
-    },
-    "sacalia quadriocellata": {
-      "name": "Sacalia quadriocellata",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2443457,
-      "acceptedUsageKey": 2443457,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sacalia quadriocellata"
+      "sourceName": "Rhinodrilus alatus"
     },
     "rupicola rupicola": {
       "name": "Rupicola rupicola",
@@ -7075,6 +7053,28 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Saguinus labiatus"
     },
+    "rusa unicolor": {
+      "name": "Rusa unicolor",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 7261386,
+      "acceptedUsageKey": 7261386,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Rusa unicolor"
+    },
+    "sacalia quadriocellata": {
+      "name": "Sacalia quadriocellata",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2443457,
+      "acceptedUsageKey": 2443457,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sacalia quadriocellata"
+    },
     "saguinus midas": {
       "name": "Saguinus midas",
       "group": "Mamíferos",
@@ -7086,17 +7086,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Saguinus midas"
     },
-    "saguinus niger": {
-      "name": "Saguinus niger",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 4266893,
-      "acceptedUsageKey": 4266893,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Saguinus niger"
-    },
     "saguinus nigricollis": {
       "name": "Leontocebus nigricollis",
       "group": "Mamíferos",
@@ -7107,6 +7096,17 @@
       "acceptedUsageKey": 8628111,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Saguinus nigricollis"
+    },
+    "saguinus niger": {
+      "name": "Saguinus niger",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 4266893,
+      "acceptedUsageKey": 4266893,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Saguinus niger"
     },
     "saguinus oedipus": {
       "name": "Saguinus oedipus",
@@ -7152,6 +7152,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Salminus brasiliensis"
     },
+    "saltator atricollis": {
+      "name": "Saltatricula atricollis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 5230939,
+      "acceptedUsageKey": 9421922,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Saltator atricollis"
+    },
     "saltator aurantiirostris": {
       "name": "Saltator aurantiirostris",
       "group": "Aves",
@@ -7173,17 +7184,6 @@
       "acceptedUsageKey": 9819034,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Saltator coerulescens"
-    },
-    "saltator atricollis": {
-      "name": "Saltatricula atricollis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 5230939,
-      "acceptedUsageKey": 9421922,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Saltator atricollis"
     },
     "saltator maximus": {
       "name": "Saltator maximus",
@@ -7240,17 +7240,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sarkidiornis melanotos"
     },
-    "satanoperca jurupari": {
-      "name": "Satanoperca jurupari",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5208447,
-      "acceptedUsageKey": 5208447,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Satanoperca jurupari"
-    },
     "scaphidura oryzivora": {
       "name": "Molothrus oryzivorus",
       "group": "Aves",
@@ -7261,6 +7250,17 @@
       "acceptedUsageKey": 2484386,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Scaphidura oryzivora"
+    },
+    "satanoperca jurupari": {
+      "name": "Satanoperca jurupari",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5208447,
+      "acceptedUsageKey": 5208447,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Satanoperca jurupari"
     },
     "scardafella squammata": {
       "name": "Columbina squammata",
@@ -7273,16 +7273,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Scardafella squammata"
     },
-    "schistochlamys ruficapillus": {
-      "name": "Schistochlamys ruficapillus",
+    "schistochlamys melanopis": {
+      "name": "Schistochlamys melanopis",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2488060,
-      "acceptedUsageKey": 2488060,
+      "usageKey": 2488064,
+      "acceptedUsageKey": 2488064,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Schistochlamys ruficapillus"
+      "sourceName": "Schistochlamys melanopis"
     },
     "sciurus aestuans": {
       "name": "Sciurus aestuans",
@@ -7295,16 +7295,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sciurus aestuans"
     },
-    "schistochlamys melanopis": {
-      "name": "Schistochlamys melanopis",
+    "schistochlamys ruficapillus": {
+      "name": "Schistochlamys ruficapillus",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2488064,
-      "acceptedUsageKey": 2488064,
+      "usageKey": 2488060,
+      "acceptedUsageKey": 2488060,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Schistochlamys melanopis"
+      "sourceName": "Schistochlamys ruficapillus"
     },
     "scleromystax barbatus": {
       "name": "Scleromystax barbatus",
@@ -7316,17 +7316,6 @@
       "acceptedUsageKey": 2342592,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Scleromystax barbatus"
-    },
-    "selenidera maculirostris": {
-      "name": "Selenidera maculirostris",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2478760,
-      "acceptedUsageKey": 2478760,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Selenidera maculirostris"
     },
     "scleropages formosus": {
       "name": "Scleropages formosus",
@@ -7350,6 +7339,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Serinus canicapillus"
     },
+    "selenidera maculirostris": {
+      "name": "Selenidera maculirostris",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2478760,
+      "acceptedUsageKey": 2478760,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Selenidera maculirostris"
+    },
     "sicalis citrina": {
       "name": "Sicalis citrina",
       "group": "Aves",
@@ -7360,6 +7360,17 @@
       "acceptedUsageKey": 2491841,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sicalis citrina"
+    },
+    "sicalis flaveola": {
+      "name": "Sicalis flaveola",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491862,
+      "acceptedUsageKey": 2491862,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sicalis flaveola"
     },
     "siganus uspi": {
       "name": "Siganus uspi",
@@ -7382,17 +7393,6 @@
       "acceptedUsageKey": 2491846,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sicalis luteola"
-    },
-    "sicalis flaveola": {
-      "name": "Sicalis flaveola",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491862,
-      "acceptedUsageKey": 2491862,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sicalis flaveola"
     },
     "smutsia gigantea": {
       "name": "Manis gigantea",
@@ -7482,16 +7482,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Spizaetus tyrannus"
     },
-    "sporophila americana": {
-      "name": "Sporophila americana",
-      "group": "Aves",
+    "spondylus ictericus": {
+      "name": "Spondylus tenuis",
+      "group": "Invertebrados",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491332,
-      "acceptedUsageKey": 2491332,
+      "status": "SYNONYM",
+      "usageKey": 5188865,
+      "acceptedUsageKey": 6530915,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sporophila americana"
+      "sourceName": "Spondylus ictericus"
     },
     "sporophila albogularis": {
       "name": "Sporophila albogularis",
@@ -7504,16 +7504,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila albogularis"
     },
-    "spondylus ictericus": {
-      "name": "Spondylus tenuis",
-      "group": "Invertebrados",
+    "sporophila americana": {
+      "name": "Sporophila americana",
+      "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 5188865,
-      "acceptedUsageKey": 6530915,
+      "status": "ACCEPTED",
+      "usageKey": 2491332,
+      "acceptedUsageKey": 2491332,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Spondylus ictericus"
+      "sourceName": "Sporophila americana"
     },
     "sporophila angolensis": {
       "name": "Sporophila angolensis",
@@ -7537,17 +7537,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila bouvreuil"
     },
-    "sporophila caerulescens": {
-      "name": "Sporophila caerulescens",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491376,
-      "acceptedUsageKey": 2491376,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sporophila caerulescens"
-    },
     "sporophila castaneiventris": {
       "name": "Sporophila castaneiventris",
       "group": "Aves",
@@ -7558,6 +7547,17 @@
       "acceptedUsageKey": 2491348,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila castaneiventris"
+    },
+    "sporophila caerulescens": {
+      "name": "Sporophila caerulescens",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491376,
+      "acceptedUsageKey": 2491376,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sporophila caerulescens"
     },
     "sporophila collaris": {
       "name": "Sporophila collaris",
@@ -7570,17 +7570,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila collaris"
     },
-    "sporophila frontalis": {
-      "name": "Sporophila frontalis",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491385,
-      "acceptedUsageKey": 2491385,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sporophila frontalis"
-    },
     "sporophila falcirostris": {
       "name": "Sporophila falcirostris",
       "group": "Aves",
@@ -7591,6 +7580,17 @@
       "acceptedUsageKey": 2491326,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila falcirostris"
+    },
+    "sporophila frontalis": {
+      "name": "Sporophila frontalis",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491385,
+      "acceptedUsageKey": 2491385,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sporophila frontalis"
     },
     "sporophila intermedia": {
       "name": "Sporophila intermedia",
@@ -7614,6 +7614,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila leucoptera"
     },
+    "sporophila lineola": {
+      "name": "Sporophila lineola",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491330,
+      "acceptedUsageKey": 2491330,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sporophila lineola"
+    },
     "sporophila luctuosa": {
       "name": "Sporophila luctuosa",
       "group": "Aves",
@@ -7635,17 +7646,6 @@
       "acceptedUsageKey": 7350166,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila maximiliani"
-    },
-    "sporophila lineola": {
-      "name": "Sporophila lineola",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491330,
-      "acceptedUsageKey": 2491330,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sporophila lineola"
     },
     "sporophila minuta": {
       "name": "Sporophila minuta",
@@ -7669,17 +7669,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila nigricollis"
     },
-    "sporophila nigrorufa": {
-      "name": "Sporophila nigrorufa",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2491316,
-      "acceptedUsageKey": 2491316,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Sporophila nigrorufa"
-    },
     "sporophila plumbea": {
       "name": "Sporophila plumbea",
       "group": "Aves",
@@ -7690,6 +7679,17 @@
       "acceptedUsageKey": 2491380,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Sporophila plumbea"
+    },
+    "sporophila nigrorufa": {
+      "name": "Sporophila nigrorufa",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2491316,
+      "acceptedUsageKey": 2491316,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Sporophila nigrorufa"
     },
     "sporophila ruficollis": {
       "name": "Sporophila ruficollis",
@@ -7746,6 +7746,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Stephanophorus diadematus"
     },
+    "stephanorrhina princeps": {
+      "name": "Stephanorrhina princeps",
+      "group": "Insetos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 1078155,
+      "acceptedUsageKey": 1078155,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Stephanorrhina princeps"
+    },
     "stigmochelys pardalis": {
       "name": "Stigmochelys pardalis",
       "group": "Fauna não especificada",
@@ -7767,17 +7778,6 @@
       "acceptedUsageKey": 10903982,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Strombus gigas"
-    },
-    "stephanorrhina princeps": {
-      "name": "Stephanorrhina princeps",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 1078155,
-      "acceptedUsageKey": 1078155,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Stephanorrhina princeps"
     },
     "struthio camelus": {
       "name": "Struthio camelus",
@@ -7878,17 +7878,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tachyphonus rufus"
     },
-    "tamandua tetradactyla": {
-      "name": "Tamandua tetradactyla",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2436340,
-      "acceptedUsageKey": 2436340,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tamandua tetradactyla"
-    },
     "tangara cayana": {
       "name": "Stilpnia cayana",
       "group": "Aves",
@@ -7899,6 +7888,17 @@
       "acceptedUsageKey": 10895981,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tangara cayana"
+    },
+    "tamandua tetradactyla": {
+      "name": "Tamandua tetradactyla",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2436340,
+      "acceptedUsageKey": 2436340,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tamandua tetradactyla"
     },
     "tangara cyanocephala": {
       "name": "Tangara cyanocephala",
@@ -8032,17 +8032,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Telmatobius culeus"
     },
-    "tenebrio molitor": {
-      "name": "Tenebrio molitor",
-      "group": "Insetos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 1045843,
-      "acceptedUsageKey": 1045843,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tenebrio molitor"
-    },
     "tenrec ecaudatus": {
       "name": "Tenrec ecaudatus",
       "group": "Mamíferos",
@@ -8053,6 +8042,17 @@
       "acceptedUsageKey": 5218435,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tenrec ecaudatus"
+    },
+    "tenebrio molitor": {
+      "name": "Tenebrio molitor",
+      "group": "Insetos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 1045843,
+      "acceptedUsageKey": 1045843,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tenebrio molitor"
     },
     "tenualosa ilisha": {
       "name": "Tenualosa ilisha",
@@ -8065,17 +8065,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tenualosa ilisha"
     },
-    "terrapene mexicana": {
-      "name": "Terrapene mexicana",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 8996950,
-      "acceptedUsageKey": 8996950,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Terrapene mexicana"
-    },
     "terrapene carolina": {
       "name": "Terrapene carolina",
       "group": "Fauna não especificada",
@@ -8086,6 +8075,17 @@
       "acceptedUsageKey": 2443173,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Terrapene carolina"
+    },
+    "terrapene mexicana": {
+      "name": "Terrapene mexicana",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 8996950,
+      "acceptedUsageKey": 8996950,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Terrapene mexicana"
     },
     "terrapene ornata": {
       "name": "Terrapene ornata",
@@ -8175,17 +8175,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Thlypopsis sordida"
     },
-    "thraupis cyanoptera": {
-      "name": "Thraupis cyanoptera",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2488626,
-      "acceptedUsageKey": 2488626,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Thraupis cyanoptera"
-    },
     "thraupis episcopus": {
       "name": "Thraupis episcopus",
       "group": "Aves",
@@ -8197,6 +8186,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Thraupis episcopus"
     },
+    "thraupis cyanoptera": {
+      "name": "Thraupis cyanoptera",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2488626,
+      "acceptedUsageKey": 2488626,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Thraupis cyanoptera"
+    },
     "thraupis ornata": {
       "name": "Thraupis ornata",
       "group": "Aves",
@@ -8207,6 +8207,17 @@
       "acceptedUsageKey": 2488601,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Thraupis ornata"
+    },
+    "thraupis palmarum": {
+      "name": "Thraupis palmarum",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 9436876,
+      "acceptedUsageKey": 9436876,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Thraupis palmarum"
     },
     "thraupis sayaca": {
       "name": "Thraupis sayaca",
@@ -8229,17 +8240,6 @@
       "acceptedUsageKey": 7584828,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Thrixopelma lagunas"
-    },
-    "thraupis palmarum": {
-      "name": "Thraupis palmarum",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 9436876,
-      "acceptedUsageKey": 9436876,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Thraupis palmarum"
     },
     "thymallus arcticus": {
       "name": "Thymallus arcticus",
@@ -8296,17 +8296,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tirumala limniace"
     },
-    "tityra inquisitor": {
-      "name": "Tityra inquisitor",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2486476,
-      "acceptedUsageKey": 2486476,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tityra inquisitor"
-    },
     "tliltocatl albopilosus": {
       "name": "Tliltocatl albopilosus",
       "group": "Aracnídeos",
@@ -8329,6 +8318,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tolypeutes tricinctus"
     },
+    "tityra inquisitor": {
+      "name": "Tityra inquisitor",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2486476,
+      "acceptedUsageKey": 2486476,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tityra inquisitor"
+    },
     "trachemys callirostris": {
       "name": "Trachemys callirostris",
       "group": "Fauna não especificada",
@@ -8339,6 +8339,17 @@
       "acceptedUsageKey": 2442992,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Trachemys callirostris"
+    },
+    "trachemys dorbigni": {
+      "name": "Trachemys dorbigni",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2442977,
+      "acceptedUsageKey": 2442977,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Trachemys dorbigni"
     },
     "trachemys scripta": {
       "name": "Trachemys scripta",
@@ -8362,17 +8373,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Trachemys venusta"
     },
-    "trachemys dorbigni": {
-      "name": "Trachemys dorbigni",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2442977,
-      "acceptedUsageKey": 2442977,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Trachemys dorbigni"
-    },
     "tragelaphus imberbis": {
       "name": "Tragelaphus imberbis",
       "group": "Mamíferos",
@@ -8384,17 +8384,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tragelaphus imberbis"
     },
-    "tremarctos ornatus": {
-      "name": "Tremarctos ornatus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2433401,
-      "acceptedUsageKey": 2433401,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tremarctos ornatus"
-    },
     "tragelaphus strepsiceros": {
       "name": "Tragelaphus strepsiceros",
       "group": "Mamíferos",
@@ -8405,6 +8394,17 @@
       "acceptedUsageKey": 5220183,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tragelaphus strepsiceros"
+    },
+    "tremarctos ornatus": {
+      "name": "Tremarctos ornatus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2433401,
+      "acceptedUsageKey": 2433401,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tremarctos ornatus"
     },
     "trichechus inunguis": {
       "name": "Trichechus inunguis",
@@ -8428,16 +8428,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Trichogaster microlepis"
     },
-    "trichoglossus haematodus": {
-      "name": "Trichoglossus haematodus",
-      "group": "Aves",
+    "trichosurus vulpecula": {
+      "name": "Trichosurus vulpecula",
+      "group": "Mamíferos",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2479686,
-      "acceptedUsageKey": 2479686,
+      "usageKey": 2440254,
+      "acceptedUsageKey": 2440254,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Trichoglossus haematodus"
+      "sourceName": "Trichosurus vulpecula"
     },
     "trichoglossus ornatus": {
       "name": "Trichoglossus ornatus",
@@ -8450,16 +8450,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Trichoglossus ornatus"
     },
-    "trichosurus vulpecula": {
-      "name": "Trichosurus vulpecula",
-      "group": "Mamíferos",
+    "trichoglossus haematodus": {
+      "name": "Trichoglossus haematodus",
+      "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2440254,
-      "acceptedUsageKey": 2440254,
+      "usageKey": 2479686,
+      "acceptedUsageKey": 2479686,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Trichosurus vulpecula"
+      "sourceName": "Trichoglossus haematodus"
     },
     "troglodytes troglodytes": {
       "name": "Troglodytes troglodytes",
@@ -8472,17 +8472,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Troglodytes troglodytes"
     },
-    "tubastraea tagusensis": {
-      "name": "Tubastraea tagusensis",
-      "group": "Invertebrados",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2259547,
-      "acceptedUsageKey": 2259547,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tubastraea tagusensis"
-    },
     "trioceros jacksonii": {
       "name": "Trioceros jacksonii",
       "group": "Fauna não especificada",
@@ -8493,6 +8482,17 @@
       "acceptedUsageKey": 8371864,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Trioceros jacksonii"
+    },
+    "tubastraea tagusensis": {
+      "name": "Tubastraea tagusensis",
+      "group": "Invertebrados",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2259547,
+      "acceptedUsageKey": 2259547,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tubastraea tagusensis"
     },
     "tubipora musica": {
       "name": "Tubipora musica",
@@ -8505,17 +8505,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tubipora musica"
     },
-    "tupinambis merianae": {
-      "name": "Salvator merianae",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "SYNONYM",
-      "usageKey": 7730412,
-      "acceptedUsageKey": 5227370,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tupinambis merianae"
-    },
     "tupinambis rufescens": {
       "name": "Salvator rufescens",
       "group": "Fauna não especificada",
@@ -8526,6 +8515,17 @@
       "acceptedUsageKey": 8285095,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Tupinambis rufescens"
+    },
+    "tupinambis merianae": {
+      "name": "Salvator merianae",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "SYNONYM",
+      "usageKey": 7730412,
+      "acceptedUsageKey": 5227370,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Tupinambis merianae"
     },
     "tupinambis teguixin": {
       "name": "Tupinambis teguixin",
@@ -8549,17 +8549,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Turdus albicollis"
     },
-    "turdus amaurochalinus": {
-      "name": "Turdus amaurochalinus",
-      "group": "Aves",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2490752,
-      "acceptedUsageKey": 2490752,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Turdus amaurochalinus"
-    },
     "turdus fumigatus": {
       "name": "Turdus fumigatus",
       "group": "Aves",
@@ -8582,6 +8571,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Turdus leucomelas"
     },
+    "turdus amaurochalinus": {
+      "name": "Turdus amaurochalinus",
+      "group": "Aves",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2490752,
+      "acceptedUsageKey": 2490752,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Turdus amaurochalinus"
+    },
     "turdus merula": {
       "name": "Turdus merula",
       "group": "Aves",
@@ -8593,16 +8593,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Turdus merula"
     },
-    "tympanuchus cupido": {
-      "name": "Tympanuchus cupido",
+    "turdus rufiventris": {
+      "name": "Turdus rufiventris",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2473510,
-      "acceptedUsageKey": 2473510,
+      "usageKey": 2490718,
+      "acceptedUsageKey": 2490718,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Tympanuchus cupido"
+      "sourceName": "Turdus rufiventris"
     },
     "turdus subalaris": {
       "name": "Turdus subalaris",
@@ -8615,16 +8615,16 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Turdus subalaris"
     },
-    "turdus rufiventris": {
-      "name": "Turdus rufiventris",
+    "tympanuchus cupido": {
+      "name": "Tympanuchus cupido",
       "group": "Aves",
       "kingdom": "Animalia",
       "matchType": "EXACT",
       "status": "ACCEPTED",
-      "usageKey": 2490718,
-      "acceptedUsageKey": 2490718,
+      "usageKey": 2473510,
+      "acceptedUsageKey": 2473510,
       "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Turdus rufiventris"
+      "sourceName": "Tympanuchus cupido"
     },
     "tyrannus melancholicus": {
       "name": "Tyrannus melancholicus",
@@ -8670,17 +8670,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Urania leilus"
     },
-    "uromastyx thomasi": {
-      "name": "Uromastyx thomasi",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2466169,
-      "acceptedUsageKey": 2466169,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Uromastyx thomasi"
-    },
     "ursus americanus": {
       "name": "Ursus americanus",
       "group": "Mamíferos",
@@ -8702,6 +8691,17 @@
       "acceptedUsageKey": 2433433,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Ursus arctos"
+    },
+    "uromastyx thomasi": {
+      "name": "Uromastyx thomasi",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2466169,
+      "acceptedUsageKey": 2466169,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Uromastyx thomasi"
     },
     "varanus beccarii": {
       "name": "Varanus beccarii",
@@ -8725,17 +8725,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Varanus niloticus"
     },
-    "varanus prasinus": {
-      "name": "Varanus prasinus",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 8491752,
-      "acceptedUsageKey": 8491752,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Varanus prasinus"
-    },
     "varanus exanthematicus": {
       "name": "Varanus exanthematicus",
       "group": "Fauna não especificada",
@@ -8746,6 +8735,17 @@
       "acceptedUsageKey": 2470729,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Varanus exanthematicus"
+    },
+    "varanus prasinus": {
+      "name": "Varanus prasinus",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 8491752,
+      "acceptedUsageKey": 8491752,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Varanus prasinus"
     },
     "varanus salvator": {
       "name": "Varanus salvator",
@@ -8758,17 +8758,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Varanus salvator"
     },
-    "varanus yuwonoi": {
-      "name": "Varanus yuwonoi",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2470852,
-      "acceptedUsageKey": 2470852,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Varanus yuwonoi"
-    },
     "vireo gracilirostris": {
       "name": "Vireo gracilirostris",
       "group": "Aves",
@@ -8779,6 +8768,17 @@
       "acceptedUsageKey": 2487451,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Vireo gracilirostris"
+    },
+    "varanus yuwonoi": {
+      "name": "Varanus yuwonoi",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2470852,
+      "acceptedUsageKey": 2470852,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Varanus yuwonoi"
     },
     "viverricula indica": {
       "name": "Viverricula indica",
@@ -8802,17 +8802,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Volatinia jacarina"
     },
-    "vulpes lagopus": {
-      "name": "Vulpes lagopus",
-      "group": "Mamíferos",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 5219303,
-      "acceptedUsageKey": 5219303,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Vulpes lagopus"
-    },
     "vulpes vulpes": {
       "name": "Vulpes vulpes",
       "group": "Mamíferos",
@@ -8835,6 +8824,17 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Vulpes zerda"
     },
+    "vulpes lagopus": {
+      "name": "Vulpes lagopus",
+      "group": "Mamíferos",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 5219303,
+      "acceptedUsageKey": 5219303,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Vulpes lagopus"
+    },
     "xylocopa caerulea": {
       "name": "Xylocopa caerulea",
       "group": "Insetos",
@@ -8846,17 +8846,6 @@
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Xylocopa caerulea"
     },
-    "yasuhikotakia modesta": {
-      "name": "Yasuhikotakia modesta",
-      "group": "Fauna não especificada",
-      "kingdom": "Animalia",
-      "matchType": "EXACT",
-      "status": "ACCEPTED",
-      "usageKey": 2367775,
-      "acceptedUsageKey": 2367775,
-      "source": "GBIF Backbone Taxonomy",
-      "sourceName": "Yasuhikotakia modesta"
-    },
     "xylocopa minor": {
       "name": "Xylocopa minor",
       "group": "Insetos",
@@ -8867,6 +8856,17 @@
       "acceptedUsageKey": 1342265,
       "source": "GBIF Backbone Taxonomy",
       "sourceName": "Xylocopa minor"
+    },
+    "yasuhikotakia modesta": {
+      "name": "Yasuhikotakia modesta",
+      "group": "Fauna não especificada",
+      "kingdom": "Animalia",
+      "matchType": "EXACT",
+      "status": "ACCEPTED",
+      "usageKey": 2367775,
+      "acceptedUsageKey": 2367775,
+      "source": "GBIF Backbone Taxonomy",
+      "sourceName": "Yasuhikotakia modesta"
     },
     "zaedyus pichiy": {
       "name": "Zaedyus pichiy",
