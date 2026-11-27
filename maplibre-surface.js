@@ -1,23 +1,22 @@
-/* MAP/GLOBE share Jawg Dark when configured; CARTO Positron remains LIGHT. */
+/* MAP/GLOBE share OpenFreeMap Dark; CARTO Positron remains LIGHT. */
 window.ObservatoryBasemap=(()=>{
  const carto=theme=>'https://basemaps.cartocdn.com/gl/'+(theme==='light'?'positron':'dark-matter')+'-gl-style/style.json';
- const token=String(window.ObservatoryJawgConfig?.accessToken||'').trim();
- const jawg=token?'https://api.jawg.io/styles/jawg-dark.json?access-token='+encodeURIComponent(token):null;
- const style=theme=>theme==='dark'&&jawg?jawg:carto(theme);
- function protect(map,getTheme,onFallback=()=>{}){let fallback=false;map.on('error',e=>{if(fallback||!jawg||getTheme()!=='dark')return;const err=e?.error||e||{},status=Number(err.status||err.statusCode||0),url=String(err.url||''),message=String(err.message||'');if(![400,401,403,429].includes(status)&&!(/jawg\.io/i.test(url+' '+message)&&/failed|unauthorized|forbidden|quota|network/i.test(message)))return;fallback=true;map.setStyle(carto('dark'));onFallback();console.warn('Jawg map unavailable; CARTO Dark Matter fallback active.');});return ()=>{fallback=false;};}
+ const dark='https://tiles.openfreemap.org/styles/dark';
+ const style=theme=>theme==='dark'?dark:carto(theme);
+ function protect(map,getTheme,onFallback=()=>{}){let fallback=false;map.on('error',e=>{if(fallback||getTheme()!=='dark')return;const err=e?.error||e||{},status=Number(err.status||err.statusCode||0),url=String(err.url||''),message=String(err.message||'');if(!/openfreemap\.org/i.test(url+' '+message)||(!status&&!/failed|network|fetch|load|error/i.test(message)))return;fallback=true;map.setStyle(carto('dark'));onFallback();console.warn('OpenFreeMap unavailable; CARTO Dark Matter fallback active.');});return ()=>{fallback=false;};}
 
  let layer,theme='dark',leafMap,resetFallback=()=>{};
  let notice;
- const credit=provider=>'<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a> | © '+(provider==='jawg'?'<a href="https://www.jawg.io/" target="_blank" rel="noopener">Jawg Maps</a>':'<a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>')+', © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
+ const credit=provider=>'<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a> | © '+(provider==='openfreemap'?'<a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a>':'<a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>')+', © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>';
  let shownCredit='';function updateCredit(provider){if(!leafMap)return;if(shownCredit)leafMap.attributionControl.removeAttribution(shownCredit);shownCredit=credit(provider);leafMap.attributionControl.addAttribution(shownCredit);}
  function localizeNotice(){if(notice)notice.textContent=({pt:'MapLibre requer WebGL. Ative a aceleração gráfica do navegador para visualizar o mapa. Os registros continuam disponíveis na lista.',en:'MapLibre requires WebGL. Enable browser graphics acceleration to view the map. Records remain available in the list.',es:'MapLibre requiere WebGL. Active la aceleración gráfica del navegador para ver el mapa. Los registros siguen disponibles en la lista.'})[document.getElementById('language').value]||'';}
  function init(map){
   leafMap=map;
-  try {layer=L.maplibreGL({style:style(theme),interactive:false});layer.addTo(map);const surface=layer.getMaplibreMap();updateCredit(theme==='dark'&&jawg?'jawg':'carto');resetFallback=protect(surface,()=>theme,()=>updateCredit('carto'));window.SeizureHotspots?.bindMap(surface);}
+  try {layer=L.maplibreGL({style:style(theme),interactive:false});layer.addTo(map);const surface=layer.getMaplibreMap();updateCredit(theme==='dark'?'openfreemap':'carto');resetFallback=protect(surface,()=>theme,()=>updateCredit('carto'));window.SeizureHotspots?.bindMap(surface);}
   catch(error){if(layer){try{map.removeLayer(layer);}catch{}}layer=null;notice=document.createElement('div');notice.className='map-engine-notice';notice.setAttribute('role','status');map.getContainer().append(notice);localizeNotice();console.warn('MapLibre could not initialize WebGL.',error);}
   map.attributionControl.setPrefix(false);
  }
- function setTheme(next){localizeNotice();if(next===theme)return;theme=next;if(layer){resetFallback();updateCredit(theme==='dark'&&jawg?'jawg':'carto');layer.getMaplibreMap().setStyle(style(theme));}}
+ function setTheme(next){localizeNotice();if(next===theme)return;theme=next;if(layer){resetFallback();updateCredit(theme==='dark'?'openfreemap':'carto');layer.getMaplibreMap().setStyle(style(theme));}}
  return {init,setTheme,style,protect};
 })();
 /* A stable 3D star sphere projected into a decorative background; no map data. */
