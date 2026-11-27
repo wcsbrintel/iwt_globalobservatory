@@ -24,7 +24,7 @@ sources.set('canonical-cases',{snapshot:({api})=>({rows:api.filtered('base').map
 sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:window.DocumentedRoutes.segments(api.filtered('base'),window.NEWS_DATA).map(d=>({eventId:String(d.event.id),from:window.CountryNames?.canonical(d.segment.from.country)||d.segment.from.country,to:window.CountryNames?.canonical(d.segment.to.country)||d.segment.to.country,direction:window.DocumentedRoutes.direction(d.direction),kind:d.route.route_type}))})});
 function calculate(){const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
 function ensure(){
- if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{if(optionsOpen){setOptions(false);return;}if(!enabled){enabled=true;charts.hidden=false;dirty=true;render();}setOptions(true);};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapCharts').append(button);
+ if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{if(optionsOpen){setOptions(false);return;}if(!enabled){enabled=true;charts.hidden=false;dirty=true;render();}setOptions(true);};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapControls').insertBefore(button,last.root.querySelector('#cleanLanguageHost'));
  panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);panel.dataset.chart='options';charts=el('div','prospective-charts');charts.hidden=true;root.append(charts,panel);last.root.append(root);
  buildControls();
 }
@@ -37,9 +37,9 @@ function placeOptions(){
  const l=limits(panel),p=positions.options;
  if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)){put(panel,p.x*l.x,p.y*l.y);return;}
  const b=button.getBoundingClientRect(),r=root.getBoundingClientRect();
- const x=b.left-r.left,y=b.bottom-r.top+10;
- if(y<=l.y){put(panel,x,y);return;}
- put(panel,b.right-r.left+12,Math.max(12,b.top-r.top-30));
+ const x=b.left-r.left-panel.offsetWidth-12,y=b.top-r.top;
+ if(x>=0){put(panel,x,y);return;}
+ put(panel,b.left-r.left,b.bottom-r.top+10);
 }
 function buildControls(){
  panel.replaceChildren();const head=el('header','prospective-card-header'),heading=el('h3'),handle=el('button','prospective-drag',t(1));handle.type='button';handle.title=extra().move;handle.setAttribute('aria-label',t(1)+' — '+extra().move);heading.append(handle);head.append(heading);

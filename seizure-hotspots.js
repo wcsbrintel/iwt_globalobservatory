@@ -76,6 +76,7 @@ window.SeizureHotspots=(()=>{
   b.title=t.method;
   b.setAttribute('aria-label',t.button);
   b.setAttribute('aria-pressed',String(enabled));
+  const clean=get('cleanHotspots');if(clean){clean.textContent=t.button;clean.title=t.method;clean.setAttribute('aria-label',t.button);clean.setAttribute('aria-pressed',String(enabled));}
   legend.hidden=!enabled;
   get('hotspotSummary').textContent=total?t.summary(total)+' · '+t.sites(locations):t.empty;
   get('hotspotScale').textContent=t.scale;
@@ -93,11 +94,9 @@ window.SeizureHotspots=(()=>{
   const button=get('toggleHotspots');
   if(!button)return;
   initialized=true;
-  button.addEventListener('click',()=>{
-   enabled=!enabled;
-   for(const map of maps)paint(map);
-   localize();
-  });
+  const toggle=()=>{enabled=!enabled;for(const map of maps)paint(map);localize();};
+  button.addEventListener('click',toggle);
+  get('cleanHotspots')?.addEventListener('click',toggle);
   localize();
  }
  return Object.freeze({init,bindMap,update,localize,build,isEnabled:()=>enabled});

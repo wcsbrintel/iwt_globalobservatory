@@ -30,12 +30,9 @@
 @media(max-width:700px){.prospective-toggle{font-size:11px}.prospective-options{width:min(245px,calc(100% - 16px));max-height:70%;padding:8px}.prospective-card{width:min(215px,calc(100% - 16px));max-height:45%;padding:8px}}
 
 /* Keep the control immediately after the country chart, including short viewports. */
-.map-expanded.map-clean-view .map-stage .clean-map-charts:has(#prospectiveToggle:not([hidden])){gap:12px}
-.clean-map-charts:has(#prospectiveToggle:not([hidden])) .clean-country-chart{min-height:0;flex:0 1 auto;overflow:auto;pointer-events:auto;scrollbar-width:thin}
 #prospectiveToggle{pointer-events:auto}
 
 /* The controls follow the country chart and toggle in the left column. */
 
 /* Keep selector above draggable charts, while allowing all map gestures outside cards. */
-.map-expanded.map-clean-view .map-stage .clean-map-charts:has(#prospectiveToggle:not([hidden])){z-index:1350}
 .prospective-root{z-index:1320}
