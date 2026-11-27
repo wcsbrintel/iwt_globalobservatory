@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),T=require('../ibama-taxonomy.js');
+const flora={type:'FLORA',description:'Ter em depósito madeira serrada',official:{administrative_class:'FLORA',narrative_detail:'Art. 70; proteção de flora e fauna'},seized_specimens:[{scientific_name:'Erythrina mulungu',common_name:'Mulungu, Amansa-senhor',group:'FLORA',unit:'m³'}]};
+assert.equal(T.eligibility(flora).ok,false);
+const birds={type:'FAUNA',official:{administrative_class:'FAUNA',infraction_description:'Manter aves silvestres em cativeiro'},species_referenced:[{scientific_name:'Sicalis flaveola',common_name:'Canário-da-terra, Canário',group:'AVES'},{scientific_name:'Sporophila caerulescens',common_name:'Coleirinho',group:'AVES'}]};
+assert.equal(T.eligibility(birds).ok,true);
+const entries=T.entries(birds.species_referenced);assert.equal(entries.length,2);assert.equal(entries[0].common,'Canário-da-terra');
+assert.equal(T.entries(flora.seized_specimens,new Set(['erythrina mulungu'])).length,0);
+assert.deepEqual(T.speciesNames('Ara macao; Amazona aestiva'),['Ara macao','Amazona aestiva']);
+assert.equal(T.speciesNames('Ara spp.').length,0);assert.equal(T.speciesNames('Agoutis, Cutia').length,0);
+assert.equal(T.entries([{scientific_name:'Ara macao; Amazona aestiva',common_name:'Papagaios e araras',group:'FAUNA'}]).every(x=>!x.common),true);
+assert.equal(T.eligibility({type:'FLORA',description:'Desmatamento',seized_specimens:[{group:'AVES',scientific_name:'Ara macao'}]}).ok,true);
+console.log('Fauna eligibility and taxon identity tests passed');

@@ -9,22 +9,42 @@ es:{sources:'Fuentes de datos',osint:'Eventos OSINT',ibama:'IBAMA — Fauna silv
 };
 const $=id=>document.getElementById(id),lang=()=>window.ObservatoryLanguage?.get()||'en',t=()=>W[lang()]||W.en,norm=x=>String(x??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim(),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const official='https://dadosabertos.ibama.gov.br/dataset/fiscalizacao-auto-de-infracao',terms='https://dadosabertos.ibama.gov.br/dataset/fiscalizacao-termo-de-apreensao';
-let osintRows=[],osintCatalog=new WeakMap();let rows=[],status='idle',pending=null,manifest=null,api=null,leaf=null,globe=null,selected=[],revision='',openIds=[],renderToken=0;
+const T=window.IbamaTaxonomy;let knownAnimals=new Set(),taxonomyAudit=null,osintRows=[],osintCatalog=new WeakMap();let rows=[],status='idle',pending=null,manifest=null,api=null,leaf=null,globe=null,selected=[],revision='',openIds=[],renderToken=0;
 const osint=()=>$('sourceOsint')?.checked!==false,enabled=()=>Boolean($('sourceIbama')?.checked),ready=()=>status==='ready';
 const groups={'ave':'Aves','aves':'Aves','bird':'Aves','birds':'Aves','mamifero':'Mamíferos','mamiferos':'Mamíferos','mammals':'Mamíferos','reptil':'Répteis','repteis':'Répteis','reptiles':'Répteis','anfibio':'Anfíbios','anfibios':'Anfíbios','amphibians':'Anfíbios','peixe':'Peixes','peixes':'Peixes','fish':'Peixes','invertebrados':'Invertebrados','insetos':'Insetos','aracnideos':'Aracnídeos'};
-function adapt(f){const p=f.properties,g=f.geometry?.coordinates,items=[...(p.species_referenced||[]),...(p.seized_specimens||[])],taxa=[...new Set(items.flatMap(x=>[x.scientific_name,x.common_name]).filter(Boolean))],gs=[...new Set(items.map(x=>groups[norm(x.group)]).filter(Boolean))];return {id:p.id,case_id:p.id,sourceType:'ibama',country:'Brasil',uf:p.uf||'',year:p.date.slice(0,4),day:p.date,date:p.date,groups:gs.length?gs:['Fauna não especificada'],modeGroup:'',lat:Array.isArray(g)?g[1]:null,lng:Array.isArray(g)?g[0]:null,p,taxa,search:norm(JSON.stringify(p))};}
+function adapt(f){
+ const p=f.properties,g=f.geometry?.coordinates,items=T.allItems(p),entries=T.entries(items,knownAnimals),taxa=entries.map(x=>x.key);
+ const eligibleItem=x=>!T.plantItem(x)&&(T.animalItem(x)||T.speciesNames(x.scientific_name).some(n=>knownAnimals.has(norm(n))));
+ const gs=[...new Set(items.filter(eligibleItem).map(x=>groups[norm(x.group)]).filter(Boolean))];
+ const display={...p,species_referenced:(p.species_referenced||[]).filter(eligibleItem),seized_specimens:(p.seized_specimens||[]).filter(eligibleItem)};
+ return {id:p.id,case_id:p.id,sourceType:'ibama',country:'Brasil',uf:p.uf||'',year:p.date.slice(0,4),day:p.date,date:p.date,groups:gs.length?gs:['Fauna não especificada'],modeGroup:'',lat:Array.isArray(g)?g[1]:null,lng:Array.isArray(g)?g[0]:null,p:display,taxa,taxonEntries:entries,search:norm(JSON.stringify(display))};
+}
 function localize(){if(!$('ibamaSourceBox'))return;const w=t();for(const [id,key] of [['sourceHeading','sources'],['sourceOsintLabel','osint'],['sourceIbamaLabel','ibama'],['ibamaPeriod','period'],['ibamaSourceNote','history']])$(id).textContent=w[key];$('ibamaSourceNote').textContent+=' '+w.osintOnly;$('sharedTaxonLabel').textContent=({pt:'Espécie',en:'Species',es:'Especie'})[lang()]||'Species';$('sharedTaxon').setAttribute('aria-label',$('sharedTaxonLabel').textContent);$('ibamaFilters').hidden=!enabled();const a=filtered(),mapped=a.filter(window.GlobeData.valid).length;
 $('ibamaStatus').textContent=!enabled()?'':status==='loading'?w.loading:status==='error'?w.missing:ready()?w.ready+': '+a.length.toLocaleString(lang())+' · '+(a.length-mapped).toLocaleString(lang())+' '+w.unmapped:w.notloaded;
 $('ibamaRetry').hidden=status!=='error'||!enabled();$('ibamaRetry').textContent=w.missing;
 const s=$('sharedTaxon');if(s.options.length)s.options[0].textContent=w.all;}
-function osintNames(e){return osintCatalog.get(e)||[];}
-function setOsintRows(next){if(osintRows!==next){osintRows=next;osintCatalog=window.ObservatoryTimeCore.speciesCatalog(next);}options();}
-function options(){const s=$('sharedTaxon');if(!s)return;const v=s.value,m=new Map();
- for(const name of [...osintRows.flatMap(osintNames),...rows.flatMap(r=>r.taxa)]){const k=norm(name);if(k&&!m.has(k))m.set(k,name);}
- s.replaceChildren(new Option(t().all,''));for(const [k,name] of [...m].sort((a,b)=>a[1].localeCompare(b[1],lang())))s.add(new Option(name,k));s.value=m.has(v)?v:'';
+function osintNames(e){return (osintCatalog.get(e)||[]).flatMap(T.speciesNames);}
+function setOsintRows(next){if(osintRows!==next){osintRows=next;osintCatalog=window.ObservatoryTimeCore.speciesCatalog(next);for(const e of next)for(const n of osintNames(e))knownAnimals.add(norm(n));}options();}
+function osintEntries(e){
+ const names=osintNames(e),raw=String(e.taxon_text||'').replace(/\*/g,'');
+ return names.map(name=>{
+  const index=raw.indexOf(name),tail=index<0?'':raw.slice(index+name.length);
+  const candidate=/^\s*\(([^()]{2,80})\)/.exec(tail)?.[1]||'';
+  const safe=/\b(?:especie|espécie|potencial|apreendid|identific|exemplar|individ|suspeit|nenhum|possivel|possível|provavel|provável|not|reported|seized|species)\w*/i.test(candidate)?'':T.common(candidate);
+  return {key:norm(name),name,common:safe};
+ });
 }
-function matchesOsint(e){const k=$('sharedTaxon')?.value;return !k||osintNames(e).some(n=>norm(n)===k)||[e.fauna_label_pt,e.species].some(n=>norm(n)===k);}
-function selectedTaxon(r,k){return !k||r.taxa.some(n=>norm(n)===k);}
+function options(){
+ const s=$('sharedTaxon');if(!s)return;const v=s.value,m=new Map();
+ const add=e=>{if(!m.has(e.key))m.set(e.key,{...e});else if(!m.get(e.key).common&&e.common)m.get(e.key).common=e.common;};
+ for(const r of rows)for(const e of r.taxonEntries||[])add(e);
+ for(const r of osintRows)for(const e of osintEntries(r))add(e);
+ const active=new Set();if(osint())for(const e of osintRows)for(const n of osintNames(e))active.add(norm(n));if(enabled())for(const r of rows)for(const k of r.taxa)active.add(k);
+ s.replaceChildren(new Option(t().all,''));for(const e of [...m.values()].filter(e=>active.has(e.key)).sort((a,b)=>a.name.localeCompare(b.name,lang())))s.add(new Option(e.name+(e.common?' ('+e.common+')':''),e.key));
+ s.value=active.has(v)?v:'';
+}
+function matchesOsint(e){const k=$('sharedTaxon')?.value;return !k||osintNames(e).some(n=>norm(n)===k);}
+function selectedTaxon(r,k){return !k||r.taxa.includes(k);}
 function totals(osintRecords){const official=filtered();return {osint:osintRecords.length,official:official.length,mappedOsint:osintRecords.filter(window.GlobeData.valid).length,mappedOfficial:official.filter(window.GlobeData.valid).length};}
 function countLabel(a,mapped=false){const fmt=n=>n.toLocaleString(lang()),w=t(),out=[];if(osint())out.push(fmt(mapped?a.mappedOsint:a.osint)+' '+w.osint);if(enabled())out.push(fmt(mapped?a.mappedOfficial:a.official)+' '+({pt:'autos IBAMA',en:'IBAMA notices',es:'actas IBAMA'})[lang()]);return out.join(' · ');}
 
@@ -32,7 +52,9 @@ async function load(){if(pending)return pending;if(ready())return;status='loadin
  const m=await fetch(BASE+'manifest.json',{cache:'no-store',credentials:'omit'});if(!m.ok)throw Error('Manifest '+m.status);const data=await m.json();if(data.schema_version!==1||data.unit!=='administrative_infraction_notice'||data.coverage_start!=='2020-01-01'||data.coverage_end!=='2025-12-31'||data.years?.length!==6)throw Error('Invalid national manifest');
  const collections=await Promise.all(YEARS.map(async y=>{const entry=data.years.find(x=>x.year===y);if(!entry||entry.file!=='ibama-'+y+'.json')throw Error('Missing year '+y);const r=await fetch(BASE+entry.file,{cache:'default',credentials:'omit'});if(!r.ok)throw Error('Year '+y+' '+r.status);const buffer=await r.arrayBuffer();if(window.crypto?.subtle){const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',buffer))].map(x=>x.toString(16).padStart(2,'0')).join('');if(hash!==entry.sha256)throw Error('Checksum '+y);}
  const d=JSON.parse(new TextDecoder().decode(buffer));if(d.year!==y||d.features?.length!==entry.records||!d.features.length)throw Error('Invalid year '+y);return d.features;}));
- const ids=new Set(),next=[];for(const f of collections.flat()){const p=f.properties;if(!p?.id||ids.has(p.id)||!p.date||!p.categories?.includes('wildlife'))throw Error('Invalid or duplicate notice');ids.add(p.id);next.push(adapt(f));}if(next.length!==data.records)throw Error('Manifest count mismatch');rows=next;manifest=data;status='ready';options();
+ const ids=new Set(),next=[],accepted=[],excluded={};for(const f of collections.flat()){const p=f.properties;if(!p?.id||ids.has(p.id)||!p.date||!p.categories?.includes('wildlife'))throw Error('Invalid or duplicate notice');ids.add(p.id);
+ const verdict=T.eligibility(p);if(!verdict.ok){excluded[verdict.reason]=(excluded[verdict.reason]||0)+1;continue;}accepted.push(f);for(const x of T.allItems(p))if(T.animalItem(x))for(const n of T.speciesNames(x.scientific_name))knownAnimals.add(norm(n));}
+ if(ids.size!==data.records)throw Error('Manifest count mismatch');for(const f of accepted)next.push(adapt(f));rows=next;taxonomyAudit={input:ids.size,accepted:rows.length,excluded,scientificSpecies:new Set(rows.flatMap(r=>r.taxa)).size};console.info('IBAMA fauna eligibility audit',taxonomyAudit);manifest=data;status='ready';options();
  }catch(e){status='error';console.warn('IBAMA national data unavailable',e);}finally{pending=null;revision='';localize();api?.refresh();window.ProspectiveIntelligence?.invalidate();}})();return pending;}
 function filtered(period='visible',force=false){if((!enabled()&&!force)||!ready())return [];const country=$('country')?.value,group=$('species')?.value,year=$('year')?.value,mode=$('mode')?.value,taxon=$('sharedTaxon')?.value;const state=window.ObservatoryTime?.state(),range=period==='base'?null:state?.visible==='b'?state.comparison:state?.range;return rows.filter(r=>(!country||window.CountryNames?.canonical(country)==='Brasil')&&(!group||r.groups.includes(group))&&(!year||r.year===year)&&!mode&&selectedTaxon(r,taxon)&&(!window.RecordSearch||window.RecordSearch.matchesText(r.search+' brasil brazil ibama'))&&(!range||r.day>=range.start&&r.day<=range.end));}
 function snapshots(){return {rows:filtered('base',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),visible:filtered('visible',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),edges:[]};}
@@ -52,6 +74,6 @@ function detail(r){const p=r.p,o=p.official||{},w=t();return '<div class="ibama-
 function close(){const wasOpen=$('ibamaDetail')&&!$('ibamaDetail').hidden;openIds=[];if($('ibamaDetail'))$('ibamaDetail').hidden=true;if(wasOpen)window.dispatchEvent(new Event('observatory:ibama-detail'));}
 function openById(id){const r=filtered().find(x=>x.id===id);if(r)open([r]);}
 function open(records){openIds=records.map(r=>r.id);const box=$('ibamaDetail'),body=$('ibamaDetailBody');box.hidden=false;window.dispatchEvent(new Event('observatory:ibama-detail'));$('ibamaDetailTitle').textContent=t().source;$('ibamaDetailClose').textContent='×';$('ibamaDetailClose').setAttribute('aria-label',t().close);if(records.length===1){body.innerHTML=detail(records[0]);return;}body.innerHTML='<h3>'+esc(t().at)+' · '+records.length+'</h3>';for(const r of records){const b=document.createElement('button');b.type='button';b.className='ibama-choice';b.textContent=[r.p.notice||r.id,r.day,r.p.municipality,r.p.official?.infraction_description||r.p.description].filter(Boolean).join(' · ');b.onclick=()=>{body.innerHTML='<button type="button" id="ibamaBack">'+esc(t().back)+'</button>'+detail(r);$('ibamaBack').onclick=()=>open(records);};body.append(b);}}
-function init(a){api=a;leaf=L.layerGroup().addTo(a.map);$('sourceOsint').onchange=()=>api.refresh();$('sourceIbama').onchange=()=>{if(enabled())load();else close();api.refresh();};$('sharedTaxon').onchange=()=>api.refresh();$('ibamaRetry').onclick=()=>load();$('ibamaPeriod').onclick=()=>window.ObservatoryTime.apply({preset:'custom',range:{start:'2020-01-01',end:'2025-12-31'},basis:'occurrence_or_publication'});$('ibamaDetailClose').onclick=close;window.ObservatoryLanguage?.subscribe(()=>{options();localize();if(openIds.length){const members=rows.filter(r=>openIds.includes(r.id));if(members.length)open(members);}});localize();}
-return Object.freeze({init,sync,bindGlobe,enabled,osint,ready,load,filtered,snapshots,close,openById,words:t,setOsintRows,matchesOsint,totals,countLabel,status:()=>status,manifest:()=>manifest});
+function init(a){api=a;leaf=L.layerGroup().addTo(a.map);$('sourceOsint').onchange=()=>{options();api.refresh();};$('sourceIbama').onchange=()=>{if(enabled())load();else close();options();api.refresh();};$('sharedTaxon').onchange=()=>api.refresh();$('ibamaRetry').onclick=()=>load();$('ibamaPeriod').onclick=()=>window.ObservatoryTime.apply({preset:'custom',range:{start:'2020-01-01',end:'2025-12-31'},basis:'occurrence_or_publication'});$('ibamaDetailClose').onclick=close;window.ObservatoryLanguage?.subscribe(()=>{options();localize();if(openIds.length){const members=rows.filter(r=>openIds.includes(r.id));if(members.length)open(members);}});localize();}
+return Object.freeze({init,sync,bindGlobe,enabled,osint,ready,load,filtered,snapshots,close,openById,words:t,setOsintRows,matchesOsint,totals,countLabel,status:()=>status,manifest:()=>manifest,taxonomyAudit:()=>taxonomyAudit});
 })();
