@@ -7,7 +7,7 @@
   "date_basis": "notice_date",
   "coverage_start": "2020-01-01",
   "coverage_end": "2025-12-31",
-  "generated_at": "2026-11-27T21:19:30.371464+00:00",
+  "generated_at": "2026-11-27T21:36:02.245659+00:00",
   "years": [
     {
       "year": 2020,
@@ -16,7 +16,7 @@
       "georeferenced": 1545,
       "without_coordinates": 67,
       "bytes": 2346081,
-      "sha256": "4d74678dfaa96e7091b88829439c5e89ccda0219baa15745bfd3691bf3ab2358",
+      "sha256": "9b8f1ac9990da0fc1f2a2dc52c06cad134016ab04bad0e0db61061fd108b1c28",
       "by_uf": {
         "MG": 144,
         "ES": 85,
@@ -65,7 +65,7 @@
       "georeferenced": 833,
       "without_coordinates": 53,
       "bytes": 1333992,
-      "sha256": "4ca002b2c8e71f552adaf31143264fb3452625f9b318fe6994993846bffe844f",
+      "sha256": "704c657196ae3b2180b5d8c1742564a3b19bf6f2ee1dfeb80bdd534830f23984",
       "by_uf": {
         "CE": 35,
         "RR": 10,
@@ -115,7 +115,7 @@
       "georeferenced": 1866,
       "without_coordinates": 376,
       "bytes": 3805823,
-      "sha256": "5743f7b2249799e893b0f69a3306486b0efb5d27528250e388f88584dd10d332",
+      "sha256": "336f3596cf1133ac3a43bdf9358d14fba65ae098b5ffd928fb1ba0b1a7ecb4eb",
       "by_uf": {
         "PI": 43,
         "MG": 629,
@@ -166,7 +166,7 @@
       "georeferenced": 1984,
       "without_coordinates": 130,
       "bytes": 3833564,
-      "sha256": "b3a803288a5f859fc3d6c32129cdc8f158a545a9d3b84b6ef961eca0bd3479a7",
+      "sha256": "bc877f529acb74a7b2bb360c5f3dc8f92145cff98aa9855b9315549b3765e8f4",
       "by_uf": {
         "SP": 264,
         "PA": 129,
@@ -217,7 +217,7 @@
       "georeferenced": 1635,
       "without_coordinates": 23,
       "bytes": 2744373,
-      "sha256": "6f7f7ccd1ecede7c9d340fefd904ecc884bf65b18bdd8f9bd6a329ba43def418",
+      "sha256": "2d79a51bbe342e57c7540f4f5072b2e31406365c67ed6639eef2619cb154bb18",
       "by_uf": {
         "SP": 202,
         "MG": 182,
@@ -268,7 +268,7 @@
       "georeferenced": 2248,
       "without_coordinates": 31,
       "bytes": 3228349,
-      "sha256": "841d34842ac989d936aabf312a7580f5a721a66596e88999bc08db31fd4e42a8",
+      "sha256": "c3d5b21f960851ef7cc38019435b52e6fab276a8842bc4c547027ae70ce99d1a",
       "by_uf": {
         "SP": 204,
         "MG": 228,
