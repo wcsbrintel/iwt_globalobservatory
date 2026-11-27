@@ -2,7 +2,7 @@
 window.ProspectiveIntelligence=(()=>{
 'use strict';
 const sources=new Map(),C=window.ProspectiveCore;
-let root,button,panel,charts,last,enabled=false,history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
+let root,button,panel,charts,last,enabled=false,optionsOpen=false,history=24,horizon=90,chosen=new Set(['routes','season','forecast']),cache=null,dirty=true,dragging=false,rerender=false,statusNode=null,zCounter=0;
 const positionKey='observatory-prospective-chart-positions-v1';
 let positions={};try{const saved=JSON.parse(localStorage.getItem(positionKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))positions=saved;}catch{}
 const savePositions=()=>{try{localStorage.setItem(positionKey,JSON.stringify(positions));}catch{}};
@@ -24,20 +24,34 @@ sources.set('canonical-cases',{snapshot:({api})=>({rows:api.filtered('base').map
 sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:window.DocumentedRoutes.segments(api.filtered('base'),window.NEWS_DATA).map(d=>({eventId:String(d.event.id),from:window.CountryNames?.canonical(d.segment.from.country)||d.segment.from.country,to:window.CountryNames?.canonical(d.segment.to.country)||d.segment.to.country,direction:window.DocumentedRoutes.direction(d.direction),kind:d.route.route_type}))})});
 function calculate(){const all={rows:[],visible:[],edges:[]};for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}return C.analyze({...all,history,horizon,now:window.ObservatoryTimeCore.day(Date.now())});}
 function ensure(){
- if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{enabled=!enabled;button.setAttribute('aria-expanded',String(enabled));panel.hidden=!enabled;charts.hidden=!enabled;dirty=true;if(enabled)render();};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapCharts').append(button);
- panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);button.after(panel);charts=el('div','prospective-charts');charts.hidden=true;root.append(charts);last.root.append(root);
+ if(root)return;root=el('div','prospective-root');root.id='prospectiveRoot';button=el('button','prospective-toggle');button.type='button';button.setAttribute('aria-expanded','false');button.onclick=()=>{if(optionsOpen){setOptions(false);return;}if(!enabled){enabled=true;charts.hidden=false;dirty=true;render();}setOptions(true);};button.id='prospectiveToggle';button.hidden=true;last.root.querySelector('#cleanMapCharts').append(button);
+ panel=el('section','prospective-options');panel.id='prospectiveOptions';panel.hidden=true;button.setAttribute('aria-controls',panel.id);panel.dataset.chart='options';charts=el('div','prospective-charts');charts.hidden=true;root.append(charts,panel);last.root.append(root);
  buildControls();
 }
+function setOptions(open){
+ optionsOpen=open;button.setAttribute('aria-expanded',String(open));panel.hidden=!open||!last?.active;
+ if(open&&last?.active){panel.style.zIndex=String(++zCounter);placeOptions();}else if(last?.active){button.focus({preventScroll:true});}
+}
+function placeOptions(){
+ if(panel.hidden||dragging)return;
+ const l=limits(panel),p=positions.options;
+ if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y)){put(panel,p.x*l.x,p.y*l.y);return;}
+ const b=button.getBoundingClientRect(),r=root.getBoundingClientRect();
+ const x=b.left-r.left,y=b.bottom-r.top+10;
+ if(y<=l.y){put(panel,x,y);return;}
+ put(panel,b.right-r.left+12,Math.max(12,b.top-r.top-30));
+}
 function buildControls(){
- panel.replaceChildren();const head=el('div','prospective-head');head.append(el('strong','',t(1)));const close=el('button','prospective-close','×');close.type='button';close.setAttribute('aria-label',t(38));close.onclick=()=>button.click();head.append(close);panel.append(head);
+ panel.replaceChildren();const head=el('header','prospective-card-header'),heading=el('h3'),handle=el('button','prospective-drag',t(1));handle.type='button';handle.title=extra().move;handle.setAttribute('aria-label',t(1)+' — '+extra().move);heading.append(handle);head.append(heading);
+ const close=el('button','prospective-card-close','×');close.type='button';close.title=t(38);close.setAttribute('aria-label',t(38)+': '+t(1));close.onclick=()=>setOptions(false);head.append(close);panel.append(head);attachDrag(panel,handle);
  function select(label,values,selected,change){const l=el('label','prospective-field',label),s=el('select');for(const [v,name] of values){const o=el('option','',name);o.value=v;s.append(o);}s.value=selected;s.onchange=()=>{change(Number(s.value));dirty=true;render();};l.append(s);panel.append(l);}
  select(t(2),[[12,'12 '+t(3)],[24,'24 '+t(3)],[36,'36 '+t(3)],[0,t(4)]],history,v=>history=v);
  select(t(5),[[30,'1'],[60,'2'],[90,'3']],horizon,v=>horizon=v);
- const options=el('div','prospective-checks');for(let i=0;i<ids.length;i++){const l=el('label'),c=el('input');c.type='checkbox';c.dataset.chart=ids[i];c.checked=chosen.has(ids[i]);c.onchange=()=>{c.checked?chosen.add(ids[i]):chosen.delete(ids[i]);render();};l.append(c,document.createTextNode(t(6+i)));options.append(l);}statusNode=el('small','prospective-status');statusNode.setAttribute('role','status');statusNode.setAttribute('aria-live','polite');const reset=el('button','prospective-reset',extra().reset);reset.type='button';reset.onclick=()=>{positions={};savePositions();render();};panel.append(options,reset,statusNode,el('small','',t(18)+' '+t(43)));
+ const options=el('div','prospective-checks');for(let i=0;i<ids.length;i++){const l=el('label'),c=el('input');c.type='checkbox';c.dataset.chart=ids[i];c.checked=chosen.has(ids[i]);c.onchange=()=>{c.checked?chosen.add(ids[i]):chosen.delete(ids[i]);render();};l.append(c,document.createTextNode(t(6+i)));options.append(l);}statusNode=el('small','prospective-status');statusNode.setAttribute('role','status');statusNode.setAttribute('aria-live','polite');const reset=el('button','prospective-reset',extra().reset);reset.type='button';reset.onclick=()=>{positions={};savePositions();render();placeOptions();};panel.append(options,reset,statusNode,el('small','',t(18)+' '+t(43)));
 }
 const extra=()=>({pt:{move:'Arrastar para mover o gráfico (ou usar as setas)',close:'Fechar gráfico',error:'Não foi possível calcular a análise. Tente novamente.',loading:'Carregando dados canônicos…',ready:'Análise calculada',months:'meses completos',reset:'Restaurar posições'},en:{move:'Drag to move chart (or use arrow keys)',close:'Close chart',error:'Unable to calculate analysis. Try again.',loading:'Loading canonical data…',ready:'Analysis calculated',months:'complete months',reset:'Reset positions'},es:{move:'Arrastrar para mover el gráfico (o usar las flechas)',close:'Cerrar gráfico',error:'No se pudo calcular el análisis. Intente de nuevo.',loading:'Cargando datos canónicos…',ready:'Análisis calculado',months:'meses completos',reset:'Restaurar posiciones'}}[lang()]||{move:'Drag to move chart',close:'Close chart',error:'Unable to calculate analysis',loading:'Loading data…',ready:'Analysis calculated',months:'complete months',reset:'Reset positions'});
 const clamp=(n,min,max)=>Math.min(Math.max(min,max),Math.max(min,n));
-function limits(s){return {x:Math.max(0,charts.clientWidth-s.offsetWidth-8),y:Math.max(0,charts.clientHeight-s.offsetHeight-8)};}
+function limits(s){return {x:Math.max(0,root.clientWidth-s.offsetWidth-8),y:Math.max(0,root.clientHeight-s.offsetHeight-8)};}
 function put(s,x,y,remember=false){const l=limits(s);x=clamp(x,0,l.x);y=clamp(y,0,l.y);s.style.left=x+'px';s.style.top=y+'px';if(remember){positions[s.dataset.chart]={x:l.x?x/l.x:0,y:l.y?y/l.y:0};savePositions();}}
 function place(s,i){
  const l=limits(s),p=positions[s.dataset.chart];
@@ -53,13 +67,15 @@ function card(title,id){
  const header=el('header','prospective-card-header'),handle=el('button','prospective-drag',title),close=el('button','prospective-card-close','×');handle.type='button';handle.title=extra().move;handle.setAttribute('aria-label',title+' — '+extra().move);close.type='button';close.title=extra().close;close.setAttribute('aria-label',extra().close+': '+title);
  const heading=el('h3');heading.append(handle);header.append(heading,close);s.append(header);charts.append(s);
  close.onclick=()=>{chosen.delete(id);const input=panel.querySelector('input[data-chart="'+id+'"]');if(input)input.checked=false;s.remove();if(!chosen.size)statusNode.textContent=extra().ready;};
+ attachDrag(s,handle);return s;
+}
+function attachDrag(s,handle){
  handle.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();e.stopPropagation();dragging=true;s.style.zIndex=String(++zCounter);handle.setPointerCapture(e.pointerId);const ox=e.clientX-s.offsetLeft,oy=e.clientY-s.offsetTop;
  const move=ev=>{ev.stopPropagation();put(s,ev.clientX-ox,ev.clientY-oy);};
  const done=ev=>{ev.stopPropagation();handle.removeEventListener('pointermove',move);handle.removeEventListener('pointerup',done);handle.removeEventListener('pointercancel',done);handle.removeEventListener('lostpointercapture',done);put(s,s.offsetLeft,s.offsetTop,true);dragging=false;if(rerender){rerender=false;render();}};
  handle.addEventListener('pointermove',move);handle.addEventListener('pointerup',done);handle.addEventListener('pointercancel',done);handle.addEventListener('lostpointercapture',done);
  });
  handle.addEventListener('keydown',e=>{const d={ArrowLeft:[-12,0],ArrowRight:[12,0],ArrowUp:[0,-12],ArrowDown:[0,12]}[e.key];if(!d)return;e.preventDefault();e.stopPropagation();s.style.zIndex=String(++zCounter);put(s,s.offsetLeft+d[0],s.offsetTop+d[1],true);});
- return s;
 }
 function note(s,txt){s.append(el('small','prospective-note',txt));}
 function bars(s,data,label=x=>x.key){if(!data.length){note(s,t(17));return;}const max=Math.max(1,...data.map(x=>x.n));for(const d of data.slice(0,6)){const row=el('div','prospective-row'),h=el('div','prospective-row-head');h.append(el('span','',label(d)),el('b','',fmt(d.n)));const rail=el('div','prospective-rail'),fill=el('span');fill.style.width=100*d.n/max+'%';rail.append(fill);row.append(h,rail);s.append(row);}}
@@ -94,8 +110,9 @@ function renderCharts(){
  }
  }
  [...charts.querySelectorAll('.prospective-card')].forEach((s,i)=>{note(s,t(18));place(s,i);});
+ placeOptions();
 }
 let prevLang='';
-function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;panel.hidden=!ctx.active||!enabled;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}if(enabled){dirty=true;render();}}
+function sync(ctx){last=ctx;if(!ctx?.root||!ctx.api)return;ensure();root.hidden=!ctx.active;button.hidden=!ctx.active;panel.hidden=!ctx.active||!optionsOpen;charts.hidden=!enabled;if(!ctx.active)return;button.textContent=t(0);if(prevLang!==lang()){prevLang=lang();buildControls();}if(enabled){dirty=true;render();}placeOptions();}
 return Object.freeze({sync,registerSource,invalidate});
 })();
