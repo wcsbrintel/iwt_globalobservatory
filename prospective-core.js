@@ -17,6 +17,16 @@ function series(rows,history,now,coverageStart){
  for(const r of historyRows)months[monthIndex(r.day)-start].n++;
  return {months,dated,historyRows,undated:rows.length-dated.length};
 }
+const validMonth=k=>typeof k==='string'&&/^\d{4}-(0[1-9]|1[0-2])$/.test(k);
+function indicators(rows,{history=24,now,coverageStart,coverageEnd,basis='occurrence',range=null,visible=[]}={}){
+ const today=validDay(now)?now:new Date().toISOString().slice(0,10),endDay=validDay(coverageEnd)&&coverageEnd<today?coverageEnd:today,end=monthIndex(endDay);
+ const all=dedup(rows),selected=dedup(visible),eligible=all.filter(r=>validMonth(r.indicatorMonth)&&r.indicatorMonth<=endDay.slice(0,7)&&(!r.indicatorDay||r.indicatorDay<=endDay));
+ const earliest=validDay(coverageStart)?monthIndex(coverageStart):eligible.length?Math.min(...eligible.map(r=>monthIndex(r.indicatorMonth))):end;
+ const start=Math.max(earliest,history?end-history+1:earliest),months=start<=end?Array.from({length:end-start+1},(_,i)=>({key:monthKey(start+i),n:0,partial:false,monthOnly:0})):[];
+ const used=eligible.filter(r=>monthIndex(r.indicatorMonth)>=start);for(const r of used){const m=months[monthIndex(r.indicatorMonth)-start];if(!m)continue;m.n++;if(!r.indicatorDay)m.monthOnly++;}
+ if(months.length&&endDay===today&&Number(endDay.slice(8))<new Date(Date.UTC(Number(endDay.slice(0,4)),Number(endDay.slice(5,7)),0)).getUTCDate())months.at(-1).partial=true;
+ return {months,count:used.length,monthOnly:used.filter(r=>!r.indicatorDay).length,undated:all.filter(r=>!validMonth(r.indicatorMonth)).length,outside:all.length-used.length-all.filter(r=>!validMonth(r.indicatorMonth)).length,selected:selected.length,basis,start:months[0]?.key||null,end:months.at(-1)?.key||null,partial:months.at(-1)?.partial||false};
+}
 function seasonal(months){const arr=Array.from({length:12},()=>[]);for(const m of months)arr[Number(m.key.slice(5))-1].push(m.n);return arr.map(a=>({n:mean(a),years:a.length}));}
 function forecast(months,horizon){
  // Rolling-origin evaluation on complete calendar months. Do not claim true incidence.
@@ -58,5 +68,5 @@ function analyze({rows,visible,edges,history=24,horizon=90,now,coverageStart,dis
  const modeRows=[tally(recentRows,r=>r.mode),tally(priorRows,r=>r.mode),tally(histRows,r=>r.mode)];
  return {visible:visible.length,total:rows.length,undated:s.undated,historyCount:histRows.length,months:m,season,groupSeason,areas,modeRows,route:routes(histRows,edges),visibleRoute:routes(visible,edges),recent:sum(recent),prior:sum(prior),trend:prior.length===3&&sum(prior)>0?(sum(recent)/sum(prior)-1)*100:null,anomaly,forecast:disableForecast?null:forecast(m,horizon)};
 }
-return Object.freeze({analyze,series,seasonal,forecast,routes,dedup,tally});
+return Object.freeze({analyze,series,indicators,seasonal,forecast,routes,dedup,tally});
 });

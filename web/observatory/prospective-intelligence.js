@@ -19,7 +19,7 @@ const svg=(tag,attrs)=>{const e=document.createElementNS('http://www.w3.org/2000
 const add=(s,tag,attrs,txt)=>{const e=svg(tag,attrs);if(txt!==undefined)e.textContent=txt;s.append(e);return e;};
 function registerSource(id,adapter){if(typeof adapter?.snapshot!=='function')throw Error('Explicit snapshot adapter required');sources.set(id,adapter);invalidate();return()=>{sources.delete(id);invalidate();};}
 function invalidate(){dirty=true;if(last?.active&&enabled)render();}
-const normalize=e=>({id:String(e.id),canonicalId:String(e.case_id||e.id),country:e.country,groups:e.groups||[],mode:e.modeGroup,day:window.ObservatoryTimeCore.dateOf(e,'occurrence').day,countable:window.CaseContext.countable(e)});
+const normalize=e=>{const core=window.ObservatoryTimeCore,basis=window.ObservatoryTime?.state()?.basis||'occurrence',d=core.indicatorDate(e,basis);return {id:String(e.id),canonicalId:String(e.case_id||e.id),country:e.country,groups:e.groups||[],mode:e.modeGroup,day:core.dateOf(e,'occurrence').day,indicatorMonth:d.month,indicatorDay:d.day,countable:window.CaseContext.countable(e)};};
 sources.set('canonical-cases',{snapshot:({api})=>({rows:api.filtered('base').map(normalize),visible:api.filtered().map(normalize),edges:[]})});
 sources.set('documented-routes',{snapshot:({api})=>({rows:[],visible:[],edges:window.DocumentedRoutes.segments(api.filtered('base'),window.NEWS_DATA).map(d=>({eventId:String(d.event.id),from:window.CountryNames?.canonical(d.segment.from.country)||d.segment.from.country,to:window.CountryNames?.canonical(d.segment.to.country)||d.segment.to.country,direction:window.DocumentedRoutes.direction(d.direction),kind:d.route.route_type}))})});
 function activeSources(){const ib=window.IbamaFauna;return [...(!ib||ib.osint()?['osint']:[]),...(ib?.enabled()?['ibama']:[])];}
@@ -32,10 +32,12 @@ function calculate(){
   for(const adapter of sources.values()){const data=adapter.snapshot(last);for(const k of Object.keys(all))all[k].push(...(data[k]||[]));}
   osintData=all;const end=yearEnd&&yearEnd<now?yearEnd:now;
   results.osint=C.analyze({...all,history,horizon,now:end,coverageStart:year&&yearEnd<now?String(year)+'-01-01':undefined,disableForecast:Boolean(yearEnd&&yearEnd<now)});
+  results.osint.indicators=C.indicators(all.rows,{visible:all.visible,history,now,coverageStart:year?String(year)+'-01-01':undefined,coverageEnd:year&&yearEnd<=now?String(year)+'-12-31':undefined,basis:window.ObservatoryTime?.state()?.basis||'occurrence'});
  }
  if(active.includes('ibama')&&ib.ready()){
   officialData=ib.snapshots();const end=yearEnd&&yearEnd<'2026-01-01'?yearEnd:'2026-01-01',coverage=year>=2020&&year<=2025?String(year)+'-01-01':'2020-01-01';
   results.ibama=C.analyze({...officialData,history,horizon,now:end,coverageStart:coverage,disableForecast:true});
+  results.ibama.indicators=C.indicators(officialData.rows.map(r=>({...r,indicatorMonth:r.day?.slice(0,7),indicatorDay:r.day})),{visible:officialData.visible,history,now,coverageStart:coverage,coverageEnd:year>=2020&&year<=2025?String(year)+'-12-31':'2025-12-31',basis:'notice'});
  }
  // Compare only Brazil, on shared complete calendar years. Separate denominators.
  let comparison=null;
@@ -120,6 +122,7 @@ function line(s,values,opts={}){
  if(opts.ref!==undefined)add(z,'line',{x1:24,x2:278,y1:y(opts.ref),y2:y(opts.ref),class:'pi-reference'});
  if(future.length){const off=values.length,lo=future.map((d,i)=>x(off+i)+' '+y(d.lo)),hi=future.map((d,i)=>x(off+i)+' '+y(d.hi));add(z,'polygon',{points:[...hi,...lo.reverse()].join(' '),class:'pi-band'});add(z,'path',{d:path([values.at(-1),...future],off-1),class:'pi-forecast'});}
  add(z,'path',{d:path(values),class:'pi-line'});
+ if(opts.indicator)values.forEach((v,i)=>{const dot=add(z,'circle',{cx:x(i),cy:y(v.n),r:v.partial?3.5:2,fill:v.partial?'#f6b65c':'currentColor',stroke:v.partial?'#f6b65c':'none'});add(dot,'title',{},v.key+': '+fmt(v.n)+(v.partial?' · '+indicatorWords().partial:''));});
  const step=Math.max(1,Math.ceil(all.length/15));all.forEach((d,i)=>{if(i%step===0||i===all.length-1){const label=add(z,'text',{x:x(i),y:105,'text-anchor':'middle'},monthLabel(d.key));if(!opts.seasonal)add(label,'title',{},new Intl.DateTimeFormat(lang(),{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(d.key+'-01T00:00:00Z')));}});s.append(z);
 }
 function pairLabel(d){return country(d.a)+(d.directed?' → ':d.key.includes('↔')?' ↔ ':' — ')+country(d.b);}
@@ -133,6 +136,7 @@ function normalizedSeason(s,d){const w=compareWords();const section=el('section'
  for(let i=0;i<12;i++)add(z,'text',{x:x(i),y:105,'text-anchor':'middle'},monthInitial(i));
  section.append(z);note(section,'OSINT (n='+fmt(d.nOsint)+') · IBAMA (n='+fmt(d.nIbama)+') · '+d.from+'–'+d.to);note(section,w.share);
 }
+function indicatorWords(){return ({pt:{occurrence:'Data de ocorrência',publication:'Data de publicação',occurrence_or_publication:'Ocorrência ou publicação (primeiro mês documentado; 1 por caso)',incorporation:'Data de incorporação validada',notice:'Data da autuação',history:'Registros no período do gráfico',undated:'Sem mês identificável',monthOnly:'Com mês conhecido, sem dia exato',partial:'Último mês parcial, até hoje',range:'Intervalo do gráfico',independent:'Histórico do gráfico independente do período do mapa; casos na seleção respeitam o filtro temporal diário.',model:'Outros gráficos analíticos usam meses completos e datas exatas de ocorrência (IBAMA: autuação).'},en:{occurrence:'Occurrence date',publication:'Publication date',occurrence_or_publication:'Occurrence or publication (earliest documented month; once per case)',incorporation:'Validated incorporation date',notice:'Notice date',history:'Records in chart period',undated:'No identifiable month',monthOnly:'Known month, no exact day',partial:'Latest month incomplete, through today',range:'Chart interval',independent:'Chart history independent of map period; selected cases follow daily temporal filter.',model:'Other analytical charts use complete months and exact occurrence dates (IBAMA: notice).'},es:{occurrence:'Fecha del hecho',publication:'Fecha de publicación',occurrence_or_publication:'Hecho o publicación (primer mes documentado; una vez por caso)',incorporation:'Fecha de incorporación validada',notice:'Fecha del acta',history:'Registros en el intervalo del gráfico',undated:'Sin mes identificable',monthOnly:'Mes conocido, sin día exacto',partial:'Último mes parcial, hasta hoy',range:'Intervalo del gráfico',independent:'Historial independiente del período del mapa; selección según el filtro temporal diario.',model:'Los demás gráficos analíticos usan meses completos y fechas exactas del hecho (IBAMA: acta).'}})[lang()]||{};}
 function renderCharts(){
  if(!last?.active||!enabled)return;if(dragging){rerender=true;return;}
  try{if(dirty||!cache){cache=calculate();dirty=false;}}catch(error){console.error('Prospective analysis calculation failed',error);charts.replaceChildren();statusNode.textContent=extra().error;const err=card(t(0),'error');note(err,extra().error);place(err,0);return;}
@@ -148,7 +152,7 @@ function renderCharts(){
  if(ib&&['routes','network','modes'].includes(id)){note(s,cw.notApplicable);continue;}
  const enough=a.months.length>=24&&a.historyCount>=36&&a.months.filter(x=>x.n>0).length>=12;
  switch(id){
- case 'kpi':{const k=el('div','prospective-kpis');for(const [n,v] of [[ib?iw.ready:t(22),a.visible],[ib?iw.notice:t(21),a.historyCount],[t(20),a.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);line(s,a.months.slice(-12));break;}
+ case 'kpi':{const k=el('div','prospective-kpis'),b=a.indicators,w=indicatorWords();for(const [n,v] of [[ib?iw.ready:t(22),b.selected],[w.history,b.count],[w.undated,b.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);note(s,w[b.basis]);if(b.start)note(s,w.range+': '+b.start+' — '+b.end+(b.partial?' · '+w.partial:''));line(s,b.months,{indicator:true});if(b.monthOnly)note(s,w.monthOnly+': '+fmt(b.monthOnly));note(s,w.independent);note(s,w.model);break;}
  case 'routes':bars(s,a.route.pairs,pairLabel);note(s,t(36));break;
  case 'areas':bars(s,a.areas.map(x=>({key:x.key,n:x.n})),x=>ib?x.key:country(x.key));break;
  case 'season':if(!enough){note(s,t(34));break;}line(s,a.season.map((x,i)=>({key:'2020-'+String(i+1).padStart(2,'0'),n:x.n})),{seasonal:true});note(s,t(25)+' · '+t(41));break;
@@ -160,7 +164,7 @@ function renderCharts(){
  case 'anomaly':s.append(el('strong','prospective-metric',a.anomaly===null?'—':fmt(a.anomaly)+' σ'));note(s,a.anomaly===null?t(17):t(42)+' · '+(a.anomaly>=2?t(32):t(33)));line(s,a.months.slice(-12));break;
  case 'index':{if(a.months.length<6){note(s,t(17));break;}bars(s,a.areas.filter(x=>x.recent>0).map(x=>({key:x.key,n:x.recent})),x=>ib?x.key:country(x.key));note(s,t(31)+' · '+t(37));for(const d of a.areas.filter(x=>x.recent>0).slice(0,5))note(s,(ib?d.key:country(d.key))+': '+d.recent+' / '+d.prior);break;}
  }
- if(a.months.length)note(s,cw.end+' '+a.months.at(-1).key);
+ if(id!=='kpi'&&a.months.length)note(s,cw.end+' '+a.months.at(-1).key);
  if(ib)note(s,iw.historical);else note(s,t(18));
  }
  if(active.length>1){if(id==='season')normalizedSeason(cardNode,comparison);note(cardNode,cw.separate);}
