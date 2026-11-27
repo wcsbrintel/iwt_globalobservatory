@@ -88,6 +88,7 @@ window.ObservatoryTimeCore = (() => {
  }
  const binomial=/^[A-Z][a-z]{2,} [a-z][a-z-]{2,}$/;
  function speciesCatalog(rows){
+  if(window.IbamaTaxonomy?.osintCatalog)return window.IbamaTaxonomy.osintCatalog(rows);
   const genera=new Set();
   for(const e of rows)for(const m of String(e.taxon_text||'').matchAll(/\*([A-Z][a-z]{2,} [a-z][a-z-]{2,})\*/g))genera.add(m[1].split(' ')[0]);
   const names=new WeakMap();

@@ -9,7 +9,7 @@ es:{sources:'Fuentes de datos',osint:'Eventos OSINT',ibama:'IBAMA — Fauna silv
 };
 const $=id=>document.getElementById(id),lang=()=>window.ObservatoryLanguage?.get()||'en',t=()=>W[lang()]||W.en,norm=x=>String(x??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim(),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const official='https://dadosabertos.ibama.gov.br/dataset/fiscalizacao-auto-de-infracao',terms='https://dadosabertos.ibama.gov.br/dataset/fiscalizacao-termo-de-apreensao';
-const T=window.IbamaTaxonomy;let knownAnimals=new Set(),taxonomyAudit=null,osintRows=[],osintCatalog=new WeakMap();let rows=[],status='idle',pending=null,manifest=null,api=null,leaf=null,globe=null,selected=[],revision='',openIds=[],renderToken=0;
+const T=window.IbamaTaxonomy;let knownAnimals=new Set(),taxonomyAudit=null,osintRows=[],osintCatalog=new WeakMap();let acceptedFeatures=[],rows=[],status='idle',pending=null,manifest=null,api=null,leaf=null,globe=null,selected=[],revision='',openIds=[],renderToken=0;
 const osint=()=>$('sourceOsint')?.checked!==false,enabled=()=>Boolean($('sourceIbama')?.checked),ready=()=>status==='ready';
 const groups={'ave':'Aves','aves':'Aves','bird':'Aves','birds':'Aves','mamifero':'Mamíferos','mamiferos':'Mamíferos','mammals':'Mamíferos','reptil':'Répteis','repteis':'Répteis','reptiles':'Répteis','anfibio':'Anfíbios','anfibios':'Anfíbios','amphibians':'Anfíbios','peixe':'Peixes','peixes':'Peixes','fish':'Peixes','invertebrados':'Invertebrados','insetos':'Insetos','aracnideos':'Aracnídeos'};
 function adapt(f){
@@ -23,8 +23,9 @@ function localize(){if(!$('ibamaSourceBox'))return;const w=t();for(const [id,key
 $('ibamaStatus').textContent=!enabled()?'':status==='loading'?w.loading:status==='error'?w.missing:ready()?w.ready+': '+a.length.toLocaleString(lang())+' · '+(a.length-mapped).toLocaleString(lang())+' '+w.unmapped:w.notloaded;
 $('ibamaRetry').hidden=status!=='error'||!enabled();$('ibamaRetry').textContent=w.missing;
 const s=$('sharedTaxon');if(s.options.length)s.options[0].textContent=w.all;updateTaxonLabel();}
-function osintNames(e){return (osintCatalog.get(e)||[]).flatMap(T.speciesNames);}
-function setOsintRows(next){if(osintRows!==next){osintRows=next;osintCatalog=window.ObservatoryTimeCore.speciesCatalog(next);for(const e of next)for(const n of osintNames(e))knownAnimals.add(norm(n));}options();}
+function osintNames(e){return osintCatalog.get(e)||[];}
+function refreshTaxonomy(){const known=new Set();for(const f of acceptedFeatures)for(const x of T.allItems(f.properties))if(T.animalItem(x))for(const n of T.speciesNames(x.scientific_name))known.add(norm(n));osintCatalog=T.osintCatalog(osintRows,known);for(const e of osintRows)for(const n of osintNames(e))known.add(norm(n));knownAnimals=known;rows=acceptedFeatures.map(adapt);if(taxonomyAudit)taxonomyAudit.scientificSpecies=new Set(rows.flatMap(r=>r.taxa)).size;}
+function setOsintRows(next){if(osintRows!==next){osintRows=next;refreshTaxonomy();}options();}
 function osintEntries(e){
  const names=osintNames(e),raw=String(e.taxon_text||'').replace(/\*/g,'');
  return names.map(name=>{
@@ -62,7 +63,7 @@ async function load(){if(pending)return pending;if(ready())return;status='loadin
  const d=JSON.parse(new TextDecoder().decode(buffer));if(d.year!==y||d.features?.length!==entry.records||!d.features.length)throw Error('Invalid year '+y);return d.features;}));
  const ids=new Set(),next=[],accepted=[],excluded={};for(const f of collections.flat()){const p=f.properties;if(!p?.id||ids.has(p.id)||!p.date||!p.categories?.includes('wildlife'))throw Error('Invalid or duplicate notice');ids.add(p.id);
  const verdict=T.eligibility(p);if(!verdict.ok){excluded[verdict.reason]=(excluded[verdict.reason]||0)+1;continue;}accepted.push(f);for(const x of T.allItems(p))if(T.animalItem(x))for(const n of T.speciesNames(x.scientific_name))knownAnimals.add(norm(n));}
- if(ids.size!==data.records)throw Error('Manifest count mismatch');for(const f of accepted)next.push(adapt(f));rows=next;taxonomyAudit={input:ids.size,accepted:rows.length,excluded,scientificSpecies:new Set(rows.flatMap(r=>r.taxa)).size};console.info('IBAMA fauna eligibility audit',taxonomyAudit);manifest=data;status='ready';options();
+ if(ids.size!==data.records)throw Error('Manifest count mismatch');acceptedFeatures=accepted;refreshTaxonomy();taxonomyAudit={input:ids.size,accepted:rows.length,excluded,scientificSpecies:new Set(rows.flatMap(r=>r.taxa)).size};console.info('IBAMA fauna eligibility audit',taxonomyAudit);manifest=data;status='ready';options();
  }catch(e){status='error';console.warn('IBAMA national data unavailable',e);}finally{pending=null;revision='';localize();api?.refresh();window.ProspectiveIntelligence?.invalidate();}})();return pending;}
 function filtered(period='visible',force=false){if((!enabled()&&!force)||!ready())return [];const country=$('country')?.value,group=$('species')?.value,year=$('year')?.value,mode=$('mode')?.value,taxon=$('sharedTaxon')?.value;const state=window.ObservatoryTime?.state(),range=period==='base'?null:state?.visible==='b'?state.comparison:state?.range;return rows.filter(r=>(!country||window.CountryNames?.canonical(country)==='Brasil')&&(!group||r.groups.includes(group))&&(!year||r.year===year)&&!mode&&selectedTaxon(r,taxon)&&(!window.RecordSearch||window.RecordSearch.matchesText(r.search+' brasil brazil ibama'))&&(!range||r.day>=range.start&&r.day<=range.end));}
 function snapshots(){return {rows:filtered('base',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),visible:filtered('visible',true).map(r=>({id:r.id,canonicalId:r.id,country:r.uf||t().unknown,groups:r.groups,mode:null,day:r.day,countable:true})),edges:[]};}

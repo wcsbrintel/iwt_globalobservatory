@@ -1,0 +1,31 @@
+name: Audit species catalog coverage
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/ibama-fauna/audit-species.cjs'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read actual published IBAMA files
+        run: |
+          git fetch origin ibama-data
+          git worktree add --detach "$RUNNER_TEMP/ibama-audit" FETCH_HEAD
+      - name: Compare catalogs without changing source records
+        env:
+          BASELINE_SHA: 13f13903a1b7e25916f8f25c2106f33a3bb1995a
+        run: node scripts/ibama-fauna/audit-species.cjs "$RUNNER_TEMP/ibama-audit/ibama-fauna"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: taxonomy-audit
+          path: taxonomy-audit.json
