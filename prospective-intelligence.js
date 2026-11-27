@@ -79,6 +79,9 @@ function attachDrag(s,handle){
 }
 function note(s,txt){s.append(el('small','prospective-note',txt));}
 function bars(s,data,label=x=>x.key){if(!data.length){note(s,t(17));return;}const max=Math.max(1,...data.map(x=>x.n));for(const d of data.slice(0,6)){const row=el('div','prospective-row'),h=el('div','prospective-row-head');h.append(el('span','',label(d)),el('b','',fmt(d.n)));const rail=el('div','prospective-rail'),fill=el('span');fill.style.width=100*d.n/max+'%';rail.append(fill);row.append(h,rail);s.append(row);}}
+// One localized month-initial convention for all chronological axes.
+function monthInitial(i,locale=lang()){return new Intl.DateTimeFormat(locale,{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2020,i,1))).charAt(0).toLocaleUpperCase(locale);}
+function monthLabel(key){const match=/^\d{4}-(0[1-9]|1[0-2])$/.exec(String(key));return match?monthInitial(Number(match[1])-1):'';}
 function line(s,values,opts={}){
  if(!values.length){note(s,t(17));return;}const future=opts.future||[],all=[...values,...future],max=Math.max(1,...all.map(x=>Math.max(x.n,x.hi||0)),opts.ref||0)*1.13,w=286,h=112,x=i=>24+i*254/Math.max(1,all.length-1),y=v=>89-v*75/max;
  const z=svg('svg',{viewBox:'0 0 286 112',role:'img','aria-label':s.querySelector('h3').textContent});for(const v of [0,max/2,max]){add(z,'line',{x1:24,x2:278,y1:y(v),y2:y(v),class:'pi-grid'});add(z,'text',{x:20,y:y(v)+3,'text-anchor':'end'},fmt(v));}
@@ -86,7 +89,7 @@ function line(s,values,opts={}){
  if(opts.ref!==undefined)add(z,'line',{x1:24,x2:278,y1:y(opts.ref),y2:y(opts.ref),class:'pi-reference'});
  if(future.length){const off=values.length,lo=future.map((d,i)=>x(off+i)+' '+y(d.lo)),hi=future.map((d,i)=>x(off+i)+' '+y(d.hi));add(z,'polygon',{points:[...hi,...lo.reverse()].join(' '),class:'pi-band'});add(z,'path',{d:path([values.at(-1),...future],off-1),class:'pi-forecast'});}
  add(z,'path',{d:path(values),class:'pi-line'});
- const step=Math.max(1,Math.ceil(all.length/6));all.forEach((d,i)=>{if(i%step===0||i===all.length-1)add(z,'text',{x:x(i),y:105,'text-anchor':i===0?'start':i===all.length-1?'end':'middle'},d.key.slice(-5));});s.append(z);
+ const step=Math.max(1,Math.ceil(all.length/15));all.forEach((d,i)=>{if(i%step===0||i===all.length-1){const label=add(z,'text',{x:x(i),y:105,'text-anchor':'middle'},monthLabel(d.key));if(!opts.seasonal)add(label,'title',{},new Intl.DateTimeFormat(lang(),{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(d.key+'-01T00:00:00Z')));}});s.append(z);
 }
 function pairLabel(d){return country(d.a)+(d.directed?' → ':d.key.includes('↔')?' ↔ ':' — ')+country(d.b);}
 function render(){try{renderCharts();}catch(error){console.error('Prospective chart rendering failed',error);if(statusNode)statusNode.textContent=extra().error;}}
@@ -99,8 +102,8 @@ function renderCharts(){
  case 'kpi':{const k=el('div','prospective-kpis');for(const [n,v] of [[t(22),a.visible],[t(21),a.historyCount],[t(20),a.undated]]){const d=el('div');d.append(el('small','',n),el('b','',fmt(v)));k.append(d);}s.append(k);line(s,a.months.slice(-12));break;}
  case 'routes':bars(s,a.route.pairs,pairLabel);note(s,t(36));break;
  case 'areas':bars(s,a.areas.map(x=>({key:x.key,n:x.n})),x=>country(x.key));break;
- case 'season':if(!enough){note(s,t(34));break;}line(s,a.season.map((x,i)=>({key:new Intl.DateTimeFormat(lang(),{month:'short',timeZone:'UTC'}).format(new Date(Date.UTC(2020,i,1))),n:x.n})));note(s,t(25)+' · '+t(41));break;
- case 'heat':{if(!enough){note(s,t(34));break;}const grid=el('div','prospective-heat');grid.append(el('span'));for(let i=0;i<12;i++)grid.append(el('small','',new Intl.DateTimeFormat(lang(),{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2020,i,1))).charAt(0).toLocaleUpperCase(lang())));for(const g of a.groupSeason.slice(0,5)){grid.append(el('small','',group(g.key)));const max=Math.max(1,...g.values);for(const n of g.values){const cell=el('span','pi-cell');cell.style.opacity=String(.12+.88*n/max);cell.title=group(g.key)+': '+fmt(n);grid.append(cell);}}s.append(grid);note(s,t(50));break;}
+ case 'season':if(!enough){note(s,t(34));break;}line(s,a.season.map((x,i)=>({key:'2020-'+String(i+1).padStart(2,'0'),n:x.n})),{seasonal:true});note(s,t(25)+' · '+t(41));break;
+ case 'heat':{if(!enough){note(s,t(34));break;}const grid=el('div','prospective-heat');grid.append(el('span'));for(let i=0;i<12;i++)grid.append(el('small','',monthInitial(i)));for(const g of a.groupSeason.slice(0,5)){grid.append(el('small','',group(g.key)));const max=Math.max(1,...g.values);for(const n of g.values){const cell=el('span','pi-cell');cell.style.opacity=String(.12+.88*n/max);cell.title=group(g.key)+': '+fmt(n);grid.append(cell);}}s.append(grid);note(s,t(50));break;}
  case 'trend':s.append(el('strong','prospective-metric',a.trend===null?'—':(a.trend>0?'+':'')+fmt(a.trend)+'%'));line(s,a.months.slice(-12),{ref:a.months.length>3?a.months.slice(0,-3).reduce((n,x)=>n+x.n,0)/(a.months.length-3):0});note(s,t(23)+': '+fmt(a.recent)+' · '+t(24)+': '+fmt(a.prior));break;
  case 'forecast':if(!a.forecast){note(s,t(35));break;}line(s,a.months.slice(-12),{future:a.forecast.estimates});note(s,t(26)+' / '+t(27)+' · '+t(28)+' · '+t(29)+': '+fmt(a.forecast.mae)+' (n='+a.forecast.origins+')');break;
  case 'modes':{const keys=[...new Set(a.modeRows.flatMap(x=>x.map(v=>v.key)))].sort();const cols=['#60a5fa','#527da1','#94a3b8','#7b8a9b','#b7cbdc','#57606c'];a.modeRows.forEach((r,j)=>{s.append(el('small','',[t(23),t(24),t(21)][j]));const rail=el('div','pi-stack'),n=r.reduce((v,x)=>v+x.n,0);for(const d of r){const span=el('span');span.style.width=100*d.n/Math.max(1,n)+'%';span.style.background=cols[keys.indexOf(d.key)%cols.length];span.title=group(d.key)+': '+fmt(d.n);rail.append(span);}s.append(rail);});const legend=el('div','pi-legend');keys.forEach((k,i)=>{const n=el('span','',group(k));n.style.borderLeft='5px solid '+cols[i%cols.length];legend.append(n);});s.append(legend);break;}
